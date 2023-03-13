@@ -7,7 +7,7 @@ class Game {
     public:
         Game();
         
-        Board myBoard;
+        Board* myBoard = new Board();
 };
 
 #endif

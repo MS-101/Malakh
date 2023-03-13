@@ -4,8 +4,12 @@
 int main() {
     std::cout << "Starting chess engine!\n\n";
 
-    Game newGame;
-    newGame.myBoard.PrintBoard();
+    Game* newGame = new Game();
+    Board* board = newGame->myBoard;
+
+    board->PrintBoard();
+    board->MovePiece(1, 1, 1, 2);
+    board->PrintBoard();
 
     return 0;
 }

@@ -1,11 +1,13 @@
 #ifndef PIECE_H
 #define PIECE_H
 
-#include <string>
-#include <map>
+#include "movement.h"
 
-enum Owner { White, Black };
-enum Essence { Classic, Red, Blue, Yellow };
+#include <string>
+#include <list>
+
+enum Owner { White = 'W', Black = 'B' };
+enum Essence { Classic = 'C', Red = 'R', Blue = 'B', Yellow = 'Y' };
 
 class Piece {
     public:
@@ -15,6 +17,7 @@ class Piece {
         char tag = 'X';
         Owner owner = White;
         Essence essence = Classic;
+        std::list<Movement> movements;
 };
 
 #endif

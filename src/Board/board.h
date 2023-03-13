@@ -13,6 +13,7 @@ class Board {
         Square *squares[ROWS][COLUMNS];
 
         void PrintBoard();
+        void MovePiece(int x1, int y1, int x2, int y2);
 };
 
 #endif
