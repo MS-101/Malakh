@@ -1,5 +1,5 @@
 #include <iostream>
-#include "game.h"
+#include "src/game.h"
 
 int main() {
     std::cout << "Hello World!\n";
