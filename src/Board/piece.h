@@ -1,7 +1,7 @@
 #ifndef PIECE_H
 #define PIECE_H
 
-#include "mobility.h"
+#include "movement.h"
 
 #include <string>
 #include <list>
@@ -17,7 +17,9 @@ class Piece {
         char tag = 'X';
         Owner owner = White;
         Essence essence = Classic;
-        std::list<Mobility> mobility;
+        std::list<Mobility*> mobilities;
+        std::list<Movement*> availableMoves; 
+        int x, y;
 };
 
 #endif

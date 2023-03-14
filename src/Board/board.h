@@ -28,7 +28,7 @@ class Board {
         bool AddPiece(Piece* newPiece, int x, int y);
         void InitMoves();
         void CalculateMoves(Piece* curPiece);
-        bool CalculateMove(Piece* curPiece, Mobility curMobility, int* cur_x, int* cur_y);
+        Movement* CalculateMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove, int* cur_x, int* cur_y);
 };
 
 #endif

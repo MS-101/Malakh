@@ -18,10 +18,8 @@ void Board::InitBoard(
     int pawnCount = 8;
 
     // Black pieces
-    /*
     for (int pawnIterator = 0; pawnIterator < pawnCount; pawnIterator++)
         AddPiece(new Pawn(blackPawnEssence, Black), pawnIterator, 1);
-    */
 
     //AddPiece(new Rook(blackRookEssence, Black), 0, 0);
     //AddPiece(new Knight(blackKnightEssence, Black), 1, 0);
@@ -56,6 +54,9 @@ bool Board::AddPiece(Piece* newPiece, int x, int y) {
     if (newPiece == nullptr || curSquare->occupyingPiece != nullptr)
         return false;
 
+    newPiece->x = x;
+    newPiece->y = y;
+
     curSquare->occupyingPiece = newPiece;
     switch (newPiece->owner) {
         case::White:
@@ -84,21 +85,29 @@ void Board::InitMoves() {
 }
 
 void Board::CalculateMoves(Piece* curPiece) {
-    std::list<Mobility> mobilities = curPiece->mobility;
+    std::list<Mobility*> mobilities = curPiece->mobilities;
     for (auto mobilityIterator = mobilities.begin();
     mobilityIterator != mobilities.end(); ++mobilityIterator) {
-        Mobility curMobility = *mobilityIterator;
+        Mobility* curMobility = *mobilityIterator;
 
-        int cur_x = curMobility.start_x;
-        int cur_y = curMobility.start_y;
-        if (curPiece->owner == White)
-            cur_y *= -1;
+        int cur_x = curPiece->x + curMobility->start_x;
+        int cur_y = curPiece->y;
+        switch (curPiece->owner)
+        {
+            case::White:
+                cur_y -= curMobility->start_y;
+                break;
+            case::Black:
+                cur_y += curMobility->start_y;
+                break;
+        }
 
-        if (curMobility.limit == 0) {
-            while (!CalculateMove(curPiece, curMobility, &cur_x, &cur_y));
+        Movement* prevMove = nullptr;
+        if (curMobility->limit == 0) {
+            while ((prevMove = CalculateMove(curPiece, curMobility, nullptr, &cur_x, &cur_y)) != nullptr);
         } else {
-            for (int i = 0; i < curMobility.limit; i++)
-                if (!CalculateMove(curPiece, curMobility, &cur_x, &cur_y))
+            for (int i = 0; i < curMobility->limit; i++)
+                if ((prevMove = CalculateMove(curPiece, curMobility, nullptr, &cur_x, &cur_y)) == nullptr)
                     break;
         }
     }
@@ -116,25 +125,39 @@ void Board::CalculateMoves(Piece* curPiece) {
  * @return true if move can be performed
  * @return false if move cannot be performed
  */
-bool Board::CalculateMove(Piece* curPiece, Mobility curMobility, int* cur_x, int* cur_y) {
+Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove, int* cur_x, int* cur_y) {
     if (*cur_x < 0 || *cur_x > COLUMNS-1 || *cur_y < 0 || *cur_y > ROWS-1) {
-        return false;
+        return nullptr;
     }
 
-    // TO DO: CREATE MOVE
+    Square* targetSquare = squares[*cur_y][*cur_x];
+    Piece* targetPiece = targetSquare->occupyingPiece;
 
-    *cur_x += curMobility.direction_x;
+    MoveState newMoveState = Available;
+    if (targetPiece != nullptr)
+        newMoveState = Blocked;
+
+    Movement* newMove = new Movement(newMoveState, curMobility, nullptr, *cur_x, *cur_y);
+    curPiece->availableMoves.push_back(newMove);
+
+    if (prevMove != nullptr)
+        prevMove->next = newMove;
+
+    if (newMoveState == Blocked)
+        return nullptr;
+
+    *cur_x += curMobility->direction_x;
     switch(curPiece->owner)
     {
         case::White:
-            *cur_y -= curMobility.direction_y;
+            *cur_y -= curMobility->direction_y;
             break;
         case::Black:
-            *cur_y += curMobility.direction_y;
+            *cur_y += curMobility->direction_y;
             break;
     }
 
-    return true;
+    return newMove;
 }
 
 void Board::MovePiece(int x1, int y1, int x2, int y2) {
@@ -182,6 +205,18 @@ void Board::PrintMoves(Piece* curPiece) {
     for (int cur_y = 0; cur_y < ROWS; cur_y++) {
         for (int cur_x = 0; cur_x < COLUMNS; cur_x++) {
             pieceMoves[cur_y][cur_x] = ' ';
+        }
+    }
+    pieceMoves[curPiece->y][curPiece->x] = '0';
+
+    std::list<Movement*> availableMoves = curPiece->availableMoves;
+    for (auto movementIterator = availableMoves.begin();
+    movementIterator != availableMoves.end(); ++movementIterator) {
+        Movement* curMove = *movementIterator;
+
+        while (curMove != nullptr) {
+            pieceMoves[curMove->y][curMove->x] = 'X';
+            curMove = curMove->next;
         }
     }
 
