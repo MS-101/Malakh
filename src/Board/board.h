@@ -23,8 +23,12 @@ class Board {
         );
         void MovePiece(int x1, int y1, int x2, int y2);
         void PrintBoard();
+        void PrintMoves(Piece* curPiece);
     private:
         bool AddPiece(Piece* newPiece, int x, int y);
+        void InitMoves();
+        void CalculateMoves(Piece* curPiece);
+        bool CalculateMove(Piece* curPiece, Mobility curMobility, int* cur_x, int* cur_y);
 };
 
 #endif

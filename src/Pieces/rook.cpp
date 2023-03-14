@@ -9,7 +9,7 @@ Rook::Rook(Essence essence, Owner owner) {
     // TO DO: CASTLING
     switch (essence) {
         case::Classic:
-            this->mobility.push_back(Mobility(AttackMove, -1, +0, +0, +0, 0));
+            this->mobility.push_back(Mobility(AttackMove, -1, +0, -1, +0, 0));
             this->mobility.push_back(Mobility(AttackMove, +0, -1, +0, +0, 0));
             this->mobility.push_back(Mobility(AttackMove, +1, +0, +0, +0, 0));
             this->mobility.push_back(Mobility(AttackMove, +0, +1, +0, +0, 0));

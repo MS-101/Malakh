@@ -8,7 +8,7 @@ int main() {
     Board* board = newGame->myBoard;
 
     board->InitBoard(Classic, Classic, Classic, Classic, Classic, Classic, Classic, Classic);
-    board->PrintBoard();
+    //board->PrintBoard();
     /*
     board->MovePiece(1, 1, 1, 2);
     board->PrintBoard();
