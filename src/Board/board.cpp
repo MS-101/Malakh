@@ -9,36 +9,57 @@ Board::Board() {
             squares[cur_y][cur_x] = new Square();
         }
     }
+}
 
+void Board::InitBoard(
+    Essence whitePawnEssence, Essence whiteRookEssence, Essence whiteKnightEssence, Essence whiteBishopEssence,
+    Essence blackPawnEssence, Essence blackRookEssence, Essence blackKnightEssence, Essence blackBishopEssence
+) {
     int pawnCount = 8;
-    for (int pawnIterator = 0; pawnIterator < pawnCount; pawnIterator++)
-    {
-        Pawn* newWhitePawn = new Pawn(Classic, White); 
-        squares[6][pawnIterator]->occupyingPiece = newWhitePawn;
 
-        Pawn* newBlackPawn = new Pawn(Classic, Black);
-        squares[1][pawnIterator]->occupyingPiece = newBlackPawn;
+    // Black pieces
+    for (int pawnIterator = 0; pawnIterator < pawnCount; pawnIterator++)
+        AddPiece(new Pawn(blackPawnEssence, Black), pawnIterator, 1);
+
+    AddPiece(new Rook(blackRookEssence, Black), 0, 0);
+    AddPiece(new Knight(blackKnightEssence, Black), 1, 0);
+    AddPiece(new Bishop(blackBishopEssence, Black), 2, 0);
+    AddPiece(new Queen(Black), 3, 0);
+    AddPiece(new King(Black), 4, 0);
+    AddPiece(new Bishop(blackBishopEssence, Black), 5, 0);
+    AddPiece(new Knight(blackKnightEssence, Black), 6, 0);
+    AddPiece(new Rook(blackRookEssence, Black), 7, 0);
+    
+    // White pieces
+    for (int pawnIterator = 0; pawnIterator < pawnCount; pawnIterator++)
+        AddPiece(new Pawn(whitePawnEssence, White), pawnIterator, 6);
+
+    AddPiece(new Rook(whiteRookEssence, White), 0, 7);
+    AddPiece(new Knight(whiteKnightEssence, White), 1, 7);
+    AddPiece(new Bishop(whiteBishopEssence, White), 2, 7);
+    AddPiece(new Queen(White), 3, 7);
+    AddPiece(new King(White), 4, 7);
+    AddPiece(new Bishop(whiteBishopEssence, White), 5, 7);
+    AddPiece(new Knight(whiteKnightEssence, White), 6, 7);
+    AddPiece(new Rook(whiteRookEssence, White), 7, 7);
+}
+
+bool Board::AddPiece(Piece* newPiece, int x, int y) {
+    Square* curSquare = squares[y][x];
+    if (newPiece == nullptr || curSquare->occupyingPiece != nullptr)
+        return false;
+
+    curSquare->occupyingPiece = newPiece;
+    switch (newPiece->owner) {
+        case::White:
+            whitePieces.push_back(newPiece);
+            break;
+        case::Black:
+            blackPieces.push_back(newPiece);
+            break;
     }
 
-    // Black first row
-    squares[0][0]->occupyingPiece = new Rook(Classic, Black);
-    squares[0][1]->occupyingPiece = new Knight(Classic, Black);
-    squares[0][2]->occupyingPiece = new Bishop(Classic, Black);
-    squares[0][3]->occupyingPiece = new Queen(Classic, Black);
-    squares[0][4]->occupyingPiece = new King(Classic, Black);
-    squares[0][5]->occupyingPiece = new Bishop(Classic, Black);
-    squares[0][6]->occupyingPiece = new Knight(Classic, Black);
-    squares[0][7]->occupyingPiece = new Rook(Classic, Black);
-
-    // White first row
-    squares[7][0]->occupyingPiece = new Rook(Classic, White);
-    squares[7][1]->occupyingPiece = new Knight(Classic, White);
-    squares[7][2]->occupyingPiece = new Bishop(Classic, White);
-    squares[7][3]->occupyingPiece = new Queen(Classic, White);
-    squares[7][4]->occupyingPiece = new King(Classic, White);
-    squares[7][5]->occupyingPiece = new Bishop(Classic, White);
-    squares[7][6]->occupyingPiece = new Knight(Classic, White);
-    squares[7][7]->occupyingPiece = new Rook(Classic, White);
+    return true;
 }
 
 void Board::MovePiece(int x1, int y1, int x2, int y2) {

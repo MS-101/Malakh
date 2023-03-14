@@ -2,6 +2,7 @@
 #define BOARD_H
 
 #include "square.h"
+#include "list"
 
 class Board {
     public:
@@ -11,9 +12,19 @@ class Board {
         const static int ROWS = 8;
 
         Square *squares[ROWS][COLUMNS];
+        std::list<Piece*> whitePieces;
+        std::list<Piece*> blackPieces;
 
-        void PrintBoard();
+        void InitBoard(
+            Essence whitePawnEssence, Essence whiteRookEssence, 
+            Essence whiteKnightEssence, Essence whiteBishopEssence,
+            Essence blackPawnEssence, Essence blackRookEssence, 
+            Essence blackKnightEssence, Essence blackBishopEssence
+        );
         void MovePiece(int x1, int y1, int x2, int y2);
+        void PrintBoard();
+    private:
+        bool AddPiece(Piece* newPiece, int x, int y);
 };
 
 #endif

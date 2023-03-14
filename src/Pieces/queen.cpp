@@ -1,32 +1,19 @@
 #include "pieces.h"
 
-Queen::Queen(Essence essence, Owner owner) {
+Queen::Queen(Owner owner) {
     this->name = "Queen";
     this->tag = 'Q';
-    this->essence = essence;
+    this->essence = Classic;
     this->owner = owner;
 
-    switch (essence) {
-        case::Classic:
-            // Rook moves
-            this->movements.push_back(Movement(AttackMove, -1, +0, +0, +0, 0));
-            this->movements.push_back(Movement(AttackMove, +0, -1, +0, +0, 0));
-            this->movements.push_back(Movement(AttackMove, +1, +0, +0, +0, 0));
-            this->movements.push_back(Movement(AttackMove, +0, +1, +0, +0, 0));
-            // bishop moves
-            this->movements.push_back(Movement(AttackMove, -1, -1, -1, -1, 0));
-            this->movements.push_back(Movement(AttackMove, +1, -1, +1, -1, 0));
-            this->movements.push_back(Movement(AttackMove, +1, +1, +1, +1, 0));
-            this->movements.push_back(Movement(AttackMove, -1, +1, -1, +1, 0));
-            break;
-        case::Red:
-            // Queen is already powerful enough.
-            break;
-        case::Blue:
-            // Queen is already powerful enough.
-            break;
-        case::Yellow:
-            // Queen is already powerful enough.
-            break;
-    }
+    // Rook moves
+    this->mobility.push_back(Mobility(AttackMove, -1, +0, +0, +0, 0));
+    this->mobility.push_back(Mobility(AttackMove, +0, -1, +0, +0, 0));
+    this->mobility.push_back(Mobility(AttackMove, +1, +0, +0, +0, 0));
+    this->mobility.push_back(Mobility(AttackMove, +0, +1, +0, +0, 0));
+    // bishop moves
+    this->mobility.push_back(Mobility(AttackMove, -1, -1, -1, -1, 0));
+    this->mobility.push_back(Mobility(AttackMove, +1, -1, +1, -1, 0));
+    this->mobility.push_back(Mobility(AttackMove, +1, +1, +1, +1, 0));
+    this->mobility.push_back(Mobility(AttackMove, -1, +1, -1, +1, 0));
 }

@@ -1,6 +1,6 @@
-#include "movement.h"
+#include "mobility.h"
 
-Movement::Movement(MovementType type, int start_x, int start_y, int direction_x, int direction_y, int limit) {
+Mobility::Mobility(MovementType type, int start_x, int start_y, int direction_x, int direction_y, int limit) {
     this->type = type;
     this->start_x = start_x;
     this->start_y = start_y;

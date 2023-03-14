@@ -25,12 +25,12 @@ class Bishop : public Piece {
 
 class Queen : public Piece {
     public:
-        Queen(Essence essence, Owner owner);
+        Queen(Owner owner);
 };
 
 class King : public Piece {
     public:
-        King(Essence essence, Owner owner);
+        King(Owner owner);
 };
 
 #endif
