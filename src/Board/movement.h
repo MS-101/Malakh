@@ -3,16 +3,15 @@
 
 #include "mobility.h"
 
-enum MoveState { Blocked, Available };
-
 class Movement {
     public:
-        Movement(MoveState moveState, Mobility* mobility, Movement* next, int x, int y);
+        Movement(int x, int y, bool legal, Mobility* mobility, Movement* next);
 
-        MoveState moveState;
+        int x, y;
+        bool legal;
         Mobility* mobility;
         Movement* next;
-        int x, y;
+        
 };
 
 #endif

@@ -21,29 +21,27 @@ void Board::InitBoard(
     for (int pawnIterator = 0; pawnIterator < pawnCount; pawnIterator++)
         AddPiece(new Pawn(blackPawnEssence, Black), pawnIterator, 1);
 
-    //AddPiece(new Rook(blackRookEssence, Black), 0, 0);
-    //AddPiece(new Knight(blackKnightEssence, Black), 1, 0);
+    AddPiece(new Rook(blackRookEssence, Black), 0, 0);
+    AddPiece(new Knight(blackKnightEssence, Black), 1, 0);
     AddPiece(new Bishop(blackBishopEssence, Black), 2, 0);
-    //AddPiece(new Queen(Black), 3, 0);
-    //AddPiece(new King(Black), 4, 0);
-    //AddPiece(new Bishop(blackBishopEssence, Black), 5, 0);
-    //AddPiece(new Knight(blackKnightEssence, Black), 6, 0);
-    //AddPiece(new Rook(blackRookEssence, Black), 7, 0);
+    AddPiece(new Queen(Black), 3, 0);
+    AddPiece(new King(Black), 4, 0);
+    AddPiece(new Bishop(blackBishopEssence, Black), 5, 0);
+    AddPiece(new Knight(blackKnightEssence, Black), 6, 0);
+    AddPiece(new Rook(blackRookEssence, Black), 7, 0);
     
     // White pieces
-    /*
     for (int pawnIterator = 0; pawnIterator < pawnCount; pawnIterator++)
         AddPiece(new Pawn(whitePawnEssence, White), pawnIterator, 6);
-    */
 
-    //AddPiece(new Rook(whiteRookEssence, White), 0, 7);
-    //AddPiece(new Knight(whiteKnightEssence, White), 1, 7);
-    //AddPiece(new Bishop(whiteBishopEssence, White), 2, 7);
-    //AddPiece(new Queen(White), 3, 7);
-    //AddPiece(new King(White), 4, 7);
-    //AddPiece(new Bishop(whiteBishopEssence, White), 5, 7);
-    //AddPiece(new Knight(whiteKnightEssence, White), 6, 7);
-    //AddPiece(new Rook(whiteRookEssence, White), 7, 7);
+    AddPiece(new Rook(whiteRookEssence, White), 0, 7);
+    AddPiece(new Knight(whiteKnightEssence, White), 1, 7);
+    AddPiece(new Bishop(whiteBishopEssence, White), 2, 7);
+    AddPiece(new Queen(White), 3, 7);
+    AddPiece(new King(White), 4, 7);
+    AddPiece(new Bishop(whiteBishopEssence, White), 5, 7);
+    AddPiece(new Knight(whiteKnightEssence, White), 6, 7);
+    AddPiece(new Rook(whiteRookEssence, White), 7, 7);
 
     PrintBoard();
     InitMoves();
@@ -133,17 +131,30 @@ Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement*
     Square* targetSquare = squares[*cur_y][*cur_x];
     Piece* targetPiece = targetSquare->occupyingPiece;
 
-    MoveState newMoveState = Available;
-    if (targetPiece != nullptr)
-        newMoveState = Blocked;
+    bool isLegal = true;
+    switch (curMobility->type)
+    {
+        case::Move:
+            if (targetPiece != nullptr)
+                isLegal = false;
+            break;
+        case::Attack:
+            if (targetPiece == nullptr || targetPiece->owner == curPiece->owner)
+                isLegal = false;
+            break;
+        case::AttackMove:
+            if (targetPiece != nullptr && targetPiece->owner == curPiece->owner)
+                isLegal = false;
+            break;
+    }
 
-    Movement* newMove = new Movement(newMoveState, curMobility, nullptr, *cur_x, *cur_y);
+    Movement* newMove = new Movement(*cur_x, *cur_y, isLegal, curMobility, nullptr);
     curPiece->availableMoves.push_back(newMove);
 
     if (prevMove != nullptr)
         prevMove->next = newMove;
 
-    if (newMoveState == Blocked)
+    if (targetPiece != nullptr)
         return nullptr;
 
     *cur_x += curMobility->direction_x;
@@ -215,7 +226,9 @@ void Board::PrintMoves(Piece* curPiece) {
         Movement* curMove = *movementIterator;
 
         while (curMove != nullptr) {
-            pieceMoves[curMove->y][curMove->x] = 'X';
+            if (curMove->legal)
+                pieceMoves[curMove->y][curMove->x] = 'X';
+            
             curMove = curMove->next;
         }
     }

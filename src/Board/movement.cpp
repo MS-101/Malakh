@@ -1,9 +1,9 @@
 #include "movement.h"
 
-Movement::Movement(MoveState moveState, Mobility* mobility, Movement* next, int x, int y) {
-    this->moveState = moveState;
-    this->mobility = mobility;
-    this->next = next;
+Movement::Movement(int x, int y, bool legal, Mobility* mobility, Movement* next) {
     this->x = x;
     this->y = y;
+    this->legal = legal;
+    this->mobility = mobility;
+    this->next = next;
 }
