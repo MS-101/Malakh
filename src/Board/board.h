@@ -27,6 +27,8 @@ class Board {
     private:
         bool AddPiece(Piece* newPiece, int x, int y);
         void CalculateMoves();
+        void RemoveMoves(Piece* curPiece);
+        void CutMovement(PieceMovement* curMovement);
         void CalculateMoves(Piece* curPiece);
         Movement* CalculateMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove);
 };

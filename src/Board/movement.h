@@ -11,7 +11,6 @@ class Movement {
         bool legal;
         Mobility* mobility;
         Movement* next;
-        
 };
 
 #endif

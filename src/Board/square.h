@@ -1,13 +1,17 @@
 #ifndef SQUARE_H
 #define SQUARE_H
 
-#include "piece.h"
+#include "pieceMovement.h"
+
+#include <list>
 
 class Square {
     public:
-        Square();
+        Square(int x, int y);
 
         Piece* occupyingPiece = (Piece*)nullptr;
+        std::list<PieceMovement*> movements;
+        int x, y;
 };
 
 #endif
