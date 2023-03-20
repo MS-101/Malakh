@@ -16,19 +16,19 @@ class Board {
         std::list<Piece*> blackPieces;
 
         void InitBoard(
-            Essence whitePawnEssence, Essence whiteRookEssence, 
+            Essence whitePawnEssence, Essence whiteRookEssence,
             Essence whiteKnightEssence, Essence whiteBishopEssence,
-            Essence blackPawnEssence, Essence blackRookEssence, 
+            Essence blackPawnEssence, Essence blackRookEssence,
             Essence blackKnightEssence, Essence blackBishopEssence
         );
-        void MovePiece(int x1, int y1, int x2, int y2);
         void PrintBoard();
         void PrintMoves(Piece* curPiece);
+        void PerformMove(int x1, int y1, int x2, int y2);
     private:
         bool AddPiece(Piece* newPiece, int x, int y);
-        void InitMoves();
+        void CalculateMoves();
         void CalculateMoves(Piece* curPiece);
-        Movement* CalculateMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove, int* cur_x, int* cur_y);
+        Movement* CalculateMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove);
 };
 
 #endif

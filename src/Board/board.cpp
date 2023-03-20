@@ -44,7 +44,7 @@ void Board::InitBoard(
     AddPiece(new Rook(whiteRookEssence, White), 7, 7);
 
     PrintBoard();
-    InitMoves();
+    CalculateMoves();
 }
 
 bool Board::AddPiece(Piece* newPiece, int x, int y) {
@@ -68,7 +68,7 @@ bool Board::AddPiece(Piece* newPiece, int x, int y) {
     return true;
 }
 
-void Board::InitMoves() {
+void Board::CalculateMoves() {
     for (auto whitePieceIterator = whitePieces.begin();
     whitePieceIterator != whitePieces.end(); ++whitePieceIterator) {
         Piece *whitePiece = *whitePieceIterator;
@@ -87,10 +87,44 @@ void Board::CalculateMoves(Piece* curPiece) {
     for (auto mobilityIterator = mobilities.begin();
     mobilityIterator != mobilities.end(); ++mobilityIterator) {
         Mobility* curMobility = *mobilityIterator;
+        Movement* prevMove = nullptr;
 
-        int cur_x = curPiece->x + curMobility->start_x;
-        int cur_y = curPiece->y;
-        switch (curPiece->owner)
+        if (curMobility->limit == 0) {
+            while ((prevMove = CalculateMove(curPiece, curMobility, prevMove)) != nullptr);
+        } else {
+            for (int i = 0; i < curMobility->limit; i++)
+                if ((prevMove = CalculateMove(curPiece, curMobility, prevMove)) == nullptr)
+                    break;
+        }
+    }
+
+    PrintMoves(curPiece);
+}
+
+Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove) {
+    int cur_x, cur_y;
+
+    if (prevMove != nullptr)
+    {
+        cur_x = prevMove->x + curMobility->direction_x;
+        cur_y = prevMove->y;
+
+        switch(curPiece->owner)
+        {
+            case::White:
+                cur_y -= curMobility->direction_y;
+                break;
+            case::Black:
+                cur_y += curMobility->direction_y;
+                break;
+        }
+    }
+    else
+    {
+        cur_x = curPiece->x + curMobility->start_x;
+        cur_y = curPiece->y;
+
+        switch(curPiece->owner)
         {
             case::White:
                 cur_y -= curMobility->start_y;
@@ -99,36 +133,13 @@ void Board::CalculateMoves(Piece* curPiece) {
                 cur_y += curMobility->start_y;
                 break;
         }
-
-        Movement* prevMove = nullptr;
-        if (curMobility->limit == 0) {
-            while ((prevMove = CalculateMove(curPiece, curMobility, nullptr, &cur_x, &cur_y)) != nullptr);
-        } else {
-            for (int i = 0; i < curMobility->limit; i++)
-                if ((prevMove = CalculateMove(curPiece, curMobility, nullptr, &cur_x, &cur_y)) == nullptr)
-                    break;
-        }
     }
 
-    PrintMoves(curPiece);
-}
-
-/**
- * @brief Performs move on current position and moves current position in mobility direction.
- * 
- * @param curPiece 
- * @param curMobility
- * @param cur_x
- * @param cur_y 
- * @return true if move can be performed
- * @return false if move cannot be performed
- */
-Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove, int* cur_x, int* cur_y) {
-    if (*cur_x < 0 || *cur_x > COLUMNS-1 || *cur_y < 0 || *cur_y > ROWS-1) {
+    if (cur_x < 0 || cur_x > COLUMNS-1 || cur_y < 0 || cur_y > ROWS-1) {
         return nullptr;
     }
 
-    Square* targetSquare = squares[*cur_y][*cur_x];
+    Square* targetSquare = squares[cur_y][cur_x];
     Piece* targetPiece = targetSquare->occupyingPiece;
 
     bool isLegal = true;
@@ -148,7 +159,7 @@ Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement*
             break;
     }
 
-    Movement* newMove = new Movement(*cur_x, *cur_y, isLegal, curMobility, nullptr);
+    Movement* newMove = new Movement(cur_x, cur_y, isLegal, curMobility, nullptr);
     curPiece->availableMoves.push_back(newMove);
 
     if (prevMove != nullptr)
@@ -157,21 +168,10 @@ Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement*
     if (targetPiece != nullptr)
         return nullptr;
 
-    *cur_x += curMobility->direction_x;
-    switch(curPiece->owner)
-    {
-        case::White:
-            *cur_y -= curMobility->direction_y;
-            break;
-        case::Black:
-            *cur_y += curMobility->direction_y;
-            break;
-    }
-
     return newMove;
 }
 
-void Board::MovePiece(int x1, int y1, int x2, int y2) {
+void Board::PerformMove(int x1, int y1, int x2, int y2) {
     Square* from = squares[y1][x1];
     Square* to = squares[y2][x2];
     Piece* movingPiece = from->occupyingPiece;
