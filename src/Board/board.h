@@ -22,15 +22,19 @@ class Board {
             Essence blackKnightEssence, Essence blackBishopEssence
         );
         void PrintBoard();
-        void PrintMoves(Piece* curPiece);
+        void PrintMoves();
         void PerformMove(int x1, int y1, int x2, int y2);
     private:
         bool AddPiece(Piece* newPiece, int x, int y);
+        void RemovePiece(Piece* removedPiece);
+        void MovePiece(Piece* curPiece, int x, int y);
         void CalculateMoves();
+        void CalculateMoves(Piece* curPiece);
+        void CalculateMoves(Piece* curPiece, Mobility* curMobility, Movement* prevMove);
+        Movement* CalculateMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove);
         void RemoveMoves(Piece* curPiece);
         void CutMovement(PieceMovement* curMovement);
-        void CalculateMoves(Piece* curPiece);
-        Movement* CalculateMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove);
+        void PrintMoves(Piece* curPiece);
 };
 
 #endif
