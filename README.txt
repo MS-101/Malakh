@@ -3,7 +3,6 @@ Súborové učenie umožňuje skombinovať predikáty viacerých modelov do jedn
 Využite súborové učenie v kontexte strojového učenia inteligentného agenta na hranie šachovej hry, ktorý je schopný hrať s neštandardnými šachovými figúrkami. Porovnajte efektivitu vášho riešenia s už existujúcimi implementáciami inteligentných šachových agentov. Vyhodnoťte silu vášho inteligentného agenta v hre proti profesionálnemu šachovému hráčovi. Zakomponujte do učenia vášho inteligentného agenta tendencie správania na určitý štýl hernej stratégie a overte ich vplyv na efektivitu strojového učenia.
 
 TO DO LIST:
-- Function CutMovement is bugged (need to study shared pointers)
 - En Passant
 - Castling
 - King safety

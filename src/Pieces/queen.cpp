@@ -1,11 +1,6 @@
 #include "pieces.h"
 
-Queen::Queen(Owner owner) {
-    this->name = "Queen";
-    this->tag = 'Q';
-    this->essence = Classic;
-    this->owner = owner;
-
+Queen::Queen(Owner owner) : Piece("Queen", 'Q', owner, Classic) {
     // Rook moves
     this->mobilities.push_back(new Mobility(AttackMove, -1, +0, -1, +0, 0));
     this->mobilities.push_back(new Mobility(AttackMove, +0, -1, +0, -1, 0));

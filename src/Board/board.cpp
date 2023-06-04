@@ -2,6 +2,7 @@
 #include "../Pieces/pieces.h"
 
 #include <iostream>
+#include <algorithm>
 
 Board::Board() {
     for (int cur_y = 0; cur_y < ROWS; cur_y++) {
@@ -47,6 +48,12 @@ void Board::InitBoard(
 
     AddPiece(new Rook(Classic, White), 7, 7);
     AddPiece(new Bishop(Classic, White), 4, 7);
+
+    /*
+    AddPiece(new King(White), 4, 4);
+    AddPiece(new Rook(Classic, Black), 5, 5);
+    AddPiece(new Bishop(Classic, Black), 6, 6);
+    */
 
     CalculateMoves();
 }
@@ -123,13 +130,76 @@ void Board::CalculateMoves(Piece* curPiece)
 
 void Board::CalculateMoves(Piece* curPiece, Mobility* curMobility, Movement* prevMove)
 {
+    ValidateMove(curPiece, prevMove);
+
     if (curMobility->limit == 0) {
         while ((prevMove = CalculateMove(curPiece, curMobility, prevMove)) != nullptr);
     } else {
-        for (int i = 0; i < curMobility->limit; i++)
+        // if move has a limit we need to find out how many moves can be performed
+        int curMoveIndex = 0;
+        if (prevMove != nullptr)
+        {
+            // find the movement list on current piece with calculating moves mobility
+            auto findMovement = [&](Movement *curMovement) -> bool
+            {
+                return curMovement->mobility == curMobility;
+            };
+
+            auto it = std::find_if(curPiece->availableMoves.begin(), curPiece->availableMoves.end(), findMovement);
+            if (it == curPiece->availableMoves.end())
+                return;
+
+            // iterate through list of movements until our move is found
+            Movement* curMovement = *it;
+            while(curMovement != nullptr && curMovement != prevMove)
+            {
+                curMovement = curMovement->next;
+                curMoveIndex++;
+            }
+
+            if (curMovement == nullptr)
+                return;
+
+            // prev move was already calculated
+            curMoveIndex++;
+        }
+
+        for (int i = curMoveIndex; i < curMobility->limit; i++)
             if ((prevMove = CalculateMove(curPiece, curMobility, prevMove)) == nullptr)
                 break;
     }
+}
+
+void Board::ValidateMove(Piece *curPiece, Movement *curMovement)
+{
+    if (curMovement == nullptr)
+        return;
+
+    bool legal = true;
+
+    Square* targetSquare = squares[curMovement->y][curMovement->x];
+    Piece* targetPiece = targetSquare->occupyingPiece;
+
+    switch (curMovement->mobility->type)
+    {
+        case::Move:
+            // when moving you cant attack any pieces
+            if (targetPiece != nullptr)
+                legal = false;
+            break;
+        case::Attack:
+            // when attacking you cant move to empty squares or attack your own pieces
+            if (targetPiece == nullptr || targetPiece->owner == curPiece->owner)
+                legal = false;
+            break;
+        case::AttackMove:
+            // when attack moving you cant attack your own pieces
+            if (targetPiece != nullptr && targetPiece->owner == curPiece->owner)
+                legal = false;
+            break;
+    }
+
+    curMovement->legal = legal;
 }
 
 Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove)
@@ -151,28 +221,6 @@ Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement*
                 cur_y += curMobility->direction_y;
                 break;
         }
-
-        // set legality of previous move
-        Square* prevSquare = squares[prevMove->y][prevMove->x];
-        Piece* prevPiece = prevSquare->occupyingPiece;
-        bool legal = true;
-        switch (curMobility->type)
-        {
-            case::Move:
-                if (prevPiece != nullptr)
-                    legal = false;
-                break;
-            case::Attack:
-                if (prevPiece == nullptr || prevPiece->owner == curPiece->owner)
-                    legal = false;
-                break;
-            case::AttackMove:
-                if (prevPiece != nullptr && prevPiece->owner == curPiece->owner)
-                    legal = false;
-                break;
-        }
-
-        prevMove->legal= legal;
     }
     else
     {
@@ -198,14 +246,17 @@ Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement*
     Square* targetSquare = squares[cur_y][cur_x];
     Piece* targetPiece = targetSquare->occupyingPiece;
 
-    // add new move to current piece
+    // create new movement
     Movement* newMove = new Movement(cur_x, cur_y, false, curMobility, nullptr);
+    ValidateMove(curPiece, newMove);
+
+    // add new movement to current piece
     if (prevMove == nullptr)
         curPiece->availableMoves.push_back(newMove);
     else
         prevMove->next = newMove;
 
-    // add new move to target square
+    // add new movement to target square
     PieceMovement* newPieceMove = new PieceMovement(curPiece, newMove);  
     targetSquare->movements.push_back(newPieceMove);
 

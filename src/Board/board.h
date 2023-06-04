@@ -32,6 +32,7 @@ class Board {
         void CalculateMoves(Piece* curPiece);
         void CalculateMoves(Piece* curPiece, Mobility* curMobility, Movement* prevMove);
         Movement* CalculateMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove);
+        void ValidateMove(Piece* curPiece, Movement *curMovement);
         void RemoveMoves(Piece* curPiece);
         void CutMovement(PieceMovement* curMovement);
         void PrintMoves(Piece* curPiece);

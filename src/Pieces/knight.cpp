@@ -1,11 +1,6 @@
 #include "pieces.h"
 
-Knight::Knight(Essence essence, Owner owner) {
-    this->name = "Knight";
-    this->tag = 'K';
-    this->essence = essence;
-    this->owner = owner;
-
+Knight::Knight(Essence essence, Owner owner) : Piece("Knight", 'K', owner, essence) {
     switch (essence) {
         case::Classic:
             this->mobilities.push_back(new Mobility(AttackMove, -2, -1, +0, +0, 1));

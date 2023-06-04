@@ -1,12 +1,6 @@
 #include "pieces.h"
 
-Rook::Rook(Essence essence, Owner owner) {
-    this->name = "Rook";
-    this->tag = 'R';
-    this->essence = essence;
-    this->owner = owner;
-
-    // TO DO: CASTLING
+Rook::Rook(Essence essence, Owner owner) : Piece("Rook", 'R', owner, essence) {
     switch (essence) {
         case::Classic:
             this->mobilities.push_back(new Mobility(AttackMove, -1, +0, -1, +0, 0));

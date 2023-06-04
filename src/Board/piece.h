@@ -11,7 +11,7 @@ enum Essence { Classic = 'C', Red = 'R', Blue = 'B', Yellow = 'Y' };
 
 class Piece {
     public:
-        Piece();
+        Piece(std::string name, char tag, Owner owner, Essence essence);
 
         std::string name = "undefined";
         char tag = 'X';
