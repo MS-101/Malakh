@@ -11,7 +11,7 @@ int main() {
     board->PrintBoard();
     board->PrintMoves();
 
-    board->PerformMove(4, 7, 7, 4);
+    board->PerformMove(5, 5, 5, 3);
     board->PrintBoard();
     board->PrintMoves();
 
