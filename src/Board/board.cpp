@@ -137,10 +137,19 @@ void Board::CalculateMoves(Piece* curPiece)
 
 /*
 * Problem 2: Pinned pieces should not be allowed to move in a way that endangers the king.
+* Before calculating any moves of piece other than king check if removing this piece from current square endangers the king.
+* If that is the case check for each specific movement if your king is in danger after moving that piece to that square.
 */
 
 /*
 * Problem 3: When king is in check it has to be resolved otherwise its checkmate.
+* When a newly calculated move attacks a kings square recalculate validity of all opponent moves.
+* Only the following moves are valid:
+* - King moves to a safe square
+* This is valid only if one piece is attacking king:
+* - Piece other than king moves and blocks attack on king. (this cannot reveal an attack on king)
+* - Piece other than king removes attacking piece. (this cannot reveal an attack on king)
+* After player resolves a checkmate recalculate validity of all their moves.
 */
 
 void Board::CalculateMoves(Piece* curPiece, Mobility* curMobility, Movement* prevMove)
