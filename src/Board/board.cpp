@@ -120,11 +120,13 @@ void Board::CalculateMoves(Piece* curPiece)
 {
     RemoveMoves(curPiece);
 
+    PieceMovement* pin = GetPin(curPiece);
+
     std::list<Mobility*> mobilities = curPiece->mobilities;
     for (auto mobilityIterator = mobilities.begin();
     mobilityIterator != mobilities.end(); ++mobilityIterator) {
         Mobility* curMobility = *mobilityIterator;
-        CalculateMoves(curPiece, curMobility, nullptr);
+        CalculateMoves(curPiece, curMobility, nullptr, pin);
     }
 }
 
@@ -152,7 +154,24 @@ void Board::CalculateMoves(Piece* curPiece)
 * After player resolves a checkmate recalculate validity of all their moves.
 */
 
-void Board::CalculateMoves(Piece* curPiece, Mobility* curMobility, Movement* prevMove)
+
+// We are creating a movement attacking the king that would be possible if this piece were to be removed
+PieceMovement* Board::GetPin(Piece* curPiece)
+{
+    Square* curSquare = squares[curPiece->y][curPiece->x];
+
+    for each (PieceMovement* curPieceMovement in curSquare->movements)
+    {
+        if (curPieceMovement->piece->owner == curPiece->owner || curPieceMovement->movement->mobility->type == Move)
+            continue;
+
+        
+    }
+
+    return nullptr;
+}
+
+void Board::CalculateMoves(Piece* curPiece, Mobility* curMobility, Movement* prevMove, PieceMovement* pin)
 {
     ValidateMove(curPiece, prevMove);
 
@@ -162,31 +181,7 @@ void Board::CalculateMoves(Piece* curPiece, Mobility* curMobility, Movement* pre
         // if move has a limit we need to find out how many moves can be performed
         int curMoveIndex = 0;
         if (prevMove != nullptr)
-        {
-            // find the movement list on current piece with calculating moves mobility
-            auto findMovement = [&](Movement *curMovement) -> bool
-            {
-                return curMovement->mobility == curMobility;
-            };
-
-            auto it = std::find_if(curPiece->availableMoves.begin(), curPiece->availableMoves.end(), findMovement);
-            if (it == curPiece->availableMoves.end())
-                return;
-
-            // iterate through list of movements until our move is found
-            Movement* curMovement = *it;
-            while(curMovement != nullptr && curMovement != prevMove)
-            {
-                curMovement = curMovement->next;
-                curMoveIndex++;
-            }
-
-            if (curMovement == nullptr)
-                return;
-
-            // prev move was already calculated
-            curMoveIndex++;
-        }
+            curMoveIndex = prevMove->moveCounter;
 
         for (int i = curMoveIndex; i < curMobility->limit; i++)
             if ((prevMove = CalculateMove(curPiece, curMobility, prevMove)) == nullptr)
@@ -195,6 +190,11 @@ void Board::CalculateMoves(Piece* curPiece, Mobility* curMobility, Movement* pre
 }
 
 void Board::ValidateMove(Piece* curPiece, Movement* curMovement)
+{
+    ValidateMove(curPiece, curMovement, GetPin(curPiece));
+}
+
+void Board::ValidateMove(Piece* curPiece, Movement* curMovement, PieceMovement* pin)
 {
     if (curMovement == nullptr)
         return;
@@ -215,6 +215,27 @@ void Board::ValidateMove(Piece* curPiece, Movement* curMovement)
         if (it != targetSquare->movements.end())
             legal = false;
     }
+    else
+    {
+        // if we are validating move of piece other than king move must capture the pinning piece or move along the pins vector
+        if (pin != nullptr)
+        {
+            if (targetSquare->occupyingPiece != pin->piece)
+            {
+                Movement* curPinMovement = pin->movement;
+                while (curPinMovement != nullptr)
+                {
+                    if (curPinMovement->x == targetSquare->x && curPinMovement->y == targetSquare->y)
+                        break;
+
+                    curPinMovement = curPinMovement->next;
+                }
+
+                if (curPinMovement == nullptr)
+                    legal = false;
+            }
+        }
+    }
 
     if (legal)
     {
@@ -222,21 +243,21 @@ void Board::ValidateMove(Piece* curPiece, Movement* curMovement)
 
         switch (curMovement->mobility->type)
         {
-        case::Move:
-            // when moving you cant attack any pieces
-            if (targetPiece != nullptr)
-                legal = false;
-            break;
-        case::Attack:
-            // when attacking you cant move to empty squares or attack your own pieces
-            if (targetPiece == nullptr || targetPiece->owner == curPiece->owner)
-                legal = false;
-            break;
-        case::AttackMove:
-            // when attack moving you cant attack your own pieces
-            if (targetPiece != nullptr && targetPiece->owner == curPiece->owner)
-                legal = false;
-            break;
+            case::Move:
+                // when moving you cant attack any pieces
+                if (targetPiece != nullptr)
+                    legal = false;
+                break;
+            case::Attack:
+                // when attacking you cant move to empty squares or attack your own pieces
+                if (targetPiece == nullptr || targetPiece->owner == curPiece->owner)
+                    legal = false;
+                break;
+            case::AttackMove:
+                // when attack moving you cant attack your own pieces
+                if (targetPiece != nullptr && targetPiece->owner == curPiece->owner)
+                    legal = false;
+                break;
         }
     }
 
@@ -287,8 +308,12 @@ Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement*
     Square* targetSquare = squares[cur_y][cur_x];
     Piece* targetPiece = targetSquare->occupyingPiece;
 
+    int moveCounter = 1;
+    if (prevMove != nullptr)
+        moveCounter = prevMove->moveCounter;
+
     // create new movement
-    Movement* newMove = new Movement(cur_x, cur_y, false, curMobility, nullptr);
+    Movement* newMove = new Movement(cur_x, cur_y, moveCounter, false, curMobility, nullptr);
     ValidateMove(curPiece, newMove);
 
     // add new movement to current piece
@@ -403,7 +428,8 @@ void Board::MovePiece(Piece* curPiece, int x, int y)
     for (auto movementIterator = sourceMovements.begin();
     movementIterator != sourceMovements.end(); ++movementIterator) {
         PieceMovement* curPieceMovement = *movementIterator;
-        CalculateMoves(curPieceMovement->piece, curPieceMovement->movement->mobility, curPieceMovement->movement);
+        PieceMovement* pin = GetPin(curPieceMovement->piece);
+        CalculateMoves(curPieceMovement->piece, curPieceMovement->movement->mobility, curPieceMovement->movement, pin);
     }
 
     std::list<PieceMovement*> destinationMovements = destinationSquare->movements;

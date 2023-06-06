@@ -5,9 +5,9 @@
 
 class Movement {
     public:
-        Movement(int x, int y, bool legal, Mobility* mobility, Movement* next);
+        Movement(int x, int y, int moveCounter, bool legal, Mobility* mobility, Movement* next);
 
-        int x, y;
+        int x, y, moveCounter;
         bool legal;
         Mobility* mobility;
         Movement* next;

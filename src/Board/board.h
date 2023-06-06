@@ -25,14 +25,16 @@ class Board {
         void PrintMoves();
         void PerformMove(int x1, int y1, int x2, int y2);
     private:
+        PieceMovement* GetPin(Piece* curPiece);
         bool AddPiece(Piece* newPiece, int x, int y);
         void RemovePiece(Piece* removedPiece);
         void MovePiece(Piece* curPiece, int x, int y);
         void CalculateMoves();
         void CalculateMoves(Piece* curPiece);
-        void CalculateMoves(Piece* curPiece, Mobility* curMobility, Movement* prevMove);
+        void CalculateMoves(Piece* curPiece, Mobility* curMobility, Movement* prevMove, PieceMovement* pin);
         Movement* CalculateMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove);
         void ValidateMove(Piece* curPiece, Movement *curMovement);
+        void ValidateMove(Piece* curPiece, Movement* curMovement, PieceMovement* pin);
         void RemoveMoves(Piece* curPiece);
         void CutMovement(PieceMovement* curPieceMovement);
         void CutMovement(Piece* curPiece, Movement* curMovement);
