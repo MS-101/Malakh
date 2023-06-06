@@ -51,9 +51,9 @@ void Board::InitBoard(
     AddPiece(new Bishop(Classic, White), 4, 7);
     */
 
-    AddPiece(new King(Black), 0, 0);
-    AddPiece(new Bishop(Classic, Black), 2, 2);
-    AddPiece(new Bishop(Classic, White), 4, 4);
+    AddPiece(new King(White), 0, 0);
+    AddPiece(new Bishop(Classic, White), 2, 2);
+    AddPiece(new Bishop(Classic, Black), 4, 4);
 
     CalculateMoves();
 }
@@ -141,7 +141,7 @@ void Board::CalculateMoves(Piece* curPiece)
 * Problem 2: Pinned pieces should not be allowed to move in a way that endangers the king.
 * Before calculating any moves of piece other than king check if removing this piece from current square endangers the king.
 * If that is the case check for each specific movement if your king is in danger after moving that piece to that square.
-* After moving piece check if it pins any other piece.
+* After moving piece check if it pins any other piece and if it is the case recalculate its moves.
 */
 
 /*
@@ -429,7 +429,14 @@ Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement*
 
     // when targeting piece return null
     if (targetPiece != nullptr)
+    {
+        // when targeting opponent piece with hostile move recalculate their moves if it results in pin
+        if (targetPiece->owner != curPiece->owner && (curMobility->type == Attack || curMobility->type == AttackMove))
+            if (GetPin(targetPiece) != nullptr)
+                CalculateMoves(targetPiece);
+
         return nullptr;
+    }
 
     return newMove;
 }
