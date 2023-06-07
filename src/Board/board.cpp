@@ -100,6 +100,8 @@ void Board::RemovePiece(Piece* removedPiece)
     }
 }
 
+// KING SAFETY PROBLEM
+
 /*
 * Problem 1: King should not be allowed to move to unsafe squares
 * When kings moves are being calculated, set the movement to illegal if there is opponent attack on that square otherwise it is legal.

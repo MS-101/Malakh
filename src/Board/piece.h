@@ -7,7 +7,7 @@
 #include <list>
 
 enum Owner { White = 'W', Black = 'B' };
-enum Essence { Classic = 'C', Red = 'R', Blue = 'B', Yellow = 'Y' };
+enum Essence { Classic = 'C', Red = 'R', Blue = 'B' };
 
 class Piece {
     public:
