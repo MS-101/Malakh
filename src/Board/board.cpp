@@ -51,9 +51,8 @@ void Board::InitBoard(
     AddPiece(new Bishop(Classic, White), 4, 7);
     */
 
-    AddPiece(new King(White), 0, 0);
-    AddPiece(new Bishop(Classic, White), 2, 2);
-    AddPiece(new Bishop(Classic, Black), 4, 4);
+    AddPiece(new King(White), 4, 4);
+    AddPiece(new Rook(Classic, Black), 5, 5);
 
     CalculateMoves();
 }
@@ -101,35 +100,6 @@ void Board::RemovePiece(Piece* removedPiece)
     }
 }
 
-void Board::CalculateMoves()
-{
-    for (auto whitePieceIterator = whitePieces.begin();
-    whitePieceIterator != whitePieces.end(); ++whitePieceIterator) {
-        Piece *whitePiece = *whitePieceIterator;
-        CalculateMoves(whitePiece);
-    }
-
-    for (auto blackPieceIterator = blackPieces.begin();
-    blackPieceIterator != blackPieces.end();++blackPieceIterator) {
-        Piece *blackPiece = *blackPieceIterator;
-        CalculateMoves(blackPiece);
-    }
-}
-
-void Board::CalculateMoves(Piece* curPiece)
-{
-    RemoveMoves(curPiece);
-
-    PieceMovement* pin = GetPin(curPiece);
-
-    std::list<Mobility*> mobilities = curPiece->mobilities;
-    for (auto mobilityIterator = mobilities.begin();
-    mobilityIterator != mobilities.end(); ++mobilityIterator) {
-        Mobility* curMobility = *mobilityIterator;
-        CalculateMoves(curPiece, curMobility, nullptr, pin);
-    }
-}
-
 /*
 * Problem 1: King should not be allowed to move to unsafe squares
 * When kings moves are being calculated, set the movement to illegal if there is opponent attack on that square otherwise it is legal.
@@ -155,108 +125,41 @@ void Board::CalculateMoves(Piece* curPiece)
 * After player resolves a checkmate recalculate validity of all their moves.
 */
 
-
-// We are creating a movement attacking the king that would be possible if this piece were to be removed
-PieceMovement* Board::GetPin(Piece* curPiece)
+void Board::CalculateMoves()
 {
-    // iterate through every blocked movement that will be unblocked after removing this piece
-    Square* curSquare = squares[curPiece->y][curPiece->x];
-    for each (PieceMovement* attackerPieceMovement in curSquare->movements)
-    {
-        Piece* attackerPiece = attackerPieceMovement->piece;
-        Movement* attackerMovement = attackerPieceMovement->movement;
-
-        // ignore movement of friendly pieces and non-hostile moves
-        if (attackerPiece->owner == curPiece->owner || attackerMovement->mobility->type == Move)
-            continue;
-
-        Movement* unblockedPin = nullptr;
-        Piece* targetPiece = nullptr;
-
-        Movement* newMove;
-        Movement* prevMove = attackerMovement;
-        // generate continuation of unblocked movement
-        if (attackerMovement->mobility->limit == 0) {
-            // unlimited movement generation
-            while ((newMove = CreateMove(attackerPiece, attackerMovement->mobility, prevMove)) != nullptr)
-            {
-                if (unblockedPin == nullptr)
-                    unblockedPin = newMove;
-                else
-                    prevMove->next = newMove;
-
-                Square* targetSquare = squares[newMove->y][newMove->x];
-                targetPiece = targetSquare->occupyingPiece;
-                if (targetPiece != nullptr)
-                    break;
-
-                prevMove = newMove;
-            }
-        }
-        else {
-            // limited movement generation
-            for (int i = attackerMovement->moveCounter; i < attackerMovement->mobility->limit; i++)
-            {
-                if ((newMove = CreateMove(attackerPiece, attackerMovement->mobility, prevMove)) == nullptr)
-                    break;
-
-                if (unblockedPin == nullptr)
-                    unblockedPin = newMove;
-                else
-                    prevMove->next = newMove;
-
-                Square* targetSquare = squares[newMove->y][newMove->x];
-                targetPiece = targetSquare->occupyingPiece;
-                if (targetPiece != nullptr)
-                    break;
-
-                prevMove = newMove;
-            }
-        }
-
-        // if generated pin ended attacks your king create copy of existing pin movements and connect it to the already generated unblocked movement
-        Movement* pinStart = nullptr;
-        if (targetPiece != nullptr && targetPiece->name._Equal("King") && targetPiece->owner == curPiece->owner)
-        {
-            auto findMovement = [&](Movement* curMovement) -> bool
-            {
-                return curMovement->mobility == attackerMovement->mobility;
-            };
-
-            auto it = std::find_if(attackerPiece->availableMoves.begin(), attackerPiece->availableMoves.end(), findMovement);
-            if (it != attackerPiece->availableMoves.end())
-            {
-                attackerMovement = *it;
-
-                while (attackerMovement != nullptr)
-                {
-                    newMove = new Movement(attackerMovement->x, attackerMovement->y, attackerMovement->moveCounter, attackerMovement->legal, attackerMovement->mobility, nullptr);
-
-                    if (pinStart == nullptr)
-                        pinStart = newMove;
-                    else
-                        prevMove->next = newMove;
-
-                    prevMove = newMove;
-                    attackerMovement = attackerMovement->next;
-                }
-
-                newMove->next = unblockedPin;
-
-                return new PieceMovement(attackerPiece, pinStart);
-            }
-        }
+    for (auto whitePieceIterator = whitePieces.begin();
+        whitePieceIterator != whitePieces.end(); ++whitePieceIterator) {
+        Piece* whitePiece = *whitePieceIterator;
+        CalculateMoves(whitePiece);
     }
 
-    return nullptr;
+    for (auto blackPieceIterator = blackPieces.begin();
+        blackPieceIterator != blackPieces.end(); ++blackPieceIterator) {
+        Piece* blackPiece = *blackPieceIterator;
+        CalculateMoves(blackPiece);
+    }
+}
+
+void Board::CalculateMoves(Piece* curPiece)
+{
+    RemoveMoves(curPiece);
+
+    PieceMovement* pin = GetPin(curPiece);
+
+    std::list<Mobility*> mobilities = curPiece->mobilities;
+    for (auto mobilityIterator = mobilities.begin();
+        mobilityIterator != mobilities.end(); ++mobilityIterator) {
+        Mobility* curMobility = *mobilityIterator;
+        CalculateMoves(curPiece, curMobility, nullptr, pin);
+    }
 }
 
 void Board::CalculateMoves(Piece* curPiece, Mobility* curMobility, Movement* prevMove, PieceMovement* pin)
 {
-    ValidateMove(curPiece, prevMove);
+    ValidateMove(curPiece, prevMove, pin);
 
     if (curMobility->limit == 0) {
-        while ((prevMove = CalculateMove(curPiece, curMobility, prevMove)) != nullptr);
+        while ((prevMove = CalculateMove(curPiece, curMobility, prevMove, pin)) != nullptr);
     } else {
         // if move has a limit we need to find out how many moves can be performed
         int curMoveIndex = 0;
@@ -264,14 +167,72 @@ void Board::CalculateMoves(Piece* curPiece, Mobility* curMobility, Movement* pre
             curMoveIndex = prevMove->moveCounter;
 
         for (int i = curMoveIndex; i < curMobility->limit; i++)
-            if ((prevMove = CalculateMove(curPiece, curMobility, prevMove)) == nullptr)
+            if ((prevMove = CalculateMove(curPiece, curMobility, prevMove, pin)) == nullptr)
                 break;
     }
 }
 
-void Board::ValidateMove(Piece* curPiece, Movement* curMovement)
+Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove, PieceMovement* pin)
 {
-    ValidateMove(curPiece, curMovement, GetPin(curPiece));
+    Movement* newMove = CreateMove(curPiece, curMobility, prevMove);
+    if (newMove == nullptr)
+        return nullptr;
+
+    ValidateMove(curPiece, newMove, pin);
+
+    Square* targetSquare = squares[newMove->y][newMove->x];
+    Piece* targetPiece = targetSquare->occupyingPiece;
+
+    // add new movement to current piece
+    if (prevMove == nullptr)
+        curPiece->availableMoves.push_back(newMove);
+    else
+        prevMove->next = newMove;
+
+    // add new movement to target square
+    PieceMovement* newPieceMove = new PieceMovement(curPiece, newMove);
+    targetSquare->movements.push_back(newPieceMove);
+
+    // when this movement is attacking move, make opponent king moves on that square ilegal
+    auto findPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
+    {
+        return curPieceMovement->piece->name._Equal("King") && curPieceMovement->piece->owner != curPiece->owner;
+    };
+
+    auto it = std::find_if(targetSquare->movements.begin(), targetSquare->movements.end(), findPieceMovement);
+    if (it != targetSquare->movements.end())
+    {
+        PieceMovement* kingPieceMovement = *it;
+        kingPieceMovement->movement->legal = false;
+    }
+
+    // when targeting piece return null
+    if (targetPiece != nullptr)
+    {
+        // when targeting opponent piece with hostile move recalculate their moves if it results in pin
+        if (targetPiece->owner != curPiece->owner && (curMobility->type == Attack || curMobility->type == AttackMove))
+        {
+            PieceMovement* pin = GetPin(targetPiece);
+            if (pin != nullptr)
+                ValidateMoves(targetPiece, pin);
+        }
+
+        return nullptr;
+    }
+
+    return newMove;
+}
+
+void Board::ValidateMoves(Piece* curPiece, PieceMovement* pin)
+{
+    for each (Movement *curMovement in curPiece->availableMoves)
+    {
+        while (curMovement != nullptr)
+        {
+            ValidateMove(curPiece, curMovement, pin);
+            curMovement = curMovement->next;
+        }
+    }
 }
 
 void Board::ValidateMove(Piece* curPiece, Movement* curMovement, PieceMovement* pin)
@@ -393,52 +354,102 @@ Movement* Board::CreateMove(Piece* curPiece, Mobility* curMobility, Movement* pr
     return new Movement(cur_x, cur_y, moveCounter, false, curMobility, nullptr);
 }
 
-Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove)
+// We are creating a movement attacking the king that would be possible if this piece were to be removed
+PieceMovement* Board::GetPin(Piece* curPiece)
 {
-    Movement* newMove = CreateMove(curPiece, curMobility, prevMove);
-    if (newMove == nullptr)
+    if (curPiece->name._Equal("King"))
         return nullptr;
 
-    ValidateMove(curPiece, newMove);
-
-    Square* targetSquare = squares[newMove->y][newMove->x];
-    Piece* targetPiece = targetSquare->occupyingPiece;
-
-    // add new movement to current piece
-    if (prevMove == nullptr)
-        curPiece->availableMoves.push_back(newMove);
-    else
-        prevMove->next = newMove;
-
-    // add new movement to target square
-    PieceMovement* newPieceMove = new PieceMovement(curPiece, newMove);  
-    targetSquare->movements.push_back(newPieceMove);
-
-    // when this movement is attacking move, make opponent king moves on that square ilegal
-    auto findPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
+    // iterate through every blocked movement that will be unblocked after removing this piece
+    Square* curSquare = squares[curPiece->y][curPiece->x];
+    for each (PieceMovement * attackerPieceMovement in curSquare->movements)
     {
-        return curPieceMovement->piece->name._Equal("King") && curPieceMovement->piece->owner != curPiece->owner;
-    };
+        Piece* attackerPiece = attackerPieceMovement->piece;
+        Movement* attackerMovement = attackerPieceMovement->movement;
 
-    auto it = std::find_if(targetSquare->movements.begin(), targetSquare->movements.end(), findPieceMovement);
-    if (it != targetSquare->movements.end())
-    {
-        PieceMovement* kingPieceMovement = *it;
-        kingPieceMovement->movement->legal = false;
+        // ignore movement of friendly pieces and non-hostile moves
+        if (attackerPiece->owner == curPiece->owner || attackerMovement->mobility->type == Move)
+            continue;
+
+        Movement* unblockedPin = nullptr;
+        Piece* targetPiece = nullptr;
+
+        Movement* newMove;
+        Movement* prevMove = attackerMovement;
+        // generate continuation of unblocked movement
+        if (attackerMovement->mobility->limit == 0) {
+            // unlimited movement generation
+            while ((newMove = CreateMove(attackerPiece, attackerMovement->mobility, prevMove)) != nullptr)
+            {
+                if (unblockedPin == nullptr)
+                    unblockedPin = newMove;
+                else
+                    prevMove->next = newMove;
+
+                Square* targetSquare = squares[newMove->y][newMove->x];
+                targetPiece = targetSquare->occupyingPiece;
+                if (targetPiece != nullptr)
+                    break;
+
+                prevMove = newMove;
+            }
+        }
+        else {
+            // limited movement generation
+            for (int i = attackerMovement->moveCounter; i < attackerMovement->mobility->limit; i++)
+            {
+                if ((newMove = CreateMove(attackerPiece, attackerMovement->mobility, prevMove)) == nullptr)
+                    break;
+
+                if (unblockedPin == nullptr)
+                    unblockedPin = newMove;
+                else
+                    prevMove->next = newMove;
+
+                Square* targetSquare = squares[newMove->y][newMove->x];
+                targetPiece = targetSquare->occupyingPiece;
+                if (targetPiece != nullptr)
+                    break;
+
+                prevMove = newMove;
+            }
+        }
+
+        // if generated pin ended attacks your king create copy of existing pin movements and connect it to the already generated unblocked movement
+        Movement* pinStart = nullptr;
+        if (targetPiece != nullptr && targetPiece->name._Equal("King") && targetPiece->owner == curPiece->owner)
+        {
+            auto findMovement = [&](Movement* curMovement) -> bool
+            {
+                return curMovement->mobility == attackerMovement->mobility;
+            };
+
+            auto it = std::find_if(attackerPiece->availableMoves.begin(), attackerPiece->availableMoves.end(), findMovement);
+            if (it != attackerPiece->availableMoves.end())
+            {
+                attackerMovement = *it;
+
+                while (attackerMovement != nullptr)
+                {
+                    newMove = new Movement(attackerMovement->x, attackerMovement->y, attackerMovement->moveCounter, attackerMovement->legal, attackerMovement->mobility, nullptr);
+
+                    if (pinStart == nullptr)
+                        pinStart = newMove;
+                    else
+                        prevMove->next = newMove;
+
+                    prevMove = newMove;
+                    attackerMovement = attackerMovement->next;
+                }
+
+                newMove->next = unblockedPin;
+
+                return new PieceMovement(attackerPiece, pinStart);
+            }
+        }
     }
 
-    // when targeting piece return null
-    if (targetPiece != nullptr)
-    {
-        // when targeting opponent piece with hostile move recalculate their moves if it results in pin
-        if (targetPiece->owner != curPiece->owner && (curMobility->type == Attack || curMobility->type == AttackMove))
-            if (GetPin(targetPiece) != nullptr)
-                CalculateMoves(targetPiece);
-
-        return nullptr;
-    }
-
-    return newMove;
+    return nullptr;
 }
 
 void Board::RemoveMoves(Piece* curPiece)
@@ -491,7 +502,7 @@ void Board::CutMovement(Piece* curPiece, Movement* curMovement)
         if (it != curSquare->movements.end())
         {
             PieceMovement* kingPieceMovement = *it;
-            ValidateMove(kingPieceMovement->piece, kingPieceMovement->movement);
+            ValidateMove(kingPieceMovement->piece, kingPieceMovement->movement, nullptr);
         }
 
         // continue with next movement
