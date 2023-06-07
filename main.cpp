@@ -11,11 +11,9 @@ int main() {
     board->PrintBoard();
     board->PrintMoves();
 
-    /*
-    board->PerformMove(5, 5, 5, 3);
+    board->PerformMove(4, 4, 5, 5);
     board->PrintBoard();
     board->PrintMoves();
-    */
 
     return 0;
 }

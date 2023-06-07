@@ -518,6 +518,15 @@ void Board::MovePiece(Piece* curPiece, int x, int y)
     Square* destinationSquare = squares[y][x];
     Piece* removedPiece = destinationSquare->occupyingPiece;
 
+    auto findPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
+    {
+        return curPieceMovement->piece == curPiece && curPieceMovement->movement->legal;
+    };
+
+    auto it = std::find_if(destinationSquare->movements.begin(), destinationSquare->movements.end(), findPieceMovement);
+    if (it == destinationSquare->movements.end())
+        return;
+
     RemovePiece(removedPiece);
 
     sourceSquare->occupyingPiece = nullptr;
