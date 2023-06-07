@@ -11,9 +11,13 @@ class Board {
         const static int COLUMNS = 8;
         const static int ROWS = 8;
 
+        bool whiteCheck = false;
+        bool blackCheck = false;
+
         Square *squares[ROWS][COLUMNS];
         std::list<Piece*> whitePieces;
         std::list<Piece*> blackPieces;
+        std::list<PieceMovement*> checks;
 
         void InitBoard(
             Essence whitePawnEssence, Essence whiteRookEssence,
@@ -34,6 +38,7 @@ class Board {
         void CalculateMoves(Piece* curPiece, Mobility* curMobility, Movement* prevMove, PieceMovement* pin);
         Movement* CalculateMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove, PieceMovement* pin);
         Movement* CreateMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove);
+        void ValidateMoves(Owner owner);
         void ValidateMoves(Piece* curPiece, PieceMovement* pin);
         void ValidateMove(Piece* curPiece, Movement* curMovement, PieceMovement* pin);
         void RemoveMoves(Piece* curPiece);

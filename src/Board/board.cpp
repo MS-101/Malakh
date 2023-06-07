@@ -46,8 +46,10 @@ void Board::InitBoard(
     AddPiece(new Rook(Black, blackRookEssence), 7, 0);
     */
 
-    AddPiece(new King(White), 4, 4);
-    AddPiece(new Rook(Black, Classic), 5, 5);
+    AddPiece(new King(White), 4, 0);
+    //AddPiece(new Rook(White, Classic), 3, 1);
+    AddPiece(new Bishop(White, Classic), 5, 3);
+    AddPiece(new Rook(Black, Classic), 5, 2);
 
     CalculateMoves();
 }
@@ -203,21 +205,61 @@ Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement*
         kingPieceMovement->movement->legal = false;
     }
 
-    // when targeting piece return null
     if (targetPiece != nullptr)
     {
-        // when targeting opponent piece with hostile move recalculate their moves if it results in pin
         if (targetPiece->owner != curPiece->owner && (curMobility->type == Attack || curMobility->type == AttackMove))
         {
-            PieceMovement* pin = GetPin(targetPiece);
-            if (pin != nullptr)
-                ValidateMoves(targetPiece, pin);
+            if (targetPiece->name._Equal("King"))
+            {
+                switch (targetPiece->owner)
+                {
+                    case::White:
+                        whiteCheck = true;
+                        break;
+                    case::Black:
+                        blackCheck = true;
+                        break;
+                }
+                checks.push_front(newPieceMove);
+
+                // when targeting opponent king revalidate all attacked player moves
+                ValidateMoves(targetPiece->owner);
+            }
+            else
+            {
+                // when targeting opponent piece other than king with hostile move revalidate attacked piece moves if it results in pin
+                PieceMovement* pin = GetPin(targetPiece);
+                if (pin != nullptr)
+                    ValidateMoves(targetPiece, pin);
+            }
         }
 
         return nullptr;
     }
 
     return newMove;
+}
+
+// this method is called when check is made and when check is resolved
+void Board::ValidateMoves(Owner owner)
+{
+    switch (owner)
+    {
+        case White:
+            for each (Piece * whitePiece in whitePieces)
+            {
+                ValidateMoves(whitePiece, nullptr);
+                PrintMoves(whitePiece);
+            }
+            break;
+        case Black:
+            for each (Piece * blackPiece in blackPieces)
+            {
+                ValidateMoves(blackPiece, nullptr);
+                PrintMoves(blackPiece);
+            }
+            break;
+    }
 }
 
 void Board::ValidateMoves(Piece* curPiece, PieceMovement* pin)
@@ -255,7 +297,7 @@ void Board::ValidateMove(Piece* curPiece, Movement* curMovement, PieceMovement* 
     }
     else
     {
-        // if we are validating move of piece other than king move must capture the pinning piece or move along the pins vector
+        // if we are validating move of piece other than king - must capture the pinning piece or move along the pins vector
         if (pin != nullptr)
         {
             if (targetSquare->occupyingPiece != pin->piece)
@@ -271,6 +313,34 @@ void Board::ValidateMove(Piece* curPiece, Movement* curMovement, PieceMovement* 
 
                 if (curPinMovement == nullptr)
                     legal = false;
+            }
+        }
+
+        // if we are validating move of piece other than king and we are in check - must capture the piece attacking the king (only if one attacker) or block all attacker moves
+        if (curPiece->owner == White && whiteCheck || curPiece->owner == Black && blackCheck)
+        {
+            // king is attacked by one piece and we are moving to its square
+            if (checks.size() == 1 && targetSquare->occupyingPiece != nullptr && targetSquare->occupyingPiece == checks.front()->piece)
+            {
+                legal = true;
+            }
+            // king is attacked by any amount of pieces and we are blocking all of these attacks on this square (e.g. eagle + rook can be blocked simultaneously)
+            else
+            {
+                for each (PieceMovement* check in checks)
+                {
+                    auto findPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
+                    {
+                        return curPieceMovement->piece != check->piece && check->movement->mobility == curPieceMovement->movement->mobility;
+                    };
+
+                    auto it = std::find_if(targetSquare->movements.begin(), targetSquare->movements.end(), findPieceMovement);
+                    if (it == targetSquare->movements.end())
+                    {
+                        legal = false;
+                        break;
+                    }
+                }
             }
         }
     }
@@ -527,6 +597,20 @@ void Board::MovePiece(Piece* curPiece, int x, int y)
     if (it == destinationSquare->movements.end())
         return;
 
+    // if move was succesfuly performed while in check it means that check was resolved and all moves need to be revalidated
+    if (curPiece->owner == White && whiteCheck)
+    {
+        whiteCheck = !whiteCheck;
+        checks.clear();
+        ValidateMoves(White);
+    }
+    else if (curPiece->owner == Black && blackCheck)
+    {
+        blackCheck = !blackCheck;
+        checks.clear();
+        ValidateMoves(Black);
+    }
+
     RemovePiece(removedPiece);
 
     sourceSquare->occupyingPiece = nullptr;
@@ -617,9 +701,24 @@ void Board::PrintMoves(Piece* curPiece)
             ownerName = "Black";
             break;
     }
+
+    std::string essenceName;
+    switch (curPiece->essence)
+    {
+        case::Classic:
+            essenceName = "Classic";
+            break;
+        case::Red:
+            essenceName = "Red";
+            break;
+        case::Blue:
+            essenceName = "Blue";
+            break;
+    }
+
     std::string pieceName = curPiece->name;
     
-    std::cout << "Printing moves of piece: " << ownerName << " " << pieceName << "\n";
+    std::cout << "Printing moves of piece: " << ownerName << " " << essenceName << " " << pieceName << "\n";
 
     char pieceMoves[ROWS][COLUMNS];
     for (int cur_y = 0; cur_y < ROWS; cur_y++) {
