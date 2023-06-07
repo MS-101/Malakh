@@ -1,6 +1,6 @@
 #include "pieces.h"
 
-Bishop::Bishop(Essence essence, Owner owner) : Piece("Bishop", 'B', owner, essence) {
+Bishop::Bishop(Owner owner, Essence essence) : Piece("Bishop", 'B', owner, essence) {
     switch (essence) {
         case::Classic:
             this->mobilities.push_back(new Mobility(AttackMove, -1, -1, -1, -1, 0));

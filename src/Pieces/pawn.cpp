@@ -1,6 +1,6 @@
 #include "pieces.h"
 
-Pawn::Pawn(Essence essence, Owner owner) : Piece("Pawn", 'P', owner, essence) {
+Pawn::Pawn(Owner owner, Essence essence) : Piece("Pawn", 'P', owner, essence) {
     switch (essence) {
         case::Classic:
             this->mobilities.push_back(new Mobility(Move,    +0, +1, +0, +0, 1));

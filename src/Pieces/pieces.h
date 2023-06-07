@@ -5,22 +5,22 @@
 
 class Pawn : public Piece {
     public:
-        Pawn(Essence essence, Owner owner);
+        Pawn(Owner owner, Essence essence);
 };
 
 class Rook : public Piece {
     public:
-        Rook(Essence essence, Owner owner);
+        Rook(Owner owner, Essence essence);
 };
 
 class Knight : public Piece {
     public:
-        Knight(Essence essence, Owner owner);
+        Knight(Owner owner, Essence essence);
 };
 
 class Bishop : public Piece {
     public:
-        Bishop(Essence essence, Owner owner);
+        Bishop(Owner owner, Essence essence);
 };
 
 class Queen : public Piece {

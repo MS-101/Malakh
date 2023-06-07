@@ -16,43 +16,38 @@ void Board::InitBoard(
     Essence whitePawnEssence, Essence whiteRookEssence, Essence whiteKnightEssence, Essence whiteBishopEssence,
     Essence blackPawnEssence, Essence blackRookEssence, Essence blackKnightEssence, Essence blackBishopEssence
 ) {
-    /*
     int pawnCount = 8;
+
+    /*
+    // White pieces
+    for (int pawnIterator = 0; pawnIterator < pawnCount; pawnIterator++)
+        AddPiece(new Pawn(White, whitePawnEssence), pawnIterator, 6);
+
+    AddPiece(new Rook(White, whiteRookEssence), 0, 7);
+    AddPiece(new Knight(White, whiteKnightEssence), 1, 7);
+    AddPiece(new Bishop(White, whiteBishopEssence), 2, 7);
+    AddPiece(new Queen(White), 3, 7);
+    AddPiece(new King(White), 4, 7);
+    AddPiece(new Bishop(White, whiteBishopEssence), 5, 7);
+    AddPiece(new Knight(White, whiteKnightEssence), 6, 7);
+    AddPiece(new Rook(White, whiteRookEssence), 7, 7);
 
     // Black pieces
     for (int pawnIterator = 0; pawnIterator < pawnCount; pawnIterator++)
-        AddPiece(new Pawn(blackPawnEssence, Black), pawnIterator, 1);
+        AddPiece(new Pawn(Black, blackPawnEssence), pawnIterator, 1);
 
-    AddPiece(new Rook(blackRookEssence, Black), 0, 0);
-    AddPiece(new Knight(blackKnightEssence, Black), 1, 0);
-    AddPiece(new Bishop(blackBishopEssence, Black), 2, 0);
+    AddPiece(new Rook(Black, blackRookEssence), 0, 0);
+    AddPiece(new Knight(Black, blackKnightEssence), 1, 0);
+    AddPiece(new Bishop(Black, blackBishopEssence), 2, 0);
     AddPiece(new Queen(Black), 3, 0);
     AddPiece(new King(Black), 4, 0);
-    AddPiece(new Bishop(blackBishopEssence, Black), 5, 0);
-    AddPiece(new Knight(blackKnightEssence, Black), 6, 0);
-    AddPiece(new Rook(blackRookEssence, Black), 7, 0);
-    
-    // White pieces
-    for (int pawnIterator = 0; pawnIterator < pawnCount; pawnIterator++)
-        AddPiece(new Pawn(whitePawnEssence, White), pawnIterator, 6);
-
-    AddPiece(new Rook(whiteRookEssence, White), 0, 7);
-    AddPiece(new Knight(whiteKnightEssence, White), 1, 7);
-    AddPiece(new Bishop(whiteBishopEssence, White), 2, 7);
-    AddPiece(new Queen(White), 3, 7);
-    AddPiece(new King(White), 4, 7);
-    AddPiece(new Bishop(whiteBishopEssence, White), 5, 7);
-    AddPiece(new Knight(whiteKnightEssence, White), 6, 7);
-    AddPiece(new Rook(whiteRookEssence, White), 7, 7);
-    */
-
-    /*
-    AddPiece(new Rook(Classic, White), 7, 7);
-    AddPiece(new Bishop(Classic, White), 4, 7);
+    AddPiece(new Bishop(Black, blackBishopEssence), 5, 0);
+    AddPiece(new Knight(Black, blackKnightEssence), 6, 0);
+    AddPiece(new Rook(Black, blackRookEssence), 7, 0);
     */
 
     AddPiece(new King(White), 4, 4);
-    AddPiece(new Rook(Classic, Black), 5, 5);
+    AddPiece(new Rook(Black, Classic), 5, 5);
 
     CalculateMoves();
 }
@@ -603,7 +598,19 @@ void Board::PrintMoves()
 
 void Board::PrintMoves(Piece* curPiece)
 {
-    std::cout << "Printing moves of piece: " << curPiece->name << "\n";
+    std::string ownerName;
+    switch (curPiece->owner)
+    {
+        case::White:
+            ownerName = "White";
+            break;
+        case::Black:
+            ownerName = "Black";
+            break;
+    }
+    std::string pieceName = curPiece->name;
+    
+    std::cout << "Printing moves of piece: " << ownerName << " " << pieceName << "\n";
 
     char pieceMoves[ROWS][COLUMNS];
     for (int cur_y = 0; cur_y < ROWS; cur_y++) {

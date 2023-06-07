@@ -1,6 +1,6 @@
 #include "pieces.h"
 
-Knight::Knight(Essence essence, Owner owner) : Piece("Knight", 'K', owner, essence) {
+Knight::Knight(Owner owner, Essence essence) : Piece("Knight", 'K', owner, essence) {
     switch (essence) {
         case::Classic:
             this->mobilities.push_back(new Mobility(AttackMove, -2, -1, +0, +0, 1));
