@@ -47,7 +47,7 @@ void Board::InitBoard(
     */
 
     AddPiece(new King(White), 4, 0);
-    //AddPiece(new Rook(White, Classic), 3, 1);
+    AddPiece(new Rook(White, Classic), 3, 1);
     AddPiece(new Bishop(White, Classic), 5, 3);
     AddPiece(new Rook(Black, Classic), 5, 2);
 
@@ -249,14 +249,12 @@ void Board::ValidateMoves(Owner owner)
             for each (Piece * whitePiece in whitePieces)
             {
                 ValidateMoves(whitePiece, nullptr);
-                PrintMoves(whitePiece);
             }
             break;
         case Black:
             for each (Piece * blackPiece in blackPieces)
             {
                 ValidateMoves(blackPiece, nullptr);
-                PrintMoves(blackPiece);
             }
             break;
     }
@@ -331,7 +329,7 @@ void Board::ValidateMove(Piece* curPiece, Movement* curMovement, PieceMovement* 
                 {
                     auto findPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
                     {
-                        return curPieceMovement->piece != check->piece && check->movement->mobility == curPieceMovement->movement->mobility;
+                        return curPieceMovement->piece == check->piece && check->movement->mobility == curPieceMovement->movement->mobility;
                     };
 
                     auto it = std::find_if(targetSquare->movements.begin(), targetSquare->movements.end(), findPieceMovement);
@@ -539,7 +537,8 @@ void Board::CutMovement(PieceMovement* curPieceMovement)
     Piece* curPiece = curPieceMovement->piece;
     Movement* curMovement = curPieceMovement->movement;
 
-    curMovement->legal = false;
+    ValidateMove(curPiece, curMovement, GetPin(curPiece));
+
     Movement* nextMovement = curMovement->next;
     curMovement->next = nullptr;
 
@@ -581,7 +580,7 @@ void Board::CutMovement(Piece* curPiece, Movement* curMovement)
 
 void Board::MovePiece(Piece* curPiece, int x, int y)
 {
-    if (curPiece == nullptr)
+    if (curPiece == nullptr || (curPiece->x == x && curPiece->y == y))
         return;
 
     Square* sourceSquare = squares[curPiece->y][curPiece->x];
@@ -620,14 +619,19 @@ void Board::MovePiece(Piece* curPiece, int x, int y)
 
     CalculateMoves(curPiece);
 
+    // continue calculations of movements that were unblocked by moving this piece
     std::list<PieceMovement*> sourceMovements = sourceSquare->movements;
     for (auto movementIterator = sourceMovements.begin();
     movementIterator != sourceMovements.end(); ++movementIterator) {
         PieceMovement* curPieceMovement = *movementIterator;
-        PieceMovement* pin = GetPin(curPieceMovement->piece);
-        CalculateMoves(curPieceMovement->piece, curPieceMovement->movement->mobility, curPieceMovement->movement, pin);
+        if (curPieceMovement->piece != curPiece)
+        {
+            PieceMovement* pin = GetPin(curPieceMovement->piece);
+            CalculateMoves(curPieceMovement->piece, curPieceMovement->movement->mobility, curPieceMovement->movement, pin);
+        }
     }
 
+    // cut movements that were blocked by moving this piece
     std::list<PieceMovement*> destinationMovements = destinationSquare->movements;
     for (auto movementIterator = destinationMovements.begin();
     movementIterator != destinationMovements.end(); ++movementIterator) {
