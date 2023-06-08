@@ -124,6 +124,20 @@ void Board::RemovePiece(Piece* removedPiece)
 * After player resolves a checkmate recalculate validity of all their moves.
 */
 
+// EN PASSANT
+
+/*
+* When pawn has not moved, can move forward 2 squares.
+* Oponent pawns can attack the pawn as if it has moved 1 square forward on the following move.
+*/
+
+// CASTLING 
+
+/*
+* For queenside castling the left rook has not moved, there are no pieces on squares b1, c1, d1, king has not moved and no hostile piece is attacking the king or squares b1, c1, d1
+* For kingside castling the right rook has not moved, there are no pieces on squares f1, g1, king has not moved and no hostile piece is attacking the king or squares f1, g1
+*/
+
 void Board::CalculateMoves()
 {
     for (auto whitePieceIterator = whitePieces.begin();
