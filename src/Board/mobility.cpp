@@ -1,27 +1,27 @@
 #include "mobility.h"
 
-DefaultMobilityFlags::DefaultMobilityFlags() : MobilityFlags(false, false, false, false, false, false, false)
+DefaultMobilityFlags::DefaultMobilityFlags() : MobilityFlags(false, false, false, false, false, false, 0, 0)
 {
 }
 
-EnPassantMoveFlags::EnPassantMoveFlags() : MobilityFlags(true, true, false, false, false, true, false)
+EnPassantMoveFlags::EnPassantMoveFlags() : MobilityFlags(true, true, false, false, true, false, 0, 0)
 {
 }
 
-EnPassantCaptureFlags::EnPassantCaptureFlags() : MobilityFlags(false, false, false, false, false, false, true)
+EnPassantCaptureFlags::EnPassantCaptureFlags() : MobilityFlags(false, false, false, false, false, true, 0, 0)
 {
 }
 
-QueenSideCastleFlags::QueenSideCastleFlags() : MobilityFlags(true, true, true, true, false, false, false)
+QueenSideCastleFlags::QueenSideCastleFlags() : MobilityFlags(true, true, true, true, false, false, -4, 0)
 {
 }
 
-KingSideCastleFlags::KingSideCastleFlags() : MobilityFlags(true, true, true, false, true, false, false)
+KingSideCastleFlags::KingSideCastleFlags() : MobilityFlags(true, true, true, true, false, false, 3, 0)
 {
 }
 
-MobilityFlags::MobilityFlags(bool onlyLastIsValid, bool initiative, bool cowardly, bool callQueenRook, bool callKingRook, bool hasty, bool vigilant)
-    : onlyLastIsValid(onlyLastIsValid), initiative(initiative), cowardly(cowardly), callQueenRook(callQueenRook), callKingRook(callKingRook), hasty(hasty), vigilant(vigilant)
+MobilityFlags::MobilityFlags(bool uninterruptible, bool initiative, bool cowardly, bool inspiring, bool hasty, bool vigilant, int affected_x, int affected_y)
+    : uninterruptible(uninterruptible), initiative(initiative), cowardly(cowardly), inspiring(inspiring), hasty(hasty), vigilant(vigilant), affected_x(affected_x), affected_y(affected_y)
 {
 }
 

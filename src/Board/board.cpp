@@ -46,10 +46,8 @@ void Board::InitBoard(
     AddPiece(new Rook(Black, blackRookEssence), 7, 0);
     */
 
-    AddPiece(new King(White), 4, 0);
-    AddPiece(new Rook(White, Classic), 3, 1);
-    AddPiece(new Bishop(White, Classic), 5, 3);
-    AddPiece(new Rook(Black, Classic), 5, 2);
+    AddPiece(new King(White), 4, 7);
+    //AddPiece(new Rook(Black, Classic), 5, 6);
 
     CalculateMoves();
 }
@@ -206,50 +204,74 @@ Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement*
     PieceMovement* newPieceMove = new PieceMovement(curPiece, newMove);
     targetSquare->movements.push_back(newPieceMove);
 
-    // when this movement is attacking move, make opponent king moves on that square ilegal
-    auto findPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
+    if (curMobility->type == Attack || curMobility->type == AttackMove)
     {
-        return curPieceMovement->piece->name._Equal("King") && curPieceMovement->piece->owner != curPiece->owner;
-    };
-
-    auto it = std::find_if(targetSquare->movements.begin(), targetSquare->movements.end(), findPieceMovement);
-    if (it != targetSquare->movements.end())
-    {
-        PieceMovement* kingPieceMovement = *it;
-        kingPieceMovement->movement->legal = false;
-    }
-
-    if (targetPiece != nullptr)
-    {
-        if (targetPiece->owner != curPiece->owner && (curMobility->type == Attack || curMobility->type == AttackMove))
+        // invalidate king moves
+        auto findKingPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
         {
-            if (targetPiece->name._Equal("King"))
+            return curPieceMovement->piece->name._Equal("King") && curPieceMovement->piece->owner != curPiece->owner;
+        };
+
+        auto findKingPieceMovementIterator = std::find_if(targetSquare->movements.begin(), targetSquare->movements.end(), findKingPieceMovement);
+        if (findKingPieceMovementIterator != targetSquare->movements.end())
+        {
+            PieceMovement* kingPieceMovement = *findKingPieceMovementIterator;
+            kingPieceMovement->movement->legal = false;
+        }
+
+        if (targetPiece != nullptr)
+        {
+            if (targetPiece->owner != curPiece->owner)
             {
-                switch (targetPiece->owner)
+                if (targetPiece->name._Equal("King"))
                 {
+                    // when targeting opponent king revalidate all attacked player moves
+                    switch (targetPiece->owner)
+                    {
                     case::White:
                         whiteCheck = true;
                         break;
                     case::Black:
                         blackCheck = true;
                         break;
-                }
-                checks.push_front(newPieceMove);
+                    }
+                    checks.push_front(newPieceMove);
 
-                // when targeting opponent king revalidate all attacked player moves
-                ValidateMoves(targetPiece->owner);
-            }
-            else
-            {
-                // when targeting opponent piece other than king with hostile move revalidate attacked piece moves if it results in pin
-                PieceMovement* pin = GetPin(targetPiece);
-                if (pin != nullptr)
-                    ValidateMoves(targetPiece, pin);
+                    ValidateMoves(targetPiece->owner);
+                }
+                else
+                {
+                    // when targeting opponent piece other than king with hostile move revalidate attacked piece moves if it results in pin
+                    PieceMovement* pin = GetPin(targetPiece);
+                    if (pin != nullptr)
+                        ValidateMoves(targetPiece, pin);
+                }
+
+                // cut cowardly moves of targeted piece
+                for each (Movement * targetMovement in targetPiece->availableMoves)
+                {
+                    if (targetMovement->mobility->flags.cowardly)
+                        CutMovement(targetPiece, targetMovement);
+                }
             }
         }
 
-        return nullptr;
+        // cut cowardly moves on targeted square
+        auto findCowardlyPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
+        {
+            return curPieceMovement->movement->mobility->flags.cowardly && curPieceMovement->piece->owner != curPiece->owner;
+        };
+
+        auto findCowardlyPieceMovementIterator = std::find_if(targetSquare->movements.begin(), targetSquare->movements.end(), findKingPieceMovement);
+        if (findKingPieceMovementIterator != targetSquare->movements.end())
+        {
+            PieceMovement* cowardlyPieceMovement = *findKingPieceMovementIterator;
+            CutMovement(cowardlyPieceMovement);
+        }
     }
+
+    if (targetPiece != nullptr)
+        return nullptr;
 
     return newMove;
 }
@@ -291,10 +313,52 @@ void Board::ValidateMove(Piece* curPiece, Movement* curMovement, PieceMovement* 
     if (curMovement == nullptr)
         return;
 
-    bool legal = true;
+    curMovement->legal = GetValidity(curPiece, curMovement, pin);
+}
 
+bool Board::GetValidity(Piece* curPiece, Movement* curMovement, PieceMovement* pin)
+{
     Square* targetSquare = squares[curMovement->y][curMovement->x];
+    Piece* targetPiece = targetSquare->occupyingPiece;
 
+    // if this movement is uninterruptible set it to ilegal if it is not on the end of the movement chain
+    if (curMovement->mobility->flags.uninterruptible && curMovement->moveCounter != curMovement->mobility->limit)
+        return false;
+
+    // if this movement is cowardly set it to ilegal if target square is attacked by hostile piece
+    if (curMovement->mobility->flags.cowardly)
+    {
+        auto findPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
+        {
+            return (curPieceMovement->movement->mobility->type == Attack || curPieceMovement->movement->mobility->type == AttackMove) && curPieceMovement->piece->owner != curPiece->owner;
+        };
+
+        auto it = std::find_if(targetSquare->movements.begin(), targetSquare->movements.end(), findPieceMovement);
+        if (it != targetSquare->movements.end())
+            return false;
+    }
+
+    // movement type validation
+    switch (curMovement->mobility->type)
+    {
+    case::Move:
+        // when moving you cant attack any pieces
+        if (targetPiece != nullptr)
+            return false;
+        break;
+    case::Attack:
+        // when attacking you cant move to empty squares or attack your own pieces
+        if (targetPiece == nullptr || targetPiece->owner == curPiece->owner)
+            return false;
+        break;
+    case::AttackMove:
+        // when attack moving you cant attack your own pieces
+        if (targetPiece != nullptr && targetPiece->owner == curPiece->owner)
+            return false;
+        break;
+    }
+
+    // king safety validation
     if (curPiece->name._Equal("King"))
     {
         // if we are validating kings move we cannot move to squares that are attacked by our opponent
@@ -305,7 +369,7 @@ void Board::ValidateMove(Piece* curPiece, Movement* curMovement, PieceMovement* 
 
         auto it = std::find_if(targetSquare->movements.begin(), targetSquare->movements.end(), findPieceMovement);
         if (it != targetSquare->movements.end())
-            legal = false;
+            return false;
     }
     else
     {
@@ -324,22 +388,18 @@ void Board::ValidateMove(Piece* curPiece, Movement* curMovement, PieceMovement* 
                 }
 
                 if (curPinMovement == nullptr)
-                    legal = false;
+                    return false;
             }
         }
 
         // if we are validating move of piece other than king and we are in check - must capture the piece attacking the king (only if one attacker) or block all attacker moves
         if (curPiece->owner == White && whiteCheck || curPiece->owner == Black && blackCheck)
         {
-            // king is attacked by one piece and we are moving to its square
-            if (checks.size() == 1 && targetSquare->occupyingPiece != nullptr && targetSquare->occupyingPiece == checks.front()->piece)
+            // check if king is attacked by one piece and we are moving to its square
+            if (!(checks.size() == 1 && targetSquare->occupyingPiece != nullptr && targetSquare->occupyingPiece == checks.front()->piece))
             {
-                legal = true;
-            }
-            // king is attacked by any amount of pieces and we are blocking all of these attacks on this square (e.g. eagle + rook can be blocked simultaneously)
-            else
-            {
-                for each (PieceMovement* check in checks)
+                // king is attacked by any amount of pieces and we are blocking all of these attacks on this square (e.g. eagle + rook can be blocked simultaneously)
+                for each (PieceMovement * check in checks)
                 {
                     auto findPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
                     {
@@ -349,7 +409,7 @@ void Board::ValidateMove(Piece* curPiece, Movement* curMovement, PieceMovement* 
                     auto it = std::find_if(targetSquare->movements.begin(), targetSquare->movements.end(), findPieceMovement);
                     if (it == targetSquare->movements.end())
                     {
-                        legal = false;
+                        return false;
                         break;
                     }
                 }
@@ -357,49 +417,31 @@ void Board::ValidateMove(Piece* curPiece, Movement* curMovement, PieceMovement* 
         }
     }
 
-    if (legal)
-    {
-        Piece* targetPiece = targetSquare->occupyingPiece;
-
-        switch (curMovement->mobility->type)
-        {
-            case::Move:
-                // when moving you cant attack any pieces
-                if (targetPiece != nullptr)
-                    legal = false;
-                break;
-            case::Attack:
-                // when attacking you cant move to empty squares or attack your own pieces
-                if (targetPiece == nullptr || targetPiece->owner == curPiece->owner)
-                    legal = false;
-                break;
-            case::AttackMove:
-                // when attack moving you cant attack your own pieces
-                if (targetPiece != nullptr && targetPiece->owner == curPiece->owner)
-                    legal = false;
-                break;
-        }
-    }
-
-    curMovement->legal = legal;
+    return true;
 }
 
 Movement* Board::CreateMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove)
 {
     int cur_x, cur_y;
 
+    // movement creation fails if this move can only be performed on first turn
+    if (curMobility->flags.initiative && curPiece->hasMoved)
+        return nullptr;
+
     if (prevMove != nullptr)
     {
         // calculate position of next move
-        cur_x = prevMove->x + curMobility->direction_x;
+        cur_x = prevMove->x;
         cur_y = prevMove->y;
 
         switch (curPiece->owner)
         {
         case::White:
+            cur_x += curMobility->direction_x;
             cur_y -= curMobility->direction_y;
             break;
         case::Black:
+            cur_x -= curMobility->direction_x;
             cur_y += curMobility->direction_y;
             break;
         }
@@ -407,15 +449,17 @@ Movement* Board::CreateMove(Piece* curPiece, Mobility* curMobility, Movement* pr
     else
     {
         // calculate positon of first move
-        cur_x = curPiece->x + curMobility->start_x;
+        cur_x = curPiece->x;
         cur_y = curPiece->y;
 
         switch (curPiece->owner)
         {
         case::White:
+            cur_x += curMobility->start_x;
             cur_y -= curMobility->start_y;
             break;
         case::Black:
+            cur_x -= curMobility->start_x;
             cur_y += curMobility->start_y;
             break;
         }
@@ -427,7 +471,7 @@ Movement* Board::CreateMove(Piece* curPiece, Mobility* curMobility, Movement* pr
 
     int moveCounter = 1;
     if (prevMove != nullptr)
-        moveCounter = prevMove->moveCounter;
+        moveCounter = prevMove->moveCounter + 1;
 
     // create new movement
     return new Movement(cur_x, cur_y, moveCounter, false, curMobility, nullptr);
@@ -573,16 +617,29 @@ void Board::CutMovement(Piece* curPiece, Movement* curMovement)
         curSquare->movements.remove_if(removePieceMovements);
 
         // after removing this movement, revalidate opponent king moves on this square
-        auto findPieceMovement = [&](PieceMovement* targetPieceMovement) -> bool
+        auto findKingPieceMovement = [&](PieceMovement* targetPieceMovement) -> bool
         {
             return targetPieceMovement->piece->name._Equal("King") && targetPieceMovement->piece->owner != curPiece->owner;
         };
 
-        auto it = std::find_if(curSquare->movements.begin(), curSquare->movements.end(), findPieceMovement);
-        if (it != curSquare->movements.end())
+        auto findKingPieceMovementIterator = std::find_if(curSquare->movements.begin(), curSquare->movements.end(), findKingPieceMovement);
+        if (findKingPieceMovementIterator != curSquare->movements.end())
         {
-            PieceMovement* kingPieceMovement = *it;
+            PieceMovement* kingPieceMovement = *findKingPieceMovementIterator;
             ValidateMove(kingPieceMovement->piece, kingPieceMovement->movement, nullptr);
+        }
+
+        // continue movement calculation of cowardly moves
+        auto findCowardlyPieceMovement = [&](PieceMovement* targetPieceMovement) -> bool
+        {
+            return targetPieceMovement->movement->mobility->flags.cowardly && targetPieceMovement->piece->owner != curPiece->owner;
+        };
+
+        auto findCowardlyPieceMovementIterator = std::find_if(curSquare->movements.begin(), curSquare->movements.end(), findCowardlyPieceMovement);
+        if (findCowardlyPieceMovementIterator != curSquare->movements.end())
+        {
+            PieceMovement* cowardlyPieceMovement = *findCowardlyPieceMovementIterator;
+            CalculateMoves(cowardlyPieceMovement->piece, cowardlyPieceMovement->movement->mobility, cowardlyPieceMovement->movement, GetPin(cowardlyPieceMovement->piece));
         }
 
         // continue with next movement
@@ -601,6 +658,7 @@ void Board::MovePiece(Piece* curPiece, int x, int y)
     Square* destinationSquare = squares[y][x];
     Piece* removedPiece = destinationSquare->occupyingPiece;
 
+    // only perform this move if it is a valid movement of this piece
     auto findPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
     {
         return curPieceMovement->piece == curPiece && curPieceMovement->movement->legal;
@@ -609,6 +667,11 @@ void Board::MovePiece(Piece* curPiece, int x, int y)
     auto it = std::find_if(destinationSquare->movements.begin(), destinationSquare->movements.end(), findPieceMovement);
     if (it == destinationSquare->movements.end())
         return;
+
+    if (!curPiece->hasMoved)
+    {
+        curPiece->hasMoved = true;
+    }
 
     // if move was succesfuly performed while in check it means that check was resolved and all moves need to be revalidated
     if (curPiece->owner == White && whiteCheck)

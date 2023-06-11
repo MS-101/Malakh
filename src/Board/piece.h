@@ -20,6 +20,7 @@ class Piece {
         std::list<Mobility*> mobilities;
         std::list<Movement*> availableMoves; 
         int x, y;
+        bool hasMoved = false;
 };
 
 #endif

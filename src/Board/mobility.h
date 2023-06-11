@@ -12,26 +12,27 @@
 enum MovementType { Move, Attack, AttackMove };
 
 /*
-* OnlyLastIsValid creates a chain where every move is ilegal except the last move. If the movement is limited only the move on that limit can be legal. If the movement is unlimited no move can be legal.
-* Initiative moves can only be performed only if the piece has not moved yet.
-* Cowardly is a move that can be cut by hostile attacks (if piece itself is attacked, cowardly moves will not be calculated at all).
-* CallQueenRook can be only performed if queen rook has not moved yet. After performing this move the rook is placed behind itself.
-* CallKingRook can be only performed if king rook has not moved yet. After performing this move the rook is placed behind itself.
+* Uninterruptibe creates a chain where every move is ilegal except the last move. If the movement is limited only the move on that limit can be legal. If the movement is unlimited no move can be legal. // DONE
+* Initiative moves can only be performed only if the piece has not moved yet. // DONE
+* Cowardly is a move that can be cut by hostile attacks (if piece itself is attacked, cowardly moves cannot be performed). // DONE
+* Inspiring can only be performed if piece that this move is affecting has not moved yet. After this move is performed place the affected piece behind it.
 * Hasty leaves a "ghost" piece behind itself. This piece can only be attacked by "observant" hostile moves.
 * Vigilant can capture "ghost" pieces left behind by "hasty" moves.
 */
 
 class MobilityFlags {
     public:
-        MobilityFlags(bool onlyLastIsValid, bool initiative, bool cowardly, bool callQueenRook, bool callKingRook, bool hasty, bool vigilant);
+        MobilityFlags(bool uninterruptible, bool initiative, bool cowardly, bool inspiring, bool hasty, bool vigilant, int affected_x, int affected_y);
 
-        bool onlyLastIsValid = false;
+        bool uninterruptible = false;
         bool initiative = false;
-        bool cowardly = false; 
-        bool callQueenRook = false; 
-        bool callKingRook = false; 
-        bool hasty = false; 
+        bool cowardly = false;
+        bool inspiring = false;
+        bool hasty = false;
         bool vigilant = false;
+
+        int affected_x;
+        int affected_y;
 };
 
 class DefaultMobilityFlags : public MobilityFlags {

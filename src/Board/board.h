@@ -41,6 +41,7 @@ class Board {
         void ValidateMoves(Owner owner);
         void ValidateMoves(Piece* curPiece, PieceMovement* pin);
         void ValidateMove(Piece* curPiece, Movement* curMovement, PieceMovement* pin);
+        bool GetValidity(Piece* curPiece, Movement* curMovement, PieceMovement* pin);
         void RemoveMoves(Piece* curPiece);
         void CutMovement(PieceMovement* curPieceMovement);
         void CutMovement(Piece* curPiece, Movement* curMovement);
