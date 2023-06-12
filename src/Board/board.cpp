@@ -48,7 +48,7 @@ void Board::InitBoard(
 
     AddPiece(new King(White), 4, 7);
     AddPiece(new Rook(White, Classic), 0, 7);
-    AddPiece(new Rook(Black, Classic), 7, 0);
+    //AddPiece(new Rook(Black, Classic), 7, 0);
 
     CalculateMoves();
 }
@@ -726,6 +726,64 @@ void Board::MovePiece(Piece* curPiece, int x, int y)
     movementIterator != destinationMovements.end(); ++movementIterator) {
         PieceMovement* curPieceMovement = *movementIterator;
         CutMovement(curPieceMovement);
+    }
+
+    // cancel inspiring movements targeting that were previously targeting this piece
+    switch (curPiece->owner)
+    {
+    case::White:
+        for each (Piece* whitePiece in whitePieces)
+        {
+            std::list<Movement*> ilegalMoves;
+
+            for each (Movement* movement in whitePiece->availableMoves)
+            {
+                if (movement->mobility->flags.inspiring)
+                {
+                    int inspiring_x = whitePiece->x + movement->mobility->flags.affected_x;
+                    int inspiring_y = whitePiece->y - movement->mobility->flags.affected_y;
+
+                    if (inspiring_x == sourceSquare->x && inspiring_y == sourceSquare->y)
+                    {
+                        CutMovement(whitePiece, movement);
+                        ilegalMoves.push_back(movement);
+                    }
+                }
+            }
+
+            auto removeIlegalMovements = [&](Movement* movement) -> bool
+            {
+                return std::find(ilegalMoves.begin(), ilegalMoves.end(), movement) != ilegalMoves.end();
+            };
+            whitePiece->availableMoves.remove_if(removeIlegalMovements);
+        }
+        break;
+    case::Black:
+        for each (Piece * blackPiece in blackPieces)
+        {
+            std::list<Movement*> ilegalMoves;
+
+            for each (Movement * movement in blackPiece->availableMoves)
+            {
+                if (movement->mobility->flags.inspiring)
+                {
+                    int inspiring_x = blackPiece->x + movement->mobility->flags.affected_x;
+                    int inspiring_y = blackPiece->y + movement->mobility->flags.affected_y;
+
+                    if (inspiring_x == sourceSquare->x && inspiring_y == sourceSquare->y)
+                    {
+                        CutMovement(blackPiece, movement);
+                    }
+                }
+            }
+
+            auto removeIlegalMovements = [&](Movement* movement) -> bool
+            {
+                return std::find(ilegalMoves.begin(), ilegalMoves.end(), movement) != ilegalMoves.end();
+            };
+            blackPiece->availableMoves.remove_if(removeIlegalMovements);
+        }
+        break;
     }
 }
 
