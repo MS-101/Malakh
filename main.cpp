@@ -11,19 +11,12 @@ int main() {
     board->PrintBoard();
     board->PrintMoves();
 
-    /*
     std::cout << "Performing move...\n\n";
 
-    board->PerformMove(5, 6, 2, 6);
+    board->PerformMove(4, 7, 1, 7);
+    //board->PerformMove(7, 0, 2, 0);
     board->PrintBoard();
     board->PrintMoves();
-
-    std::cout << "Performing move...\n\n";
-
-    board->PerformMove(2, 6, 0, 6);
-    board->PrintBoard();
-    board->PrintMoves();
-    */
 
     return 0;
 }

@@ -47,7 +47,8 @@ void Board::InitBoard(
     */
 
     AddPiece(new King(White), 4, 7);
-    //AddPiece(new Rook(Black, Classic), 5, 6);
+    AddPiece(new Rook(White, Classic), 0, 7);
+    AddPiece(new Rook(Black, Classic), 7, 0);
 
     CalculateMoves();
 }
@@ -185,6 +186,38 @@ void Board::CalculateMoves(Piece* curPiece, Mobility* curMobility, Movement* pre
 
 Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove, PieceMovement* pin)
 {
+    // movement calculation fails if this move can only be performed on first turn
+    if (curMobility->flags.initiative && curPiece->hasMoved)
+        return nullptr;
+
+    // movement calculation fails if it cannot inspire a piece
+    if (curMobility->flags.inspiring)
+    {
+        int inspired_x = curPiece->x + curMobility->flags.affected_x;
+        int inspired_y = curPiece->y;
+
+        switch (curPiece->owner)
+        {
+        case::White:
+            inspired_y -= curMobility->flags.affected_y;
+            break;
+        case::Black:
+            inspired_y += curMobility->flags.affected_y;
+        }
+
+        if (inspired_x < 0 || inspired_x > COLUMNS - 1 || inspired_y < 0 || inspired_y > ROWS - 1)
+            return nullptr;
+
+        Square* inspiredSquare = squares[inspired_y][inspired_x];
+        Piece* inspiredPiece = inspiredSquare->occupyingPiece;
+
+        if (inspiredPiece == nullptr)
+            return nullptr;
+
+        if (inspiredPiece->hasMoved || inspiredPiece->owner != curPiece->owner)
+            return nullptr;
+    }
+
     Movement* newMove = CreateMove(curPiece, curMobility, prevMove);
     if (newMove == nullptr)
         return nullptr;
@@ -251,22 +284,24 @@ Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement*
                 for each (Movement * targetMovement in targetPiece->availableMoves)
                 {
                     if (targetMovement->mobility->flags.cowardly)
+                    {
                         CutMovement(targetPiece, targetMovement);
+                    }
                 }
+
+                auto removeCowardlyMovements = [&](Movement* movement) -> bool
+                {
+                    return movement->mobility->flags.cowardly;
+                };
+                targetPiece->availableMoves.remove_if(removeCowardlyMovements);
             }
         }
 
         // cut cowardly moves on targeted square
-        auto findCowardlyPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
+        for each (PieceMovement* curPieceMovement in targetSquare->movements)
         {
-            return curPieceMovement->movement->mobility->flags.cowardly && curPieceMovement->piece->owner != curPiece->owner;
-        };
-
-        auto findCowardlyPieceMovementIterator = std::find_if(targetSquare->movements.begin(), targetSquare->movements.end(), findKingPieceMovement);
-        if (findKingPieceMovementIterator != targetSquare->movements.end())
-        {
-            PieceMovement* cowardlyPieceMovement = *findKingPieceMovementIterator;
-            CutMovement(cowardlyPieceMovement);
+            if (curPieceMovement->movement->mobility->flags.cowardly && curPieceMovement->piece->owner != curPiece->owner)
+                CutMovement(curPieceMovement);
         }
     }
 
@@ -423,10 +458,6 @@ bool Board::GetValidity(Piece* curPiece, Movement* curMovement, PieceMovement* p
 Movement* Board::CreateMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove)
 {
     int cur_x, cur_y;
-
-    // movement creation fails if this move can only be performed on first turn
-    if (curMobility->flags.initiative && curPiece->hasMoved)
-        return nullptr;
 
     if (prevMove != nullptr)
     {
@@ -600,46 +631,54 @@ void Board::CutMovement(PieceMovement* curPieceMovement)
     Movement* nextMovement = curMovement->next;
     curMovement->next = nullptr;
 
-    CutMovement(curPiece, curMovement);
+    CutMovement(curPiece, nextMovement);
 }
 
 void Board::CutMovement(Piece* curPiece, Movement* curMovement)
 {
     while (curMovement != nullptr)
     {
-        Square* curSquare = squares[curMovement->y][curMovement->x];
+        Square* targetSquare = squares[curMovement->y][curMovement->x];
+        Piece* targetPiece = targetSquare->occupyingPiece;
 
         // remove this movement from the targeted square
         auto removePieceMovements = [&](PieceMovement* pieceMovement) -> bool
         {
             return pieceMovement->piece == curPiece && pieceMovement->movement == curMovement;
         };
-        curSquare->movements.remove_if(removePieceMovements);
+        targetSquare->movements.remove_if(removePieceMovements);
 
-        // after removing this movement, revalidate opponent king moves on this square
-        auto findKingPieceMovement = [&](PieceMovement* targetPieceMovement) -> bool
+        if (curMovement->mobility->type == Attack || curMovement->mobility->type == AttackMove)
         {
-            return targetPieceMovement->piece->name._Equal("King") && targetPieceMovement->piece->owner != curPiece->owner;
-        };
+            // after removing this hostile movement, revalidate opponent king moves on this square
+            auto findKingPieceMovement = [&](PieceMovement* targetPieceMovement) -> bool
+            {
+                return targetPieceMovement->piece->name._Equal("King") && targetPieceMovement->piece->owner != curPiece->owner;
+            };
 
-        auto findKingPieceMovementIterator = std::find_if(curSquare->movements.begin(), curSquare->movements.end(), findKingPieceMovement);
-        if (findKingPieceMovementIterator != curSquare->movements.end())
-        {
-            PieceMovement* kingPieceMovement = *findKingPieceMovementIterator;
-            ValidateMove(kingPieceMovement->piece, kingPieceMovement->movement, nullptr);
-        }
+            auto findKingPieceMovementIterator = std::find_if(targetSquare->movements.begin(), targetSquare->movements.end(), findKingPieceMovement);
+            if (findKingPieceMovementIterator != targetSquare->movements.end())
+            {
+                PieceMovement* kingPieceMovement = *findKingPieceMovementIterator;
+                ValidateMove(kingPieceMovement->piece, kingPieceMovement->movement, nullptr);
+            }
 
-        // continue movement calculation of cowardly moves
-        auto findCowardlyPieceMovement = [&](PieceMovement* targetPieceMovement) -> bool
-        {
-            return targetPieceMovement->movement->mobility->flags.cowardly && targetPieceMovement->piece->owner != curPiece->owner;
-        };
+            // continue movement calculation of cowardly moves
+            for each (PieceMovement* curPieceMovement in targetSquare->movements)
+            {
+                if (curPieceMovement->movement->mobility->flags.cowardly)
+                    CalculateMoves(curPieceMovement->piece, curPieceMovement->movement->mobility, curPieceMovement->movement, GetPin(curPieceMovement->piece));
+            }
 
-        auto findCowardlyPieceMovementIterator = std::find_if(curSquare->movements.begin(), curSquare->movements.end(), findCowardlyPieceMovement);
-        if (findCowardlyPieceMovementIterator != curSquare->movements.end())
-        {
-            PieceMovement* cowardlyPieceMovement = *findCowardlyPieceMovementIterator;
-            CalculateMoves(cowardlyPieceMovement->piece, cowardlyPieceMovement->movement->mobility, cowardlyPieceMovement->movement, GetPin(cowardlyPieceMovement->piece));
+            if (targetPiece != nullptr)
+            {
+                PieceMovement* pin = GetPin(targetPiece);
+                for each (Mobility* targetMobility in targetPiece->mobilities)
+                {
+                    if (targetMobility->flags.cowardly)
+                        CalculateMoves(targetPiece, targetMobility, nullptr, pin);
+                }
+            }
         }
 
         // continue with next movement
@@ -651,40 +690,13 @@ void Board::CutMovement(Piece* curPiece, Movement* curMovement)
 
 void Board::MovePiece(Piece* curPiece, int x, int y)
 {
-    if (curPiece == nullptr || (curPiece->x == x && curPiece->y == y))
-        return;
-
     Square* sourceSquare = squares[curPiece->y][curPiece->x];
     Square* destinationSquare = squares[y][x];
     Piece* removedPiece = destinationSquare->occupyingPiece;
 
-    // only perform this move if it is a valid movement of this piece
-    auto findPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
-    {
-        return curPieceMovement->piece == curPiece && curPieceMovement->movement->legal;
-    };
-
-    auto it = std::find_if(destinationSquare->movements.begin(), destinationSquare->movements.end(), findPieceMovement);
-    if (it == destinationSquare->movements.end())
-        return;
-
     if (!curPiece->hasMoved)
     {
         curPiece->hasMoved = true;
-    }
-
-    // if move was succesfuly performed while in check it means that check was resolved and all moves need to be revalidated
-    if (curPiece->owner == White && whiteCheck)
-    {
-        whiteCheck = !whiteCheck;
-        checks.clear();
-        ValidateMoves(White);
-    }
-    else if (curPiece->owner == Black && blackCheck)
-    {
-        blackCheck = !blackCheck;
-        checks.clear();
-        ValidateMoves(Black);
     }
 
     RemovePiece(removedPiece);
@@ -719,10 +731,74 @@ void Board::MovePiece(Piece* curPiece, int x, int y)
 
 void Board::PerformMove(int x1, int y1, int x2, int y2)
 {
-    Square* curSquare = squares[y1][x1];
-    Piece* curPiece = curSquare->occupyingPiece;
+    Square* sourceSquare = squares[y1][x1];
+    Piece* sourcePiece = sourceSquare->occupyingPiece;
 
-    MovePiece(curPiece, x2, y2);
+    Square* destinationSquare = squares[y2][x2];
+
+    if (sourcePiece == nullptr || (x1 == x2 && y1 == y2))
+        return;
+
+    // only perform this move if it is a valid movement of this piece
+    auto findPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
+    {
+        return curPieceMovement->piece == sourcePiece && curPieceMovement->movement->legal;
+    };
+
+    auto it = std::find_if(destinationSquare->movements.begin(), destinationSquare->movements.end(), findPieceMovement);
+    if (it == destinationSquare->movements.end())
+        return;
+
+    PieceMovement* inspiringPieceMovement = nullptr;
+    for each (PieceMovement * destinationPieceMovement in destinationSquare->movements)
+    {
+        if (destinationPieceMovement->movement->mobility->flags.inspiring && destinationPieceMovement->movement->legal)
+        {
+            inspiringPieceMovement = destinationPieceMovement;
+            break;
+        }
+    }
+
+    MovePiece(sourcePiece, x2, y2);
+
+    if (inspiringPieceMovement != nullptr)
+    {
+        int inspired_x1 = x1 += inspiringPieceMovement->movement->mobility->flags.affected_x;
+        int inspired_y1 = y1;
+        int inspired_x2 = x2;
+        int inspired_y2 = y2;
+
+        switch (sourcePiece->owner)
+        {
+        case::White:
+            inspired_y1 -= inspiringPieceMovement->movement->mobility->flags.affected_y;
+            inspired_x2 -= inspiringPieceMovement->movement->mobility->direction_x;
+            inspired_y2 += inspiringPieceMovement->movement->mobility->direction_y;
+            break;
+        case::Black:
+            inspired_y1 += inspiringPieceMovement->movement->mobility->flags.affected_y;
+            inspired_x2 += inspiringPieceMovement->movement->mobility->direction_x;
+            inspired_y2 -= inspiringPieceMovement->movement->mobility->direction_y;
+        }
+
+        Square* inspiredSquare = squares[inspired_y1][inspired_x1];
+        Piece* inspiredPiece = inspiredSquare->occupyingPiece;
+        MovePiece(inspiredPiece, inspired_x2, inspired_y2);
+    }
+
+    // if move was succesfuly performed while in check it means that check was resolved and all moves need to be revalidated
+    if (sourcePiece->owner == White && whiteCheck)
+    {
+        whiteCheck = !whiteCheck;
+        checks.clear();
+        ValidateMoves(White);
+    }
+    else if (sourcePiece->owner == Black && blackCheck)
+    {
+        blackCheck = !blackCheck;
+        checks.clear();
+        ValidateMoves(Black);
+    }
 }
 
 void Board::PrintBoard()
