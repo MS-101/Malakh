@@ -9,13 +9,13 @@ XXX|XXX|XXX|XXX|XXX|XXX|XXX|XXX
 ---|---|---|---|---|---|---|---
 XXX|XXX|XXX|XXX|XXX|XXX|XXX|XXX
 ---|---|---|---|---|---|---|---
-XXX|XXX|XXX|XXX|XXX|XXX|XXX|XXX
+XXX|BCP|XXX|XXX|XXX|XXX|XXX|XXX
 ---|---|---|---|---|---|---|---
 XXX|XXX|XXX|XXX|XXX|XXX|XXX|XXX
 ---|---|---|---|---|---|---|---
-WCR|XXX|XXX|XXX|WC#|XXX|XXX|XXX
+WCP|XXX|XXX|XXX|XXX|XXX|XXX|XXX
 
-Printing moves of piece: White Classic King
+Printing moves of piece: White Classic Pawn
  | | | | | | | 
 -|-|-|-|-|-|-|-
  | | | | | | | 
@@ -26,49 +26,13 @@ Printing moves of piece: White Classic King
 -|-|-|-|-|-|-|-
  | | | | | | | 
 -|-|-|-|-|-|-|-
- | | | | | | | 
+X| | | | | | | 
 -|-|-|-|-|-|-|-
- | | |X|X|X| | 
+X| | | | | | | 
 -|-|-|-|-|-|-|-
- |X| |X|0|X| | 
+0| | | | | | | 
 
-Printing moves of piece: White Classic Rook
-X| | | | | | | 
--|-|-|-|-|-|-|-
-X| | | | | | | 
--|-|-|-|-|-|-|-
-X| | | | | | | 
--|-|-|-|-|-|-|-
-X| | | | | | | 
--|-|-|-|-|-|-|-
-X| | | | | | | 
--|-|-|-|-|-|-|-
-X| | | | | | | 
--|-|-|-|-|-|-|-
-X| | | | | | | 
--|-|-|-|-|-|-|-
-0|X|X|X| | | | 
-
-Performing move...
-
-Printing current state of board:
-WCR|XXX|XXX|XXX|XXX|XXX|XXX|XXX
----|---|---|---|---|---|---|---
-XXX|XXX|XXX|XXX|XXX|XXX|XXX|XXX
----|---|---|---|---|---|---|---
-XXX|XXX|XXX|XXX|XXX|XXX|XXX|XXX
----|---|---|---|---|---|---|---
-XXX|XXX|XXX|XXX|XXX|XXX|XXX|XXX
----|---|---|---|---|---|---|---
-XXX|XXX|XXX|XXX|XXX|XXX|XXX|XXX
----|---|---|---|---|---|---|---
-XXX|XXX|XXX|XXX|XXX|XXX|XXX|XXX
----|---|---|---|---|---|---|---
-XXX|XXX|XXX|XXX|XXX|XXX|XXX|XXX
----|---|---|---|---|---|---|---
-XXX|XXX|XXX|XXX|WC#|XXX|XXX|XXX
-
-Printing moves of piece: White Classic King
+Printing moves of piece: Black Classic Pawn
  | | | | | | | 
 -|-|-|-|-|-|-|-
  | | | | | | | 
@@ -79,28 +43,11 @@ Printing moves of piece: White Classic King
 -|-|-|-|-|-|-|-
  | | | | | | | 
 -|-|-|-|-|-|-|-
- | | | | | | | 
+ |0| | | | | | 
 -|-|-|-|-|-|-|-
- | | |X|X|X| | 
+ |X| | | | | | 
 -|-|-|-|-|-|-|-
- | | |X|0|X| | 
-
-Printing moves of piece: White Classic Rook
-0|X|X|X|X|X|X|X
--|-|-|-|-|-|-|-
-X| | | | | | | 
--|-|-|-|-|-|-|-
-X| | | | | | | 
--|-|-|-|-|-|-|-
-X| | | | | | | 
--|-|-|-|-|-|-|-
-X| | | | | | | 
--|-|-|-|-|-|-|-
-X| | | | | | | 
--|-|-|-|-|-|-|-
-X| | | | | | | 
--|-|-|-|-|-|-|-
-X| | | | | | | 
+ |X| | | | | | 
 
 Performing move...
 
@@ -115,13 +62,66 @@ XXX|XXX|XXX|XXX|XXX|XXX|XXX|XXX
 ---|---|---|---|---|---|---|---
 XXX|XXX|XXX|XXX|XXX|XXX|XXX|XXX
 ---|---|---|---|---|---|---|---
+WCP|BCP|XXX|XXX|XXX|XXX|XXX|XXX
+---|---|---|---|---|---|---|---
+GGG|XXX|XXX|XXX|XXX|XXX|XXX|XXX
+---|---|---|---|---|---|---|---
+XXX|XXX|XXX|XXX|XXX|XXX|XXX|XXX
+
+Printing moves of piece: White Classic Pawn
+ | | | | | | | 
+-|-|-|-|-|-|-|-
+ | | | | | | | 
+-|-|-|-|-|-|-|-
+ | | | | | | | 
+-|-|-|-|-|-|-|-
+ | | | | | | | 
+-|-|-|-|-|-|-|-
+X| | | | | | | 
+-|-|-|-|-|-|-|-
+0| | | | | | | 
+-|-|-|-|-|-|-|-
+ | | | | | | | 
+-|-|-|-|-|-|-|-
+ | | | | | | | 
+
+Printing moves of piece: Black Classic Pawn
+ | | | | | | | 
+-|-|-|-|-|-|-|-
+ | | | | | | | 
+-|-|-|-|-|-|-|-
+ | | | | | | | 
+-|-|-|-|-|-|-|-
+ | | | | | | | 
+-|-|-|-|-|-|-|-
+ | | | | | | | 
+-|-|-|-|-|-|-|-
+ |0| | | | | | 
+-|-|-|-|-|-|-|-
+X|X| | | | | | 
+-|-|-|-|-|-|-|-
+ |X| | | | | | 
+
+Performing move...
+
+Printing current state of board:
 XXX|XXX|XXX|XXX|XXX|XXX|XXX|XXX
 ---|---|---|---|---|---|---|---
 XXX|XXX|XXX|XXX|XXX|XXX|XXX|XXX
 ---|---|---|---|---|---|---|---
-WCR|XXX|XXX|XXX|WC#|XXX|XXX|XXX
+XXX|XXX|XXX|XXX|XXX|XXX|XXX|XXX
+---|---|---|---|---|---|---|---
+XXX|XXX|XXX|XXX|XXX|XXX|XXX|XXX
+---|---|---|---|---|---|---|---
+XXX|XXX|XXX|XXX|XXX|XXX|XXX|XXX
+---|---|---|---|---|---|---|---
+XXX|XXX|XXX|XXX|XXX|XXX|XXX|XXX
+---|---|---|---|---|---|---|---
+BCP|XXX|XXX|XXX|XXX|XXX|XXX|XXX
+---|---|---|---|---|---|---|---
+XXX|XXX|XXX|XXX|XXX|XXX|XXX|XXX
 
-Printing moves of piece: White Classic King
+Printing moves of piece: Black Classic Pawn
  | | | | | | | 
 -|-|-|-|-|-|-|-
  | | | | | | | 
@@ -134,24 +134,7 @@ Printing moves of piece: White Classic King
 -|-|-|-|-|-|-|-
  | | | | | | | 
 -|-|-|-|-|-|-|-
- | | |X|X|X| | 
--|-|-|-|-|-|-|-
- | | |X|0|X| | 
-
-Printing moves of piece: White Classic Rook
-X| | | | | | | 
+0| | | | | | | 
 -|-|-|-|-|-|-|-
 X| | | | | | | 
--|-|-|-|-|-|-|-
-X| | | | | | | 
--|-|-|-|-|-|-|-
-X| | | | | | | 
--|-|-|-|-|-|-|-
-X| | | | | | | 
--|-|-|-|-|-|-|-
-X| | | | | | | 
--|-|-|-|-|-|-|-
-X| | | | | | | 
--|-|-|-|-|-|-|-
-0|X|X|X| | | | 
 

@@ -13,13 +13,13 @@ int main() {
 
     std::cout << "Performing move...\n\n";
 
-    board->PerformMove(0, 7, 0, 0);
+    board->PerformMove(0, 7, 0, 5);
     board->PrintBoard();
     board->PrintMoves();
 
     std::cout << "Performing move...\n\n";
 
-    board->PerformMove(0, 0, 0, 7);
+    board->PerformMove(1, 5, 0, 6);
     board->PrintBoard();
     board->PrintMoves();
 

@@ -23,4 +23,12 @@ class Piece {
         bool hasMoved = false;
 };
 
+class Ghost {
+public:
+    Ghost(int x, int y, Piece* parent);
+
+    int x, y;
+    Piece* parent;
+};
+
 #endif

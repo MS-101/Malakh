@@ -46,9 +46,8 @@ void Board::InitBoard(
     AddPiece(new Rook(Black, blackRookEssence), 7, 0);
     */
 
-    AddPiece(new King(White), 4, 7);
-    AddPiece(new Rook(White, Classic), 0, 7);
-    //AddPiece(new Rook(Black, Classic), 7, 0);
+    AddPiece(new Pawn(White, Classic), 0, 7);
+    AddPiece(new Pawn(Black, Classic), 1, 5);
 
     CalculateMoves();
 }
@@ -384,7 +383,9 @@ bool Board::GetValidity(Piece* curPiece, Movement* curMovement, PieceMovement* p
     case::Attack:
         // when attacking you cant move to empty squares or attack your own pieces
         if (targetPiece == nullptr || targetPiece->owner == curPiece->owner)
-            return false;
+            // not attacking the ghost as a vigilant move
+            if (!(curMovement->mobility->flags.vigilant && curGhost != nullptr && curMovement->x == curGhost->x && curMovement->y == curGhost->y))
+                return false;
         break;
     case::AttackMove:
         // when attack moving you cant attack your own pieces
@@ -453,6 +454,35 @@ bool Board::GetValidity(Piece* curPiece, Movement* curMovement, PieceMovement* p
     }
 
     return true;
+}
+
+void Board::SetGhost(Ghost* newGhost)
+{
+    if (curGhost != nullptr)
+    {
+        Square* curSquare = squares[curGhost->y][curGhost->x];
+
+        curGhost = newGhost;
+
+        for each (PieceMovement * curPieceMovement in curSquare->movements)
+        {
+            if (curPieceMovement->movement->mobility->flags.vigilant)
+                ValidateMove(curPieceMovement->piece, curPieceMovement->movement, GetPin(curPieceMovement->piece));
+        }
+    }
+    
+    curGhost = newGhost;
+
+    if (newGhost != nullptr)
+    {
+        Square* newSquare = squares[newGhost->y][newGhost->x];
+
+        for each (PieceMovement * curPieceMovement in newSquare->movements)
+        {
+            if (curPieceMovement->movement->mobility->flags.vigilant)
+                ValidateMove(curPieceMovement->piece, curPieceMovement->movement, GetPin(curPieceMovement->piece));
+        }
+    }
 }
 
 Movement* Board::CreateMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove)
@@ -798,30 +828,78 @@ void Board::PerformMove(int x1, int y1, int x2, int y2)
         return;
 
     // only perform this move if it is a valid movement of this piece
-    auto findPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
+    auto findLegalPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
     {
         return curPieceMovement->piece == sourcePiece && curPieceMovement->movement->legal;
     };
 
-    auto it = std::find_if(destinationSquare->movements.begin(), destinationSquare->movements.end(), findPieceMovement);
-    if (it == destinationSquare->movements.end())
+    auto legalPieceMovementIterator = std::find_if(destinationSquare->movements.begin(), destinationSquare->movements.end(), findLegalPieceMovement);
+    if (legalPieceMovementIterator == destinationSquare->movements.end())
         return;
 
-    PieceMovement* inspiringPieceMovement = nullptr;
-    for each (PieceMovement * destinationPieceMovement in destinationSquare->movements)
+    // remove parent of ghost if ghost is present on destination square and vigilant offensive move is found
+    if (curGhost != nullptr && curGhost->x == x2 && curGhost->y == y2)
     {
-        if (destinationPieceMovement->movement->mobility->flags.inspiring && destinationPieceMovement->movement->legal)
+        auto findVigilantPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
         {
-            inspiringPieceMovement = destinationPieceMovement;
-            break;
-        }
+            return curPieceMovement->piece == sourcePiece && curPieceMovement->movement->legal && curPieceMovement->movement->mobility->flags.vigilant 
+                && (curPieceMovement->movement->mobility->type == Attack || curPieceMovement->movement->mobility->type == AttackMove);
+        };
+
+        auto vigilantPieceMovementIterator = std::find_if(destinationSquare->movements.begin(), destinationSquare->movements.end(), findVigilantPieceMovement);
+        if (vigilantPieceMovementIterator != destinationSquare->movements.end())
+            RemovePiece(curGhost->parent);
     }
 
+    // create ghost piece if hasty movement is found, delete ghost if it is not found
+    auto findHastyPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
+    {
+        return curPieceMovement->piece == sourcePiece && curPieceMovement->movement->legal && curPieceMovement->movement->mobility->flags.hasty;
+    };
+
+    auto hastyPieceMovementIterator = std::find_if(destinationSquare->movements.begin(), destinationSquare->movements.end(), findHastyPieceMovement);
+    if (hastyPieceMovementIterator != destinationSquare->movements.end())
+    {
+        PieceMovement* hastyPieceMovement = *hastyPieceMovementIterator;
+
+        int ghost_x = x2;
+        int ghost_y = y2;
+
+        switch (sourcePiece->owner)
+        {
+        case::White:
+            ghost_x -= hastyPieceMovement->movement->mobility->direction_x;
+            ghost_y += hastyPieceMovement->movement->mobility->direction_y;
+            break;
+        case::Black:
+            ghost_x += hastyPieceMovement->movement->mobility->direction_x;
+            ghost_y -= hastyPieceMovement->movement->mobility->direction_y;
+            break;
+        }
+
+        SetGhost(new Ghost(ghost_x, ghost_y, sourcePiece));
+    }
+    else
+    {
+        SetGhost(nullptr);
+    }
+
+    // find inspiring pieceMovement and move it one square behind the destination square
+    auto findInspiringPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
+    {
+        return curPieceMovement->piece == sourcePiece && curPieceMovement->movement->legal && curPieceMovement->movement->mobility->flags.inspiring;
+    };
+
+    PieceMovement* inspiringPieceMovement = nullptr;
+    auto inspiringPieceMovementIterator = std::find_if(destinationSquare->movements.begin(), destinationSquare->movements.end(), findInspiringPieceMovement);
+    if (inspiringPieceMovementIterator != destinationSquare->movements.end())
+        inspiringPieceMovement = *inspiringPieceMovementIterator;
+    
     MovePiece(sourcePiece, x2, y2);
 
     if (inspiringPieceMovement != nullptr)
     {
-        int inspired_x1 = x1 += inspiringPieceMovement->movement->mobility->flags.affected_x;
+        int inspired_x1 = x1 + inspiringPieceMovement->movement->mobility->flags.affected_x;
         int inspired_y1 = y1;
         int inspired_x2 = x2;
         int inspired_y2 = y2;
@@ -877,8 +955,9 @@ void Board::PrintBoard()
                 char pieceTag = curPiece->tag;
 
                 std::cout << ownerTag << essenceTag << pieceTag;
+            } else if (curGhost != nullptr && cur_x == curGhost->x && cur_y == curGhost->y) {
+                std::cout << "GGG";
             } else {
-                curPiece = nullptr;
                 std::cout << "XXX";
             }
         }

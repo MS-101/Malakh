@@ -19,6 +19,8 @@ class Board {
         std::list<Piece*> blackPieces;
         std::list<PieceMovement*> checks;
 
+        Ghost* curGhost = nullptr;
+
         void InitBoard(
             Essence whitePawnEssence, Essence whiteRookEssence,
             Essence whiteKnightEssence, Essence whiteBishopEssence,
@@ -29,6 +31,7 @@ class Board {
         void PrintMoves();
         void PerformMove(int x1, int y1, int x2, int y2);
     private:
+        void SetGhost(Ghost* newGhost);
         PieceMovement* GetPin(Piece* curPiece);
         bool AddPiece(Piece* newPiece, int x, int y);
         void RemovePiece(Piece* removedPiece);
