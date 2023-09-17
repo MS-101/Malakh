@@ -18,7 +18,6 @@ void Board::InitBoard(
 ) {
     int pawnCount = 8;
 
-    /*
     // White pieces
     for (int pawnIterator = 0; pawnIterator < pawnCount; pawnIterator++)
         AddPiece(new Pawn(White, whitePawnEssence), pawnIterator, 6);
@@ -44,10 +43,6 @@ void Board::InitBoard(
     AddPiece(new Bishop(Black, blackBishopEssence), 5, 0);
     AddPiece(new Knight(Black, blackKnightEssence), 6, 0);
     AddPiece(new Rook(Black, blackRookEssence), 7, 0);
-    */
-
-    AddPiece(new Pawn(White, Classic), 0, 7);
-    AddPiece(new Pawn(Black, Classic), 1, 5);
 
     CalculateMoves();
 }

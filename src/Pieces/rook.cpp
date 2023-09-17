@@ -22,7 +22,7 @@ Rook::Rook(Owner owner, Essence essence) : Piece("Rook", 'R', owner, essence) {
             break;
         case::Blue:
             // Rook moves
-            this->mobilities.push_back(new Mobility(AttackMove, DefaultMobilityFlags(), -1, +0, +1, +0, 0));
+            this->mobilities.push_back(new Mobility(AttackMove, DefaultMobilityFlags(), -1, +0, -1, +0, 0));
             this->mobilities.push_back(new Mobility(AttackMove, DefaultMobilityFlags(), +0, -1, +0, -1, 0));
             this->mobilities.push_back(new Mobility(AttackMove, DefaultMobilityFlags(), +1, +0, +1, +0, 0));
             this->mobilities.push_back(new Mobility(AttackMove, DefaultMobilityFlags(), +0, +1, +0, +1, 0));
