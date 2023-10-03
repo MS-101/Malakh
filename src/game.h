@@ -5,8 +5,9 @@
 
 class Game {
     public:
-        Game();
-        
+        Game(Essence whitePawnEssence, Essence whiteRookEssence, Essence whiteKnightEssence, Essence whiteBishopEssence,
+            Essence blackPawnEssence, Essence blackRookEssence, Essence blackKnightEssence, Essence blackBishopEssence);
+
         Board* myBoard = new Board();
 };
 

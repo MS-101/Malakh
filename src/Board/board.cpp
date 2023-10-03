@@ -816,10 +816,9 @@ void Board::PerformMove(int x1, int y1, int x2, int y2)
 {
     Square* sourceSquare = squares[y1][x1];
     Piece* sourcePiece = sourceSquare->occupyingPiece;
-
     Square* destinationSquare = squares[y2][x2];
 
-    if (sourcePiece == nullptr || (x1 == x2 && y1 == y2))
+    if (sourcePiece->owner != curTurn || sourcePiece == nullptr || (x1 == x2 && y1 == y2))
         return;
 
     // only perform this move if it is a valid movement of this piece
@@ -930,6 +929,11 @@ void Board::PerformMove(int x1, int y1, int x2, int y2)
         checks.clear();
         ValidateMoves(Black);
     }
+
+    if (sourcePiece->owner == White)
+        curTurn = Black;
+    else
+        curTurn = White;
 }
 
 void Board::PrintBoard()

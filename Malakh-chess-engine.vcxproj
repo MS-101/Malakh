@@ -112,6 +112,7 @@
     <ClCompile Include="src\pieces\pawn.cpp" />
     <ClCompile Include="src\pieces\queen.cpp" />
     <ClCompile Include="src\pieces\rook.cpp" />
+    <ClCompile Include="src\uci.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\board\board.h" />
@@ -122,6 +123,7 @@
     <ClInclude Include="src\board\square.h" />
     <ClInclude Include="src\game.h" />
     <ClInclude Include="src\pieces\pieces.h" />
+    <ClInclude Include="src\uci.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

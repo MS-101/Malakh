@@ -14,6 +14,8 @@ class Board {
         bool whiteCheck = false;
         bool blackCheck = false;
 
+        Owner curTurn = White;
+
         Square *squares[ROWS][COLUMNS];
         std::list<Piece*> whitePieces;
         std::list<Piece*> blackPieces;
