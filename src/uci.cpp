@@ -50,6 +50,8 @@ bool uci::ParseCommand(std::string command) {
         SendMobilities(new Rook(White, Classic));
         SendMobilities(new Rook(White, Red));
         SendMobilities(new Rook(White, Blue));
+        SendMobilities(new Queen(White));
+        SendMobilities(new King(White));
 
         std::cout << "uciok\n";
     }
