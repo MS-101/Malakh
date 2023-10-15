@@ -861,14 +861,14 @@ void Board::PerformMove(int x1, int y1, int x2, int y2)
 
         switch (sourcePiece->owner)
         {
-        case::White:
-            ghost_x -= hastyPieceMovement->movement->mobility->direction_x;
-            ghost_y += hastyPieceMovement->movement->mobility->direction_y;
-            break;
-        case::Black:
-            ghost_x += hastyPieceMovement->movement->mobility->direction_x;
-            ghost_y -= hastyPieceMovement->movement->mobility->direction_y;
-            break;
+            case::White:
+                ghost_x -= hastyPieceMovement->movement->mobility->direction_x;
+                ghost_y += hastyPieceMovement->movement->mobility->direction_y;
+                break;
+            case::Black:
+                ghost_x += hastyPieceMovement->movement->mobility->direction_x;
+                ghost_y -= hastyPieceMovement->movement->mobility->direction_y;
+                break;
         }
 
         SetGhost(new Ghost(ghost_x, ghost_y, sourcePiece));
@@ -900,15 +900,15 @@ void Board::PerformMove(int x1, int y1, int x2, int y2)
 
         switch (sourcePiece->owner)
         {
-        case::White:
-            inspired_y1 -= inspiringPieceMovement->movement->mobility->flags.affected_y;
-            inspired_x2 -= inspiringPieceMovement->movement->mobility->direction_x;
-            inspired_y2 += inspiringPieceMovement->movement->mobility->direction_y;
-            break;
-        case::Black:
-            inspired_y1 += inspiringPieceMovement->movement->mobility->flags.affected_y;
-            inspired_x2 += inspiringPieceMovement->movement->mobility->direction_x;
-            inspired_y2 -= inspiringPieceMovement->movement->mobility->direction_y;
+            case::White:
+                inspired_y1 -= inspiringPieceMovement->movement->mobility->flags.affected_y;
+                inspired_x2 -= inspiringPieceMovement->movement->mobility->direction_x;
+                inspired_y2 += inspiringPieceMovement->movement->mobility->direction_y;
+                break;
+            case::Black:
+                inspired_y1 += inspiringPieceMovement->movement->mobility->flags.affected_y;
+                inspired_x2 += inspiringPieceMovement->movement->mobility->direction_x;
+                inspired_y2 -= inspiringPieceMovement->movement->mobility->direction_y;
         }
 
         Square* inspiredSquare = squares[inspired_y1][inspired_x1];

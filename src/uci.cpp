@@ -116,6 +116,7 @@ bool uci::ParseCommand(std::string command) {
                     int sourceY = 7 - (move[1] - '1');
                     int destinationX = move[2] - 'a';
                     int destinationY = 7 - (move[3] - '1');
+                    char promotionChar = move[4];
 
                     board->PerformMove(sourceX, sourceY, destinationX, destinationY);
                 }
@@ -235,6 +236,59 @@ std::string uci::GetAvailableMoves(Piece* curPiece)
                 newValue += '0' + 7 - curPiece->y + 1;
                 newValue += 'a' + curMove->x;
                 newValue += '0' + 7 - curMove->y + 1;
+
+                if (curMove->mobility->flags.hasty)
+                {
+                    int hastyX = curMove->x;
+                    int hastyY = curMove->y;
+
+                    if (curPiece->owner == White)
+                    {
+                        hastyX -= curMove->mobility->direction_x;
+                        hastyY += curMove->mobility->direction_y;
+                    }
+                    else
+                    {
+                        hastyX += curMove->mobility->direction_x;
+                        hastyY -= curMove->mobility->direction_y;
+                    }
+
+                    newValue += "_H";
+                    newValue += 'a' + hastyX;
+                    newValue += '0' + 7 - hastyY + 1;
+                }
+
+                if (curMove->mobility->flags.vigilant)
+                {
+                    newValue += "_V";
+                }
+
+                if (curMove->mobility->flags.inspiring)
+                {
+                    int inspiringX1 = curPiece->x + curMove->mobility->flags.affected_x;
+                    int inspiringY1 = curPiece->y;
+                    int inspiringX2 = curMove->x;
+                    int inspiringY2 = curMove->y;
+
+                    if (curPiece->owner == White)
+                    {
+                        inspiringY1 -= curMove->mobility->flags.affected_y;
+                        inspiringX2 -= curMove->mobility->direction_x;
+                        inspiringY2 += curMove->mobility->direction_y;
+                    }
+                    else
+                    {
+                        inspiringY1 += curMove->mobility->flags.affected_y;
+                        inspiringX2 += curMove->mobility->direction_x;
+                        inspiringY2 -= curMove->mobility->direction_y;
+                    }
+
+                    newValue += "_I";
+                    newValue += 'a' + inspiringX1;
+                    newValue += '0' + 7 - inspiringY1 + 1;
+                    newValue += 'a' + inspiringX2;
+                    newValue += '0' + 7 - inspiringY2 + 1;
+                }
 
                 value += newValue;
             }
