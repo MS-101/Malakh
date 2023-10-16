@@ -2,25 +2,25 @@
 #define PIECE_H
 
 #include "movement.h"
-
-#include <string>
 #include <list>
 
-enum Owner { White = 'W', Black = 'B' };
+enum PieceType { Pawn = 'P', Knight = 'N', Bishop = 'B', Rook = 'R', Queen = 'Q', King = 'K' };
+enum PieceColor { White = 'W', Black = 'B' };
 enum Essence { Classic = 'C', Red = 'R', Blue = 'B' };
 
 class Piece {
-    public:
-        Piece(std::string name, char tag, Owner owner, Essence essence);
+public:
+    Piece(PieceType type, PieceColor color, Essence essence);
 
-        std::string name = "undefined";
-        char tag = 'X';
-        Owner owner = White;
-        Essence essence = Classic;
-        std::list<Mobility*> mobilities;
-        std::list<Movement*> availableMoves; 
-        int x, y;
-        bool hasMoved = false;
+    PieceType type;
+    PieceColor color;
+    Essence essence;
+    std::list<Mobility*> mobilities;
+    std::list<Movement*> availableMoves; 
+    int x, y;
+    bool hasMoved = false;
+
+    void SetMobilities(PieceType type, Essence essence);
 };
 
 class Ghost {

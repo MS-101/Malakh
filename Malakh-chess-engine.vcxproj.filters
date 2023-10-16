@@ -39,25 +39,10 @@
     <ClCompile Include="src\board\square.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\pieces\bishop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\pieces\king.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\pieces\knight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\pieces\pawn.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\pieces\queen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\pieces\rook.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\uci.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Board\legalMove.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,10 +68,10 @@
     <ClInclude Include="src\board\square.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\pieces\pieces.h">
+    <ClInclude Include="src\uci.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\uci.h">
+    <ClInclude Include="src\Board\legalMove.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

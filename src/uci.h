@@ -2,10 +2,9 @@
 #define UCI_H
 
 #include "game.h"
+#include "string"
 
-
-class uci
-{
+class uci {
 public:
 	void Run();
 private:
@@ -14,9 +13,11 @@ private:
 	Essence blackPawnEssence = Classic; Essence blackRookEssence = Classic; Essence blackKnightEssence = Classic; Essence blackBishopEssence = Classic;
 	void SendMobilities(Piece* curPiece);
 	bool ParseCommand(std::string command);
-	std::string GetAvailableMoves(Piece* curPiece);
+	PieceType uci::StringToPieceType(std::string value);
+	std::string uci::PieceTypeToString(PieceType value);
 	Essence uci::StringToEssence(std::string value);
 	std::string uci::EssenceToString(Essence value);
+	std::string LegalMoveToString(LegalMove* value);
 };
 
 #endif

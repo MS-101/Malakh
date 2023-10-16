@@ -1,8 +1,6 @@
 #ifndef MOBILITY_H
 #define MOBILITY_H
 
-#include <list>
-
 /*
 * Move can only move to empty squares.
 * Attack can only capture hostile pieces.
@@ -21,52 +19,52 @@ enum MovementType { Move, Attack, AttackMove };
 */
 
 class MobilityFlags {
-    public:
-        MobilityFlags(bool uninterruptible, bool initiative, bool cowardly, bool inspiring, bool hasty, bool vigilant, int affected_x, int affected_y);
+public:
+    MobilityFlags(bool uninterruptible, bool initiative, bool cowardly, bool inspiring, bool hasty, bool vigilant, int affected_x, int affected_y);
 
-        bool uninterruptible = false;
-        bool initiative = false;
-        bool cowardly = false;
-        bool inspiring = false;
-        bool hasty = false;
-        bool vigilant = false;
+    bool uninterruptible = false;
+    bool initiative = false;
+    bool cowardly = false;
+    bool inspiring = false;
+    bool hasty = false;
+    bool vigilant = false;
 
-        int affected_x;
-        int affected_y;
+    int affected_x;
+    int affected_y;
 };
 
 class DefaultMobilityFlags : public MobilityFlags {
-    public:
-        DefaultMobilityFlags();
+public:
+    DefaultMobilityFlags();
 };
 
 class QueenSideCastleFlags : public MobilityFlags {
-    public:
-        QueenSideCastleFlags();
+public:
+    QueenSideCastleFlags();
 };
 
 class KingSideCastleFlags : public MobilityFlags {
-    public:
-        KingSideCastleFlags();
+public:
+    KingSideCastleFlags();
 };
 
 class EnPassantMoveFlags : public MobilityFlags {
-    public:
-        EnPassantMoveFlags();
+public:
+    EnPassantMoveFlags();
 };
 
 class EnPassantCaptureFlags : public MobilityFlags {
-    public:
-        EnPassantCaptureFlags();
+public:
+    EnPassantCaptureFlags();
 };
 
 class Mobility {
-    public:
-        Mobility(MovementType type, MobilityFlags flags, int start_x, int start_y, int direction_x, int direction_y, int limit);
+public:
+    Mobility(MovementType type, MobilityFlags flags, int start_x, int start_y, int direction_x, int direction_y, int limit);
 
-        MovementType type;
-        MobilityFlags flags;
-        int start_x, start_y, direction_x, direction_y, limit;
+    MovementType type;
+    MobilityFlags flags;
+    int start_x, start_y, direction_x, direction_y, limit;
 };
 
 #endif

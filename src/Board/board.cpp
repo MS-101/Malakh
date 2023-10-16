@@ -1,8 +1,8 @@
 #include "board.h"
-#include "../Pieces/pieces.h"
 
 #include <iostream>
 #include <algorithm>
+
 
 Board::Board() {
     for (int cur_y = 0; cur_y < ROWS; cur_y++) {
@@ -16,33 +16,42 @@ void Board::InitBoard(
     Essence whitePawnEssence, Essence whiteRookEssence, Essence whiteKnightEssence, Essence whiteBishopEssence,
     Essence blackPawnEssence, Essence blackRookEssence, Essence blackKnightEssence, Essence blackBishopEssence
 ) {
+    this->whitePawnEssence = whitePawnEssence;
+    this->whiteKnightEssence = whiteKnightEssence;
+    this->whiteBishopEssence = whiteBishopEssence;
+    this->whiteRookEssence = whiteRookEssence;
+    this->blackPawnEssence = blackPawnEssence;
+    this->blackKnightEssence = blackKnightEssence;
+    this->blackBishopEssence = blackBishopEssence;
+    this->blackRookEssence = blackRookEssence;
+
     int pawnCount = 8;
 
     // White pieces
     for (int pawnIterator = 0; pawnIterator < pawnCount; pawnIterator++)
-        AddPiece(new Pawn(White, whitePawnEssence), pawnIterator, 6);
+        AddPiece(new Piece(Pawn, White, whitePawnEssence), pawnIterator, 6);
 
-    AddPiece(new Rook(White, whiteRookEssence), 0, 7);
-    AddPiece(new Knight(White, whiteKnightEssence), 1, 7);
-    AddPiece(new Bishop(White, whiteBishopEssence), 2, 7);
-    AddPiece(new Queen(White), 3, 7);
-    AddPiece(new King(White), 4, 7);
-    AddPiece(new Bishop(White, whiteBishopEssence), 5, 7);
-    AddPiece(new Knight(White, whiteKnightEssence), 6, 7);
-    AddPiece(new Rook(White, whiteRookEssence), 7, 7);
+    AddPiece(new Piece(Rook, White, whiteRookEssence), 0, 7);
+    AddPiece(new Piece(Knight, White, whiteKnightEssence), 1, 7);
+    AddPiece(new Piece(Bishop, White, whiteBishopEssence), 2, 7);
+    AddPiece(new Piece(Queen, White, Classic), 3, 7);
+    AddPiece(new Piece(King, White, Classic), 4, 7);
+    AddPiece(new Piece(Bishop, White, whiteBishopEssence), 5, 7);
+    AddPiece(new Piece(Knight, White, whiteKnightEssence), 6, 7);
+    AddPiece(new Piece(Rook, White, whiteRookEssence), 7, 7);
 
     // Black pieces
     for (int pawnIterator = 0; pawnIterator < pawnCount; pawnIterator++)
-        AddPiece(new Pawn(Black, blackPawnEssence), pawnIterator, 1);
+        AddPiece(new Piece(Pawn, Black, blackPawnEssence), pawnIterator, 1);
 
-    AddPiece(new Rook(Black, blackRookEssence), 0, 0);
-    AddPiece(new Knight(Black, blackKnightEssence), 1, 0);
-    AddPiece(new Bishop(Black, blackBishopEssence), 2, 0);
-    AddPiece(new Queen(Black), 3, 0);
-    AddPiece(new King(Black), 4, 0);
-    AddPiece(new Bishop(Black, blackBishopEssence), 5, 0);
-    AddPiece(new Knight(Black, blackKnightEssence), 6, 0);
-    AddPiece(new Rook(Black, blackRookEssence), 7, 0);
+    AddPiece(new Piece(Rook, Black, blackRookEssence), 0, 0);
+    AddPiece(new Piece(Knight, Black, blackKnightEssence), 1, 0);
+    AddPiece(new Piece(Bishop, Black, blackBishopEssence), 2, 0);
+    AddPiece(new Piece(Queen, Black, Classic), 3, 0);
+    AddPiece(new Piece(King, Black, Classic), 4, 0);
+    AddPiece(new Piece(Bishop, Black, blackBishopEssence), 5, 0);
+    AddPiece(new Piece(Knight, Black, blackKnightEssence), 6, 0);
+    AddPiece(new Piece(Rook, Black, blackRookEssence), 7, 0);
 
     CalculateMoves();
 }
@@ -57,7 +66,7 @@ bool Board::AddPiece(Piece* newPiece, int x, int y)
     newPiece->y = y;
 
     curSquare->occupyingPiece = newPiece;
-    switch (newPiece->owner) {
+    switch (newPiece->color) {
         case::White:
             whitePieces.push_back(newPiece);
             break;
@@ -67,6 +76,13 @@ bool Board::AddPiece(Piece* newPiece, int x, int y)
     }
 
     return true;
+}
+
+void Board::ChangePiece(Piece* piece, PieceType type, Essence essence)
+{
+    RemoveMoves(piece);
+    piece->SetMobilities(type, essence);
+    CalculateMoves(piece);
 }
 
 void Board::RemovePiece(Piece* removedPiece)
@@ -79,7 +95,7 @@ void Board::RemovePiece(Piece* removedPiece)
     Square* curSquare = squares[removedPiece->y][removedPiece->x];
     curSquare->occupyingPiece = nullptr;
 
-    switch (removedPiece->owner)
+    switch (removedPiece->color)
     {
         case::White:
             whitePieces.remove(removedPiece);
@@ -90,46 +106,81 @@ void Board::RemovePiece(Piece* removedPiece)
     }
 }
 
+std::list<LegalMove*> Board::GetLegalMoves(PieceColor color)
+{
+    
+    std::list<LegalMove*> decisions;
+    if (color == White)
+        for each (Piece* whitePiece in whitePieces)
+            decisions.splice(decisions.end(), GetLegalMoves(whitePiece));
+    else if (color == Black)
+        for each (Piece* blackPiece in blackPieces)
+            decisions.splice(decisions.end(), GetLegalMoves(blackPiece));
+    return decisions;
+}
+
+std::list<LegalMove*> Board::GetLegalMoves(Piece* curPiece)
+{
+    std::list<LegalMove*> decisions;
+
+    std::list<Movement*> availableMoves = curPiece->availableMoves;
+    for (auto movementIterator = availableMoves.begin();
+        movementIterator != availableMoves.end(); ++movementIterator) {
+        Movement* curMove = *movementIterator;
+        while (curMove != nullptr) {
+            if (curMove->legal)
+            {
+                if (curPiece->type == Pawn && ((curPiece->color == White && curPiece->y == 0) || (curPiece->color == Black && curPiece->y == 7)))
+                {
+                    decisions.push_back(new LegalMove(new PieceMovement(curPiece, curMove), Queen));
+                    decisions.push_back(new LegalMove(new PieceMovement(curPiece, curMove), Rook));
+                    decisions.push_back(new LegalMove(new PieceMovement(curPiece, curMove), Bishop));
+                    decisions.push_back(new LegalMove(new PieceMovement(curPiece, curMove), Knight));
+                }
+                else
+                {
+                    decisions.push_back(new LegalMove(new PieceMovement(curPiece, curMove), Pawn));
+                }
+            }
+
+            curMove = curMove->next;
+        }
+    }
+
+    return decisions;
+}
+
 // KING SAFETY PROBLEM
 
-/*
-* Problem 1: King should not be allowed to move to unsafe squares
-* When kings moves are being calculated, set the movement to illegal if there is opponent attack on that square otherwise it is legal.
-* When other piece moves are being calculated, set the oposing king moves as ilegal when attacking their square.
-* When other piece moves are being removed, set the oposing king moves as legal when no other hostile piece is attacking that square.
-*/
+// Problem 1: King should not be allowed to move to unsafe squares
+// When kings moves are being calculated, set the movement to illegal if there is opponent attack on that square otherwise it is legal.
+// When other piece moves are being calculated, set the oposing king moves as ilegal when attacking their square.
+// When other piece moves are being removed, set the oposing king moves as legal when no other hostile piece is attacking that square.
 
-/*
-* Problem 2: Pinned pieces should not be allowed to move in a way that endangers the king.
-* Before calculating any moves of piece other than king check if removing this piece from current square endangers the king.
-* If that is the case check for each specific movement if your king is in danger after moving that piece to that square.
-* After moving piece check if it pins any other piece and if it is the case recalculate its moves.
-*/
 
-/*
-* Problem 3: When king is in check it has to be resolved otherwise its checkmate.
-* When a newly calculated move attacks a kings square recalculate validity of all opponent moves.
-* Only the following moves are valid:
-* - King moves to a safe square
-* This is valid only if one piece is attacking king:
-* - Piece other than king moves and blocks attack on king. (this cannot reveal an attack on king)
-* - Piece other than king removes attacking piece. (this cannot reveal an attack on king)
-* After player resolves a checkmate recalculate validity of all their moves.
-*/
+// Problem 2: Pinned pieces should not be allowed to move in a way that endangers the king.
+// Before calculating any moves of piece other than king check if removing this piece from current square endangers the king.
+// If that is the case check for each specific movement if your king is in danger after moving that piece to that square.
+// After moving piece check if it pins any other piece and if it is the case recalculate its moves.
+
+// Problem 3: When king is in check it has to be resolved otherwise its checkmate.
+// When a newly calculated move attacks a kings square recalculate validity of all opponent moves.
+// Only the following moves are valid:
+// - King moves to a safe square
+// This is valid only if one piece is attacking king:
+// - Piece other than king moves and blocks attack on king. (this cannot reveal an attack on king)
+// - Piece other than king removes attacking piece. (this cannot reveal an attack on king)
+// After player resolves a checkmate recalculate validity of all their moves.
 
 // EN PASSANT
 
-/*
-* When pawn has not moved, can move forward 2 squares.
-* Oponent pawns can attack the pawn as if it has moved 1 square forward on the following move.
-*/
+// When pawn has not moved, can move forward 2 squares.
+// Oponent pawns can attack the pawn as if it has moved 1 square forward on the following move.
 
 // CASTLING 
 
-/*
-* For queenside castling the left rook has not moved, there are no pieces on squares b1, c1, d1, king has not moved and no hostile piece is attacking the king or squares b1, c1, d1
-* For kingside castling the right rook has not moved, there are no pieces on squares f1, g1, king has not moved and no hostile piece is attacking the king or squares f1, g1
-*/
+// For queenside castling the left rook has not moved, there are no pieces on squares b1, c1, d1, king has not moved and no hostile piece is attacking the king or squares b1, c1, d1
+// For kingside castling the right rook has not moved, there are no pieces on squares f1, g1, king has not moved and no hostile piece is attacking the king or squares f1, g1
 
 void Board::CalculateMoves()
 {
@@ -190,7 +241,7 @@ Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement*
         int inspired_x = curPiece->x + curMobility->flags.affected_x;
         int inspired_y = curPiece->y;
 
-        switch (curPiece->owner)
+        switch (curPiece->color)
         {
         case::White:
             inspired_y -= curMobility->flags.affected_y;
@@ -208,7 +259,7 @@ Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement*
         if (inspiredPiece == nullptr)
             return nullptr;
 
-        if (inspiredPiece->hasMoved || inspiredPiece->owner != curPiece->owner)
+        if (inspiredPiece->hasMoved || inspiredPiece->color != curPiece->color)
             return nullptr;
     }
 
@@ -236,7 +287,7 @@ Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement*
         // invalidate king moves
         auto findKingPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
         {
-            return curPieceMovement->piece->name._Equal("King") && curPieceMovement->piece->owner != curPiece->owner;
+            return curPieceMovement->piece->type == King && curPieceMovement->piece->color != curPiece->color;
         };
 
         auto findKingPieceMovementIterator = std::find_if(targetSquare->movements.begin(), targetSquare->movements.end(), findKingPieceMovement);
@@ -248,12 +299,12 @@ Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement*
 
         if (targetPiece != nullptr)
         {
-            if (targetPiece->owner != curPiece->owner)
+            if (targetPiece->color != curPiece->color)
             {
-                if (targetPiece->name._Equal("King"))
+                if (targetPiece->type == King)
                 {
                     // when targeting opponent king revalidate all attacked player moves
-                    switch (targetPiece->owner)
+                    switch (targetPiece->color)
                     {
                     case::White:
                         whiteCheck = true;
@@ -264,7 +315,7 @@ Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement*
                     }
                     checks.push_front(newPieceMove);
 
-                    ValidateMoves(targetPiece->owner);
+                    ValidateMoves(targetPiece->color);
                 }
                 else
                 {
@@ -294,7 +345,7 @@ Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement*
         // cut cowardly moves on targeted square
         for each (PieceMovement* curPieceMovement in targetSquare->movements)
         {
-            if (curPieceMovement->movement->mobility->flags.cowardly && curPieceMovement->piece->owner != curPiece->owner)
+            if (curPieceMovement->movement->mobility->flags.cowardly && curPieceMovement->piece->color != curPiece->color)
                 CutMovement(curPieceMovement);
         }
     }
@@ -306,7 +357,7 @@ Movement* Board::CalculateMove(Piece* curPiece, Mobility* curMobility, Movement*
 }
 
 // this method is called when check is made and when check is resolved
-void Board::ValidateMoves(Owner owner)
+void Board::ValidateMoves(PieceColor owner)
 {
     switch (owner)
     {
@@ -359,7 +410,7 @@ bool Board::GetValidity(Piece* curPiece, Movement* curMovement, PieceMovement* p
     {
         auto findPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
         {
-            return (curPieceMovement->movement->mobility->type == Attack || curPieceMovement->movement->mobility->type == AttackMove) && curPieceMovement->piece->owner != curPiece->owner;
+            return (curPieceMovement->movement->mobility->type == Attack || curPieceMovement->movement->mobility->type == AttackMove) && curPieceMovement->piece->color != curPiece->color;
         };
 
         auto it = std::find_if(targetSquare->movements.begin(), targetSquare->movements.end(), findPieceMovement);
@@ -377,25 +428,25 @@ bool Board::GetValidity(Piece* curPiece, Movement* curMovement, PieceMovement* p
         break;
     case::Attack:
         // when attacking you cant move to empty squares or attack your own pieces
-        if (targetPiece == nullptr || targetPiece->owner == curPiece->owner)
+        if (targetPiece == nullptr || targetPiece->color == curPiece->color)
             // not attacking the ghost as a vigilant move
             if (!(curMovement->mobility->flags.vigilant && curGhost != nullptr && curMovement->x == curGhost->x && curMovement->y == curGhost->y))
                 return false;
         break;
     case::AttackMove:
         // when attack moving you cant attack your own pieces
-        if (targetPiece != nullptr && targetPiece->owner == curPiece->owner)
+        if (targetPiece != nullptr && targetPiece->color == curPiece->color)
             return false;
         break;
     }
 
     // king safety validation
-    if (curPiece->name._Equal("King"))
+    if (curPiece->type == King)
     {
         // if we are validating kings move we cannot move to squares that are attacked by our opponent
         auto findPieceMovement = [&](PieceMovement* curPieceMovement) -> bool
         {
-            return curPieceMovement->piece->owner != curPiece->owner && (curPieceMovement->movement->mobility->type == Attack || curPieceMovement->movement->mobility->type == AttackMove);
+            return curPieceMovement->piece->color != curPiece->color && (curPieceMovement->movement->mobility->type == Attack || curPieceMovement->movement->mobility->type == AttackMove);
         };
 
         auto it = std::find_if(targetSquare->movements.begin(), targetSquare->movements.end(), findPieceMovement);
@@ -424,7 +475,7 @@ bool Board::GetValidity(Piece* curPiece, Movement* curMovement, PieceMovement* p
         }
 
         // if we are validating move of piece other than king and we are in check - must capture the piece attacking the king (only if one attacker) or block all attacker moves
-        if (curPiece->owner == White && whiteCheck || curPiece->owner == Black && blackCheck)
+        if (curPiece->color == White && whiteCheck || curPiece->color == Black && blackCheck)
         {
             // check if king is attacked by one piece and we are moving to its square
             if (!(checks.size() == 1 && targetSquare->occupyingPiece != nullptr && targetSquare->occupyingPiece == checks.front()->piece))
@@ -490,7 +541,7 @@ Movement* Board::CreateMove(Piece* curPiece, Mobility* curMobility, Movement* pr
         cur_x = prevMove->x;
         cur_y = prevMove->y;
 
-        switch (curPiece->owner)
+        switch (curPiece->color)
         {
         case::White:
             cur_x += curMobility->direction_x;
@@ -508,7 +559,7 @@ Movement* Board::CreateMove(Piece* curPiece, Mobility* curMobility, Movement* pr
         cur_x = curPiece->x;
         cur_y = curPiece->y;
 
-        switch (curPiece->owner)
+        switch (curPiece->color)
         {
         case::White:
             cur_x += curMobility->start_x;
@@ -536,7 +587,7 @@ Movement* Board::CreateMove(Piece* curPiece, Mobility* curMobility, Movement* pr
 // We are creating a movement attacking the king that would be possible if this piece were to be removed
 PieceMovement* Board::GetPin(Piece* curPiece)
 {
-    if (curPiece->name._Equal("King"))
+    if (curPiece->type == King)
         return nullptr;
 
     // iterate through every blocked movement that will be unblocked after removing this piece
@@ -547,7 +598,7 @@ PieceMovement* Board::GetPin(Piece* curPiece)
         Movement* attackerMovement = attackerPieceMovement->movement;
 
         // ignore movement of friendly pieces and non-hostile moves
-        if (attackerPiece->owner == curPiece->owner || attackerMovement->mobility->type == Move)
+        if (attackerPiece->color == curPiece->color || attackerMovement->mobility->type == Move)
             continue;
 
         Movement* unblockedPin = nullptr;
@@ -596,7 +647,7 @@ PieceMovement* Board::GetPin(Piece* curPiece)
 
         // if generated pin ended attacks your king create copy of existing pin movements and connect it to the already generated unblocked movement
         Movement* pinStart = nullptr;
-        if (targetPiece != nullptr && targetPiece->name._Equal("King") && targetPiece->owner == curPiece->owner)
+        if (targetPiece != nullptr && targetPiece->type == King && targetPiece->color == curPiece->color)
         {
             auto findMovement = [&](Movement* curMovement) -> bool
             {
@@ -678,7 +729,7 @@ void Board::CutMovement(Piece* curPiece, Movement* curMovement)
             // after removing this hostile movement, revalidate opponent king moves on this square
             auto findKingPieceMovement = [&](PieceMovement* targetPieceMovement) -> bool
             {
-                return targetPieceMovement->piece->name._Equal("King") && targetPieceMovement->piece->owner != curPiece->owner;
+                return targetPieceMovement->piece->type == King && targetPieceMovement->piece->color != curPiece->color;
             };
 
             auto findKingPieceMovementIterator = std::find_if(targetSquare->movements.begin(), targetSquare->movements.end(), findKingPieceMovement);
@@ -754,7 +805,7 @@ void Board::MovePiece(Piece* curPiece, int x, int y)
     }
 
     // cancel inspiring movements targeting that were previously targeting this piece
-    switch (curPiece->owner)
+    switch (curPiece->color)
     {
     case::White:
         for each (Piece* whitePiece in whitePieces)
@@ -812,13 +863,13 @@ void Board::MovePiece(Piece* curPiece, int x, int y)
     }
 }
 
-void Board::PerformMove(int x1, int y1, int x2, int y2)
+void Board::PerformMove(int x1, int y1, int x2, int y2, PieceType promotionType)
 {
     Square* sourceSquare = squares[y1][x1];
     Piece* sourcePiece = sourceSquare->occupyingPiece;
     Square* destinationSquare = squares[y2][x2];
 
-    if (sourcePiece->owner != curTurn || sourcePiece == nullptr || (x1 == x2 && y1 == y2))
+    if (sourcePiece->color != curTurn || sourcePiece == nullptr || (x1 == x2 && y1 == y2))
         return;
 
     // only perform this move if it is a valid movement of this piece
@@ -859,7 +910,7 @@ void Board::PerformMove(int x1, int y1, int x2, int y2)
         int ghost_x = x2;
         int ghost_y = y2;
 
-        switch (sourcePiece->owner)
+        switch (sourcePiece->color)
         {
             case::White:
                 ghost_x -= hastyPieceMovement->movement->mobility->direction_x;
@@ -898,7 +949,7 @@ void Board::PerformMove(int x1, int y1, int x2, int y2)
         int inspired_x2 = x2;
         int inspired_y2 = y2;
 
-        switch (sourcePiece->owner)
+        switch (sourcePiece->color)
         {
             case::White:
                 inspired_y1 -= inspiringPieceMovement->movement->mobility->flags.affected_y;
@@ -909,6 +960,7 @@ void Board::PerformMove(int x1, int y1, int x2, int y2)
                 inspired_y1 += inspiringPieceMovement->movement->mobility->flags.affected_y;
                 inspired_x2 += inspiringPieceMovement->movement->mobility->direction_x;
                 inspired_y2 -= inspiringPieceMovement->movement->mobility->direction_y;
+                break;
         }
 
         Square* inspiredSquare = squares[inspired_y1][inspired_x1];
@@ -916,21 +968,71 @@ void Board::PerformMove(int x1, int y1, int x2, int y2)
         MovePiece(inspiredPiece, inspired_x2, inspired_y2);
     }
 
+    // pawn promotions
+    if (sourcePiece->type == Pawn && ((sourcePiece->color == White && sourcePiece->y == 0) || (sourcePiece->color == Black && sourcePiece->y == 7)))
+    {
+        Essence promotionEssence;
+        switch (sourcePiece->color){
+        case::White:
+            switch (promotionType)
+            {
+            case Pawn:
+                promotionEssence = whitePawnEssence;
+                break;
+            case Knight:
+                promotionEssence = whiteKnightEssence;
+                break;
+            case Bishop:
+                promotionEssence = whiteBishopEssence;
+                break;
+            case Rook:
+                promotionEssence = whiteRookEssence;
+                break;
+            default:
+                promotionEssence = Classic;
+                break;
+            }
+            break;
+        case::Black:
+            switch (promotionType)
+            {
+            case Pawn:
+                promotionEssence = blackPawnEssence;
+                break;
+            case Knight:
+                promotionEssence = blackKnightEssence;
+                break;
+            case Bishop:
+                promotionEssence = blackBishopEssence;
+                break;
+            case Rook:
+                promotionEssence = blackRookEssence;
+                break;
+            default:
+                promotionEssence = Classic;
+                break;
+            }
+            break;
+        }
+
+        ChangePiece(sourcePiece, promotionType, promotionEssence);
+    }
+
     // if move was succesfuly performed while in check it means that check was resolved and all moves need to be revalidated
-    if (sourcePiece->owner == White && whiteCheck)
+    if (sourcePiece->color == White && whiteCheck)
     {
         whiteCheck = !whiteCheck;
         checks.clear();
         ValidateMoves(White);
     }
-    else if (sourcePiece->owner == Black && blackCheck)
+    else if (sourcePiece->color == Black && blackCheck)
     {
         blackCheck = !blackCheck;
         checks.clear();
         ValidateMoves(Black);
     }
 
-    if (sourcePiece->owner == White)
+    if (sourcePiece->color == White)
         curTurn = Black;
     else
         curTurn = White;
@@ -949,9 +1051,9 @@ void Board::PrintBoard()
             Piece* curPiece = curSquare->occupyingPiece;
 
             if (curPiece != nullptr) {
-                char ownerTag = curPiece->owner;
+                char ownerTag = curPiece->color;
                 char essenceTag = curPiece->essence;
-                char pieceTag = curPiece->tag;
+                char pieceTag = curPiece->type;
 
                 std::cout << ownerTag << essenceTag << pieceTag;
             } else if (curGhost != nullptr && cur_x == curGhost->x && cur_y == curGhost->y) {
@@ -985,7 +1087,7 @@ void Board::PrintMoves()
 void Board::PrintMoves(Piece* curPiece)
 {
     std::string ownerName;
-    switch (curPiece->owner)
+    switch (curPiece->color)
     {
         case::White:
             ownerName = "White";
@@ -1009,7 +1111,11 @@ void Board::PrintMoves(Piece* curPiece)
             break;
     }
 
-    std::string pieceName = curPiece->name;
+    std::string pieceName;
+    switch (curPiece->type)
+    {
+
+    }
     
     std::cout << "Printing moves of piece: " << ownerName << " " << essenceName << " " << pieceName << "\n";
 

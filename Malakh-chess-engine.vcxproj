@@ -100,29 +100,24 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\board\board.cpp" />
+    <ClCompile Include="src\Board\legalMove.cpp" />
     <ClCompile Include="src\board\mobility.cpp" />
     <ClCompile Include="src\board\movement.cpp" />
     <ClCompile Include="src\board\piece.cpp" />
     <ClCompile Include="src\board\pieceMovement.cpp" />
     <ClCompile Include="src\board\square.cpp" />
     <ClCompile Include="src\game.cpp" />
-    <ClCompile Include="src\pieces\bishop.cpp" />
-    <ClCompile Include="src\pieces\king.cpp" />
-    <ClCompile Include="src\pieces\knight.cpp" />
-    <ClCompile Include="src\pieces\pawn.cpp" />
-    <ClCompile Include="src\pieces\queen.cpp" />
-    <ClCompile Include="src\pieces\rook.cpp" />
     <ClCompile Include="src\uci.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\board\board.h" />
+    <ClInclude Include="src\Board\legalMove.h" />
     <ClInclude Include="src\board\mobility.h" />
     <ClInclude Include="src\board\movement.h" />
     <ClInclude Include="src\board\piece.h" />
     <ClInclude Include="src\board\pieceMovement.h" />
     <ClInclude Include="src\board\square.h" />
     <ClInclude Include="src\game.h" />
-    <ClInclude Include="src\pieces\pieces.h" />
     <ClInclude Include="src\uci.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

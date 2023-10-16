@@ -1,5 +1,5 @@
 #include "uci.h"
-#include "Pieces/pieces.h"
+
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -38,20 +38,20 @@ bool uci::ParseCommand(std::string command) {
         std::cout << "option name BlackKnight type combo default Classic var Classic var Red var Blue\n";
         std::cout << "option name BlackBishop type combo default Classic var Classic var Red var Blue\n";
 
-        SendMobilities(new Pawn(White, Classic));
-        SendMobilities(new Pawn(White, Red));
-        SendMobilities(new Pawn(White, Blue));
-        SendMobilities(new Knight(White, Classic));
-        SendMobilities(new Knight(White, Red));
-        SendMobilities(new Knight(White, Blue));
-        SendMobilities(new Bishop(White, Classic));
-        SendMobilities(new Bishop(White, Red));
-        SendMobilities(new Bishop(White, Blue));
-        SendMobilities(new Rook(White, Classic));
-        SendMobilities(new Rook(White, Red));
-        SendMobilities(new Rook(White, Blue));
-        SendMobilities(new Queen(White));
-        SendMobilities(new King(White));
+        SendMobilities(new Piece(Pawn, White, Classic));
+        SendMobilities(new Piece(Pawn, White, Red));
+        SendMobilities(new Piece(Pawn, White, Blue));
+        SendMobilities(new Piece(Knight, White, Classic));
+        SendMobilities(new Piece(Knight, White, Red));
+        SendMobilities(new Piece(Knight, White, Blue));
+        SendMobilities(new Piece(Bishop, White, Classic));
+        SendMobilities(new Piece(Bishop, White, Red));
+        SendMobilities(new Piece(Bishop, White, Blue));
+        SendMobilities(new Piece(Rook, White, Classic));
+        SendMobilities(new Piece(Rook, White, Red));
+        SendMobilities(new Piece(Rook, White, Blue));
+        SendMobilities(new Piece(Queen, White, Classic));
+        SendMobilities(new Piece(King, White, Classic));
 
         std::cout << "uciok\n";
     }
@@ -90,15 +90,17 @@ bool uci::ParseCommand(std::string command) {
     {
         Board* board = curGame->myBoard;
 
-        std::string availableMoves = "";
+        std::list<LegalMove*> legalMoves;
         if (tokens[1] == "White")
-            for each (Piece * whitePiece in board->whitePieces)
-                availableMoves += GetAvailableMoves(whitePiece);
+            legalMoves = board->GetLegalMoves(White);
         else if (tokens[1] == "Black")
-            for each (Piece * blackPiece in board->blackPieces)
-                availableMoves += GetAvailableMoves(blackPiece);
+            legalMoves = board->GetLegalMoves(Black);
 
-        std::cout << "legalmoves" + availableMoves + '\n';
+        std::string legalMovesStr = "";
+        for each (LegalMove* legalMove in legalMoves)
+            legalMovesStr += " " + LegalMoveToString(legalMove);
+
+        std::cout << "legalmoves" + legalMovesStr + '\n';
     }
     else if (tokens[0] == "position")
     {
@@ -116,9 +118,10 @@ bool uci::ParseCommand(std::string command) {
                     int sourceY = 7 - (move[1] - '1');
                     int destinationX = move[2] - 'a';
                     int destinationY = 7 - (move[3] - '1');
-                    char promotionChar = move[4];
+                    char promotionChar = move[4] + 32;
+                    PieceType promotionType = (PieceType)promotionChar;
 
-                    board->PerformMove(sourceX, sourceY, destinationX, destinationY);
+                    board->PerformMove(sourceX, sourceY, destinationX, destinationY, promotionType);
                 }
             }
         }
@@ -127,38 +130,63 @@ bool uci::ParseCommand(std::string command) {
     {
         Board* board = curGame->myBoard;
 
-        std::string availableMoves = "";
-        if (board->curTurn == White)
-        {
-            for each (Piece * whitePiece in board->whitePieces)
-                availableMoves += GetAvailableMoves(whitePiece);
-        }
-        else
-        {
-            for each (Piece * blackPiece in board->blackPieces)
-                availableMoves += GetAvailableMoves(blackPiece);
-        }
-
-        std::istringstream movesStream(availableMoves);
-        std::vector<std::string> moveTokens;
-        std::string move;
-
-        while (std::getline(movesStream, move, ' ')) {
-            moveTokens.push_back(move);
-        }
+        std::list<LegalMove*> legalMoves = board->GetLegalMoves(board->curTurn);
 
         std::srand(std::time(0));
-        if (!moveTokens.empty()) {
-            int randomIndex = std::rand() % moveTokens.size();
-            std::string randomMove = moveTokens[randomIndex];
+        if (!legalMoves.empty()) {
+            int randomIndex = std::rand() % legalMoves.size();
 
-            std::cout << "bestmove " << randomMove << std::endl;
+            auto it = legalMoves.begin();
+            std::advance(it, randomIndex);
+            LegalMove* randomMove = *it;
+
+            std::cout << "bestmove " << LegalMoveToString(randomMove) << std::endl;
         }
     }
     else if (tokens[0] == "quit")
         return true;
 
     return false;
+}
+
+PieceType uci::StringToPieceType(std::string value)
+{
+    if (value == "Knight")
+        return Knight;
+    else if (value == "Bishop")
+        return Bishop;
+    else if (value == "Rook")
+        return Rook;
+    else if (value == "Queen")
+        return Queen;
+    else if (value == "King")
+        return King;
+    else
+        return Pawn;
+}
+
+std::string uci::PieceTypeToString(PieceType value)
+{
+    switch (value) {
+    case::Knight:
+        return "Knight";
+        break;
+    case::Bishop:
+        return "Bishop";
+        break;
+    case::Rook:
+        return "Rook";
+        break;
+    case::Queen:
+        return "Queen";
+        break;
+    case::King:
+        return "King";
+        break;
+    default:
+        return "Pawn";
+        break;
+    }
 }
 
 Essence uci::StringToEssence(std::string value)
@@ -173,8 +201,7 @@ Essence uci::StringToEssence(std::string value)
 
 std::string uci::EssenceToString(Essence value)
 {
-    switch (value)
-    {
+    switch (value) {
         case::Red:
             return "Red";
             break;
@@ -189,7 +216,7 @@ std::string uci::EssenceToString(Essence value)
 
 void uci::SendMobilities(Piece* curPiece)
 {
-    std::string pieceType = curPiece->name;
+    std::string pieceType = PieceTypeToString(curPiece->type);
     std::string essence = EssenceToString(curPiece->essence);
 
     for each (Mobility * curMobility in curPiece->mobilities)
@@ -219,84 +246,69 @@ void uci::SendMobilities(Piece* curPiece)
     }
 }
 
-std::string uci::GetAvailableMoves(Piece* curPiece)
+std::string uci::LegalMoveToString(LegalMove* value)
 {
-    std::string value = "";
+    Piece* piece = value->pieceMovement->piece;
+    Movement* movement = value->pieceMovement->movement;
 
-    std::list<Movement*> availableMoves = curPiece->availableMoves;
-    for (auto movementIterator = availableMoves.begin();
-        movementIterator != availableMoves.end(); ++movementIterator) {
-        Movement* curMove = *movementIterator;
+    std::string retValue = "";
+    retValue += 'a' + piece->x;
+    retValue += '0' + 7 - piece->y + 1;
+    retValue += 'a' + movement->x;
+    retValue += '0' + 7 - movement->y + 1;
 
-        while (curMove != nullptr) {
-            if (curMove->legal)
-            {
-                std::string newValue = " ";
-                newValue += 'a' + curPiece->x;
-                newValue += '0' + 7 - curPiece->y + 1;
-                newValue += 'a' + curMove->x;
-                newValue += '0' + 7 - curMove->y + 1;
+    if (movement->mobility->flags.hasty)
+    {
+        int hastyX = movement->x;
+        int hastyY = movement->y;
 
-                if (curMove->mobility->flags.hasty)
-                {
-                    int hastyX = curMove->x;
-                    int hastyY = curMove->y;
-
-                    if (curPiece->owner == White)
-                    {
-                        hastyX -= curMove->mobility->direction_x;
-                        hastyY += curMove->mobility->direction_y;
-                    }
-                    else
-                    {
-                        hastyX += curMove->mobility->direction_x;
-                        hastyY -= curMove->mobility->direction_y;
-                    }
-
-                    newValue += "_H";
-                    newValue += 'a' + hastyX;
-                    newValue += '0' + 7 - hastyY + 1;
-                }
-
-                if (curMove->mobility->flags.vigilant)
-                {
-                    newValue += "_V";
-                }
-
-                if (curMove->mobility->flags.inspiring)
-                {
-                    int inspiringX1 = curPiece->x + curMove->mobility->flags.affected_x;
-                    int inspiringY1 = curPiece->y;
-                    int inspiringX2 = curMove->x;
-                    int inspiringY2 = curMove->y;
-
-                    if (curPiece->owner == White)
-                    {
-                        inspiringY1 -= curMove->mobility->flags.affected_y;
-                        inspiringX2 -= curMove->mobility->direction_x;
-                        inspiringY2 += curMove->mobility->direction_y;
-                    }
-                    else
-                    {
-                        inspiringY1 += curMove->mobility->flags.affected_y;
-                        inspiringX2 += curMove->mobility->direction_x;
-                        inspiringY2 -= curMove->mobility->direction_y;
-                    }
-
-                    newValue += "_I";
-                    newValue += 'a' + inspiringX1;
-                    newValue += '0' + 7 - inspiringY1 + 1;
-                    newValue += 'a' + inspiringX2;
-                    newValue += '0' + 7 - inspiringY2 + 1;
-                }
-
-                value += newValue;
-            }
-
-            curMove = curMove->next;
+        if (piece->color == White)
+        {
+            hastyX -= movement->mobility->direction_x;
+            hastyY += movement->mobility->direction_y;
         }
+        else
+        {
+            hastyX += movement->mobility->direction_x;
+            hastyY -= movement->mobility->direction_y;
+        }
+
+        retValue += "_H";
+        retValue += 'a' + hastyX;
+        retValue += '0' + 7 - hastyY + 1;
     }
 
-    return value;
-}
+    if (movement->mobility->flags.vigilant)
+    {
+        retValue += "_V";
+    }
 
+    if (movement->mobility->flags.inspiring)
+    {
+        int inspiringX1 = piece->x + movement->mobility->flags.affected_x;
+        int inspiringY1 = piece->y;
+        int inspiringX2 = movement->x;
+        int inspiringY2 = movement->y;
+
+        if (piece->color == White)
+        {
+            inspiringY1 -= movement->mobility->flags.affected_y;
+            inspiringX2 -= movement->mobility->direction_x;
+            inspiringY2 += movement->mobility->direction_y;
+        }
+        else
+        {
+            inspiringY1 += movement->mobility->flags.affected_y;
+            inspiringX2 += movement->mobility->direction_x;
+            inspiringY2 -= movement->mobility->direction_y;
+        }
+
+        retValue += "_I";
+        retValue += 'a' + inspiringX1;
+        retValue += '0' + 7 - inspiringY1 + 1;
+        retValue += 'a' + inspiringX2;
+        retValue += '0' + 7 - inspiringY2 + 1;
+    }
+
+    return retValue;
+}
