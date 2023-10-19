@@ -1,4 +1,5 @@
 #include "src/uci.h"
+#include <iostream>
 
 int main() {
     uci* api = new uci();
@@ -15,7 +16,7 @@ int main() {
 
     std::cout << "Performing move...\n\n";
 
-    board->PerformMove(1, 6, 1, 4);
+    board->PerformMove(1, 1, 0, 0, Rook);
     board->PrintBoard();
     board->PrintMoves();
     */

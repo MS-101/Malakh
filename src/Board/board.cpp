@@ -1114,7 +1114,24 @@ void Board::PrintMoves(Piece* curPiece)
     std::string pieceName;
     switch (curPiece->type)
     {
-
+        case::Pawn:
+            pieceName = "Pawn";
+            break;
+        case::Knight:
+            pieceName = "Knight";
+            break;
+        case::Bishop:
+            pieceName = "Bishop";
+            break;
+        case::Rook:
+            pieceName = "Rook";
+            break;
+        case::Queen:
+            pieceName = "Queen";
+            break;
+        case::King:
+            pieceName = "King";
+            break;
     }
     
     std::cout << "Printing moves of piece: " << ownerName << " " << essenceName << " " << pieceName << "\n";

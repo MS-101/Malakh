@@ -91,16 +91,28 @@ bool uci::ParseCommand(std::string command) {
         Board* board = curGame->myBoard;
 
         std::list<LegalMove*> legalMoves;
-        if (tokens[1] == "White")
+        if (board->curTurn == White)
             legalMoves = board->GetLegalMoves(White);
-        else if (tokens[1] == "Black")
+        else
             legalMoves = board->GetLegalMoves(Black);
 
-        std::string legalMovesStr = "";
-        for each (LegalMove* legalMove in legalMoves)
-            legalMovesStr += " " + LegalMoveToString(legalMove);
+        if (!legalMoves.empty())
+        {
+            std::string legalMovesStr = "";
+            for each (LegalMove* legalMove in legalMoves)
+                legalMovesStr += " " + LegalMoveToString(legalMove);
 
-        std::cout << "legalmoves" + legalMovesStr + '\n';
+            std::cout << "legalmoves" + legalMovesStr + '\n';
+        }
+        else
+        {
+            if (board->curTurn == White && board->whiteCheck)
+                std::cout << "result Black" << std::endl;
+            else if (board->curTurn == Black && board->blackCheck)
+                std::cout << "result White" << std::endl;
+            else
+                std::cout << "result Stalemate" << std::endl;
+        }
     }
     else if (tokens[0] == "position")
     {
@@ -118,7 +130,7 @@ bool uci::ParseCommand(std::string command) {
                     int sourceY = 7 - (move[1] - '1');
                     int destinationX = move[2] - 'a';
                     int destinationY = 7 - (move[3] - '1');
-                    char promotionChar = move[4] + 32;
+                    char promotionChar = move[4] - 32;
                     PieceType promotionType = (PieceType)promotionChar;
 
                     board->PerformMove(sourceX, sourceY, destinationX, destinationY, promotionType);
@@ -132,8 +144,8 @@ bool uci::ParseCommand(std::string command) {
 
         std::list<LegalMove*> legalMoves = board->GetLegalMoves(board->curTurn);
 
-        std::srand(std::time(0));
         if (!legalMoves.empty()) {
+            std::srand(std::time(0));
             int randomIndex = std::rand() % legalMoves.size();
 
             auto it = legalMoves.begin();
@@ -141,6 +153,15 @@ bool uci::ParseCommand(std::string command) {
             LegalMove* randomMove = *it;
 
             std::cout << "bestmove " << LegalMoveToString(randomMove) << std::endl;
+        }
+        else
+        {
+            if (board->curTurn == White && board->whiteCheck)
+                std::cout << "result Black" << std::endl;
+            else if (board->curTurn == Black && board->blackCheck)
+                std::cout << "result White" << std::endl;
+            else
+                std::cout << "result Stalemate" << std::endl;
         }
     }
     else if (tokens[0] == "quit")
