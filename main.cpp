@@ -14,9 +14,9 @@ int main() {
     board->PrintBoard();
     board->PrintMoves();
 
-    std::cout << "Performing move...\n\n";
+    std::cout << "Performing moves...\n\n";
+    board->PerformMove(1, 0, 3, 1, Pawn);
 
-    board->PerformMove(1, 1, 0, 0, Rook);
     board->PrintBoard();
     board->PrintMoves();
     */

@@ -364,13 +364,13 @@ void Board::ValidateMoves(PieceColor owner)
         case White:
             for each (Piece * whitePiece in whitePieces)
             {
-                ValidateMoves(whitePiece, nullptr);
+                ValidateMoves(whitePiece, GetPin(whitePiece));
             }
             break;
         case Black:
             for each (Piece * blackPiece in blackPieces)
             {
-                ValidateMoves(blackPiece, nullptr);
+                ValidateMoves(blackPiece, GetPin(blackPiece));
             }
             break;
     }
