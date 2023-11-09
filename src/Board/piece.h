@@ -11,6 +11,7 @@ enum Essence { Classic = 'C', Red = 'R', Blue = 'B' };
 class Piece {
 public:
     Piece(PieceType type, PieceColor color, Essence essence);
+    ~Piece();
 
     PieceType type;
     PieceColor color;
@@ -20,7 +21,7 @@ public:
     int x, y;
     bool hasMoved = false;
 
-    void SetMobilities(PieceType type, Essence essence);
+    void setMobilities(PieceType type, Essence essence);
 };
 
 class Ghost {

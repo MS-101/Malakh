@@ -6,8 +6,9 @@
 class Square {
 public:
     Square(int x, int y);
+    ~Square();
 
-    Piece* occupyingPiece = (Piece*)nullptr;
+    Piece* occupyingPiece = nullptr;
     std::list<PieceMovement*> movements;
     int x, y;
 };

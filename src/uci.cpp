@@ -5,18 +5,18 @@
 #include <vector>
 
 
-void uci::Run()
+void uci::run()
 {
     std::string command;
 
     bool terminated = false;
     while (!terminated) {
         std::getline(std::cin, command);
-        terminated = ParseCommand(command);
+        terminated = parseCommand(command);
     }
 }
 
-bool uci::ParseCommand(std::string command) {
+bool uci::parseCommand(std::string command) {
     std::stringstream ssCommand(command);
 
     std::vector<std::string> tokens;
@@ -38,20 +38,20 @@ bool uci::ParseCommand(std::string command) {
         std::cout << "option name BlackKnight type combo default Classic var Classic var Red var Blue\n";
         std::cout << "option name BlackBishop type combo default Classic var Classic var Red var Blue\n";
 
-        SendMobilities(new Piece(Pawn, White, Classic));
-        SendMobilities(new Piece(Pawn, White, Red));
-        SendMobilities(new Piece(Pawn, White, Blue));
-        SendMobilities(new Piece(Knight, White, Classic));
-        SendMobilities(new Piece(Knight, White, Red));
-        SendMobilities(new Piece(Knight, White, Blue));
-        SendMobilities(new Piece(Bishop, White, Classic));
-        SendMobilities(new Piece(Bishop, White, Red));
-        SendMobilities(new Piece(Bishop, White, Blue));
-        SendMobilities(new Piece(Rook, White, Classic));
-        SendMobilities(new Piece(Rook, White, Red));
-        SendMobilities(new Piece(Rook, White, Blue));
-        SendMobilities(new Piece(Queen, White, Classic));
-        SendMobilities(new Piece(King, White, Classic));
+        sendMobilities(new Piece(Pawn, White, Classic));
+        sendMobilities(new Piece(Pawn, White, Red));
+        sendMobilities(new Piece(Pawn, White, Blue));
+        sendMobilities(new Piece(Knight, White, Classic));
+        sendMobilities(new Piece(Knight, White, Red));
+        sendMobilities(new Piece(Knight, White, Blue));
+        sendMobilities(new Piece(Bishop, White, Classic));
+        sendMobilities(new Piece(Bishop, White, Red));
+        sendMobilities(new Piece(Bishop, White, Blue));
+        sendMobilities(new Piece(Rook, White, Classic));
+        sendMobilities(new Piece(Rook, White, Red));
+        sendMobilities(new Piece(Rook, White, Blue));
+        sendMobilities(new Piece(Queen, White, Classic));
+        sendMobilities(new Piece(King, White, Classic));
 
         std::cout << "uciok\n";
     }
@@ -65,21 +65,21 @@ bool uci::ParseCommand(std::string command) {
         std::string value = tokens[4];
 
         if (name == "WhitePawn")
-            whitePawnEssence = StringToEssence(value);
+            whitePawnEssence = stringToEssence(value);
         else if (name == "WhiteRook")
-            whiteRookEssence = StringToEssence(value);
+            whiteRookEssence = stringToEssence(value);
         else if (name == "WhiteKnight")
-            whiteKnightEssence = StringToEssence(value);
+            whiteKnightEssence = stringToEssence(value);
         else if (name == "WhiteBishop")
-            whiteBishopEssence = StringToEssence(value);
+            whiteBishopEssence = stringToEssence(value);
         else if (name == "BlackPawn")
-            blackPawnEssence = StringToEssence(value);
+            blackPawnEssence = stringToEssence(value);
         else if (name == "BlackRook")
-            blackRookEssence = StringToEssence(value);
+            blackRookEssence = stringToEssence(value);
         else if (name == "BlackKnight")
-            blackKnightEssence = StringToEssence(value);
+            blackKnightEssence = stringToEssence(value);
         else if (name == "BlackBishop")
-            blackBishopEssence = StringToEssence(value);
+            blackBishopEssence = stringToEssence(value);
     }
     else if (tokens[0] == "ucinewgame")
     {
@@ -92,15 +92,15 @@ bool uci::ParseCommand(std::string command) {
 
         std::list<LegalMove*> legalMoves;
         if (board->curTurn == White)
-            legalMoves = board->GetLegalMoves(White);
+            legalMoves = board->getLegalMoves(White);
         else
-            legalMoves = board->GetLegalMoves(Black);
+            legalMoves = board->getLegalMoves(Black);
 
         if (!legalMoves.empty())
         {
             std::string legalMovesStr = "";
             for each (LegalMove* legalMove in legalMoves)
-                legalMovesStr += " " + LegalMoveToString(legalMove);
+                legalMovesStr += " " + legalMoveToString(legalMove);
 
             std::cout << "legalmoves" + legalMovesStr + '\n';
         }
@@ -133,7 +133,7 @@ bool uci::ParseCommand(std::string command) {
                     char promotionChar = move[4] - 32;
                     PieceType promotionType = (PieceType)promotionChar;
 
-                    board->PerformMove(sourceX, sourceY, destinationX, destinationY, promotionType);
+                    board->performMove(sourceX, sourceY, destinationX, destinationY, promotionType);
                 }
             }
         }
@@ -142,17 +142,10 @@ bool uci::ParseCommand(std::string command) {
     {
         Board* board = curGame->myBoard;
 
-        std::list<LegalMove*> legalMoves = board->GetLegalMoves(board->curTurn);
-
+        std::list<LegalMove*> legalMoves = board->getLegalMoves(board->curTurn);
         if (!legalMoves.empty()) {
-            std::srand(std::time(0));
-            int randomIndex = std::rand() % legalMoves.size();
-
-            auto it = legalMoves.begin();
-            std::advance(it, randomIndex);
-            LegalMove* randomMove = *it;
-
-            std::cout << "bestmove " << LegalMoveToString(randomMove) << std::endl;
+            LegalMove* bestMove = ai->minimax(board, 2);
+            std::cout << "bestmove " << legalMoveToString(bestMove) << std::endl;
         }
         else
         {
@@ -170,7 +163,7 @@ bool uci::ParseCommand(std::string command) {
     return false;
 }
 
-PieceType uci::StringToPieceType(std::string value)
+PieceType uci::stringToPieceType(std::string value)
 {
     if (value == "Knight")
         return Knight;
@@ -186,7 +179,7 @@ PieceType uci::StringToPieceType(std::string value)
         return Pawn;
 }
 
-std::string uci::PieceTypeToString(PieceType value)
+std::string uci::pieceTypeToString(PieceType value)
 {
     switch (value) {
     case::Knight:
@@ -210,7 +203,7 @@ std::string uci::PieceTypeToString(PieceType value)
     }
 }
 
-Essence uci::StringToEssence(std::string value)
+Essence uci::stringToEssence(std::string value)
 {
     if (value == "Red")
         return Red;
@@ -220,7 +213,7 @@ Essence uci::StringToEssence(std::string value)
         return Classic;
 }
 
-std::string uci::EssenceToString(Essence value)
+std::string uci::essenceToString(Essence value)
 {
     switch (value) {
         case::Red:
@@ -235,10 +228,10 @@ std::string uci::EssenceToString(Essence value)
     }
 }
 
-void uci::SendMobilities(Piece* curPiece)
+void uci::sendMobilities(Piece* curPiece)
 {
-    std::string pieceType = PieceTypeToString(curPiece->type);
-    std::string essence = EssenceToString(curPiece->essence);
+    std::string pieceType = pieceTypeToString(curPiece->type);
+    std::string essence = essenceToString(curPiece->essence);
 
     for each (Mobility * curMobility in curPiece->mobilities)
     {
@@ -267,7 +260,7 @@ void uci::SendMobilities(Piece* curPiece)
     }
 }
 
-std::string uci::LegalMoveToString(LegalMove* value)
+std::string uci::legalMoveToString(LegalMove* value)
 {
     Piece* piece = value->pieceMovement->piece;
     Movement* movement = value->pieceMovement->movement;

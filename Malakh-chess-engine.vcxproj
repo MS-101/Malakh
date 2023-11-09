@@ -99,6 +99,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\ai.cpp" />
     <ClCompile Include="src\board\board.cpp" />
     <ClCompile Include="src\Board\legalMove.cpp" />
     <ClCompile Include="src\board\mobility.cpp" />
@@ -110,6 +111,7 @@
     <ClCompile Include="src\uci.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ai.h" />
     <ClInclude Include="src\board\board.h" />
     <ClInclude Include="src\Board\legalMove.h" />
     <ClInclude Include="src\board\mobility.h" />

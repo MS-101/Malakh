@@ -1,11 +1,23 @@
 #include "piece.h"
 
-Piece::Piece(PieceType type, PieceColor color, Essence essence) {
+Piece::Piece(PieceType type, PieceColor color, Essence essence)
+{
     this->color = color;
-    SetMobilities(type, essence);
+    setMobilities(type, essence);
 }
 
-void Piece::SetMobilities(PieceType type, Essence essence)
+Piece::~Piece()
+{
+    for (auto mobilitiesIterator = mobilities.begin(); mobilitiesIterator != mobilities.end(); ++mobilitiesIterator)
+        delete* mobilitiesIterator;
+    mobilities.clear();
+
+    for (auto moveIterator = availableMoves.begin(); moveIterator != availableMoves.end(); ++moveIterator)
+        delete* moveIterator;
+    availableMoves.clear();
+}
+
+void Piece::setMobilities(PieceType type, Essence essence)
 {
     this->type = type;
     this->essence = essence;
