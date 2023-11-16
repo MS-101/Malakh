@@ -233,7 +233,7 @@ void uci::sendMobilities(Piece* curPiece)
     std::string pieceType = pieceTypeToString(curPiece->type);
     std::string essence = essenceToString(curPiece->essence);
 
-    for each (Mobility * curMobility in curPiece->mobilities)
+    for each (Mobility * curMobility in curPiece->getMobilities())
     {
         MobilityFlags flags = curMobility->flags;
         if (!flags.initiative && !flags.cowardly && !flags.hasty && !flags.inspiring && !flags.uninterruptible)

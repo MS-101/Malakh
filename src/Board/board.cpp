@@ -18,28 +18,32 @@ Board::Board(Board* board) : Board()
     Piece* ghostParent = nullptr;
 
     std::list<Piece*> whitePieces = board->whitePieces;
-    for (auto whitePieceIterator = whitePieces.begin();
-        whitePieceIterator != whitePieces.end(); ++whitePieceIterator) {
-        Piece* whitePiece = *whitePieceIterator;
-        Piece* newPiece = new Piece(whitePiece->type, whitePiece->color, whitePiece->essence);
-        addPiece(newPiece, whitePiece->x, whitePiece->y);
+    for (auto it = whitePieces.begin(); it != whitePieces.end(); ++it) {
+        Piece* newPiece = copyPiece(*it);
 
-        if (ghost != nullptr && (whitePiece->x == ghost->parent->x && whitePiece->y == ghost->parent->y))
+        if (ghost != nullptr && (newPiece->x == ghost->parent->x && newPiece->y == ghost->parent->y))
             ghostParent = newPiece;
     }
 
     std::list<Piece*> blackPieces = board->blackPieces;
-    for (auto blackPieceIterator = blackPieces.begin();
-        blackPieceIterator != blackPieces.end(); ++blackPieceIterator) {
-        Piece* blackPiece = *blackPieceIterator;
-        Piece* newPiece = new Piece(blackPiece->type, blackPiece->color, blackPiece->essence);
-        addPiece(newPiece, blackPiece->x, blackPiece->y);
+    for (auto it = blackPieces.begin(); it != blackPieces.end(); ++it) {
+        Piece* newPiece = copyPiece(*it);
 
-        if (ghost != nullptr && (blackPiece->x == ghost->parent->x && blackPiece->y == ghost->parent->y))
+        if (ghost != nullptr && (newPiece->x == ghost->parent->x && newPiece->y == ghost->parent->y))
             ghostParent = newPiece;
     }
 
-    calculateMoves();
+    for (auto it = checks.begin(); it != checks.end(); ++it) {
+        PieceMovement* check = *it;
+        Square* square = squares[check->movement->y][check->movement->x];
+        auto checkIt = std::find(square->movements.begin(), square->movements.end(), check);
+
+        PieceMovement* newCheck = *checkIt;
+        this->checks.push_back(newCheck);
+    }
+
+    this->whiteCheck = board->whiteCheck;
+    this->blackCheck = board->blackCheck;
 
     this->curTurn = board->curTurn;
     if (ghost != nullptr)
@@ -135,10 +139,37 @@ bool Board::addPiece(Piece* newPiece, int x, int y)
     return true;
 }
 
+Piece* Board::copyPiece(Piece* piece)
+{
+    Piece* newPiece = new Piece(piece->type, piece->color, piece->essence);
+    addPiece(newPiece, piece->x, piece->y);
+
+    std::list<Movement*> availableMoves = piece->availableMoves;
+    for (auto it = availableMoves.begin(); it != availableMoves.end(); ++it)
+    {
+        Movement* prevMovement = nullptr;
+        Movement* movement = *it;
+        while (movement != nullptr)
+        {
+            Movement* newMovement = new Movement(movement->x, movement->y, movement->moveCounter, movement->legal, movement->mobility, prevMovement);
+            newPiece->availableMoves.push_back(newMovement);
+
+            PieceMovement* newPieceMovement = new PieceMovement(newPiece, newMovement);
+            Square* square = squares[newMovement->y][newMovement->x];
+            square->movements.push_back(newPieceMovement);
+
+            prevMovement = newMovement;
+            movement = movement->next;
+        }
+    }
+
+    return newPiece;
+}
+
 void Board::changePiece(Piece* piece, PieceType type, Essence essence)
 {
     removeMoves(piece);
-    piece->setMobilities(type, essence);
+    piece->promote(type, essence);
     calculateMoves(piece);
 }
 
@@ -260,7 +291,7 @@ void Board::calculateMoves(Piece* curPiece)
 
     PieceMovement* pin = getPin(curPiece);
 
-    std::list<Mobility*> mobilities = curPiece->mobilities;
+    std::list<Mobility*> mobilities = curPiece->getMobilities();
     for (auto mobilityIterator = mobilities.begin();
         mobilityIterator != mobilities.end(); ++mobilityIterator) {
         Mobility* curMobility = *mobilityIterator;
@@ -806,7 +837,7 @@ void Board::cutMovement(Piece* curPiece, Movement* curMovement)
             if (targetPiece != nullptr)
             {
                 PieceMovement* pin = getPin(targetPiece);
-                for each (Mobility* targetMobility in targetPiece->mobilities)
+                for each (Mobility* targetMobility in targetPiece->getMobilities())
                 {
                     if (targetMobility->flags.cowardly)
                         calculateMoves(targetPiece, targetMobility, nullptr, pin);

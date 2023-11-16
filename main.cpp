@@ -8,15 +8,15 @@ int main() {
     /*
     Game* newGame = new Game(Classic, Classic, Classic, Classic, Classic, Classic, Classic, Classic);
     Board* board = newGame->myBoard;
+    */
+
+    /*
     AI* ai = new AI();
+    LegalMove* foo = ai->minimax(board, 2);
+    */
 
-    board->performMove(1, 2, 1, 1, Pawn);
-
-    LegalMove* bestMove = ai->minimax(board, 2);
-
+    /*
     FILE* myFile = freopen("output.txt", "w", stdout);
-    std::cout << "Performing moves...\n\n";
-    board->performMove(1, 0, 3, 1, Pawn);
 
     board->printBoard();
     board->printMoves();

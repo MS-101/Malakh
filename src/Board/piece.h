@@ -3,6 +3,7 @@
 
 #include "movement.h"
 #include <list>
+#include <map>
 
 enum PieceType { Pawn = 'P', Knight = 'N', Bishop = 'B', Rook = 'R', Queen = 'Q', King = 'K' };
 enum PieceColor { White = 'W', Black = 'B' };
@@ -16,12 +17,14 @@ public:
     PieceType type;
     PieceColor color;
     Essence essence;
-    std::list<Mobility*> mobilities;
     std::list<Movement*> availableMoves; 
-    int x, y;
+    int x = 0, y = 0;
     bool hasMoved = false;
 
-    void setMobilities(PieceType type, Essence essence);
+    std::list<Mobility*> getMobilities();
+    void promote(PieceType type, Essence essence);
+private:
+    static std::map<PieceType, std::map<Essence, std::list<Mobility*>>> mobilities;
 };
 
 class Ghost {

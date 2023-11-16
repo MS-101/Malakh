@@ -42,6 +42,7 @@ private:
     void setGhost(Ghost* newGhost);
     PieceMovement* getPin(Piece* curPiece);
     bool addPiece(Piece* newPiece, int x, int y);
+    Piece* copyPiece(Piece* piece);
     void changePiece(Piece* piece, PieceType type, Essence essence);
     void removePiece(Piece* removedPiece);
     void movePiece(Piece* curPiece, int x, int y);

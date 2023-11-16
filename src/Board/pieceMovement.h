@@ -9,6 +9,7 @@ public:
 
     Piece* piece;
     Movement* movement;
+    bool operator==(const PieceMovement& obj2) const;
 };
 
 #endif
