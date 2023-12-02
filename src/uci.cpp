@@ -144,7 +144,7 @@ bool uci::parseCommand(std::string command) {
 
         std::list<LegalMove*> legalMoves = board->getLegalMoves(board->curTurn);
         if (!legalMoves.empty()) {
-            LegalMove* bestMove = ai->minimax(board, 2);
+            LegalMove* bestMove = ai->calculateBestMove(board, 2);
             std::cout << "bestmove " << legalMoveToString(bestMove) << std::endl;
         }
         else
