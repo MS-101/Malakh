@@ -191,7 +191,7 @@ std::list<Mobility*> Piece::getMobilities()
     return mobilities[type][essence];
 }
 
-void Piece::promote(PieceType type, Essence essence)
+void Piece::change(PieceType type, Essence essence)
 {
     this->type = type;
     this->essence = essence;

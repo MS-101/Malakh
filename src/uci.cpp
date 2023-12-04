@@ -90,7 +90,7 @@ bool uci::parseCommand(std::string command) {
     {
         Board* board = curGame->myBoard;
 
-        std::list<LegalMove*> legalMoves;
+        std::vector<LegalMove*> legalMoves;
         if (board->curTurn == White)
             legalMoves = board->getLegalMoves(White);
         else
@@ -133,7 +133,7 @@ bool uci::parseCommand(std::string command) {
                     char promotionChar = move[4] - 32;
                     PieceType promotionType = (PieceType)promotionChar;
 
-                    board->performMove(sourceX, sourceY, destinationX, destinationY, promotionType);
+                    board->makeMove(sourceX, sourceY, destinationX, destinationY, promotionType);
                 }
             }
         }
@@ -142,7 +142,7 @@ bool uci::parseCommand(std::string command) {
     {
         Board* board = curGame->myBoard;
 
-        std::list<LegalMove*> legalMoves = board->getLegalMoves(board->curTurn);
+        std::vector<LegalMove*> legalMoves = board->getLegalMoves(board->curTurn);
         if (!legalMoves.empty()) {
             LegalMove* bestMove = ai->calculateBestMove(board, 2);
             std::cout << "bestmove " << legalMoveToString(bestMove) << std::endl;
@@ -262,15 +262,14 @@ void uci::sendMobilities(Piece* curPiece)
 
 std::string uci::legalMoveToString(LegalMove* value)
 {
-    Piece* piece = value->pieceMovement->piece;
-    Movement* movement = value->pieceMovement->movement;
 
     std::string retValue = "";
-    retValue += 'a' + piece->x;
-    retValue += '0' + 7 - piece->y + 1;
-    retValue += 'a' + movement->x;
-    retValue += '0' + 7 - movement->y + 1;
+    retValue += 'a' + value->x1;
+    retValue += '0' + 7 - value->y1 + 1;
+    retValue += 'a' + value->x2;
+    retValue += '0' + 7 - value->y2 + 1;
 
+    /*
     if (movement->mobility->flags.hasty)
     {
         int hastyX = movement->x;
@@ -323,6 +322,7 @@ std::string uci::legalMoveToString(LegalMove* value)
         retValue += 'a' + inspiringX2;
         retValue += '0' + 7 - inspiringY2 + 1;
     }
+    */
 
     return retValue;
 }

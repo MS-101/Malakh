@@ -2,6 +2,7 @@
 #define SQUARE_H
 
 #include "legalMove.h"
+#include "pieceMovement.h"
 
 class Square {
 public:

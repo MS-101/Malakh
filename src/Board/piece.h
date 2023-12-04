@@ -22,7 +22,7 @@ public:
     bool hasMoved = false;
 
     std::list<Mobility*> getMobilities();
-    void promote(PieceType type, Essence essence);
+    void change(PieceType type, Essence essence);
 private:
     static std::map<PieceType, std::map<Essence, std::list<Mobility*>>> mobilities;
 };

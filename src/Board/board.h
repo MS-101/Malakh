@@ -3,6 +3,14 @@
 
 #include "square.h"
 #include "legalMove.h"
+#include <vector>
+#include <stack>
+
+struct moveRecord {
+    int x1, y1, x2, y2, ghostX, ghostY, ghostParentX, ghostParentY;
+    bool performedCapture, performedPromotion, hadGhost, hasMoved;
+    PieceType capturedType;
+};
 
 class Board {
 public:
@@ -27,6 +35,8 @@ public:
     Essence whitePawnEssence = Classic, whiteKnightEssence = Classic, whiteBishopEssence = Classic, whiteRookEssence = Classic;
     Essence blackPawnEssence = Classic, blackKnightEssence = Classic, blackBishopEssence = Classic, blackRookEssence = Classic;
 
+    std::stack<struct moveRecord> moveHistory;
+
     void InitBoard(
         Essence whitePawnEssence, Essence whiteRookEssence,
         Essence whiteKnightEssence, Essence whiteBishopEssence,
@@ -35,17 +45,18 @@ public:
     );
     void printBoard();
     void printMoves();
-    void performMove(int x1, int y1, int x2, int y2, PieceType promotionType);
-    std::list<LegalMove*> getLegalMoves(PieceColor color);
-    std::list<LegalMove*> getLegalMoves(Piece* curPiece);
+    void makeMove(int x1, int y1, int x2, int y2, PieceType promotionType);
+    void unmakeMove();
+    std::vector<LegalMove*> getLegalMoves(PieceColor color);
 private:
     void setGhost(Ghost* newGhost);
     PieceMovement* getPin(Piece* curPiece);
+    void deletePin(PieceMovement* pin);
     bool addPiece(Piece* newPiece, int x, int y);
     Piece* copyPiece(Piece* piece);
     void changePiece(Piece* piece, PieceType type, Essence essence);
     void removePiece(Piece* removedPiece);
-    void movePiece(Piece* curPiece, int x, int y);
+    void movePiece(Piece* curPiece, int x, int y, bool hasMoved);
     void calculateMoves();
     void calculateMoves(Piece* curPiece);
     void calculateMoves(Piece* curPiece, Mobility* curMobility, Movement* prevMove, PieceMovement* pin);
@@ -58,6 +69,7 @@ private:
     void removeMoves(Piece* curPiece);
     void cutMovement(PieceMovement* curPieceMovement);
     void cutMovement(Piece* curPiece, Movement* curMovement);
+    std::list<LegalMove*> getLegalMoves(Piece* curPiece);
     void printMoves(Piece* curPiece);
 };
 

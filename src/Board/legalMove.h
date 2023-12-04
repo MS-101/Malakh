@@ -1,13 +1,13 @@
-#ifndef LEGALMOVE_H
-#define LEGALMOVE_H
+#ifndef MOVE_H
+#define MOVE_H
 
-#include "pieceMovement.h"
+#include "piece.h"
 
 class LegalMove {
 public:
-	LegalMove(PieceMovement* pieceMovement, PieceType promotionType);
+	LegalMove(int x1, int y1, int x2, int y2, PieceType promotionType);
 
-	PieceMovement* pieceMovement;
+	int x1, y1, x2, y2;
 	PieceType promotionType;
 };
 
