@@ -29,7 +29,8 @@ legalMove AI::calculateBestMove(Board* board, int depth)
 	std::chrono::high_resolution_clock::time_point start = std::chrono::high_resolution_clock::now();
 	int positionsTotal = 0;
 	long long durationTotal = 0;
-	for (const legalMove& move : board->getLegalMoves(playerColor))
+	std::vector<legalMove> legalMoves = board->getLegalMoves(playerColor);
+	for (const legalMove& move : legalMoves)
 	{
 		minimaxResponse response = minimax(board, move, playerColor, depth - 1, alpha, beta, start, positionsTotal, durationTotal);
 
@@ -56,7 +57,7 @@ legalMove AI::calculateBestMove(Board* board, int depth)
 	return bestMove;
 }
 
-legalMove AI::calculateBestMove_threads(Board* board, int depth)
+legalMove AI::calculateBestMove_threads(Board* board, int depth, int workerCount)
 {
 	legalMove bestMove;
 
@@ -80,11 +81,12 @@ legalMove AI::calculateBestMove_threads(Board* board, int depth)
 	std::vector<legalMove> legalMoves = board->getLegalMoves(playerColor);
 	std::mutex moveQueueMutex;
 	std::queue<legalMove> moveQueue;
-	for (legalMove move : board->getLegalMoves(playerColor))
+	for (const legalMove& move : board->getLegalMoves(playerColor))
 		moveQueue.push(move);
 
 	// create worker threads
-	int workerCount = 8;
+	std::vector<std::pair<int, legalMove>> bestMoves;
+	bestMoves.assign(workerCount, std::make_pair(INT_MIN, bestMove));
 	std::vector<std::thread> threads;
 	for (int i = 0; i < workerCount; i++) {
 		threads.emplace_back([&, i]() {
@@ -113,15 +115,9 @@ legalMove AI::calculateBestMove_threads(Board* board, int depth)
 				positionsTotal = response.positionsTotal;
 				durationTotal = response.durationTotal;
 
-				maxMutex.lock();
-
-				if (response.value > max)
-				{
-					max = response.value;
-					bestMove = move;
-				}
-
-				maxMutex.unlock();
+				std::pair<int, legalMove> myBestMove = bestMoves[i];
+				if (response.value > myBestMove.first)
+					bestMoves[i] = std::make_pair(response.value, move);
 			}
 
 			auto stop = std::chrono::high_resolution_clock::now();
@@ -132,6 +128,7 @@ legalMove AI::calculateBestMove_threads(Board* board, int depth)
 			int positionsCur = positionsTotal % positionsPerDebugMessage;
 
 			std::cout << "Thread " << std::this_thread::get_id() << " explored " << positionsCur << " positions (total " << positionsTotal << " positions) in " << durationCur << " ms (total " << durationTotal << " ms)." << std::endl;
+			delete localBoard;
 		});
 	}
 
@@ -139,13 +136,20 @@ legalMove AI::calculateBestMove_threads(Board* board, int depth)
 	for (std::thread& thread : threads)
 		thread.join();
 
+	for (std::pair<int, legalMove>& curBestMove : bestMoves) {
+		if (curBestMove.first > max) {
+			max = curBestMove.first;
+			bestMove = curBestMove.second;
+		}
+	}
+
 	return bestMove;
 }
 
 minimaxResponse AI::minimax(Board* board, legalMove move, PieceColor playerColor, int depth,  int alpha, int beta, std::chrono::high_resolution_clock::time_point start, int positionsTotal, long long durationTotal)
 {
 	board->makeMove(move.x1, move.y1, move.x2, move.y2, move.promotionType);
-
+	
 	if (depth == 0)
 	{
 		int value = evaluate(board, playerColor);
@@ -162,7 +166,7 @@ minimaxResponse AI::minimax(Board* board, legalMove move, PieceColor playerColor
 
 			std::cout << "Thread " << std::this_thread::get_id() << " explored " << positionsPerDebugMessage << " positions (total " << positionsTotal << " positions) in " << durationCur << " ms (total " << durationTotal << " ms)." << std::endl;
 		}
-		
+
 		board->unmakeMove();
 		return minimaxResponse{ value, start, positionsTotal, durationTotal };
 	}
@@ -170,30 +174,27 @@ minimaxResponse AI::minimax(Board* board, legalMove move, PieceColor playerColor
 	bool maximizingPlayer = playerColor == board->curTurn;
 	int bestScore = maximizingPlayer ? INT_MIN : INT_MAX;
 
-	bool searchInterrupted = false;
-	for (const legalMove& move : board->getLegalMoves(board->curTurn))
+	std::vector<legalMove> legalMoves = board->getLegalMoves(board->curTurn);
+	for (const legalMove& move : legalMoves)
 	{
-		if (!searchInterrupted)
+		minimaxResponse response = minimax(board, move, playerColor, depth - 1, alpha, beta, start, positionsTotal, durationTotal);
+		start = response.start;
+		positionsTotal = response.positionsTotal;
+		durationTotal = response.durationTotal;
+
+		if (maximizingPlayer)
 		{
-			minimaxResponse response = minimax(board, move, playerColor, depth - 1, alpha, beta, start, positionsTotal, durationTotal);
-			start = response.start;
-			positionsTotal = response.positionsTotal;
-			durationTotal = response.durationTotal;
-
-			if (maximizingPlayer)
-			{
-				bestScore = std::max(response.value, bestScore);
-				alpha = std::max(alpha, bestScore);
-			}
-			else
-			{
-				bestScore = std::min(response.value, bestScore);
-				beta = std::min(beta, bestScore);
-			}
-
-			if (beta <= alpha)
-				searchInterrupted = true;
+			bestScore = std::max(response.value, bestScore);
+			alpha = std::max(alpha, bestScore);
 		}
+		else
+		{
+			bestScore = std::min(response.value, bestScore);
+			beta = std::min(beta, bestScore);
+		}
+
+		if (beta <= alpha)
+			break;
 	}
 
 	board->unmakeMove();

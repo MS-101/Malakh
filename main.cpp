@@ -12,12 +12,8 @@ int main() {
     Game* newGame = new Game(Classic, Classic, Classic, Classic, Classic, Classic, Classic, Classic);
     Board* board = newGame->myBoard;
 
-    /*
-    FILE* myFile = freopen("output.txt", "w", stdout);
-    board->printMoves();
-    */
-
-    ai->calculateBestMove(board, 4);
+    //FILE* myFile = freopen("output.txt", "w", stdout);
+    ai->calculateBestMove_threads(board, 4, 4);
 
     return 0;
 }
