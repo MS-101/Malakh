@@ -4,21 +4,21 @@
 #include "Board/board.h"
 #include <chrono>
 
-class AI {
-public:
-	LegalMove* calculateBestMove(Board* board, int depth);
-	LegalMove* calculateBestMove_threads(Board* board, int depth);
-	int evaluate(Board* board, PieceColor playerColor);
-private:
-	struct minimaxResponse minimax(Board* board, LegalMove* move, PieceColor playerColor, int depth, int alpha, int beta, std::chrono::high_resolution_clock::time_point start, int positionsTotal, long long durationTotal);
-	int positionsPerDebugMessage = 100;
-};
-
 struct minimaxResponse {
 	int value;
 	std::chrono::high_resolution_clock::time_point start;
 	int positionsTotal;
 	long long durationTotal;
+};
+
+class AI {
+public:
+	legalMove calculateBestMove(Board* board, int depth);
+	legalMove calculateBestMove_threads(Board* board, int depth);
+	int evaluate(Board* board, PieceColor playerColor);
+private:
+	minimaxResponse minimax(Board* board, legalMove move, PieceColor playerColor, int depth, int alpha, int beta, std::chrono::high_resolution_clock::time_point start, int positionsTotal, long long durationTotal);
+	int positionsPerDebugMessage = 1000;
 };
 
 #endif

@@ -19,7 +19,7 @@ private:
 	std::string uci::pieceTypeToString(PieceType value);
 	Essence uci::stringToEssence(std::string value);
 	std::string uci::essenceToString(Essence value);
-	std::string legalMoveToString(LegalMove* value);
+	std::string legalMoveToString(legalMove value);
 };
 
 #endif

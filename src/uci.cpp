@@ -90,7 +90,7 @@ bool uci::parseCommand(std::string command) {
     {
         Board* board = curGame->myBoard;
 
-        std::vector<LegalMove*> legalMoves;
+        std::vector<legalMove> legalMoves;
         if (board->curTurn == White)
             legalMoves = board->getLegalMoves(White);
         else
@@ -99,7 +99,7 @@ bool uci::parseCommand(std::string command) {
         if (!legalMoves.empty())
         {
             std::string legalMovesStr = "";
-            for each (LegalMove* legalMove in legalMoves)
+            for each (legalMove legalMove in legalMoves)
                 legalMovesStr += " " + legalMoveToString(legalMove);
 
             std::cout << "legalmoves" + legalMovesStr + '\n';
@@ -142,9 +142,9 @@ bool uci::parseCommand(std::string command) {
     {
         Board* board = curGame->myBoard;
 
-        std::vector<LegalMove*> legalMoves = board->getLegalMoves(board->curTurn);
+        std::vector<legalMove> legalMoves = board->getLegalMoves(board->curTurn);
         if (!legalMoves.empty()) {
-            LegalMove* bestMove = ai->calculateBestMove(board, 2);
+            legalMove bestMove = ai->calculateBestMove(board, 2);
             std::cout << "bestmove " << legalMoveToString(bestMove) << std::endl;
         }
         else
@@ -260,14 +260,14 @@ void uci::sendMobilities(Piece* curPiece)
     }
 }
 
-std::string uci::legalMoveToString(LegalMove* value)
+std::string uci::legalMoveToString(legalMove value)
 {
 
     std::string retValue = "";
-    retValue += 'a' + value->x1;
-    retValue += '0' + 7 - value->y1 + 1;
-    retValue += 'a' + value->x2;
-    retValue += '0' + 7 - value->y2 + 1;
+    retValue += 'a' + value.x1;
+    retValue += '0' + 7 - value.y1 + 1;
+    retValue += 'a' + value.x2;
+    retValue += '0' + 7 - value.y2 + 1;
 
     /*
     if (movement->mobility->flags.hasty)

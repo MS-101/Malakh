@@ -200,9 +200,9 @@ void Board::removePiece(Piece* removedPiece)
     delete removedPiece;
 }
 
-std::vector<LegalMove*> Board::getLegalMoves(PieceColor color)
+std::vector<legalMove> Board::getLegalMoves(PieceColor color)
 {
-    std::list<LegalMove*> decisions;
+    std::list<legalMove> decisions;
     if (color == White)
         for each (Piece* whitePiece in whitePieces)
             decisions.splice(decisions.end(), getLegalMoves(whitePiece));
@@ -211,14 +211,14 @@ std::vector<LegalMove*> Board::getLegalMoves(PieceColor color)
             decisions.splice(decisions.end(), getLegalMoves(blackPiece));
 
     // vectors are faster for iteration, which is important for fast minimax function
-    std::vector<LegalMove*> result(decisions.begin(), decisions.end());
+    std::vector<legalMove> result(decisions.begin(), decisions.end());
 
     return result;
 }
 
-std::list<LegalMove*> Board::getLegalMoves(Piece* curPiece)
+std::list<legalMove> Board::getLegalMoves(Piece* curPiece)
 {
-    std::list<LegalMove*> decisions;
+    std::list<legalMove> decisions;
 
     std::list<Movement*> availableMoves = curPiece->availableMoves;
     for (auto movementIterator = availableMoves.begin();
@@ -229,14 +229,14 @@ std::list<LegalMove*> Board::getLegalMoves(Piece* curPiece)
             {
                 if (curPiece->type == Pawn && ((curPiece->color == White && curMove->y == 0) || (curPiece->color == Black && curMove->y == 7)))
                 {
-                    decisions.push_back(new LegalMove(curPiece->x, curPiece->y, curMove->x, curMove->y, Queen));
-                    decisions.push_back(new LegalMove(curPiece->x, curPiece->y, curMove->x, curMove->y, Rook));
-                    decisions.push_back(new LegalMove(curPiece->x, curPiece->y, curMove->x, curMove->y, Bishop));
-                    decisions.push_back(new LegalMove(curPiece->x, curPiece->y, curMove->x, curMove->y, Knight));
+                    decisions.push_back(legalMove{ curPiece->x, curPiece->y, curMove->x, curMove->y, Queen });
+                    decisions.push_back(legalMove{ curPiece->x, curPiece->y, curMove->x, curMove->y, Rook });
+                    decisions.push_back(legalMove{ curPiece->x, curPiece->y, curMove->x, curMove->y, Bishop });
+                    decisions.push_back(legalMove{ curPiece->x, curPiece->y, curMove->x, curMove->y, Knight });
                 }
                 else
                 {
-                    decisions.push_back(new LegalMove(curPiece->x, curPiece->y, curMove->x, curMove->y, Rook));
+                    decisions.push_back(legalMove{ curPiece->x, curPiece->y, curMove->x, curMove->y, Rook });
                 }
             }
 

@@ -2,7 +2,6 @@
 #define BOARD_H
 
 #include "square.h"
-#include "legalMove.h"
 #include <vector>
 #include <stack>
 
@@ -10,6 +9,11 @@ struct moveRecord {
     int x1, y1, x2, y2, ghostX, ghostY, ghostParentX, ghostParentY;
     bool performedCapture, performedPromotion, hadGhost, hasMoved;
     PieceType capturedType;
+};
+
+struct legalMove {
+    int x1, y1, x2, y2;
+    PieceType promotionType;
 };
 
 class Board {
@@ -47,7 +51,7 @@ public:
     void printMoves();
     void makeMove(int x1, int y1, int x2, int y2, PieceType promotionType);
     void unmakeMove();
-    std::vector<LegalMove*> getLegalMoves(PieceColor color);
+    std::vector<legalMove> getLegalMoves(PieceColor color);
 private:
     void setGhost(Ghost* newGhost);
     PieceMovement* getPin(Piece* curPiece);
@@ -69,7 +73,7 @@ private:
     void removeMoves(Piece* curPiece);
     void cutMovement(PieceMovement* curPieceMovement);
     void cutMovement(Piece* curPiece, Movement* curMovement);
-    std::list<LegalMove*> getLegalMoves(Piece* curPiece);
+    std::list<legalMove> getLegalMoves(Piece* curPiece);
     void printMoves(Piece* curPiece);
 };
 
