@@ -4,20 +4,30 @@
 #include "Board/board.h"
 #include <chrono>
 
-struct minimaxResponse {
-	int value;
-	std::chrono::high_resolution_clock::time_point start;
-	int positionsTotal;
-	long long durationTotal;
+struct PerformanceArgs {
+	std::chrono::high_resolution_clock::time_point start = std::chrono::high_resolution_clock::now();
+	int positionsCur = 0;
+	int positionsTotal = 0;
+	long long durationTotal = 0;
+
+	void printPerformance();
+	void printPerformance(std::chrono::high_resolution_clock::time_point stop, long long durationCur);
+};
+
+struct SearchArgs {
+	int curDepth = 0;
+	int maxDepth = 0;
+	int alpha = INT_MIN;
+	int beta = INT_MAX;
 };
 
 class AI {
 public:
-	legalMove calculateBestMove(Board* board, int depth);
-	legalMove calculateBestMove_threads(Board* board, int depth, int workerCount);
+	LegalMove calculateBestMove(Board* board, int depth, bool debug);
+	LegalMove calculateBestMove_threads(Board* board, int depth, int workerCount, bool debug);
 	int evaluate(Board* board, PieceColor playerColor);
 private:
-	minimaxResponse minimax(Board* board, legalMove move, PieceColor playerColor, int depth, int alpha, int beta, std::chrono::high_resolution_clock::time_point start, int positionsTotal, long long durationTotal);
+	int minimax(Board* board, LegalMove move, PieceColor playerColor, SearchArgs searchArgs, PerformanceArgs* performanceArgs, bool debug);
 	int positionsPerDebugMessage = 1000;
 };
 

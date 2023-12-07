@@ -6,95 +6,68 @@
 #include <functional>
 #include <mutex>
 
-legalMove AI::calculateBestMove(Board* board, int depth)
+LegalMove AI::calculateBestMove(Board* board, int depth, bool debug)
 {
-	legalMove bestMove;
-
-	bestMove.x1 = -1;
-	bestMove.y1 = -1;
-	bestMove.x2 = -1;
-	bestMove.y2 = -1;
-	bestMove.promotionType = Pawn;
+	LegalMove bestMove{};
 
 	if (depth <= 0)
 		return bestMove;
 
 	PieceColor playerColor = board->curTurn;
-
-	int alpha = INT_MIN;
-	int beta = INT_MAX;
 	int max = INT_MIN;
-	
 
-	std::chrono::high_resolution_clock::time_point start = std::chrono::high_resolution_clock::now();
-	int positionsTotal = 0;
-	long long durationTotal = 0;
-	std::vector<legalMove> legalMoves = board->getLegalMoves(playerColor);
-	for (const legalMove& move : legalMoves)
-	{
-		minimaxResponse response = minimax(board, move, playerColor, depth - 1, alpha, beta, start, positionsTotal, durationTotal);
+	SearchArgs searchArgs{};
+	searchArgs.maxDepth = depth;
 
-		if (response.value > max)
-		{
-			max = response.value;
+	PerformanceArgs* performanceArgs = new PerformanceArgs();
+
+	std::vector<LegalMove> legalMoves = board->getLegalMoves(playerColor);
+	for (const LegalMove& move : legalMoves) {
+		int value = minimax(board, move, playerColor, searchArgs, performanceArgs, debug);
+		if (value > max) {
+			max = value;
 			bestMove = move;
 		}
-
-		start = response.start;
-		positionsTotal = response.positionsTotal;
-		durationTotal = response.durationTotal;
 	}
 
-	auto stop = std::chrono::high_resolution_clock::now();
-	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+	if (debug)
+		performanceArgs->printPerformance();
 
-	long long durationCur = duration.count();
-	durationTotal += duration.count();
-	int positionsCur = positionsTotal % positionsPerDebugMessage;
-
-	std::cout << "Thread " << std::this_thread::get_id() << " explored " << positionsCur << " positions (total " << positionsTotal << " positions) in " << durationCur << " ms (total " << durationTotal << " ms)." << std::endl;
+	delete performanceArgs;
 
 	return bestMove;
 }
 
-legalMove AI::calculateBestMove_threads(Board* board, int depth, int workerCount)
+LegalMove AI::calculateBestMove_threads(Board* board, int depth, int workerCount, bool debug)
 {
-	legalMove bestMove;
-
-	bestMove.x1 = -1;
-	bestMove.y1 = -1;
-	bestMove.x2 = -1;
-	bestMove.y2 = -1;
-	bestMove.promotionType = Pawn;
+	LegalMove bestMove{};
 
 	if (depth <= 0)
 		return bestMove;
 
-	PieceColor playerColor = board->curTurn;
-
-	int alpha = INT_MIN;
-	int beta = INT_MAX;
 	int max = INT_MIN;
 	std::mutex maxMutex;
+
+	PieceColor playerColor = board->curTurn;
+
+	SearchArgs searchArgs{};
+	searchArgs.maxDepth = depth;
 	
 	// create move queue
-	std::vector<legalMove> legalMoves = board->getLegalMoves(playerColor);
+	std::vector<LegalMove> legalMoves = board->getLegalMoves(playerColor);
 	std::mutex moveQueueMutex;
-	std::queue<legalMove> moveQueue;
-	for (const legalMove& move : board->getLegalMoves(playerColor))
+	std::queue<LegalMove> moveQueue;
+	for (const LegalMove& move : board->getLegalMoves(playerColor))
 		moveQueue.push(move);
 
 	// create worker threads
-	std::vector<std::pair<int, legalMove>> bestMoves;
+	std::vector<std::pair<int, LegalMove>> bestMoves;
 	bestMoves.assign(workerCount, std::make_pair(INT_MIN, bestMove));
 	std::vector<std::thread> threads;
 	for (int i = 0; i < workerCount; i++) {
 		threads.emplace_back([&, i]() {
 			Board* localBoard = new Board(board);
-
-			std::chrono::high_resolution_clock::time_point start = std::chrono::high_resolution_clock::now();
-			int positionsTotal = 0;
-			long long durationTotal = 0;
+			PerformanceArgs* performanceArgs = new PerformanceArgs();
 
 			while (true) {
 				moveQueueMutex.lock();
@@ -104,30 +77,22 @@ legalMove AI::calculateBestMove_threads(Board* board, int depth, int workerCount
 					break;
 				}
 
-				legalMove move = moveQueue.front();
+				LegalMove move = moveQueue.front();
 				moveQueue.pop();
 
 				moveQueueMutex.unlock();
 
-				minimaxResponse response = minimax(localBoard, move, playerColor, depth - 1, alpha, beta, start, positionsTotal, durationTotal);
+				int value = minimax(localBoard, move, playerColor, searchArgs, performanceArgs, debug);
 
-				start = response.start;
-				positionsTotal = response.positionsTotal;
-				durationTotal = response.durationTotal;
-
-				std::pair<int, legalMove> myBestMove = bestMoves[i];
-				if (response.value > myBestMove.first)
-					bestMoves[i] = std::make_pair(response.value, move);
+				std::pair<int, LegalMove> myBestMove = bestMoves[i];
+				if (value > myBestMove.first)
+					bestMoves[i] = std::make_pair(value, move);
 			}
 
-			auto stop = std::chrono::high_resolution_clock::now();
-			auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+			if (debug)
+				performanceArgs->printPerformance();
 
-			long long durationCur = duration.count();
-			durationTotal += duration.count();
-			int positionsCur = positionsTotal % positionsPerDebugMessage;
-
-			std::cout << "Thread " << std::this_thread::get_id() << " explored " << positionsCur << " positions (total " << positionsTotal << " positions) in " << durationCur << " ms (total " << durationTotal << " ms)." << std::endl;
+			delete performanceArgs;
 			delete localBoard;
 		});
 	}
@@ -136,7 +101,7 @@ legalMove AI::calculateBestMove_threads(Board* board, int depth, int workerCount
 	for (std::thread& thread : threads)
 		thread.join();
 
-	for (std::pair<int, legalMove>& curBestMove : bestMoves) {
+	for (std::pair<int, LegalMove>& curBestMove : bestMoves) {
 		if (curBestMove.first > max) {
 			max = curBestMove.first;
 			bestMove = curBestMove.second;
@@ -146,59 +111,80 @@ legalMove AI::calculateBestMove_threads(Board* board, int depth, int workerCount
 	return bestMove;
 }
 
-minimaxResponse AI::minimax(Board* board, legalMove move, PieceColor playerColor, int depth,  int alpha, int beta, std::chrono::high_resolution_clock::time_point start, int positionsTotal, long long durationTotal)
+int AI::minimax(Board* board, LegalMove move, PieceColor playerColor, SearchArgs searchArgs, PerformanceArgs* performanceArgs, bool debug)
 {
+	searchArgs.curDepth++;
+
+	/*
+	for (int i = 0; i < searchArgs.curDepth; i++)
+		std::cout << "    ";
+	std::cout << "board->makeMove(" << move.x1 << ", " << move.y1 << ", " << move.x2 << ", " << move.y2 << ", Pawn);" << std::endl;
+	*/
+
 	board->makeMove(move.x1, move.y1, move.x2, move.y2, move.promotionType);
 	
-	if (depth == 0)
-	{
+	if (searchArgs.curDepth == searchArgs.maxDepth) {
 		int value = evaluate(board, playerColor);
-		positionsTotal++;
 
-		if (positionsTotal % positionsPerDebugMessage == 0)
-		{
+		if (debug) {
+			performanceArgs->positionsCur++;
+
+			auto start = performanceArgs->start;
 			auto stop = std::chrono::high_resolution_clock::now();
 			auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
 
 			long long durationCur = duration.count();
-			durationTotal += duration.count();
-			start = stop;
-
-			std::cout << "Thread " << std::this_thread::get_id() << " explored " << positionsPerDebugMessage << " positions (total " << positionsTotal << " positions) in " << durationCur << " ms (total " << durationTotal << " ms)." << std::endl;
+			if (durationCur > 1000)
+				performanceArgs->printPerformance(stop, durationCur);
 		}
 
+		/*
+		for (int i = 0; i < searchArgs.curDepth; i++)
+			std::cout << "    ";
+		std::cout << "board->unmakeMove();" << std::endl;
+		*/
+
 		board->unmakeMove();
-		return minimaxResponse{ value, start, positionsTotal, durationTotal };
+		return value;
 	}
 
 	bool maximizingPlayer = playerColor == board->curTurn;
 	int bestScore = maximizingPlayer ? INT_MIN : INT_MAX;
 
-	std::vector<legalMove> legalMoves = board->getLegalMoves(board->curTurn);
-	for (const legalMove& move : legalMoves)
-	{
-		minimaxResponse response = minimax(board, move, playerColor, depth - 1, alpha, beta, start, positionsTotal, durationTotal);
-		start = response.start;
-		positionsTotal = response.positionsTotal;
-		durationTotal = response.durationTotal;
+	/*
+	for (int i = 0; i < searchArgs.curDepth; i++)
+		std::cout << "    ";
+	std::cout << "{" << std::endl;
+	*/
 
-		if (maximizingPlayer)
-		{
-			bestScore = std::max(response.value, bestScore);
-			alpha = std::max(alpha, bestScore);
-		}
-		else
-		{
-			bestScore = std::min(response.value, bestScore);
-			beta = std::min(beta, bestScore);
+	std::vector<LegalMove> legalMoves = board->getLegalMoves(board->curTurn);
+	for (const LegalMove& move : legalMoves) {
+		int value = minimax(board, move, playerColor, searchArgs, performanceArgs, debug);
+
+		if (maximizingPlayer) {
+			bestScore = std::max(value, bestScore);
+			searchArgs.alpha = std::max(searchArgs.alpha, bestScore);
+		} else {
+			bestScore = std::min(value, bestScore);
+			searchArgs.beta = std::min(searchArgs.beta, bestScore);
 		}
 
-		if (beta <= alpha)
+		if (searchArgs.beta <= searchArgs.alpha)
 			break;
 	}
 
+	/*
+	for (int i = 0; i < searchArgs.curDepth; i++)
+		std::cout << "    ";
+	std::cout << "}" << std::endl;
+
+	for (int i = 0; i < searchArgs.curDepth; i++)
+		std::cout << "    ";
+	std::cout << "board->unmakeMove();" << std::endl;
+	*/
+
 	board->unmakeMove();
-	return minimaxResponse{ bestScore, start, positionsTotal, durationTotal };
+	return bestScore;
 }
 
 int AI::evaluate(Board* board, PieceColor playerColor)
@@ -217,11 +203,10 @@ int AI::evaluate(Board* board, PieceColor playerColor)
 	int whitePawnCount = 0;
 
 	std::list<Piece*> whitePieces = board->whitePieces;
-	for (auto whitePieceIterator = whitePieces.begin();
-		whitePieceIterator != whitePieces.end(); ++whitePieceIterator) {
-		Piece* whitePiece = *whitePieceIterator;
-		switch (whitePiece->type)
-		{
+	for (auto it = whitePieces.begin(); it != whitePieces.end(); ++it) {
+		Piece* whitePiece = *it;
+
+		switch (whitePiece->type) {
 		case::Queen:
 			whiteQueenCount++;
 			break;
@@ -240,7 +225,7 @@ int AI::evaluate(Board* board, PieceColor playerColor)
 		}
 	}
 
-	std::vector<legalMove> whiteMoves = board->getLegalMoves(White);
+	std::vector<LegalMove> whiteMoves = board->getLegalMoves(White);
 	int whiteMobilityCount = whiteMoves.size();
 
 	int blackQueenCount = 0;
@@ -250,11 +235,10 @@ int AI::evaluate(Board* board, PieceColor playerColor)
 	int blackPawnCount = 0;
 
 	std::list<Piece*> blackPieces = board->blackPieces;
-	for (auto blackPieceIterator = blackPieces.begin();
-		blackPieceIterator != blackPieces.end(); ++blackPieceIterator) {
-		Piece* blackPiece = *blackPieceIterator;
-		switch (blackPiece->type)
-		{
+	for (auto it = blackPieces.begin(); it != blackPieces.end(); ++it) {
+		Piece* blackPiece = *it;
+
+		switch (blackPiece->type) {
 		case::Queen:
 			blackQueenCount++;
 			break;
@@ -273,7 +257,7 @@ int AI::evaluate(Board* board, PieceColor playerColor)
 		}
 	}
 
-	std::vector<legalMove> blackMoves = board->getLegalMoves(Black);
+	std::vector<LegalMove> blackMoves = board->getLegalMoves(Black);
 	int blackMobilityCount = blackMoves.size();
 
 	int materialScore = 0;
@@ -291,4 +275,26 @@ int AI::evaluate(Board* board, PieceColor playerColor)
 		score *= -1;
 
 	return score;
+}
+
+void PerformanceArgs::printPerformance()
+{
+	auto stop = std::chrono::high_resolution_clock::now();
+	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+	long long durationCur = duration.count();
+
+	printPerformance(stop, durationCur);
+}
+
+void PerformanceArgs::printPerformance(std::chrono::high_resolution_clock::time_point stop, long long durationCur)
+{
+	positionsTotal += positionsCur;
+	durationTotal += durationCur;
+
+	std::cout << "Thread " << std::this_thread::get_id() << " explored "
+		<< positionsCur << " positions (total " << positionsTotal << " positions) in "
+		<< durationCur << " ms (total " << durationTotal << " ms)." << std::endl;
+
+	positionsCur = 0;
+	start = stop;
 }

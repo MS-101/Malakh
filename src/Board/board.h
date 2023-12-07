@@ -5,15 +5,18 @@
 #include <vector>
 #include <stack>
 
-struct moveRecord {
-    int x1, y1, x2, y2, ghostX, ghostY, ghostParentX, ghostParentY;
-    bool performedCapture, performedPromotion, hadGhost, hasMoved;
-    PieceType capturedType;
+struct MoveRecord {
+    int x1 = -1, y1 = -1, x2 = -1, y2 = -1;
+    int ghostX = -1, ghostY = -1, ghostParentX = -1, ghostParentY = -1;
+    int inspiredX1 = -1, inspiredY1 = -1, inspiredX2 = -1, inspiredY2 = -1;
+    bool performedCapture = false, capturedHasMoved = false, performedPromotion = false, performedInspiration = false, hadGhost = false, hasMoved = false;
+    PieceType capturedType = Pawn;
 };
 
-struct legalMove {
+struct LegalMove {
     int x1, y1, x2, y2;
     PieceType promotionType;
+    Mobility* mobility;
 };
 
 class Board {
@@ -39,7 +42,7 @@ public:
     Essence whitePawnEssence = Classic, whiteKnightEssence = Classic, whiteBishopEssence = Classic, whiteRookEssence = Classic;
     Essence blackPawnEssence = Classic, blackKnightEssence = Classic, blackBishopEssence = Classic, blackRookEssence = Classic;
 
-    std::stack<struct moveRecord> moveHistory;
+    std::stack<struct MoveRecord> moveHistory;
 
     void InitBoard(
         Essence whitePawnEssence, Essence whiteRookEssence,
@@ -51,7 +54,7 @@ public:
     void printMoves();
     void makeMove(int x1, int y1, int x2, int y2, PieceType promotionType);
     void unmakeMove();
-    std::vector<legalMove> getLegalMoves(PieceColor color);
+    std::vector<LegalMove> getLegalMoves(PieceColor color);
 private:
     void setGhost(Ghost* newGhost);
     PieceMovement* getPin(Piece* curPiece);
@@ -71,9 +74,11 @@ private:
     void validateMove(Piece* curPiece, Movement* curMovement, PieceMovement* pin);
     bool getValidity(Piece* curPiece, Movement* curMovement, PieceMovement* pin);
     void removeMoves(Piece* curPiece);
+    void calculateInspiringMoves(Piece* inspiredPiece);
+    void removeInspiringMoves(Piece* inspiredPiece);
     void cutMovement(PieceMovement* curPieceMovement);
     void cutMovement(Piece* curPiece, Movement* curMovement);
-    std::list<legalMove> getLegalMoves(Piece* curPiece);
+    std::list<LegalMove> getLegalMoves(Piece* curPiece);
     void printMoves(Piece* curPiece);
 };
 

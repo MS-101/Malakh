@@ -24,8 +24,7 @@ bool uci::parseCommand(std::string command) {
     while (std::getline(ssCommand, curToken, ' '))
         tokens.push_back(curToken);
 
-    if (tokens[0] == "uci")
-    {
+    if (tokens[0] == "uci") {
         std::cout << "id name Malakh\n";
         std::cout << "id author Martin Svab\n";
 
@@ -54,13 +53,9 @@ bool uci::parseCommand(std::string command) {
         sendMobilities(new Piece(King, White, Classic));
 
         std::cout << "uciok\n";
-    }
-    else if (tokens[0] == "isready")
-    {
+    } else if (tokens[0] == "isready") {
         std::cout << "readyok\n";
-    }
-    else if (tokens[0] == "setoption")
-    {
+    } else if (tokens[0] == "setoption") {
         std::string name = tokens[2];
         std::string value = tokens[4];
 
@@ -80,32 +75,20 @@ bool uci::parseCommand(std::string command) {
             blackKnightEssence = stringToEssence(value);
         else if (name == "BlackBishop")
             blackBishopEssence = stringToEssence(value);
-    }
-    else if (tokens[0] == "ucinewgame")
-    {
+    } else if (tokens[0] == "ucinewgame") {
         curGame = new Game(whitePawnEssence, whiteRookEssence, whiteKnightEssence, whiteBishopEssence,
             blackPawnEssence, blackRookEssence, blackKnightEssence, blackBishopEssence);
-    }
-    else if (tokens[0] == "legalmoves")
-    {
+    } else if (tokens[0] == "legalmoves") {
         Board* board = curGame->myBoard;
+        std::vector<LegalMove> legalMoves = board->getLegalMoves(board->curTurn);
 
-        std::vector<legalMove> legalMoves;
-        if (board->curTurn == White)
-            legalMoves = board->getLegalMoves(White);
-        else
-            legalMoves = board->getLegalMoves(Black);
-
-        if (!legalMoves.empty())
-        {
+        if (!legalMoves.empty()) {
             std::string legalMovesStr = "";
-            for each (legalMove legalMove in legalMoves)
-                legalMovesStr += " " + legalMoveToString(legalMove);
+            for each (LegalMove legalMove in legalMoves)
+                legalMovesStr += " " + legalMoveToString(legalMove, board->curTurn);
 
             std::cout << "legalmoves" + legalMovesStr + '\n';
-        }
-        else
-        {
+        } else {
             if (board->curTurn == White && board->whiteCheck)
                 std::cout << "result Black" << std::endl;
             else if (board->curTurn == Black && board->blackCheck)
@@ -113,17 +96,12 @@ bool uci::parseCommand(std::string command) {
             else
                 std::cout << "result Stalemate" << std::endl;
         }
-    }
-    else if (tokens[0] == "position")
-    {
+    } else if (tokens[0] == "position") {
         Board* board = curGame->myBoard;
 
-        if (tokens[1] == "curpos")
-        {
-            if (tokens[2] == "moves")
-            {
-                for (int i = 3; i < tokens.size(); i++)
-                {
+        if (tokens[1] == "curpos") {
+            if (tokens[2] == "moves") {
+                for (int i = 3; i < tokens.size(); i++) {
                     std::string move = tokens[i];
 
                     int sourceX = move[0] - 'a';
@@ -137,18 +115,14 @@ bool uci::parseCommand(std::string command) {
                 }
             }
         }
-    }
-    else if (tokens[0] == "go")
-    {
+    } else if (tokens[0] == "go") {
         Board* board = curGame->myBoard;
 
-        std::vector<legalMove> legalMoves = board->getLegalMoves(board->curTurn);
+        std::vector<LegalMove> legalMoves = board->getLegalMoves(board->curTurn);
         if (!legalMoves.empty()) {
-            legalMove bestMove = ai->calculateBestMove(board, 2);
-            std::cout << "bestmove " << legalMoveToString(bestMove) << std::endl;
-        }
-        else
-        {
+            LegalMove bestMove = ai->calculateBestMove(new Board(board), 2, false);
+            std::cout << "bestmove " << legalMoveToString(bestMove, board->curTurn) << std::endl;
+        } else {
             if (board->curTurn == White && board->whiteCheck)
                 std::cout << "result Black" << std::endl;
             else if (board->curTurn == Black && board->blackCheck)
@@ -156,9 +130,9 @@ bool uci::parseCommand(std::string command) {
             else
                 std::cout << "result Stalemate" << std::endl;
         }
-    }
-    else if (tokens[0] == "quit")
+    } else if (tokens[0] == "quit") {
         return true;
+    }
 
     return false;
 }
@@ -233,14 +207,11 @@ void uci::sendMobilities(Piece* curPiece)
     std::string pieceType = pieceTypeToString(curPiece->type);
     std::string essence = essenceToString(curPiece->essence);
 
-    for each (Mobility * curMobility in curPiece->getMobilities())
-    {
+    for each (Mobility * curMobility in curPiece->getMobilities()) {
         MobilityFlags flags = curMobility->flags;
-        if (!flags.initiative && !flags.cowardly && !flags.hasty && !flags.inspiring && !flags.uninterruptible)
-        {
+        if (!flags.initiative && !flags.cowardly && !flags.hasty && !flags.inspiring && !flags.uninterruptible) {
             std::string movementType = "";
-            switch (curMobility->type)
-            {
+            switch (curMobility->type) {
             case::Move:
                 movementType = "Move";
                 break;
@@ -260,60 +231,45 @@ void uci::sendMobilities(Piece* curPiece)
     }
 }
 
-std::string uci::legalMoveToString(legalMove value)
+std::string uci::legalMoveToString(LegalMove value, PieceColor color)
 {
-
     std::string retValue = "";
     retValue += 'a' + value.x1;
     retValue += '0' + 7 - value.y1 + 1;
     retValue += 'a' + value.x2;
     retValue += '0' + 7 - value.y2 + 1;
 
-    /*
-    if (movement->mobility->flags.hasty)
-    {
-        int hastyX = movement->x;
-        int hastyY = movement->y;
+    Mobility* mobility = value.mobility;
 
-        if (piece->color == White)
-        {
-            hastyX -= movement->mobility->direction_x;
-            hastyY += movement->mobility->direction_y;
-        }
+    if (mobility->flags.hasty) {
+        int hastyX = value.x2 + mobility->direction_x;
+        int hastyY = value.y2;
+
+        if (color == White)
+            hastyY += mobility->direction_y;
         else
-        {
-            hastyX += movement->mobility->direction_x;
-            hastyY -= movement->mobility->direction_y;
-        }
+            hastyY -= mobility->direction_y;
 
         retValue += "_H";
         retValue += 'a' + hastyX;
         retValue += '0' + 7 - hastyY + 1;
     }
 
-    if (movement->mobility->flags.vigilant)
-    {
+    if (mobility->flags.vigilant)
         retValue += "_V";
-    }
 
-    if (movement->mobility->flags.inspiring)
-    {
-        int inspiringX1 = piece->x + movement->mobility->flags.affected_x;
-        int inspiringY1 = piece->y;
-        int inspiringX2 = movement->x;
-        int inspiringY2 = movement->y;
+    if (mobility->flags.inspiring) {
+        int inspiringX1 = value.x1 + mobility->flags.affected_x;
+        int inspiringY1 = value.y1;
+        int inspiringX2 = value.x2 - mobility->direction_x;
+        int inspiringY2 = value.y2;
 
-        if (piece->color == White)
-        {
-            inspiringY1 -= movement->mobility->flags.affected_y;
-            inspiringX2 -= movement->mobility->direction_x;
-            inspiringY2 += movement->mobility->direction_y;
-        }
-        else
-        {
-            inspiringY1 += movement->mobility->flags.affected_y;
-            inspiringX2 += movement->mobility->direction_x;
-            inspiringY2 -= movement->mobility->direction_y;
+        if (color == White) {
+            inspiringY1 -= mobility->flags.affected_y;
+            inspiringY2 += mobility->direction_y;
+        } else {
+            inspiringY1 += mobility->flags.affected_y;
+            inspiringY2 -= mobility->direction_y;
         }
 
         retValue += "_I";
@@ -322,7 +278,6 @@ std::string uci::legalMoveToString(legalMove value)
         retValue += 'a' + inspiringX2;
         retValue += '0' + 7 - inspiringY2 + 1;
     }
-    */
 
     return retValue;
 }

@@ -3,17 +3,16 @@
 #include <iostream>
 
 int main() {
-    /*
     uci* api = new uci();
     api->run();
-    */
 
+    /*
     AI* ai = new AI();
     Game* newGame = new Game(Classic, Classic, Classic, Classic, Classic, Classic, Classic, Classic);
     Board* board = newGame->myBoard;
+    */
 
     //FILE* myFile = freopen("output.txt", "w", stdout);
-    ai->calculateBestMove_threads(board, 4, 4);
 
     return 0;
 }

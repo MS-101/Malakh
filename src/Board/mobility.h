@@ -18,44 +18,54 @@ enum MovementType { Move, Attack, AttackMove };
 * Vigilant can capture "ghost" pieces left behind by "hasty" moves.
 */
 
-class MobilityFlags {
-public:
-    MobilityFlags(bool uninterruptible, bool initiative, bool cowardly, bool inspiring, bool hasty, bool vigilant, int affected_x, int affected_y);
-
-    bool uninterruptible = false;
-    bool initiative = false;
-    bool cowardly = false;
-    bool inspiring = false;
+struct MobilityFlags {
     bool hasty = false;
     bool vigilant = false;
+    bool initiative = false;
+    bool uninterruptible = false;
+    bool cowardly = false;
+    bool inspiring = false;
 
     int affected_x;
     int affected_y;
-};
 
-class DefaultMobilityFlags : public MobilityFlags {
-public:
-    DefaultMobilityFlags();
-};
+    MobilityFlags setHasty() {
+        hasty = true;
 
-class QueenSideCastleFlags : public MobilityFlags {
-public:
-    QueenSideCastleFlags();
-};
+        return *this;
+    }
 
-class KingSideCastleFlags : public MobilityFlags {
-public:
-    KingSideCastleFlags();
-};
+    MobilityFlags setVigilant() {
+        vigilant = true;
 
-class EnPassantMoveFlags : public MobilityFlags {
-public:
-    EnPassantMoveFlags();
-};
+        return *this;
+    }
 
-class EnPassantCaptureFlags : public MobilityFlags {
-public:
-    EnPassantCaptureFlags();
+    MobilityFlags setInitiative() {
+        initiative = true;
+
+        return *this;
+    }
+
+    MobilityFlags setUninterruptible() {
+        uninterruptible = true;
+
+        return *this;
+    }
+
+    MobilityFlags setCowardly() {
+        cowardly = true;
+
+        return *this;
+    }
+
+    MobilityFlags setInspiring(int affected_x, int affected_y) {
+        inspiring = true;
+        this->affected_x = affected_x;
+        this->affected_y = affected_y;
+
+        return *this;
+    }
 };
 
 class Mobility {
