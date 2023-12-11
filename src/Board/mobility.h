@@ -26,8 +26,8 @@ struct MobilityFlags {
     bool cowardly = false;
     bool inspiring = false;
 
-    int affected_x;
-    int affected_y;
+    int affected_x = -1;
+    int affected_y = -1;
 
     MobilityFlags setHasty() {
         hasty = true;

@@ -1,6 +1,7 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+#include "evaluation.h"
 #include "square.h"
 #include <vector>
 #include <stack>
@@ -43,6 +44,11 @@ public:
     Essence blackPawnEssence = Classic, blackKnightEssence = Classic, blackBishopEssence = Classic, blackRookEssence = Classic;
 
     std::stack<struct MoveRecord> moveHistory;
+
+    int curPhase = 0;
+    std::unordered_map<PieceColor, int> matEval;
+    std::unordered_map<PieceColor, int> mg_pcsqEval;
+    std::unordered_map<PieceColor, int> eg_pcsqEval;
 
     void InitBoard(
         Essence whitePawnEssence, Essence whiteRookEssence,

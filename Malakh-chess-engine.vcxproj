@@ -101,6 +101,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\ai.cpp" />
     <ClCompile Include="src\board\board.cpp" />
+    <ClCompile Include="src\Board\evaluation.cpp" />
     <ClCompile Include="src\board\mobility.cpp" />
     <ClCompile Include="src\board\movement.cpp" />
     <ClCompile Include="src\board\piece.cpp" />
@@ -112,6 +113,7 @@
   <ItemGroup>
     <ClInclude Include="src\ai.h" />
     <ClInclude Include="src\board\board.h" />
+    <ClInclude Include="src\Board\evaluation.h" />
     <ClInclude Include="src\board\mobility.h" />
     <ClInclude Include="src\board\movement.h" />
     <ClInclude Include="src\board\piece.h" />

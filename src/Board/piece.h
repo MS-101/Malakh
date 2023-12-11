@@ -3,7 +3,7 @@
 
 #include "movement.h"
 #include <list>
-#include <map>
+#include <unordered_map>
 
 enum PieceType { Pawn = 'P', Knight = 'N', Bishop = 'B', Rook = 'R', Queen = 'Q', King = 'K' };
 enum PieceColor { White = 'W', Black = 'B' };
@@ -24,7 +24,7 @@ public:
     std::list<Mobility*> getMobilities();
     void change(PieceType type, Essence essence);
 private:
-    static std::map<PieceType, std::map<Essence, std::list<Mobility*>>> mobilities;
+    static std::unordered_map<PieceType, std::unordered_map<Essence, std::list<Mobility*>>> mobilities;
 };
 
 class Ghost {

@@ -1,8 +1,6 @@
 #include "board.h"
-
 #include <iostream>
 #include <algorithm>
-
 
 Board::Board() {
     for (int cur_y = 0; cur_y < ROWS; cur_y++)
@@ -110,22 +108,27 @@ void Board::InitBoard(
     calculateMoves();
 }
 
-bool Board::addPiece(Piece* newPiece, int x, int y)
+bool Board::addPiece(Piece* curPiece, int x, int y)
 {
     Square* curSquare = squares[y][x];
-    if (newPiece == nullptr || curSquare->occupyingPiece != nullptr)
+    if (curPiece == nullptr || curSquare->occupyingPiece != nullptr)
         return false;
 
-    newPiece->x = x;
-    newPiece->y = y;
+    curPhase += Evaluation::piecePhaseValues[curPiece->type];
+    matEval[curPiece->color] += Evaluation::pieceMatValues[curPiece->type];
+    mg_pcsqEval[curPiece->color] += Evaluation::mg_pcsq.at(curPiece->type)[y][x];
+    eg_pcsqEval[curPiece->color] += Evaluation::eg_pcsq.at(curPiece->type)[y][x];
 
-    curSquare->occupyingPiece = newPiece;
-    switch (newPiece->color) {
+    curPiece->x = x;
+    curPiece->y = y;
+
+    curSquare->occupyingPiece = curPiece;
+    switch (curPiece->color) {
         case::White:
-            whitePieces.push_back(newPiece);
+            whitePieces.push_back(curPiece);
             break;
         case::Black:
-            blackPieces.push_back(newPiece);
+            blackPieces.push_back(curPiece);
             break;
     }
 
@@ -172,43 +175,58 @@ Piece* Board::copyPiece(Piece* piece)
 
 void Board::changePiece(Piece* piece, PieceType type, Essence essence)
 {
+    curPhase -= Evaluation::piecePhaseValues[piece->type];
+    curPhase += Evaluation::piecePhaseValues[type];
+    matEval[piece->color] -= Evaluation::pieceMatValues[piece->type];
+    matEval[piece->color] += Evaluation::pieceMatValues[type];
+    mg_pcsqEval[piece->color] -= Evaluation::mg_pcsq[piece->type][piece->y][piece->x];
+    mg_pcsqEval[piece->color] += Evaluation::mg_pcsq[type][piece->y][piece->x];
+    eg_pcsqEval[piece->color] -= Evaluation::eg_pcsq[piece->type][piece->y][piece->x];
+    eg_pcsqEval[piece->color] += Evaluation::eg_pcsq[type][piece->y][piece->x];
+
     removeMoves(piece);
     piece->change(type, essence);
     calculateMoves(piece);
 }
 
-void Board::removePiece(Piece* removedPiece)
+void Board::removePiece(Piece* curPiece)
 {
-    if (removedPiece == nullptr)
+    if (curPiece == nullptr)
         return;
 
-    removeMoves(removedPiece);
-    removeInspiringMoves(removedPiece);
+    curPhase -= Evaluation::piecePhaseValues[curPiece->type];
+    matEval[curPiece->color] -= Evaluation::pieceMatValues[curPiece->type];
+    mg_pcsqEval[curPiece->color] -= Evaluation::mg_pcsq[curPiece->type][curPiece->y][curPiece->x];
+    eg_pcsqEval[curPiece->color] -= Evaluation::eg_pcsq[curPiece->type][curPiece->y][curPiece->x];
 
-    Square* curSquare = squares[removedPiece->y][removedPiece->x];
+    removeMoves(curPiece);
+    removeInspiringMoves(curPiece);
+
+    Square* curSquare = squares[curPiece->y][curPiece->x];
     curSquare->occupyingPiece = nullptr;
 
-    switch (removedPiece->color) {
+    switch (curPiece->color) {
         case::White:
-            whitePieces.remove(removedPiece);
+            whitePieces.remove(curPiece);
             break;
         case::Black:
-            blackPieces.remove(removedPiece);
+            blackPieces.remove(curPiece);
             break;
     }
 
-    delete removedPiece;
+    delete curPiece;
 }
 
 std::vector<LegalMove> Board::getLegalMoves(PieceColor color)
 {
     std::list<LegalMove> decisions;
-    if (color == White)
+    if (color == White) {
         for each (Piece* whitePiece in whitePieces)
             decisions.splice(decisions.end(), getLegalMoves(whitePiece));
-    else if (color == Black)
+    } else {
         for each (Piece* blackPiece in blackPieces)
             decisions.splice(decisions.end(), getLegalMoves(blackPiece));
+    }
 
     // vectors are faster for iteration, which is important for fast minimax function
     std::vector<LegalMove> result(decisions.begin(), decisions.end());
@@ -241,69 +259,6 @@ std::list<LegalMove> Board::getLegalMoves(Piece* curPiece)
     }
 
     return decisions;
-}
-
-void Board::removeInspiringMoves(Piece* inspiredPiece)
-{
-    std::list<Piece*> pieces;
-    if (inspiredPiece->color == White)
-        pieces = whitePieces;
-    else
-        pieces = blackPieces;
-
-    for each (Piece* piece in pieces) {
-        std::list<Movement*> ilegalMoves;
-
-        for each (Movement* movement in piece->availableMoves) {
-            if (movement->mobility->flags.inspiring) {
-                int inspiring_x = piece->x + movement->mobility->flags.affected_x;
-                int inspiring_y = piece->y;
-
-                if (piece->color == White)
-                    inspiring_y -= movement->mobility->flags.affected_y;
-                else
-                    inspiring_y += movement->mobility->flags.affected_y;
-
-                if (inspiring_x == inspiredPiece->x && inspiring_y == inspiredPiece->y) {
-                    cutMovement(piece, movement);
-                    ilegalMoves.push_back(movement);
-                }
-            }
-        }
-
-        piece->availableMoves.remove_if([&](Movement* movement) -> bool {
-            return std::find(ilegalMoves.begin(), ilegalMoves.end(), movement) != ilegalMoves.end();
-        });
-    }
-}
-
-void Board::calculateInspiringMoves(Piece* inspiredPiece)
-{
-    std::list<Piece*> pieces;
-    if (inspiredPiece->color == White)
-        pieces = whitePieces;
-    else
-        pieces = blackPieces;
-
-    for each (Piece* piece in pieces) {
-        for each (Mobility* mobility in piece->getMobilities()) {
-            if (mobility->flags.inspiring) {
-                int inspiring_x = piece->x + mobility->flags.affected_x;
-                int inspiring_y = piece->y;
-
-                if (piece->color == White)
-                    inspiring_y -= mobility->flags.affected_y;
-                else
-                    inspiring_y += mobility->flags.affected_y;
-
-                if (inspiring_x == inspiredPiece->x && inspiring_y == inspiredPiece->y) {
-                    PieceMovement* pin = getPin(piece);
-                    calculateMoves(piece, mobility, nullptr, pin);
-                    deletePin(pin);
-                }
-            }
-        }
-    }
 }
 
 // KING SAFETY PROBLEM
@@ -496,6 +451,69 @@ Movement* Board::calculateMove(Piece* curPiece, Mobility* curMobility, Movement*
     if (targetPiece != nullptr)
         return nullptr;
     return newMove;
+}
+
+void Board::calculateInspiringMoves(Piece* inspiredPiece)
+{
+    std::list<Piece*> pieces;
+    if (inspiredPiece->color == White)
+        pieces = whitePieces;
+    else
+        pieces = blackPieces;
+
+    for each (Piece * piece in pieces) {
+        for each (Mobility * mobility in piece->getMobilities()) {
+            if (mobility->flags.inspiring) {
+                int inspiring_x = piece->x + mobility->flags.affected_x;
+                int inspiring_y = piece->y;
+
+                if (piece->color == White)
+                    inspiring_y -= mobility->flags.affected_y;
+                else
+                    inspiring_y += mobility->flags.affected_y;
+
+                if (inspiring_x == inspiredPiece->x && inspiring_y == inspiredPiece->y) {
+                    PieceMovement* pin = getPin(piece);
+                    calculateMoves(piece, mobility, nullptr, pin);
+                    deletePin(pin);
+                }
+            }
+        }
+    }
+}
+
+void Board::removeInspiringMoves(Piece* inspiredPiece)
+{
+    std::list<Piece*> pieces;
+    if (inspiredPiece->color == White)
+        pieces = whitePieces;
+    else
+        pieces = blackPieces;
+
+    for each (Piece * piece in pieces) {
+        std::list<Movement*> ilegalMoves;
+
+        for each (Movement * movement in piece->availableMoves) {
+            if (movement->mobility->flags.inspiring) {
+                int inspiring_x = piece->x + movement->mobility->flags.affected_x;
+                int inspiring_y = piece->y;
+
+                if (piece->color == White)
+                    inspiring_y -= movement->mobility->flags.affected_y;
+                else
+                    inspiring_y += movement->mobility->flags.affected_y;
+
+                if (inspiring_x == inspiredPiece->x && inspiring_y == inspiredPiece->y) {
+                    cutMovement(piece, movement);
+                    ilegalMoves.push_back(movement);
+                }
+            }
+        }
+
+        piece->availableMoves.remove_if([&](Movement* movement) -> bool {
+            return std::find(ilegalMoves.begin(), ilegalMoves.end(), movement) != ilegalMoves.end();
+            });
+    }
 }
 
 // this method is called when check is made and when check is resolved
@@ -901,6 +919,11 @@ void Board::cutMovement(Piece* curPiece, Movement* curMovement)
 
 void Board::movePiece(Piece* curPiece, int x, int y, bool hasMoved)
 {
+    mg_pcsqEval[curPiece->color] -= Evaluation::mg_pcsq[curPiece->type][curPiece->y][curPiece->x];
+    mg_pcsqEval[curPiece->color] += Evaluation::mg_pcsq[curPiece->type][y][x];
+    eg_pcsqEval[curPiece->color] -= Evaluation::eg_pcsq[curPiece->type][curPiece->y][curPiece->x];
+    eg_pcsqEval[curPiece->color] += Evaluation::eg_pcsq[curPiece->type][y][x];
+
     // cancel inspiring movements targeting that were previously targeting this piece
     removeInspiringMoves(curPiece);
 
@@ -953,17 +976,17 @@ void Board::makeMove(int x1, int y1, int x2, int y2, PieceType promotionType)
     newMoveRecord.y2 = y2;
 
     if (curGhost != nullptr) {
+        newMoveRecord.hadGhost = true;
         newMoveRecord.ghostX =  curGhost->x;
         newMoveRecord.ghostY = curGhost->y;
         newMoveRecord.ghostParentX = curGhost->parent->x;
         newMoveRecord.ghostParentY = curGhost->parent->y;
-        newMoveRecord.hadGhost = true;
     }
 
     if (destinationPiece != nullptr) {
+        newMoveRecord.performedCapture = true;
         newMoveRecord.capturedType = destinationPiece->type;
         newMoveRecord.capturedHasMoved = destinationPiece->hasMoved;
-        newMoveRecord.performedCapture = true;
     }
 
     // only perform this move if it is a valid movement of this piece
@@ -981,9 +1004,9 @@ void Board::makeMove(int x1, int y1, int x2, int y2, PieceType promotionType)
         });
 
         if (vigilantPieceMovementIterator != destinationSquare->movements.end()) {
+            newMoveRecord.performedCapture = true;
             newMoveRecord.capturedType = curGhost->parent->type;
             newMoveRecord.capturedHasMoved = true;
-            newMoveRecord.performedCapture = true;
            
             removePiece(curGhost->parent);
         }
@@ -1017,16 +1040,13 @@ void Board::makeMove(int x1, int y1, int x2, int y2, PieceType promotionType)
     }
 
     // move inspired piece one square behind the destination square
-    auto inspiringPieceMovementIterator = std::find_if(destinationSquare->movements.begin(), destinationSquare->movements.end(), [&](PieceMovement* curPieceMovement) -> bool {
+    auto inspiringPieceMovementIt = std::find_if(destinationSquare->movements.begin(), destinationSquare->movements.end(), [&](PieceMovement* curPieceMovement) -> bool {
         return curPieceMovement->piece == sourcePiece && curPieceMovement->movement->legal && curPieceMovement->movement->mobility->flags.inspiring;
     });
-
-    PieceMovement* inspiringPieceMovement = nullptr;
-    if (inspiringPieceMovementIterator != destinationSquare->movements.end())
-        inspiringPieceMovement = *inspiringPieceMovementIterator;
     
-    if (inspiringPieceMovement != nullptr) {
-        newMoveRecord.performedInspiration = true;
+    if (inspiringPieceMovementIt != destinationSquare->movements.end()) {
+        PieceMovement* inspiringPieceMovement = *inspiringPieceMovementIt;
+
         int inspiredX1 = x1 + inspiringPieceMovement->movement->mobility->flags.affected_x;
         int inspiredY1 = y1;
         int inspiredX2 = x2 - inspiringPieceMovement->movement->mobility->direction_x;
@@ -1047,6 +1067,7 @@ void Board::makeMove(int x1, int y1, int x2, int y2, PieceType promotionType)
         Piece* inspiredPiece = inspiredSquare->occupyingPiece;
         movePiece(inspiredPiece, inspiredX2, inspiredY2, true);
 
+        newMoveRecord.performedInspiration = true;
         newMoveRecord.inspiredX1 = inspiredX1;
         newMoveRecord.inspiredY1 = inspiredY1;
         newMoveRecord.inspiredX2 = inspiredX2;

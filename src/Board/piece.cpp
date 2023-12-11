@@ -14,7 +14,7 @@ Piece::~Piece()
     availableMoves.clear();
 }
 
-std::map<PieceType, std::map<Essence, std::list<Mobility*>>> Piece::mobilities = {
+std::unordered_map<PieceType, std::unordered_map<Essence, std::list<Mobility*>>> Piece::mobilities = {
     {Pawn, {
         {Classic, {
             new Mobility(Move, MobilityFlags(), +0, +1, +0, +0, 1),

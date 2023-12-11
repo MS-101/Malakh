@@ -6,6 +6,7 @@
 #include <functional>
 #include <mutex>
 
+
 LegalMove AI::calculateBestMove(Board* board, int depth, bool debug)
 {
 	LegalMove bestMove{};
@@ -189,88 +190,17 @@ int AI::minimax(Board* board, LegalMove move, PieceColor playerColor, SearchArgs
 
 int AI::evaluate(Board* board, PieceColor playerColor)
 {
-	int queenWeight = 9;
-	int rookWeight = 5;
-	int bishopWeight = 3;
-	int knightWeight = 3;
-	int pawnWeight = 1;
-	int mobilityWeight = 0.1;
+	int score = board->matEval[White] - board->matEval[Black];
 
-	int whiteQueenCount = 0;
-	int whiteRookCount = 0;
-	int whiteBishopCount = 0;
-	int whiteKnightCount = 0;
-	int whitePawnCount = 0;
+	int curPhase = board->curPhase;
+	if (curPhase > Evaluation::startPhase)
+		curPhase = Evaluation::startPhase;
 
-	std::list<Piece*> whitePieces = board->whitePieces;
-	for (auto it = whitePieces.begin(); it != whitePieces.end(); ++it) {
-		Piece* whitePiece = *it;
+	int mgScore = board->mg_pcsqEval[White] - board->mg_pcsqEval[Black];
+	int egScore = board->eg_pcsqEval[White] - board->eg_pcsqEval[Black];
 
-		switch (whitePiece->type) {
-		case::Queen:
-			whiteQueenCount++;
-			break;
-		case::Rook:
-			whiteRookCount++;
-			break;
-		case::Bishop:
-			whiteBishopCount++;
-			break;
-		case::Knight:
-			whiteKnightCount++;
-			break;
-		case::Pawn:
-			whitePawnCount++;
-			break;
-		}
-	}
+	score += (curPhase * mgScore + (Evaluation::startPhase - curPhase) * egScore) / Evaluation::startPhase;
 
-	std::vector<LegalMove> whiteMoves = board->getLegalMoves(White);
-	int whiteMobilityCount = whiteMoves.size();
-
-	int blackQueenCount = 0;
-	int blackRookCount = 0;
-	int blackBishopCount = 0;
-	int blackKnightCount = 0;
-	int blackPawnCount = 0;
-
-	std::list<Piece*> blackPieces = board->blackPieces;
-	for (auto it = blackPieces.begin(); it != blackPieces.end(); ++it) {
-		Piece* blackPiece = *it;
-
-		switch (blackPiece->type) {
-		case::Queen:
-			blackQueenCount++;
-			break;
-		case::Rook:
-			blackRookCount++;
-			break;
-		case::Bishop:
-			blackBishopCount++;
-			break;
-		case::Knight:
-			blackKnightCount++;
-			break;
-		case::Pawn:
-			blackPawnCount++;
-			break;
-		}
-	}
-
-	std::vector<LegalMove> blackMoves = board->getLegalMoves(Black);
-	int blackMobilityCount = blackMoves.size();
-
-	int materialScore = 0;
-	materialScore += queenWeight * (whiteQueenCount - blackQueenCount);
-	materialScore += rookWeight * (whiteRookCount - blackRookCount);
-	materialScore += bishopWeight * (whiteBishopCount - blackBishopCount);
-	materialScore += knightWeight * (whiteKnightCount - blackKnightCount);
-	materialScore += pawnWeight * (whitePawnCount - blackPawnCount);
-
-	int mobilityScore = 0;
-	mobilityScore += mobilityWeight * (whiteMobilityCount - blackMobilityCount);
-
-	int score = materialScore + mobilityScore;
 	if (playerColor == Black)
 		score *= -1;
 
