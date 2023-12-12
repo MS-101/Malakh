@@ -123,9 +123,21 @@ int AI::minimax(Board* board, LegalMove move, PieceColor playerColor, SearchArgs
 	*/
 
 	board->makeMove(move.x1, move.y1, move.x2, move.y2, move.promotionType);
+
+	Transposition transposition = cache->get(board->hash);
+	if (transposition.depth >= searchArgs.maxDepth - searchArgs.curDepth) {
+		board->unmakeMove();
+		return transposition.value;
+	}
 	
 	if (searchArgs.curDepth == searchArgs.maxDepth) {
 		int value = evaluate(board, playerColor);
+
+		Transposition newTransposition;
+		newTransposition.depth = 0;
+		newTransposition.value = value;
+
+		cache->put(board->hash, newTransposition);
 
 		if (debug) {
 			performanceArgs->positionsCur++;
@@ -180,9 +192,16 @@ int AI::minimax(Board* board, LegalMove move, PieceColor playerColor, SearchArgs
 	std::cout << "}" << std::endl;
 
 	for (int i = 0; i < searchArgs.curDepth; i++)
+
 		std::cout << "    ";
 	std::cout << "board->unmakeMove();" << std::endl;
 	*/
+
+	Transposition newTransposition;
+	newTransposition.depth = searchArgs.maxDepth - searchArgs.curDepth;
+	newTransposition.value = bestScore;
+
+	cache->put(board->hash, newTransposition);
 
 	board->unmakeMove();
 	return bestScore;

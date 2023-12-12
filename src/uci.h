@@ -2,7 +2,6 @@
 #define UCI_H
 
 #include "ai.h"
-#include "game.h"
 #include "string"
 
 class uci {
@@ -11,7 +10,7 @@ public:
 	bool parseCommand(std::string command);
 private:
 	AI* ai = new AI();
-	Game* curGame;
+	Board* curBoard;
 	Essence whitePawnEssence = Classic; Essence whiteRookEssence = Classic; Essence whiteKnightEssence = Classic; Essence whiteBishopEssence = Classic;
 	Essence blackPawnEssence = Classic; Essence blackRookEssence = Classic; Essence blackKnightEssence = Classic; Essence blackBishopEssence = Classic;
 	void sendMobilities(Piece* curPiece);

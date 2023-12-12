@@ -5,9 +5,9 @@
 #include <list>
 #include <unordered_map>
 
-enum PieceType { Pawn = 'P', Knight = 'N', Bishop = 'B', Rook = 'R', Queen = 'Q', King = 'K' };
-enum PieceColor { White = 'W', Black = 'B' };
-enum Essence { Classic = 'C', Red = 'R', Blue = 'B' };
+enum PieceType { Pawn = 0, Knight = 1, Bishop = 2, Rook = 3, Queen = 4, King = 5 };
+enum PieceColor { White = 0, Black = 1 };
+enum Essence { Classic = 0, Red = 1, Blue = 2 };
 
 class Piece {
 public:

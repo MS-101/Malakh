@@ -2,7 +2,6 @@
 #define AI_H
 
 #include "Board/board.h"
-#include "Board/transpositions.h"
 #include <chrono>
 
 struct PerformanceArgs {

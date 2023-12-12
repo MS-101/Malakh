@@ -2,13 +2,19 @@
 #include <iostream>
 #include <algorithm>
 
-Board::Board() {
+Board::Board(Essence whitePawnEssence, Essence whiteRookEssence, Essence whiteKnightEssence, Essence whiteBishopEssence,
+    Essence blackPawnEssence, Essence blackRookEssence, Essence blackKnightEssence, Essence blackBishopEssence)
+{
     for (int cur_y = 0; cur_y < ROWS; cur_y++)
         for (int cur_x = 0; cur_x < COLUMNS; cur_x++)
             squares[cur_y][cur_x] = new Square(cur_x, cur_y);
+
+    initBoard(whitePawnEssence, whiteRookEssence, whiteKnightEssence, whiteBishopEssence,
+        blackPawnEssence, blackRookEssence, blackKnightEssence, blackBishopEssence);
 }
 
-Board::Board(Board* board) : Board()
+Board::Board(Board* board) : Board(board->whitePawnEssence, board->whiteRookEssence, board->whiteKnightEssence, board->whiteBishopEssence,
+    board->blackPawnEssence, board->blackRookEssence, board->blackKnightEssence, board->blackBishopEssence)
 {
     Ghost* ghost = board->curGhost;
     Piece* ghostParent = nullptr;
@@ -42,6 +48,9 @@ Board::Board(Board* board) : Board()
     this->blackCheck = board->blackCheck;
 
     this->curTurn = board->curTurn;
+    if (curTurn == Black)
+        hash ^= zobrist.turn;
+
     if (ghost != nullptr)
         this->curGhost = new Ghost(ghost->x, ghost->y, ghostParent);
 
@@ -70,10 +79,9 @@ Board::~Board()
         delete curGhost;
 }
 
-void Board::InitBoard(
-    Essence whitePawnEssence, Essence whiteRookEssence, Essence whiteKnightEssence, Essence whiteBishopEssence,
-    Essence blackPawnEssence, Essence blackRookEssence, Essence blackKnightEssence, Essence blackBishopEssence
-) {
+void Board::initBoard(Essence whitePawnEssence, Essence whiteRookEssence, Essence whiteKnightEssence, Essence whiteBishopEssence,
+    Essence blackPawnEssence, Essence blackRookEssence, Essence blackKnightEssence, Essence blackBishopEssence)
+{
     this->whitePawnEssence = whitePawnEssence;
     this->whiteKnightEssence = whiteKnightEssence;
     this->whiteBishopEssence = whiteBishopEssence;
@@ -83,6 +91,12 @@ void Board::InitBoard(
     this->blackBishopEssence = blackBishopEssence;
     this->blackRookEssence = blackRookEssence;
 
+    for each (Piece* piece in whitePieces)
+        removePiece(piece);
+
+    for each (Piece* piece in blackPieces)
+        removePiece(piece);
+    
     int pawnCount = 8;
     
     // White pieces
@@ -125,6 +139,7 @@ bool Board::addPiece(Piece* curPiece, int x, int y)
 
     int y_pcsq = Evaluation::getY_pcsq(curPiece);
 
+    hash ^= getZobrist(curPiece);
     curPhase += Evaluation::piecePhaseValues[curPiece->type];
     matEval[curPiece->color] += Evaluation::pieceMatValues[curPiece->type];
     mg_pcsqEval[curPiece->color] += Evaluation::mg_pcsq[curPiece->type][y_pcsq][x];
@@ -206,6 +221,7 @@ void Board::removePiece(Piece* curPiece)
 
     int y_pcsq = Evaluation::getY_pcsq(curPiece);
 
+    hash ^= getZobrist(curPiece);
     curPhase -= Evaluation::piecePhaseValues[curPiece->type];
     matEval[curPiece->color] -= Evaluation::pieceMatValues[curPiece->type];
     mg_pcsqEval[curPiece->color] -= Evaluation::mg_pcsq[curPiece->type][y_pcsq][curPiece->x];
@@ -947,6 +963,7 @@ void Board::cutMovement(Piece* curPiece, Movement* curMovement)
 void Board::movePiece(Piece* curPiece, int x, int y, bool hasMoved)
 {
     int y_pcsq = Evaluation::getY_pcsq(curPiece);
+    hash ^= getZobrist(curPiece);
     mg_pcsqEval[curPiece->color] -= Evaluation::mg_pcsq[curPiece->type][y_pcsq][curPiece->x];
     eg_pcsqEval[curPiece->color] -= Evaluation::eg_pcsq[curPiece->type][y_pcsq][curPiece->x];
 
@@ -966,6 +983,7 @@ void Board::movePiece(Piece* curPiece, int x, int y, bool hasMoved)
     curPiece->hasMoved = hasMoved;
 
     y_pcsq = Evaluation::getY_pcsq(curPiece);
+    hash ^= getZobrist(curPiece);
     mg_pcsqEval[curPiece->color] += Evaluation::mg_pcsq[curPiece->type][y_pcsq][curPiece->x];
     eg_pcsqEval[curPiece->color] += Evaluation::eg_pcsq[curPiece->type][y_pcsq][curPiece->x];
 
@@ -1169,6 +1187,7 @@ void Board::makeMove(int x1, int y1, int x2, int y2, PieceType promotionType)
         curTurn = Black;
     else
         curTurn = White;
+    hash ^= zobrist.turn;
 
     moveHistory.push(newMoveRecord);
 }
@@ -1210,13 +1229,12 @@ void Board::unmakeMove()
             capturedPiece = new Piece(lastMoveRecord.capturedType, White, whitePawnEssence);
         else
             capturedPiece = new Piece(lastMoveRecord.capturedType, Black, blackPawnEssence);
+        capturedPiece->hasMoved = lastMoveRecord.capturedHasMoved;
 
         if (lastMoveRecord.hadGhost && lastMoveRecord.x2 == lastMoveRecord.ghostX && lastMoveRecord.y2 == lastMoveRecord.ghostY)
             addPiece(capturedPiece, lastMoveRecord.ghostParentX, lastMoveRecord.ghostParentY);
         else
             addPiece(capturedPiece, lastMoveRecord.x2, lastMoveRecord.y2);
-        
-        capturedPiece->hasMoved = lastMoveRecord.capturedHasMoved;
 
         calculateMoves(capturedPiece);
         calculateInspiringMoves(capturedPiece);
@@ -1246,6 +1264,7 @@ void Board::unmakeMove()
         curTurn = Black;
     else
         curTurn = White;
+    hash ^= zobrist.turn;
 }
 
 void Board::printBoard()

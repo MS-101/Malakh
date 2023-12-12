@@ -1,6 +1,7 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+#include "transpositions.h"
 #include "evaluation.h"
 #include "square.h"
 #include <vector>
@@ -14,15 +15,9 @@ struct MoveRecord {
     PieceType capturedType = Pawn;
 };
 
-struct LegalMove {
-    int x1, y1, x2, y2;
-    PieceType promotionType;
-    Mobility* mobility;
-};
-
 class Board {
 public:
-    Board();
+    Board(Essence whitePawnEssence, Essence whiteRookEssence, Essence whiteKnightEssence, Essence whiteBishopEssence, Essence blackPawnEssence, Essence blackRookEssence, Essence blackKnightEssence, Essence blackBishopEssence);
     Board(Board* board);
     ~Board();
 
@@ -45,23 +40,20 @@ public:
 
     std::stack<struct MoveRecord> moveHistory;
 
+    unsigned long long hash = 0;
     int curPhase = 0;
     std::unordered_map<PieceColor, int> matEval;
     std::unordered_map<PieceColor, int> mobilityEval;
     std::unordered_map<PieceColor, int> mg_pcsqEval;
     std::unordered_map<PieceColor, int> eg_pcsqEval;
 
-    void InitBoard(
-        Essence whitePawnEssence, Essence whiteRookEssence,
-        Essence whiteKnightEssence, Essence whiteBishopEssence,
-        Essence blackPawnEssence, Essence blackRookEssence,
-        Essence blackKnightEssence, Essence blackBishopEssence
-    );
-    void printBoard();
-    void printMoves();
+    void initBoard(Essence whitePawnEssence, Essence whiteRookEssence, Essence whiteKnightEssence, Essence whiteBishopEssence,
+        Essence blackPawnEssence, Essence blackRookEssence, Essence blackKnightEssence, Essence blackBishopEssence);
     void makeMove(int x1, int y1, int x2, int y2, PieceType promotionType);
     void unmakeMove();
     std::vector<LegalMove> getLegalMoves(PieceColor color);
+    void printBoard();
+    void printMoves();
 private:
     void setGhost(Ghost* newGhost);
     PieceMovement* getPin(Piece* curPiece);
