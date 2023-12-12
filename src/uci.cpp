@@ -120,7 +120,7 @@ bool uci::parseCommand(std::string command) {
 
         std::vector<LegalMove> legalMoves = board->getLegalMoves(board->curTurn);
         if (!legalMoves.empty()) {
-            LegalMove bestMove = ai->calculateBestMove(new Board(board), 2, false);
+            LegalMove bestMove = ai->calculateBestMove(new Board(board), 3, false);
             std::cout << "bestmove " << legalMoveToString(bestMove, board->curTurn) << std::endl;
         } else {
             if (board->curTurn == White && board->whiteCheck)

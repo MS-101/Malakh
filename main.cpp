@@ -14,7 +14,6 @@ int main() {
 
     LegalMove bestMove = ai->calculateBestMove(board, 4, true);
 
-
     //FILE* myFile = freopen("output.txt", "w", stdout);
 
     return 0;

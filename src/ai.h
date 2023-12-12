@@ -2,6 +2,7 @@
 #define AI_H
 
 #include "Board/board.h"
+#include "Board/transpositions.h"
 #include <chrono>
 
 struct PerformanceArgs {
@@ -27,6 +28,7 @@ public:
 	LegalMove calculateBestMove_threads(Board* board, int depth, int workerCount, bool debug);
 	int evaluate(Board* board, PieceColor playerColor);
 private:
+	TranspositionCache* cache = new TranspositionCache(4096);
 	int minimax(Board* board, LegalMove move, PieceColor playerColor, SearchArgs searchArgs, PerformanceArgs* performanceArgs, bool debug);
 	int positionsPerDebugMessage = 1000;
 };

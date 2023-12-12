@@ -107,6 +107,7 @@
     <ClCompile Include="src\board\piece.cpp" />
     <ClCompile Include="src\board\pieceMovement.cpp" />
     <ClCompile Include="src\board\square.cpp" />
+    <ClCompile Include="src\Board\transpositions.cpp" />
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\uci.cpp" />
   </ItemGroup>
@@ -119,6 +120,7 @@
     <ClInclude Include="src\board\piece.h" />
     <ClInclude Include="src\board\pieceMovement.h" />
     <ClInclude Include="src\board\square.h" />
+    <ClInclude Include="src\Board\transpositions.h" />
     <ClInclude Include="src\game.h" />
     <ClInclude Include="src\uci.h" />
   </ItemGroup>

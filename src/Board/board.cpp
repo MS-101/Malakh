@@ -44,6 +44,12 @@ Board::Board(Board* board) : Board()
     this->curTurn = board->curTurn;
     if (ghost != nullptr)
         this->curGhost = new Ghost(ghost->x, ghost->y, ghostParent);
+
+    curPhase = board->curPhase;
+    matEval = board->matEval;
+    mobilityEval = board->mobilityEval;
+    mg_pcsqEval = board->mg_pcsqEval;
+    eg_pcsqEval = board->eg_pcsqEval;
 }
 
 Board::~Board()
@@ -114,13 +120,15 @@ bool Board::addPiece(Piece* curPiece, int x, int y)
     if (curPiece == nullptr || curSquare->occupyingPiece != nullptr)
         return false;
 
-    curPhase += Evaluation::piecePhaseValues[curPiece->type];
-    matEval[curPiece->color] += Evaluation::pieceMatValues[curPiece->type];
-    mg_pcsqEval[curPiece->color] += Evaluation::mg_pcsq.at(curPiece->type)[y][x];
-    eg_pcsqEval[curPiece->color] += Evaluation::eg_pcsq.at(curPiece->type)[y][x];
-
     curPiece->x = x;
     curPiece->y = y;
+
+    int y_pcsq = Evaluation::getY_pcsq(curPiece);
+
+    curPhase += Evaluation::piecePhaseValues[curPiece->type];
+    matEval[curPiece->color] += Evaluation::pieceMatValues[curPiece->type];
+    mg_pcsqEval[curPiece->color] += Evaluation::mg_pcsq[curPiece->type][y_pcsq][x];
+    eg_pcsqEval[curPiece->color] += Evaluation::eg_pcsq[curPiece->type][y_pcsq][x];
 
     curSquare->occupyingPiece = curPiece;
     switch (curPiece->color) {
@@ -175,14 +183,16 @@ Piece* Board::copyPiece(Piece* piece)
 
 void Board::changePiece(Piece* piece, PieceType type, Essence essence)
 {
+    int y_pcsq = Evaluation::getY_pcsq(piece);
+
     curPhase -= Evaluation::piecePhaseValues[piece->type];
     curPhase += Evaluation::piecePhaseValues[type];
     matEval[piece->color] -= Evaluation::pieceMatValues[piece->type];
     matEval[piece->color] += Evaluation::pieceMatValues[type];
-    mg_pcsqEval[piece->color] -= Evaluation::mg_pcsq[piece->type][piece->y][piece->x];
-    mg_pcsqEval[piece->color] += Evaluation::mg_pcsq[type][piece->y][piece->x];
-    eg_pcsqEval[piece->color] -= Evaluation::eg_pcsq[piece->type][piece->y][piece->x];
-    eg_pcsqEval[piece->color] += Evaluation::eg_pcsq[type][piece->y][piece->x];
+    mg_pcsqEval[piece->color] -= Evaluation::mg_pcsq[piece->type][y_pcsq][piece->x];
+    mg_pcsqEval[piece->color] += Evaluation::mg_pcsq[type][y_pcsq][piece->x];
+    eg_pcsqEval[piece->color] -= Evaluation::eg_pcsq[piece->type][y_pcsq][piece->x];
+    eg_pcsqEval[piece->color] += Evaluation::eg_pcsq[type][y_pcsq][piece->x];
 
     removeMoves(piece);
     piece->change(type, essence);
@@ -194,10 +204,12 @@ void Board::removePiece(Piece* curPiece)
     if (curPiece == nullptr)
         return;
 
+    int y_pcsq = Evaluation::getY_pcsq(curPiece);
+
     curPhase -= Evaluation::piecePhaseValues[curPiece->type];
     matEval[curPiece->color] -= Evaluation::pieceMatValues[curPiece->type];
-    mg_pcsqEval[curPiece->color] -= Evaluation::mg_pcsq[curPiece->type][curPiece->y][curPiece->x];
-    eg_pcsqEval[curPiece->color] -= Evaluation::eg_pcsq[curPiece->type][curPiece->y][curPiece->x];
+    mg_pcsqEval[curPiece->color] -= Evaluation::mg_pcsq[curPiece->type][y_pcsq][curPiece->x];
+    eg_pcsqEval[curPiece->color] -= Evaluation::eg_pcsq[curPiece->type][y_pcsq][curPiece->x];
 
     removeMoves(curPiece);
     removeInspiringMoves(curPiece);
@@ -399,7 +411,11 @@ Movement* Board::calculateMove(Piece* curPiece, Mobility* curMobility, Movement*
 
         if (kingPieceMovementIt != targetSquare->movements.end()) {
             PieceMovement* kingPieceMovement = *kingPieceMovementIt;
-            kingPieceMovement->movement->legal = false;
+            if (kingPieceMovement->movement->legal) {
+                mobilityEval[kingPieceMovement->piece->color] -= Evaluation::mobilityWeight;
+                kingPieceMovement->movement->legal = false;
+            }
+            
         }
 
         if (targetPiece != nullptr) {
@@ -547,7 +563,15 @@ void Board::validateMove(Piece* curPiece, Movement* curMovement, PieceMovement* 
     if (curMovement == nullptr)
         return;
 
-    curMovement->legal = getValidity(curPiece, curMovement, pin);
+    bool legalOld = curMovement->legal;
+    bool legalNew = getValidity(curPiece, curMovement, pin);
+
+    if (!legalOld && legalNew)
+        mobilityEval[curPiece->color] += Evaluation::mobilityWeight;
+    else if (legalOld && !legalNew)
+        mobilityEval[curPiece->color] -= Evaluation::mobilityWeight;
+
+    curMovement->legal = legalNew;
 }
 
 bool Board::getValidity(Piece* curPiece, Movement* curMovement, PieceMovement* pin)
@@ -910,6 +934,9 @@ void Board::cutMovement(Piece* curPiece, Movement* curMovement)
             }
         }
 
+        if (curMovement->legal)
+            mobilityEval[curPiece->color] -= Evaluation::mobilityWeight;
+
         // continue with next movement
         Movement* prevMovement = curMovement;
         curMovement = curMovement->next;
@@ -919,10 +946,9 @@ void Board::cutMovement(Piece* curPiece, Movement* curMovement)
 
 void Board::movePiece(Piece* curPiece, int x, int y, bool hasMoved)
 {
-    mg_pcsqEval[curPiece->color] -= Evaluation::mg_pcsq[curPiece->type][curPiece->y][curPiece->x];
-    mg_pcsqEval[curPiece->color] += Evaluation::mg_pcsq[curPiece->type][y][x];
-    eg_pcsqEval[curPiece->color] -= Evaluation::eg_pcsq[curPiece->type][curPiece->y][curPiece->x];
-    eg_pcsqEval[curPiece->color] += Evaluation::eg_pcsq[curPiece->type][y][x];
+    int y_pcsq = Evaluation::getY_pcsq(curPiece);
+    mg_pcsqEval[curPiece->color] -= Evaluation::mg_pcsq[curPiece->type][y_pcsq][curPiece->x];
+    eg_pcsqEval[curPiece->color] -= Evaluation::eg_pcsq[curPiece->type][y_pcsq][curPiece->x];
 
     // cancel inspiring movements targeting that were previously targeting this piece
     removeInspiringMoves(curPiece);
@@ -938,6 +964,10 @@ void Board::movePiece(Piece* curPiece, int x, int y, bool hasMoved)
     curPiece->x = x;
     curPiece->y = y;
     curPiece->hasMoved = hasMoved;
+
+    y_pcsq = Evaluation::getY_pcsq(curPiece);
+    mg_pcsqEval[curPiece->color] += Evaluation::mg_pcsq[curPiece->type][y_pcsq][curPiece->x];
+    eg_pcsqEval[curPiece->color] += Evaluation::eg_pcsq[curPiece->type][y_pcsq][curPiece->x];
 
     calculateMoves(curPiece);
 

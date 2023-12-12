@@ -191,6 +191,7 @@ int AI::minimax(Board* board, LegalMove move, PieceColor playerColor, SearchArgs
 int AI::evaluate(Board* board, PieceColor playerColor)
 {
 	int score = board->matEval[White] - board->matEval[Black];
+	score += board->mobilityEval[White] - board->mobilityEval[Black];
 
 	int curPhase = board->curPhase;
 	if (curPhase > Evaluation::startPhase)

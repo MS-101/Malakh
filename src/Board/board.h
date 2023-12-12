@@ -47,6 +47,7 @@ public:
 
     int curPhase = 0;
     std::unordered_map<PieceColor, int> matEval;
+    std::unordered_map<PieceColor, int> mobilityEval;
     std::unordered_map<PieceColor, int> mg_pcsqEval;
     std::unordered_map<PieceColor, int> eg_pcsqEval;
 
