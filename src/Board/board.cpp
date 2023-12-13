@@ -2,20 +2,31 @@
 #include <iostream>
 #include <algorithm>
 
-Board::Board(Essence whitePawnEssence, Essence whiteRookEssence, Essence whiteKnightEssence, Essence whiteBishopEssence,
-    Essence blackPawnEssence, Essence blackRookEssence, Essence blackKnightEssence, Essence blackBishopEssence)
+Board::Board()
 {
     for (int cur_y = 0; cur_y < ROWS; cur_y++)
         for (int cur_x = 0; cur_x < COLUMNS; cur_x++)
             squares[cur_y][cur_x] = new Square(cur_x, cur_y);
+}
 
+Board::Board(Essence whitePawnEssence, Essence whiteRookEssence, Essence whiteKnightEssence, Essence whiteBishopEssence,
+    Essence blackPawnEssence, Essence blackRookEssence, Essence blackKnightEssence, Essence blackBishopEssence) : Board()
+{
     initBoard(whitePawnEssence, whiteRookEssence, whiteKnightEssence, whiteBishopEssence,
         blackPawnEssence, blackRookEssence, blackKnightEssence, blackBishopEssence);
 }
 
-Board::Board(Board* board) : Board(board->whitePawnEssence, board->whiteRookEssence, board->whiteKnightEssence, board->whiteBishopEssence,
-    board->blackPawnEssence, board->blackRookEssence, board->blackKnightEssence, board->blackBishopEssence)
+Board::Board(Board* board) : Board()
 {
+    whitePawnEssence = board->whitePawnEssence;
+    whiteKnightEssence = board->whiteKnightEssence;
+    whiteBishopEssence = board->whiteBishopEssence;
+    whiteRookEssence = board->whiteRookEssence;
+    blackPawnEssence = board->blackPawnEssence;
+    blackKnightEssence = board->blackKnightEssence;
+    blackBishopEssence = board->blackBishopEssence;
+    blackRookEssence = board->blackRookEssence;
+
     Ghost* ghost = board->curGhost;
     Piece* ghostParent = nullptr;
 
@@ -41,18 +52,18 @@ Board::Board(Board* board) : Board(board->whitePawnEssence, board->whiteRookEsse
         auto checkIt = std::find(square->movements.begin(), square->movements.end(), check);
 
         PieceMovement* newCheck = *checkIt;
-        this->checks.push_back(newCheck);
+        checks.push_back(newCheck);
     }
 
-    this->whiteCheck = board->whiteCheck;
-    this->blackCheck = board->blackCheck;
+    whiteCheck = board->whiteCheck;
+    blackCheck = board->blackCheck;
 
-    this->curTurn = board->curTurn;
+    curTurn = board->curTurn;
     if (curTurn == Black)
         hash ^= zobrist.turn;
 
     if (ghost != nullptr)
-        this->curGhost = new Ghost(ghost->x, ghost->y, ghostParent);
+        curGhost = new Ghost(ghost->x, ghost->y, ghostParent);
 
     curPhase = board->curPhase;
     matEval = board->matEval;
@@ -1002,6 +1013,26 @@ void Board::movePiece(Piece* curPiece, int x, int y, bool hasMoved)
     std::list<PieceMovement*> destinationMovements = destinationSquare->movements;
     for (auto it = destinationMovements.begin(); it != destinationMovements.end(); ++it)
         cutMovement(*it);
+
+    if (curPiece->type == King) {
+        for (PieceMovement* pieceMovement : destinationSquare->movements) {
+
+            Piece* attacker = pieceMovement->piece;
+            Movement* movement = pieceMovement->movement;
+            if (attacker->color != curPiece->color && (movement->mobility->type == Attack || movement->mobility->type == AttackMove)) {
+                checks.push_back(pieceMovement);
+            }
+        }
+
+        if (checks.size() > 0) {
+            if (curPiece->color == White)
+                whiteCheck = true;
+            else
+                blackCheck = true;
+        }
+
+        validateMoves(curPiece->color);
+    }
 }
 
 void Board::makeMove(int x1, int y1, int x2, int y2, PieceType promotionType)
@@ -1277,9 +1308,50 @@ void Board::printBoard()
             Piece* curPiece = curSquare->occupyingPiece;
 
             if (curPiece != nullptr) {
-                char ownerTag = curPiece->color;
-                char essenceTag = curPiece->essence;
-                char pieceTag = curPiece->type;
+                char ownerTag = '?';
+                switch (curPiece->color) {
+                case::White:
+                    ownerTag = 'W';
+                    break;
+                case::Black:
+                    ownerTag = 'B';
+                    break;
+                }
+
+                char essenceTag = '?';
+                switch (curPiece->essence) {
+                case::Classic:
+                    essenceTag = 'C';
+                    break;
+                case::Red:
+                    essenceTag = 'R';
+                    break;
+                case::Blue:
+                    essenceTag = 'B';
+                    break;
+                }
+
+                char pieceTag = '?';
+                switch (curPiece->type) {
+                case::Pawn:
+                    pieceTag = 'P';
+                    break;
+                case::Rook:
+                    pieceTag = 'R';
+                    break;
+                case::Knight:
+                    pieceTag = 'N';
+                    break;
+                case::Bishop:
+                    pieceTag = 'B';
+                    break;
+                case::Queen:
+                    pieceTag = 'Q';
+                    break;
+                case::King:
+                    pieceTag = 'K';
+                    break;
+                }
 
                 std::cout << ownerTag << essenceTag << pieceTag;
             } else if (curGhost != nullptr && cur_x == curGhost->x && cur_y == curGhost->y) {

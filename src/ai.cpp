@@ -193,7 +193,6 @@ int AI::minimax(Board* board, LegalMove move, PieceColor playerColor, SearchArgs
 	std::cout << "}" << std::endl;
 
 	for (int i = 0; i < searchArgs.curDepth; i++)
-
 		std::cout << "    ";
 	std::cout << "board->unmakeMove();" << std::endl;
 	*/

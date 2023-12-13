@@ -115,7 +115,9 @@ bool uci::parseCommand(std::string command) {
     } else if (tokens[0] == "go") {
         std::vector<LegalMove> legalMoves = curBoard->getLegalMoves(curBoard->curTurn);
         if (!legalMoves.empty()) {
-            LegalMove bestMove = ai->calculateBestMove(new Board(curBoard), 3, false);
+            Board* newBoard = new Board(curBoard); // easier to debug when app crashes
+            LegalMove bestMove = ai->calculateBestMove(newBoard, 3, false);
+            delete newBoard;
             std::cout << "bestmove " << legalMoveToString(bestMove, curBoard->curTurn) << std::endl;
         } else {
             if (curBoard->curTurn == White && curBoard->whiteCheck)

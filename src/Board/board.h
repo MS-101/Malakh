@@ -17,6 +17,7 @@ struct MoveRecord {
 
 class Board {
 public:
+    Board();
     Board(Essence whitePawnEssence, Essence whiteRookEssence, Essence whiteKnightEssence, Essence whiteBishopEssence, Essence blackPawnEssence, Essence blackRookEssence, Essence blackKnightEssence, Essence blackBishopEssence);
     Board(Board* board);
     ~Board();
