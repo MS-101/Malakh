@@ -21,6 +21,14 @@ struct SearchArgs {
 	int beta = INT_MAX;
 };
 
+struct PieceEvaluation {
+	int attackWeight = 0;
+	int mgTropism = 0;
+	int egTropism = 0;
+	int mgMobilities = 0;
+	int egMobilities = 0;
+};
+
 class AI {
 public:
 	LegalMove calculateBestMove(Board* board, int depth, bool debug);
@@ -28,6 +36,9 @@ public:
 	int evaluate(Board* board, PieceColor playerColor);
 private:
 	TranspositionCache* cache = new TranspositionCache(4096);
+	bool pieceNearby(Movement* move, Piece* piece);
+	int getTropism(Piece* piece1, Piece* piece2);
+	PieceEvaluation evaluatePiece(Piece* piece, Piece* king);
 	int minimax(Board* board, LegalMove move, PieceColor playerColor, SearchArgs searchArgs, PerformanceArgs* performanceArgs, bool debug);
 	int positionsPerDebugMessage = 1000;
 };

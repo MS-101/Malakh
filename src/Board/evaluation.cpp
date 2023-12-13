@@ -8,8 +8,21 @@ std::unordered_map<PieceType, int> Evaluation::piecePhaseValues = {
     {Queen, 4},
 };
 
-int Evaluation::startPhase = 16 * Evaluation::piecePhaseValues[Pawn] + 4 * Evaluation::piecePhaseValues[Knight]
+const int Evaluation::startPhase = 16 * Evaluation::piecePhaseValues[Pawn] + 4 * Evaluation::piecePhaseValues[Knight]
 + 4 * Evaluation::piecePhaseValues[Bishop] + 4 * Evaluation::piecePhaseValues[Rook] + 2 * Evaluation::piecePhaseValues[Queen];
+
+const int Evaluation::safetyTable[100] = {
+    0,   0,   1,   2,   3,   5,   7,   9,  12,  15,
+    18,  22,  26,  30,  35,  39,  44,  50,  56,  62,
+    68,  75,  82,  85,  89,  97, 105, 113, 122, 131,
+    140, 150, 169, 180, 191, 202, 213, 225, 237, 248,
+    260, 272, 283, 295, 307, 319, 330, 342, 354, 366,
+    377, 389, 401, 412, 424, 436, 448, 459, 471, 483,
+    494, 500, 500, 500, 500, 500, 500, 500, 500, 500,
+    500, 500, 500, 500, 500, 500, 500, 500, 500, 500,
+    500, 500, 500, 500, 500, 500, 500, 500, 500, 500,
+    500, 500, 500, 500, 500, 500, 500, 500, 500, 500
+};
 
 std::unordered_map<PieceType, int> Evaluation::pieceMatValues = {
     {Pawn, 100},
@@ -17,6 +30,54 @@ std::unordered_map<PieceType, int> Evaluation::pieceMatValues = {
     {Bishop, 330},
     {Rook, 500},
     {Queen, 900},
+};
+
+std::unordered_map<PieceType, int> Evaluation::pieceAttWeights = {
+    {Pawn, 1},
+    {Knight, 1},
+    {Bishop, 3},
+    {Rook, 3},
+    {Queen, 5},
+};
+
+std::unordered_map<PieceType, int> Evaluation::pieceMobPenalties = {
+    {Pawn, 0},
+    {Knight, 0},
+    {Bishop, 0},
+    {Rook, 7},
+    {Queen, 14},
+};
+
+std::unordered_map<PieceType, int> Evaluation::mg_pieceMobWeights = {
+    {Pawn, 2},
+    {Knight, 2},
+    {Bishop, 2},
+    {Rook, 2},
+    {Queen, 2},
+};
+
+std::unordered_map<PieceType, int> Evaluation::eg_pieceMobWeights = {
+    {Pawn, 4},
+    {Knight, 4},
+    {Bishop, 4},
+    {Rook, 4},
+    {Queen, 4},
+};
+
+std::unordered_map<PieceType, int> Evaluation::mg_pieceTropismWeights = {
+    {Pawn, 1},
+    {Knight, 3},
+    {Bishop, 2},
+    {Rook, 2},
+    {Queen, 2},
+};
+
+std::unordered_map<PieceType, int> Evaluation::eg_pieceTropismWeights = {
+    {Pawn, 1},
+    {Knight, 3},
+    {Bishop, 1},
+    {Rook, 1},
+    {Queen, 4},
 };
 
 std::unordered_map<PieceType, std::array<std::array<int, 8>, 8>> Evaluation::mg_pcsq = {

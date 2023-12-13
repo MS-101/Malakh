@@ -30,6 +30,8 @@ public:
     std::list<PieceMovement*> checks;
     
     PieceColor curTurn = White;
+    Piece* whiteKing = nullptr;
+    Piece* blackKing = nullptr;
     std::list<Piece*> whitePieces;
     std::list<Piece*> blackPieces;
     
@@ -43,7 +45,6 @@ public:
     unsigned long long hash = 0;
     int curPhase = 0;
     std::unordered_map<PieceColor, int> matEval;
-    std::unordered_map<PieceColor, int> mobilityEval;
     std::unordered_map<PieceColor, int> mg_pcsqEval;
     std::unordered_map<PieceColor, int> eg_pcsqEval;
 

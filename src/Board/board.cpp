@@ -56,7 +56,6 @@ Board::Board(Board* board) : Board(board->whitePawnEssence, board->whiteRookEsse
 
     curPhase = board->curPhase;
     matEval = board->matEval;
-    mobilityEval = board->mobilityEval;
     mg_pcsqEval = board->mg_pcsqEval;
     eg_pcsqEval = board->eg_pcsqEval;
 }
@@ -159,6 +158,13 @@ bool Board::addPiece(Piece* curPiece, int x, int y)
     std::list<PieceMovement*> destinationMovements = curSquare->movements;
     for (auto it = destinationMovements.begin(); it != destinationMovements.end(); ++it)
         cutMovement(*it);
+
+    if (curPiece->type == King) {
+        if (curPiece->color == White)
+            whiteKing = curPiece;
+        else
+            blackKing = curPiece;
+    }
 
     return true;
 }
@@ -428,7 +434,6 @@ Movement* Board::calculateMove(Piece* curPiece, Mobility* curMobility, Movement*
         if (kingPieceMovementIt != targetSquare->movements.end()) {
             PieceMovement* kingPieceMovement = *kingPieceMovementIt;
             if (kingPieceMovement->movement->legal) {
-                mobilityEval[kingPieceMovement->piece->color] -= Evaluation::mobilityWeight;
                 kingPieceMovement->movement->legal = false;
             }
             
@@ -581,11 +586,6 @@ void Board::validateMove(Piece* curPiece, Movement* curMovement, PieceMovement* 
 
     bool legalOld = curMovement->legal;
     bool legalNew = getValidity(curPiece, curMovement, pin);
-
-    if (!legalOld && legalNew)
-        mobilityEval[curPiece->color] += Evaluation::mobilityWeight;
-    else if (legalOld && !legalNew)
-        mobilityEval[curPiece->color] -= Evaluation::mobilityWeight;
 
     curMovement->legal = legalNew;
 }
@@ -949,9 +949,6 @@ void Board::cutMovement(Piece* curPiece, Movement* curMovement)
                 deletePin(targetPin);
             }
         }
-
-        if (curMovement->legal)
-            mobilityEval[curPiece->color] -= Evaluation::mobilityWeight;
 
         // continue with next movement
         Movement* prevMovement = curMovement;

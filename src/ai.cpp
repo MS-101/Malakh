@@ -134,6 +134,7 @@ int AI::minimax(Board* board, LegalMove move, PieceColor playerColor, SearchArgs
 		int value = evaluate(board, playerColor);
 
 		Transposition newTransposition;
+		newTransposition.bestMove = move;
 		newTransposition.depth = 0;
 		newTransposition.value = value;
 
@@ -210,22 +211,107 @@ int AI::minimax(Board* board, LegalMove move, PieceColor playerColor, SearchArgs
 int AI::evaluate(Board* board, PieceColor playerColor)
 {
 	int score = board->matEval[White] - board->matEval[Black];
-	score += board->mobilityEval[White] - board->mobilityEval[Black];
+
+	int mgScore = board->mg_pcsqEval[White] - board->mg_pcsqEval[Black];
+	int egScore = board->eg_pcsqEval[White] - board->eg_pcsqEval[Black];
+
+	int whiteAttacks = 0;
+	int whiteAttackWeight = 0;
+	for (Piece* piece : board->whitePieces) {
+		PieceEvaluation eval = evaluatePiece(piece, board->blackKing);
+
+		mgScore += eval.mgTropism;
+		egScore += eval.egTropism;
+
+		mgScore += eval.mgMobilities;
+		egScore += eval.egMobilities;
+
+		if (eval.attackWeight > 0) {
+			whiteAttacks++;
+			whiteAttackWeight += eval.attackWeight;
+		}
+	}
+		
+	int blackAttacks = 0;
+	int blackAttackWeight = 0;
+	for (Piece* piece : board->blackPieces) {
+		PieceEvaluation eval = evaluatePiece(piece, board->whiteKing);
+
+		mgScore -= eval.mgTropism;
+		egScore -= eval.egTropism;
+
+		mgScore -= eval.mgMobilities;
+		egScore -= eval.egMobilities;
+
+		if (eval.attackWeight > 0) {
+			blackAttacks++;
+			blackAttackWeight += eval.attackWeight;
+		}
+	}
 
 	int curPhase = board->curPhase;
 	if (curPhase > Evaluation::startPhase)
 		curPhase = Evaluation::startPhase;
 
-	int mgScore = board->mg_pcsqEval[White] - board->mg_pcsqEval[Black];
-	int egScore = board->eg_pcsqEval[White] - board->eg_pcsqEval[Black];
-
 	score += (curPhase * mgScore + (Evaluation::startPhase - curPhase) * egScore) / Evaluation::startPhase;
+
+	if (whiteAttacks < 2)
+		whiteAttackWeight = 0;
+	if (blackAttacks < 2)
+		blackAttackWeight = 0;
+
+	score += Evaluation::safetyTable[whiteAttackWeight];
+	score -= Evaluation::safetyTable[blackAttackWeight];
 
 	if (playerColor == Black)
 		score *= -1;
 
 	return score;
 }
+
+PieceEvaluation AI::evaluatePiece(Piece* piece, Piece* king)
+{
+	PieceEvaluation eval{};
+
+	int mobilities = 0;
+
+	for (Movement* move : piece->availableMoves) {
+		Movement* curMove = move;
+		while (curMove != nullptr) {
+			if (curMove->legal)
+				mobilities++;
+
+			if (pieceNearby(curMove, king))
+				eval.attackWeight += Evaluation::pieceAttWeights[piece->type];
+
+			curMove = curMove->next;
+		}
+	}
+
+	eval.mgMobilities = Evaluation::mg_pieceMobWeights[piece->type] * (mobilities - Evaluation::pieceMobPenalties[piece->type]);
+	eval.egMobilities = Evaluation::eg_pieceMobWeights[piece->type] * (mobilities - Evaluation::pieceMobPenalties[piece->type]);
+
+	int tropism = getTropism(piece, king);
+	eval.mgTropism = Evaluation::mg_pieceTropismWeights[piece->type] * tropism;
+	eval.egTropism = Evaluation::eg_pieceTropismWeights[piece->type] * tropism;
+
+	return eval;
+}
+
+bool AI::pieceNearby(Movement* move, Piece* piece)
+{
+	if (piece->color == White)
+		return (abs(piece->x - move->x) <= 1 && move->y >= piece->y - 2 && move->y <= piece->y + 1);
+	else
+		return (abs(piece->x - move->x) <= 1 && move->y >= piece->y - 1 && move->y <= piece->y + 2);
+}
+
+int AI::getTropism(Piece* piece1, Piece* piece2)
+{
+	return 7 - (abs(piece1->x - piece2->x) + abs(piece1->y - piece2->y));
+}
+
+
 
 void PerformanceArgs::printPerformance()
 {
