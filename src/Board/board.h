@@ -57,6 +57,7 @@ public:
     void printBoard();
     void printMoves();
 private:
+    bool initialized = false;
     void setGhost(Ghost* newGhost);
     PieceMovement* getPin(Piece* curPiece);
     void deletePin(PieceMovement* pin);

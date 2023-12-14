@@ -69,6 +69,8 @@ Board::Board(Board* board) : Board()
     matEval = board->matEval;
     mg_pcsqEval = board->mg_pcsqEval;
     eg_pcsqEval = board->eg_pcsqEval;
+
+    initialized = true;
 }
 
 Board::~Board()
@@ -93,13 +95,19 @@ void Board::initBoard(Essence whitePawnEssence, Essence whiteRookEssence, Essenc
     Essence blackPawnEssence, Essence blackRookEssence, Essence blackKnightEssence, Essence blackBishopEssence)
 {
     this->whitePawnEssence = whitePawnEssence;
+    this->whiteRookEssence = whiteRookEssence;
     this->whiteKnightEssence = whiteKnightEssence;
     this->whiteBishopEssence = whiteBishopEssence;
-    this->whiteRookEssence = whiteRookEssence;
     this->blackPawnEssence = blackPawnEssence;
+    this->blackRookEssence = blackRookEssence;
     this->blackKnightEssence = blackKnightEssence;
     this->blackBishopEssence = blackBishopEssence;
-    this->blackRookEssence = blackRookEssence;
+
+    /*
+    addPiece(new Piece(King, White, Classic), 0, 7);
+    addPiece(new Piece(Bishop, White, Classic), 0, 3);
+    addPiece(new Piece(Queen, Black, Classic), 0, 0);
+    */
 
     for each (Piece* piece in whitePieces)
         removePiece(piece);
@@ -136,6 +144,8 @@ void Board::initBoard(Essence whitePawnEssence, Essence whiteRookEssence, Essenc
     addPiece(new Piece(Rook, Black, blackRookEssence), 7, 0);
 
     calculateMoves();
+
+    initialized = true;
 }
 
 bool Board::addPiece(Piece* curPiece, int x, int y)
@@ -165,10 +175,12 @@ bool Board::addPiece(Piece* curPiece, int x, int y)
             break;
     }
 
-    // cut movements that were blocked by moving this piece
-    std::list<PieceMovement*> destinationMovements = curSquare->movements;
-    for (auto it = destinationMovements.begin(); it != destinationMovements.end(); ++it)
-        cutMovement(*it);
+    if (initialized) {
+        // cut movements that were blocked by moving this piece
+        std::list<PieceMovement*> destinationMovements = curSquare->movements;
+        for (auto it = destinationMovements.begin(); it != destinationMovements.end(); ++it)
+            cutMovement(*it);
+    }
 
     if (curPiece->type == King) {
         if (curPiece->color == White)
@@ -202,6 +214,11 @@ Piece* Board::copyPiece(Piece* piece)
             PieceMovement* newPieceMovement = new PieceMovement(newPiece, newMovement);
             Square* square = squares[newMovement->y][newMovement->x];
             square->movements.push_back(newPieceMovement);
+
+            /*
+            if (piece->type == Knight && piece->color == White && movement->x == 5 && movement->y == 1)
+                printMoves();
+            */
 
             if (prevMovement != nullptr)
                 prevMovement->next = newMovement;
@@ -1030,9 +1047,9 @@ void Board::movePiece(Piece* curPiece, int x, int y, bool hasMoved)
             else
                 blackCheck = true;
         }
-
-        validateMoves(curPiece->color);
     }
+
+    validateMoves(curPiece->color);
 }
 
 void Board::makeMove(int x1, int y1, int x2, int y2, PieceType promotionType)

@@ -116,7 +116,7 @@ bool uci::parseCommand(std::string command) {
         std::vector<LegalMove> legalMoves = curBoard->getLegalMoves(curBoard->curTurn);
         if (!legalMoves.empty()) {
             Board* newBoard = new Board(curBoard); // easier to debug when app crashes
-            LegalMove bestMove = ai->calculateBestMove(newBoard, 3, false);
+            LegalMove bestMove = ai->calculateBestMove(newBoard, 2, false);
             delete newBoard;
             std::cout << "bestmove " << legalMoveToString(bestMove, curBoard->curTurn) << std::endl;
         } else {

@@ -10,11 +10,12 @@ int main() {
     /*
     Board* board = new Board(Classic, Classic, Classic, Classic, Classic, Classic, Classic, Classic);
     AI* ai = new AI();
-
-    LegalMove bestMove = ai->calculateBestMove(board, 3, false);
     */
 
-    // FILE* myFile = freopen("output.txt", "w", stdout);
-    
+    /*
+    FILE* myFile = freopen("output.txt", "w", stdout);
+    LegalMove bestMove = ai->calculateBestMove(board, 2, false);
+    */
+
     return 0;
 }
