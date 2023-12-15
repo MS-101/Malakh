@@ -17,12 +17,14 @@ public:
     PieceType type;
     PieceColor color;
     Essence essence;
-    std::list<Movement*> availableMoves; 
+    std::list<Movement*> movements; 
+    std::list<Movement*> virtualMovements;
     int x = 0, y = 0;
     bool hasMoved = false;
 
     std::list<Mobility*> getMobilities();
     void change(PieceType type, Essence essence);
+    bool operator==(const Piece& obj2) const;
 private:
     static std::unordered_map<PieceType, std::unordered_map<Essence, std::list<Mobility*>>> mobilities;
 };

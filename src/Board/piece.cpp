@@ -9,9 +9,9 @@ Piece::Piece(PieceType type, PieceColor color, Essence essence)
 
 Piece::~Piece()
 {
-    for (auto move : availableMoves)
+    for (auto move : movements)
         delete move;
-    availableMoves.clear();
+    movements.clear();
 }
 
 std::unordered_map<PieceType, std::unordered_map<Essence, std::list<Mobility*>>> Piece::mobilities = {
@@ -195,6 +195,11 @@ void Piece::change(PieceType type, Essence essence)
 {
     this->type = type;
     this->essence = essence;
+}
+
+bool Piece::operator==(const Piece& obj2) const
+{
+    return (obj2.type == type && obj2.color == color && obj2.essence == essence && obj2.x == x && obj2.y == y);
 }
 
 Ghost::Ghost(int x, int y, Piece* parent) {

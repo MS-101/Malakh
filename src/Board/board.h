@@ -15,6 +15,13 @@ struct MoveRecord {
     PieceType capturedType = Pawn;
 };
 
+struct PinArgs {
+    bool kingHit = false;
+    PieceMovement* pin;
+    Piece* pinnedPiece;
+    int pinnedCount = 0;
+};
+
 class Board {
 public:
     Board();
@@ -56,11 +63,11 @@ public:
     std::vector<LegalMove> getLegalMoves(PieceColor color);
     void printBoard();
     void printMoves();
+    void printVirtualMoves();
 private:
     bool initialized = false;
     void setGhost(Ghost* newGhost);
     PieceMovement* getPin(Piece* curPiece);
-    void deletePin(PieceMovement* pin);
     bool addPiece(Piece* newPiece, int x, int y);
     Piece* copyPiece(Piece* piece);
     void changePiece(Piece* piece, PieceType type, Essence essence);
@@ -70,18 +77,26 @@ private:
     void calculateMoves(Piece* curPiece);
     void calculateMoves(Piece* curPiece, Mobility* curMobility, Movement* prevMove, PieceMovement* pin);
     Movement* calculateMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove, PieceMovement* pin);
+    void calculateVirtualMoves(Piece* curPiece, Mobility* curMobility);
+    Movement* calculateVirtualMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove, PinArgs* pinArgs);
     Movement* createMove(Piece* curPiece, Mobility* curMobility, Movement* prevMove);
     void validateMoves(PieceColor owner);
     void validateMoves(Piece* curPiece, PieceMovement* pin);
     void validateMove(Piece* curPiece, Movement* curMovement, PieceMovement* pin);
     bool getValidity(Piece* curPiece, Movement* curMovement, PieceMovement* pin);
     void removeMoves(Piece* curPiece);
+    void removeVirtualMoves(Piece* curPiece, Movement* curMovement);
     void calculateInspiringMoves(Piece* inspiredPiece);
     void removeInspiringMoves(Piece* inspiredPiece);
     void cutMovement(PieceMovement* curPieceMovement);
     void cutMovement(Piece* curPiece, Movement* curMovement);
     std::list<LegalMove> getLegalMoves(Piece* curPiece);
     void printMoves(Piece* curPiece);
+    void printVirtualMoves(Piece* curPiece);
+    void makePins(Square* curSquare);
+    void removePins(Square* curSquare);
+    void unblockPins(Square* curSquare);
+    void blockPins(Square* curSquare);
 };
 
 #endif

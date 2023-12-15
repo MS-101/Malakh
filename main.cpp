@@ -12,10 +12,8 @@ int main() {
     AI* ai = new AI();
     */
 
-    /*
-    FILE* myFile = freopen("output.txt", "w", stdout);
-    LegalMove bestMove = ai->calculateBestMove(board, 2, false);
-    */
+    // FILE* myFile = freopen("output.txt", "w", stdout);
+    // LegalMove bestMove = ai->calculateBestMove(board, 3, true);
 
     return 0;
 }

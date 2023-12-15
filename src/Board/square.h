@@ -10,6 +10,7 @@ public:
 
     Piece* occupyingPiece = nullptr;
     std::list<PieceMovement*> movements;
+    std::list<PieceMovement*> virtualMovements;
     int x, y;
 };
 

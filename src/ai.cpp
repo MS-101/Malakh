@@ -171,8 +171,7 @@ int AI::minimax(Board* board, LegalMove move, PieceColor playerColor, SearchArgs
 	std::cout << "{" << std::endl;
 	*/
 
-	std::vector<LegalMove> legalMoves = board->getLegalMoves(board->curTurn);
-	for (const LegalMove& move : legalMoves) {
+	for (const LegalMove& move : board->getLegalMoves(board->curTurn)) {
 		int value = minimax(board, move, playerColor, searchArgs, performanceArgs, debug);
 
 		if (maximizingPlayer) {
@@ -274,7 +273,7 @@ PieceEvaluation AI::evaluatePiece(Piece* piece, Piece* king)
 
 	int mobilities = 0;
 
-	for (Movement* move : piece->availableMoves) {
+	for (Movement* move : piece->movements) {
 		Movement* curMove = move;
 		while (curMove != nullptr) {
 			if (curMove->legal)
