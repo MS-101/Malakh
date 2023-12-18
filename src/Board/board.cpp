@@ -108,9 +108,9 @@ void Board::initBoard(Essence whitePawnEssence, Essence whiteRookEssence, Essenc
 
     for each (Piece* piece in blackPieces)
         removePiece(piece);
-    
+
     int pawnCount = 8;
-    
+
     // White pieces
     for (int pawnIterator = 0; pawnIterator < pawnCount; pawnIterator++)
         addPiece(new Piece(Pawn, White, whitePawnEssence), pawnIterator, 6);
@@ -875,7 +875,7 @@ PieceMovement* Board::getPin(Piece* curPiece)
 
                 Square* pinOrigin = squares[curMovement->y][curMovement->x];
                 auto pinIt = std::find_if(pinOrigin->virtualMovements.begin(), pinOrigin->virtualMovements.end(), [&](PieceMovement* curMovement) -> bool {
-                    return curMovement->movement->mobility == virtualMovement->movement->mobility;
+                    return curMovement->piece == virtualMovement->piece && curMovement->movement->mobility == virtualMovement->movement->mobility;
                 });
                 PieceMovement* pin = *pinIt;
                 
@@ -898,8 +898,6 @@ PieceMovement* Board::getPin(Piece* curPiece)
                 if (pinArgs.kingHit) {
                     if (pinArgs.pinnedCount == 1)
                         return pin;
-                    else
-                        return nullptr;
                 }
             }
         }
@@ -973,8 +971,9 @@ void Board::removeVirtualMoves(Piece* curPiece, Movement* curMovement)
         delete prevMovement;
     }
 
+    // pinned piece is no longer pinned by this movement, but may be pinned by another piece
     if (pinArgs.kingHit && pinArgs.pinnedCount == 1 && pinArgs.pinnedPiece->color != curPiece->color)
-        validateMoves(pinArgs.pinnedPiece, nullptr);
+        validateMoves(pinArgs.pinnedPiece, getPin(pinArgs.pinnedPiece));
 }
 
 void Board::cutMovement(Piece* curPiece, Movement* curMovement)
@@ -991,6 +990,20 @@ void Board::cutMovement(Piece* curPiece, Movement* curMovement)
         if (targetPieceMovementIt != targetSquare->movements.end()) {
             PieceMovement* targetPieceMovement = *targetPieceMovementIt;
             targetSquare->movements.remove(targetPieceMovement);
+
+            if (targetPiece != nullptr && targetPiece->type == King && targetPiece->color != curPiece->color && (curMovement->mobility->type == Attack || curMovement->mobility->type == AttackMove)) {
+                checks.remove(targetPieceMovement);
+
+                if (checks.size() == 0) {
+                    if (whiteCheck) {
+                        whiteCheck = false;
+                        validateMoves(targetPiece->color);
+                    } else {
+                        blackCheck = false;
+                        validateMoves(targetPiece->color);
+                    }
+                }
+            }
 
             delete targetPieceMovement;
         }
@@ -1022,13 +1035,16 @@ void Board::cutMovement(Piece* curPiece, Movement* curMovement)
 
             if (targetPiece != nullptr && targetPiece->color != curPiece->color) {
                 // revalidate moves if I was attacking a piece (possible pin)
+                /*
                 PieceMovement* targetPin = getPin(targetPiece);
                 validateMoves(targetPiece, targetPin);
+                */
 
                 // continute movement calculation of cowardly moves if I was previously attacking opponent piece
                 if (!std::any_of(targetSquare->movements.begin(), targetSquare->movements.end(), [targetPiece](PieceMovement* curPieceMovement) {
                     return (curPieceMovement->movement->mobility->type == Attack || curPieceMovement->movement->mobility->type == AttackMove) && curPieceMovement->piece->color != targetPiece->color;
                 })) {
+                    PieceMovement* targetPin = getPin(targetPiece);
                     for each (Mobility* targetMobility in targetPiece->getMobilities()) {
                         if (targetMobility->flags.cowardly)
                             calculateMoves(targetPiece, targetMobility, nullptr, targetPin);
@@ -1071,24 +1087,6 @@ void Board::movePiece(Piece* curPiece, int x, int y, bool hasMoved)
     mg_pcsqEval[curPiece->color] += Evaluation::mg_pcsq[curPiece->type][y_pcsq][curPiece->x];
     eg_pcsqEval[curPiece->color] += Evaluation::eg_pcsq[curPiece->type][y_pcsq][curPiece->x];
 
-    calculateMoves(curPiece);
-
-    // continue calculations of movements that were unblocked by moving this piece
-    std::list<PieceMovement*> sourceMovements = sourceSquare->movements;
-    for (auto it = sourceMovements.begin(); it != sourceMovements.end(); ++it) {
-        PieceMovement* curPieceMovement = *it;
-
-        if (curPieceMovement->piece != curPiece) {
-            PieceMovement* pin = getPin(curPieceMovement->piece);
-            calculateMoves(curPieceMovement->piece, curPieceMovement->movement->mobility, curPieceMovement->movement, pin);
-        }
-    }
-
-    // cut movements that were blocked by moving this piece
-    std::list<PieceMovement*> destinationMovements = destinationSquare->movements;
-    for (auto it = destinationMovements.begin(); it != destinationMovements.end(); ++it)
-        cutMovement(*it);
-
     if (curPiece->type == King) {
         removePins(sourceSquare);
         makePins(destinationSquare);
@@ -1109,10 +1107,29 @@ void Board::movePiece(Piece* curPiece, int x, int y, bool hasMoved)
 
             validateMoves(curPiece->color);
         }
-    } else {
-        unblockPins(sourceSquare);
-        blockPins(destinationSquare);
     }
+
+    unblockPins(sourceSquare);
+    blockPins(destinationSquare);
+
+    calculateMoves(curPiece);
+
+    // continue calculations of movements that were unblocked by moving this piece
+    for (PieceMovement* sourceMovement : sourceSquare->movements) {
+        if (sourceMovement->piece != curPiece) {
+            PieceMovement* pin = getPin(sourceMovement->piece);
+            calculateMoves(sourceMovement->piece, sourceMovement->movement->mobility, sourceMovement->movement, pin);
+        }
+    }
+
+    // cut movements that were blocked by moving this piece
+    for (PieceMovement* destinationMovement : destinationSquare->movements)
+        cutMovement(destinationMovement);
+}
+
+void Board::makeMove(int x1, int y1, int x2, int y2)
+{
+    makeMove(x1, y1, x2, y2, Queen);
 }
 
 void Board::makeMove(int x1, int y1, int x2, int y2, PieceType promotionType)
@@ -1561,7 +1578,7 @@ void Board::makePins(Square* curSquare)
 
             Square* pinOrigin = squares[curMovement->y][curMovement->x];
             auto pinIt = std::find_if(pinOrigin->virtualMovements.begin(), pinOrigin->virtualMovements.end(), [&](PieceMovement* curMovement) -> bool {
-                return curMovement->movement->mobility == virtualMovement->movement->mobility;
+                return curMovement->piece == virtualMovement->piece && curMovement->movement->mobility == virtualMovement->movement->mobility;
             });
             pinArgs.pin = *pinIt;
 
@@ -1636,7 +1653,7 @@ void Board::unblockPins(Square* curSquare)
 
         auto it = std::find_if(attackerPiece->virtualMovements.begin(), attackerPiece->virtualMovements.end(), [&](Movement* curMovement) -> bool {
             return curMovement->mobility == virtualMovement->movement->mobility;
-            });
+        });
 
         if (it != attackerPiece->virtualMovements.end()) {
             PinArgs pinArgs{};
@@ -1644,8 +1661,8 @@ void Board::unblockPins(Square* curSquare)
 
             Square* pinOrigin = squares[curMovement->y][curMovement->x];
             auto pinIt = std::find_if(pinOrigin->virtualMovements.begin(), pinOrigin->virtualMovements.end(), [&](PieceMovement* curMovement) -> bool {
-                return curMovement->movement->mobility == virtualMovement->movement->mobility;
-                });
+                return curMovement->piece == virtualMovement->piece && curMovement->movement->mobility == virtualMovement->movement->mobility;
+            });
             pinArgs.pin = *pinIt;
 
             while (curMovement != nullptr) {

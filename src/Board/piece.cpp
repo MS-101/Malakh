@@ -9,9 +9,25 @@ Piece::Piece(PieceType type, PieceColor color, Essence essence)
 
 Piece::~Piece()
 {
-    for (auto move : movements)
-        delete move;
+    for (Movement* move : movements) {
+        Movement* curMove = move;
+        while (curMove != nullptr) {
+            Movement* prevMove = curMove;
+            curMove = curMove->next;
+            delete prevMove;
+        }
+    }
     movements.clear();
+
+    for (Movement* virtualMove : virtualMovements) {
+        Movement* curMove = virtualMove;
+        while (curMove != nullptr) {
+            Movement* prevMove = curMove;
+            curMove = curMove->next;
+            delete prevMove;
+        }
+    }
+    virtualMovements.clear();
 }
 
 std::unordered_map<PieceType, std::unordered_map<Essence, std::list<Mobility*>>> Piece::mobilities = {

@@ -17,8 +17,8 @@ struct MoveRecord {
 
 struct PinArgs {
     bool kingHit = false;
-    PieceMovement* pin;
-    Piece* pinnedPiece;
+    PieceMovement* pin = nullptr;
+    Piece* pinnedPiece = nullptr;
     int pinnedCount = 0;
 };
 
@@ -58,6 +58,7 @@ public:
 
     void initBoard(Essence whitePawnEssence, Essence whiteRookEssence, Essence whiteKnightEssence, Essence whiteBishopEssence,
         Essence blackPawnEssence, Essence blackRookEssence, Essence blackKnightEssence, Essence blackBishopEssence);
+    void makeMove(int x1, int y1, int x2, int y2);
     void makeMove(int x1, int y1, int x2, int y2, PieceType promotionType);
     void unmakeMove();
     std::vector<LegalMove> getLegalMoves(PieceColor color);

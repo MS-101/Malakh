@@ -126,6 +126,12 @@ int AI::minimax(Board* board, LegalMove move, PieceColor playerColor, SearchArgs
 
 	Transposition transposition = cache->get(board->hash);
 	if (transposition.depth >= searchArgs.maxDepth - searchArgs.curDepth) {
+		/*
+		for (int i = 0; i < searchArgs.curDepth; i++)
+			std::cout << "    ";
+		std::cout << "board->unmakeMove();" << std::endl;
+		*/
+
 		board->unmakeMove();
 		return transposition.value;
 	}

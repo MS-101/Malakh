@@ -10,7 +10,11 @@ Square::~Square()
     if (occupyingPiece != nullptr)
         delete occupyingPiece;
 
-    for (auto movementIterator = movements.begin(); movementIterator != movements.end(); ++movementIterator)
-        delete *movementIterator;
+    for (PieceMovement* movement : movements)
+        delete movement;
     movements.clear();
+
+    for (PieceMovement* virtualMovement : virtualMovements)
+        delete virtualMovement;
+    virtualMovements.clear();
 }

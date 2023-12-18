@@ -76,21 +76,22 @@ bool uci::parseCommand(std::string command) {
         else if (name == "BlackBishop")
             blackBishopEssence = stringToEssence(value);
     } else if (tokens[0] == "ucinewgame") {
-        curBoard = new Board(whitePawnEssence, whiteRookEssence, whiteKnightEssence, whiteBishopEssence,
+        delete board;
+        board = new Board(whitePawnEssence, whiteRookEssence, whiteKnightEssence, whiteBishopEssence,
             blackPawnEssence, blackRookEssence, blackKnightEssence, blackBishopEssence);
     } else if (tokens[0] == "legalmoves") {
-        std::vector<LegalMove> legalMoves = curBoard->getLegalMoves(curBoard->curTurn);
+        std::vector<LegalMove> legalMoves = board->getLegalMoves(board->curTurn);
 
         if (!legalMoves.empty()) {
             std::string legalMovesStr = "";
             for each (LegalMove legalMove in legalMoves)
-                legalMovesStr += " " + legalMoveToString(legalMove, curBoard->curTurn);
+                legalMovesStr += " " + legalMoveToString(legalMove, board->curTurn);
 
             std::cout << "legalmoves" + legalMovesStr + '\n';
         } else {
-            if (curBoard->curTurn == White && curBoard->whiteCheck)
+            if (board->curTurn == White && board->whiteCheck)
                 std::cout << "result Black" << std::endl;
-            else if (curBoard->curTurn == Black && curBoard->blackCheck)
+            else if (board->curTurn == Black && board->blackCheck)
                 std::cout << "result White" << std::endl;
             else
                 std::cout << "result Stalemate" << std::endl;
@@ -108,24 +109,31 @@ bool uci::parseCommand(std::string command) {
                     char promotionChar = move[4] - 32;
                     PieceType promotionType = (PieceType)promotionChar;
 
-                    curBoard->makeMove(sourceX, sourceY, destinationX, destinationY, promotionType);
+                    board->makeMove(sourceX, sourceY, destinationX, destinationY, promotionType);
                 }
             }
         }
     } else if (tokens[0] == "go") {
-        std::vector<LegalMove> legalMoves = curBoard->getLegalMoves(curBoard->curTurn);
-        if (!legalMoves.empty()) {
-            Board* newBoard = new Board(curBoard); // easier to debug when app crashes
-            LegalMove bestMove = ai->calculateBestMove(newBoard, 2, false);
-            delete newBoard;
-            std::cout << "bestmove " << legalMoveToString(bestMove, curBoard->curTurn) << std::endl;
-        } else {
-            if (curBoard->curTurn == White && curBoard->whiteCheck)
-                std::cout << "result Black" << std::endl;
-            else if (curBoard->curTurn == Black && curBoard->blackCheck)
-                std::cout << "result White" << std::endl;
-            else
-                std::cout << "result Stalemate" << std::endl;
+        if (tokens[1] == "depth") {
+            int depth = stoi(tokens[2]);
+
+            board->printBoard();
+
+            std::vector<LegalMove> legalMoves = board->getLegalMoves(board->curTurn);
+            if (!legalMoves.empty()) {
+                Board* newBoard = new Board(board); // easier to debug when app crashes
+                LegalMove bestMove = ai->calculateBestMove(newBoard, depth, false);
+                delete newBoard;
+                std::cout << "bestmove " << legalMoveToString(bestMove, board->curTurn) << std::endl;
+            }
+            else {
+                if (board->curTurn == White && board->whiteCheck)
+                    std::cout << "result Black" << std::endl;
+                else if (board->curTurn == Black && board->blackCheck)
+                    std::cout << "result White" << std::endl;
+                else
+                    std::cout << "result Stalemate" << std::endl;
+            }
         }
     } else if (tokens[0] == "quit") {
         return true;
