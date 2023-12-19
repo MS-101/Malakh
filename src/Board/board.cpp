@@ -887,9 +887,11 @@ PieceMovement* Board::getPin(Piece* curPiece)
                         if (targetPiece->type == King && targetPiece->color == curPiece->color) {
                             pinArgs.kingHit = true;
                             break;
+                        } else if (targetPiece == curPiece) {
+                            pinArgs.pinnedCount++;
+                        } else {
+                            break;
                         }
-                        
-                        pinArgs.pinnedCount++;
                     }
 
                     curMovement = curMovement->next;

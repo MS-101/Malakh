@@ -76,15 +76,11 @@ std::unordered_map<PieceType, std::unordered_map<Essence, std::list<Mobility*>>>
             new Mobility(AttackMove, MobilityFlags(), +1, +2, +0, +0, 1),
             new Mobility(AttackMove, MobilityFlags(), -1, +2, +0, +0, 1),
             new Mobility(AttackMove, MobilityFlags(), -2, +1, +0, +0, 1),
-            // camel hops
-            new Mobility(AttackMove, MobilityFlags(), -3, -1, +0, +0, 1),
-            new Mobility(AttackMove, MobilityFlags(), -1, -3, +0, +0, 1),
-            new Mobility(AttackMove, MobilityFlags(), +1, -3, +0, +0, 1),
-            new Mobility(AttackMove, MobilityFlags(), +3, -1, +0, +0, 1),
-            new Mobility(AttackMove, MobilityFlags(), +3, +1, +0, +0, 1),
-            new Mobility(AttackMove, MobilityFlags(), +1, +3, +0, +0, 1),
-            new Mobility(AttackMove, MobilityFlags(), -1, +3, +0, +0, 1),
-            new Mobility(AttackMove, MobilityFlags(), -3, +1, +0, +0, 1)
+            // additional hops
+            new Mobility(AttackMove, MobilityFlags(), -3, +0, +0, +0, 1),
+            new Mobility(AttackMove, MobilityFlags(), +3, +0, +0, +0, 1),
+            new Mobility(AttackMove, MobilityFlags(), +0, -3, +0, +0, 1),
+            new Mobility(AttackMove, MobilityFlags(), +0, +3, +0, +0, 1),
         }},
         {Blue, {
             // knight hops

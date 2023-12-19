@@ -106,18 +106,37 @@ bool uci::parseCommand(std::string command) {
                     int sourceY = 7 - (move[1] - '1');
                     int destinationX = move[2] - 'a';
                     int destinationY = 7 - (move[3] - '1');
-                    char promotionChar = move[4] - 32;
-                    PieceType promotionType = (PieceType)promotionChar;
+
+                    PieceType promotionType = Pawn;
+                    if (move.length() == 5) {
+                        char promotionChar = move[4];
+                        switch (promotionChar)
+                        {
+                        case 'q':
+                            promotionType = Queen;
+                            break;
+                        case 'r':
+                            promotionType = Rook;
+                            break;
+                        case 'b':
+                            promotionType = Bishop;
+                            break;
+                        case 'n':
+                            promotionType = Knight;
+                            break;
+                        }
+                    }
 
                     board->makeMove(sourceX, sourceY, destinationX, destinationY, promotionType);
+
+                    if (board->whiteCheck || board->blackCheck)
+                        std::cout << "check" << std::endl;
                 }
             }
         }
     } else if (tokens[0] == "go") {
         if (tokens[1] == "depth") {
             int depth = stoi(tokens[2]);
-
-            board->printBoard();
 
             std::vector<LegalMove> legalMoves = board->getLegalMoves(board->curTurn);
             if (!legalMoves.empty()) {
