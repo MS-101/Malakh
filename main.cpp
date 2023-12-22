@@ -3,6 +3,8 @@
 
 void testEngine()
 {
+    initZobrist();
+
     Board* board = new Board(Classic, Classic, Classic, Classic, Classic, Classic, Classic, Classic);
     AI* ai = new AI();
 
@@ -10,6 +12,10 @@ void testEngine()
     board->makeMove(4, 1, 4, 3); // e7-e5
     board->makeMove(6, 7, 5, 5); // Ng1-f3
     board->makeMove(3, 1, 3, 3); // d7-d5
+
+    LegalMove bestMove = ai->calculateBestMove(new Board(board), 4, true);
+
+    /*
     board->makeMove(5, 5, 4, 3); // Nf3-e5
     board->makeMove(3, 3, 4, 4); // d5xe4
     board->makeMove(5, 7, 2, 4); // Bf1-c4
@@ -35,9 +41,10 @@ void testEngine()
     board->makeMove(4, 7, 6, 7); // Ke1-g1
     board->makeMove(1, 4, 2, 5); // Bb4xc3
     board->makeMove(1, 6, 2, 5); // b2-c3
+    */
 
     // FILE* myFile = freopen("output.txt", "w", stdout);
-    LegalMove bestMove = ai->calculateBestMove(new Board(board), 2, true);
+    
 }
 
 void testUCI()
@@ -46,22 +53,19 @@ void testUCI()
 
     api->parseCommand("uci");
     api->parseCommand("isready");
-    api->parseCommand("setoption name WhitePawn value Classic");
-    api->parseCommand("setoption name WhiteKnight value Classic");
-    api->parseCommand("setoption name WhiteBishop value Classic");
-    api->parseCommand("setoption name WhiteRook value Classic");
-    api->parseCommand("setoption name BlackPawn value Classic");
-    api->parseCommand("setoption name BlackKnight value Classic");
-    api->parseCommand("setoption name BlackBishop value Classic");
-    api->parseCommand("setoption name BlackRook value Classic");
+    api->parseCommand("setoption name WhitePawn value Red");
+    api->parseCommand("setoption name WhiteKnight value Blue");
+    api->parseCommand("setoption name WhiteBishop value Blue");
+    api->parseCommand("setoption name WhiteRook value Blue");
+    api->parseCommand("setoption name BlackPawn value Red");
+    api->parseCommand("setoption name BlackKnight value Blue");
+    api->parseCommand("setoption name BlackBishop value Blue");
+    api->parseCommand("setoption name BlackRook value Blue");
     api->parseCommand("ucinewgame");
-    api->parseCommand("position curpos moves f2f4q");
-    api->parseCommand("position curpos moves d7d5");
-    api->parseCommand("position curpos moves e1f2");
-    api->parseCommand("position curpos moves d8d6");
-    api->parseCommand("position curpos moves f2e3");
+    api->parseCommand("position curpos moves e2e4");
+    api->parseCommand("position curpos moves g8f6");
 
-    FILE* myFile = freopen("output.txt", "w", stdout);
+    // FILE* myFile = freopen("output.txt", "w", stdout);
     api->parseCommand("go depth 2");
 }
 
@@ -72,8 +76,6 @@ void startUCI()
 }
 
 int main() {
-    initZobrist();
-
     startUCI();
     // testUCI();
     // testEngine();

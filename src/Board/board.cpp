@@ -1351,11 +1351,41 @@ void Board::unmakeMove()
 
     if (lastMoveRecord.performedCapture) {
         Piece* capturedPiece;
+        Essence essence = Classic;
 
-        if (curTurn == White)
-            capturedPiece = new Piece(lastMoveRecord.capturedType, White, whitePawnEssence);
-        else
-            capturedPiece = new Piece(lastMoveRecord.capturedType, Black, blackPawnEssence);
+        if (curTurn == White) {
+            switch (lastMoveRecord.capturedType) {
+            case Pawn:
+                essence = whitePawnEssence;
+                break;
+            case Rook:
+                essence = whiteRookEssence;
+                break;
+            case Knight:
+                essence = whiteKnightEssence;
+                break;
+            case Bishop:
+                essence = whiteBishopEssence;
+                break;
+            }
+        } else {
+            switch (lastMoveRecord.capturedType) {
+            case Pawn:
+                essence = blackPawnEssence;
+                break;
+            case Rook:
+                essence = blackRookEssence;
+                break;
+            case Knight:
+                essence = blackKnightEssence;
+                break;
+            case Bishop:
+                essence = blackBishopEssence;
+                break;
+            }
+        }
+
+        capturedPiece = new Piece(lastMoveRecord.capturedType, curTurn, essence);
         capturedPiece->hasMoved = lastMoveRecord.capturedHasMoved;
 
         if (lastMoveRecord.hadGhost && lastMoveRecord.x2 == lastMoveRecord.ghostX && lastMoveRecord.y2 == lastMoveRecord.ghostY)

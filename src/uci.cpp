@@ -54,6 +54,7 @@ bool uci::parseCommand(std::string command) {
 
         std::cout << "uciok\n";
     } else if (tokens[0] == "isready") {
+        initZobrist();
         std::cout << "readyok\n";
     } else if (tokens[0] == "setoption") {
         std::string name = tokens[2];
@@ -253,6 +254,8 @@ void uci::sendMobilities(Piece* curPiece)
                 + " " + std::to_string(curMobility->limit) + "\n";
         }
     }
+
+    delete curPiece;
 }
 
 std::string uci::legalMoveToString(LegalMove value, PieceColor color)

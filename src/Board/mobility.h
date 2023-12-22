@@ -10,9 +10,9 @@
 enum MovementType { Move, Attack, AttackMove };
 
 /*
-* Uninterruptibe creates a chain where every move is ilegal except the last move. If the movement is limited only the move on that limit can be legal. If the movement is unlimited no move can be legal. // DONE
-* Initiative moves can only be performed only if the piece has not moved yet. // DONE
-* Cowardly is a move that can be cut by hostile attacks (if piece itself is attacked, cowardly moves cannot be performed). // DONE
+* Uninterruptibe creates a chain where every move is ilegal except the last move. If the movement is limited only the move on that limit can be legal. If the movement is unlimited no move can be legal.
+* Initiative moves can only be performed only if the piece has not moved yet.
+* Cowardly is a move that can be cut by hostile attacks (if piece itself is attacked, cowardly moves cannot be performed).
 * Inspiring can only be performed if piece that this move is affecting has not moved yet. After this move is performed place the affected piece behind it.
 * Hasty leaves a "ghost" piece behind itself. This piece can only be attacked by "observant" hostile moves.
 * Vigilant can capture "ghost" pieces left behind by "hasty" moves.
