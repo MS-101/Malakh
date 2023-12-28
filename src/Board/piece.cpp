@@ -30,7 +30,7 @@ Piece::~Piece()
     virtualMovements.clear();
 }
 
-std::unordered_map<PieceType, std::unordered_map<Essence, std::list<Mobility*>>> Piece::mobilities = {
+std::unordered_map<PieceType, std::unordered_map<Essence, std::vector<Mobility*>>> Piece::mobilities = {
     {Pawn, {
         {Classic, {
             new Mobility(Move, MobilityFlags(), +0, +1, +0, +0, 1),
@@ -198,7 +198,7 @@ std::unordered_map<PieceType, std::unordered_map<Essence, std::list<Mobility*>>>
     }}
 };
 
-std::list<Mobility*> Piece::getMobilities()
+std::vector<Mobility*> Piece::getMobilities()
 {
     return mobilities[type][essence];
 }

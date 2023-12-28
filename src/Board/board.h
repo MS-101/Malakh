@@ -22,10 +22,21 @@ struct PinArgs {
     int pinnedCount = 0;
 };
 
+struct EssenceConfig {
+    Essence whitePawnEssence = Classic;
+    Essence whiteRookEssence = Classic;
+    Essence whiteKnightEssence = Classic;
+    Essence whiteBishopEssence = Classic;
+    Essence blackPawnEssence = Classic;
+    Essence blackRookEssence = Classic;
+    Essence blackKnightEssence = Classic;
+    Essence blackBishopEssence = Classic;
+};
+
 class Board {
 public:
     Board();
-    Board(Essence whitePawnEssence, Essence whiteRookEssence, Essence whiteKnightEssence, Essence whiteBishopEssence, Essence blackPawnEssence, Essence blackRookEssence, Essence blackKnightEssence, Essence blackBishopEssence);
+    Board(EssenceConfig essenceConfig);
     Board(Board* board);
     ~Board();
 
@@ -45,9 +56,6 @@ public:
     
     Ghost* curGhost = nullptr;
 
-    Essence whitePawnEssence = Classic, whiteKnightEssence = Classic, whiteBishopEssence = Classic, whiteRookEssence = Classic;
-    Essence blackPawnEssence = Classic, blackKnightEssence = Classic, blackBishopEssence = Classic, blackRookEssence = Classic;
-
     std::stack<struct MoveRecord> moveHistory;
 
     unsigned long long hash = 0;
@@ -56,8 +64,7 @@ public:
     std::unordered_map<PieceColor, int> mg_pcsqEval;
     std::unordered_map<PieceColor, int> eg_pcsqEval;
 
-    void initBoard(Essence whitePawnEssence, Essence whiteRookEssence, Essence whiteKnightEssence, Essence whiteBishopEssence,
-        Essence blackPawnEssence, Essence blackRookEssence, Essence blackKnightEssence, Essence blackBishopEssence);
+    void initBoard(EssenceConfig essenceConfig);
     void makeMove(int x1, int y1, int x2, int y2);
     void makeMove(int x1, int y1, int x2, int y2, PieceType promotionType);
     void unmakeMove();
@@ -66,6 +73,7 @@ public:
     void printMoves();
     void printVirtualMoves();
 private:
+    EssenceConfig essenceConfig{};
     bool initialized = false;
     void setGhost(Ghost* newGhost);
     PieceMovement* getPin(Piece* curPiece);

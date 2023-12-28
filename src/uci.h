@@ -12,8 +12,7 @@ public:
 private:
 	AI* ai = new AI();
 	Board* board = nullptr;
-	Essence whitePawnEssence = Classic; Essence whiteRookEssence = Classic; Essence whiteKnightEssence = Classic; Essence whiteBishopEssence = Classic;
-	Essence blackPawnEssence = Classic; Essence blackRookEssence = Classic; Essence blackKnightEssence = Classic; Essence blackBishopEssence = Classic;
+	EssenceConfig essenceConfig{};
 	void sendMobilities(Piece* curPiece);
 	PieceType uci::stringToPieceType(std::string value);
 	std::string uci::pieceTypeToString(PieceType value);

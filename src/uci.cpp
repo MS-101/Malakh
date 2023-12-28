@@ -61,25 +61,24 @@ bool uci::parseCommand(std::string command) {
         std::string value = tokens[4];
 
         if (name == "WhitePawn")
-            whitePawnEssence = stringToEssence(value);
+            essenceConfig.whitePawnEssence = stringToEssence(value);
         else if (name == "WhiteRook")
-            whiteRookEssence = stringToEssence(value);
+            essenceConfig.whiteRookEssence = stringToEssence(value);
         else if (name == "WhiteKnight")
-            whiteKnightEssence = stringToEssence(value);
+            essenceConfig.whiteKnightEssence = stringToEssence(value);
         else if (name == "WhiteBishop")
-            whiteBishopEssence = stringToEssence(value);
+            essenceConfig.whiteBishopEssence = stringToEssence(value);
         else if (name == "BlackPawn")
-            blackPawnEssence = stringToEssence(value);
+            essenceConfig.blackPawnEssence = stringToEssence(value);
         else if (name == "BlackRook")
-            blackRookEssence = stringToEssence(value);
+            essenceConfig.blackRookEssence = stringToEssence(value);
         else if (name == "BlackKnight")
-            blackKnightEssence = stringToEssence(value);
+            essenceConfig.blackKnightEssence = stringToEssence(value);
         else if (name == "BlackBishop")
-            blackBishopEssence = stringToEssence(value);
+            essenceConfig.blackBishopEssence = stringToEssence(value);
     } else if (tokens[0] == "ucinewgame") {
         delete board;
-        board = new Board(whitePawnEssence, whiteRookEssence, whiteKnightEssence, whiteBishopEssence,
-            blackPawnEssence, blackRookEssence, blackKnightEssence, blackBishopEssence);
+        board = new Board(essenceConfig);
     } else if (tokens[0] == "legalmoves") {
         std::vector<LegalMove> legalMoves = board->getLegalMoves(board->curTurn);
 
@@ -232,7 +231,7 @@ void uci::sendMobilities(Piece* curPiece)
     std::string pieceType = pieceTypeToString(curPiece->type);
     std::string essence = essenceToString(curPiece->essence);
 
-    for each (Mobility * curMobility in curPiece->getMobilities()) {
+    for each (Mobility* curMobility in curPiece->getMobilities()) {
         MobilityFlags flags = curMobility->flags;
         if (!flags.initiative && !flags.cowardly && !flags.hasty && !flags.inspiring && !flags.uninterruptible) {
             std::string movementType = "";

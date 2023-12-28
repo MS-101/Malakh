@@ -5,7 +5,7 @@ void testEngine()
 {
     initZobrist();
 
-    Board* board = new Board(Classic, Classic, Classic, Classic, Classic, Classic, Classic, Classic);
+    Board* board = new Board(EssenceConfig{});
     AI* ai = new AI();
 
     board->makeMove(4, 6, 4, 4); // e2-e4
@@ -13,7 +13,7 @@ void testEngine()
     board->makeMove(6, 7, 5, 5); // Ng1-f3
     board->makeMove(3, 1, 3, 3); // d7-d5
 
-    LegalMove bestMove = ai->calculateBestMove(new Board(board), 4, true);
+    LegalMove bestMove = ai->calculateBestMove(new Board(board), 3, true);
 
     /*
     board->makeMove(5, 5, 4, 3); // Nf3-e5

@@ -9,45 +9,33 @@ Board::Board()
             squares[cur_y][cur_x] = new Square(cur_x, cur_y);
 }
 
-Board::Board(Essence whitePawnEssence, Essence whiteRookEssence, Essence whiteKnightEssence, Essence whiteBishopEssence,
-    Essence blackPawnEssence, Essence blackRookEssence, Essence blackKnightEssence, Essence blackBishopEssence) : Board()
+Board::Board(EssenceConfig EssenceConfig) : Board()
 {
-    initBoard(whitePawnEssence, whiteRookEssence, whiteKnightEssence, whiteBishopEssence,
-        blackPawnEssence, blackRookEssence, blackKnightEssence, blackBishopEssence);
+    initBoard(essenceConfig);
 }
 
 Board::Board(Board* board) : Board()
 {
-    whitePawnEssence = board->whitePawnEssence;
-    whiteKnightEssence = board->whiteKnightEssence;
-    whiteBishopEssence = board->whiteBishopEssence;
-    whiteRookEssence = board->whiteRookEssence;
-    blackPawnEssence = board->blackPawnEssence;
-    blackKnightEssence = board->blackKnightEssence;
-    blackBishopEssence = board->blackBishopEssence;
-    blackRookEssence = board->blackRookEssence;
+    essenceConfig = board->essenceConfig;
 
     Ghost* ghost = board->curGhost;
     Piece* ghostParent = nullptr;
 
-    std::list<Piece*> whitePieces = board->whitePieces;
-    for (auto it = whitePieces.begin(); it != whitePieces.end(); ++it) {
-        Piece* newPiece = copyPiece(*it);
+    for each (Piece* whitePiece in board->whitePieces) {
+        Piece* newPiece = copyPiece(whitePiece);
 
         if (ghost != nullptr && (newPiece->x == ghost->parent->x && newPiece->y == ghost->parent->y))
             ghostParent = newPiece;
     }
 
-    std::list<Piece*> blackPieces = board->blackPieces;
-    for (auto it = blackPieces.begin(); it != blackPieces.end(); ++it) {
-        Piece* newPiece = copyPiece(*it);
+    for each (Piece* blackPiece in board->blackPieces) {
+        Piece* newPiece = copyPiece(blackPiece);
 
         if (ghost != nullptr && (newPiece->x == ghost->parent->x && newPiece->y == ghost->parent->y))
             ghostParent = newPiece;
     }
 
-    for (auto it = checks.begin(); it != checks.end(); ++it) {
-        PieceMovement* check = *it;
+    for each (PieceMovement* check in board->checks) {
         Square* square = squares[check->movement->y][check->movement->x];
         auto checkIt = std::find(square->movements.begin(), square->movements.end(), check);
 
@@ -91,17 +79,9 @@ Board::~Board()
         delete curGhost;
 }
 
-void Board::initBoard(Essence whitePawnEssence, Essence whiteRookEssence, Essence whiteKnightEssence, Essence whiteBishopEssence,
-    Essence blackPawnEssence, Essence blackRookEssence, Essence blackKnightEssence, Essence blackBishopEssence)
+void Board::initBoard(EssenceConfig essenceConfig)
 {
-    this->whitePawnEssence = whitePawnEssence;
-    this->whiteRookEssence = whiteRookEssence;
-    this->whiteKnightEssence = whiteKnightEssence;
-    this->whiteBishopEssence = whiteBishopEssence;
-    this->blackPawnEssence = blackPawnEssence;
-    this->blackRookEssence = blackRookEssence;
-    this->blackKnightEssence = blackKnightEssence;
-    this->blackBishopEssence = blackBishopEssence;
+    this->essenceConfig = essenceConfig;
 
     for each (Piece* piece in whitePieces)
         removePiece(piece);
@@ -113,29 +93,29 @@ void Board::initBoard(Essence whitePawnEssence, Essence whiteRookEssence, Essenc
 
     // White pieces
     for (int pawnIterator = 0; pawnIterator < pawnCount; pawnIterator++)
-        addPiece(new Piece(Pawn, White, whitePawnEssence), pawnIterator, 6);
+        addPiece(new Piece(Pawn, White, essenceConfig.whitePawnEssence), pawnIterator, 6);
 
-    addPiece(new Piece(Rook, White, whiteRookEssence), 0, 7);
-    addPiece(new Piece(Knight, White, whiteKnightEssence), 1, 7);
-    addPiece(new Piece(Bishop, White, whiteBishopEssence), 2, 7);
+    addPiece(new Piece(Rook, White, essenceConfig.whiteRookEssence), 0, 7);
+    addPiece(new Piece(Knight, White, essenceConfig.whiteKnightEssence), 1, 7);
+    addPiece(new Piece(Bishop, White, essenceConfig.whiteBishopEssence), 2, 7);
     addPiece(new Piece(Queen, White, Classic), 3, 7);
     addPiece(new Piece(King, White, Classic), 4, 7);
-    addPiece(new Piece(Bishop, White, whiteBishopEssence), 5, 7);
-    addPiece(new Piece(Knight, White, whiteKnightEssence), 6, 7);
-    addPiece(new Piece(Rook, White, whiteRookEssence), 7, 7);
+    addPiece(new Piece(Bishop, White, essenceConfig.whiteBishopEssence), 5, 7);
+    addPiece(new Piece(Knight, White, essenceConfig.whiteKnightEssence), 6, 7);
+    addPiece(new Piece(Rook, White, essenceConfig.whiteRookEssence), 7, 7);
 
     // Black pieces
     for (int pawnIterator = 0; pawnIterator < pawnCount; pawnIterator++)
-        addPiece(new Piece(Pawn, Black, blackPawnEssence), pawnIterator, 1);
+        addPiece(new Piece(Pawn, Black, essenceConfig.blackPawnEssence), pawnIterator, 1);
 
-    addPiece(new Piece(Rook, Black, blackRookEssence), 0, 0);
-    addPiece(new Piece(Knight, Black, blackKnightEssence), 1, 0);
-    addPiece(new Piece(Bishop, Black, blackBishopEssence), 2, 0);
+    addPiece(new Piece(Rook, Black, essenceConfig.blackRookEssence), 0, 0);
+    addPiece(new Piece(Knight, Black, essenceConfig.blackKnightEssence), 1, 0);
+    addPiece(new Piece(Bishop, Black, essenceConfig.blackBishopEssence), 2, 0);
     addPiece(new Piece(Queen, Black, Classic), 3, 0);
     addPiece(new Piece(King, Black, Classic), 4, 0);
-    addPiece(new Piece(Bishop, Black, blackBishopEssence), 5, 0);
-    addPiece(new Piece(Knight, Black, blackKnightEssence), 6, 0);
-    addPiece(new Piece(Rook, Black, blackRookEssence), 7, 0);
+    addPiece(new Piece(Bishop, Black, essenceConfig.blackBishopEssence), 5, 0);
+    addPiece(new Piece(Knight, Black, essenceConfig.blackKnightEssence), 6, 0);
+    addPiece(new Piece(Rook, Black, essenceConfig.blackRookEssence), 7, 0);
 
     calculateMoves();
     initialized = true;
@@ -170,8 +150,8 @@ bool Board::addPiece(Piece* curPiece, int x, int y)
 
     if (initialized) {
         // cut movements that were blocked by adding this piece
-        for (PieceMovement* movement : curSquare->movements)
-            cutMovement(movement);
+        for each (PieceMovement* curMovement in curSquare->movements)
+            cutMovement(curMovement);
 
         blockPins(curSquare);
     }
@@ -192,7 +172,7 @@ Piece* Board::copyPiece(Piece* piece)
     newPiece->hasMoved = piece->hasMoved;
     addPiece(newPiece, piece->x, piece->y);
 
-    for (Movement* move : piece->movements) {
+    for each (Movement* move in piece->movements) {
         Movement* prevMove = nullptr;
         Movement* curMove = move;
         bool isFirst = true;
@@ -215,7 +195,7 @@ Piece* Board::copyPiece(Piece* piece)
         }
     }
 
-    for (Movement* virtualMove : piece->virtualMovements) {
+    for each (Movement* virtualMove in piece->virtualMovements) {
         Movement* prevMove = nullptr;
         Movement* curMove = virtualMove;
         bool isFirst = true;
@@ -311,9 +291,8 @@ std::list<LegalMove> Board::getLegalMoves(Piece* curPiece)
 {
     std::list<LegalMove> decisions;
 
-    std::list<Movement*> availableMoves = curPiece->movements;
-    for (auto it = availableMoves.begin(); it != availableMoves.end(); ++it) {
-        Movement* curMove = *it;
+    for each (Movement* move in curPiece->movements) {
+        Movement* curMove = move;
 
         while (curMove != nullptr) {
             if (curMove->legal) {
@@ -368,11 +347,11 @@ std::list<LegalMove> Board::getLegalMoves(Piece* curPiece)
 
 void Board::calculateMoves()
 {
-    for (auto it = whitePieces.begin(); it != whitePieces.end(); ++it)
-        calculateMoves(*it);
+    for each (Piece* whitePiece in whitePieces)
+        calculateMoves(whitePiece);
 
-    for (auto it = blackPieces.begin(); it != blackPieces.end(); ++it)
-        calculateMoves(*it);
+    for each (Piece* blackPiece in blackPieces)
+        calculateMoves(blackPiece);
 }
 
 void Board::calculateMoves(Piece* curPiece)
@@ -381,10 +360,9 @@ void Board::calculateMoves(Piece* curPiece)
 
     PieceMovement* pin = getPin(curPiece);
 
-    std::list<Mobility*> mobilities = curPiece->getMobilities();
-    for (auto it = mobilities.begin(); it != mobilities.end(); ++it) {
-        calculateVirtualMoves(curPiece, *it);
-        calculateMoves(curPiece, *it, nullptr, pin);
+    for each (Mobility* curMobility in curPiece->getMobilities()) {
+        calculateVirtualMoves(curPiece, curMobility);
+        calculateMoves(curPiece, curMobility, nullptr, pin);
     }
 }
 
@@ -612,8 +590,8 @@ void Board::calculateInspiringMoves(Piece* inspiredPiece)
     else
         pieces = blackPieces;
 
-    for each (Piece * piece in pieces) {
-        for each (Mobility * mobility in piece->getMobilities()) {
+    for each (Piece* piece in pieces) {
+        for each (Mobility* mobility in piece->getMobilities()) {
             if (mobility->flags.inspiring) {
                 int inspiring_x = piece->x + mobility->flags.affected_x;
                 int inspiring_y = piece->y;
@@ -640,10 +618,10 @@ void Board::removeInspiringMoves(Piece* inspiredPiece)
     else
         pieces = blackPieces;
 
-    for each (Piece * piece in pieces) {
+    for each (Piece* piece in pieces) {
         std::list<Movement*> ilegalMoves;
 
-        for each (Movement * movement in piece->movements) {
+        for each (Movement* movement in piece->movements) {
             if (movement->mobility->flags.inspiring) {
                 int inspiring_x = piece->x + movement->mobility->flags.affected_x;
                 int inspiring_y = piece->y;
@@ -662,7 +640,7 @@ void Board::removeInspiringMoves(Piece* inspiredPiece)
 
         piece->movements.remove_if([&](Movement* movement) -> bool {
             return std::find(ilegalMoves.begin(), ilegalMoves.end(), movement) != ilegalMoves.end();
-            });
+        });
     }
 }
 
@@ -683,7 +661,7 @@ void Board::validateMoves(PieceColor owner)
 
 void Board::validateMoves(Piece* curPiece, PieceMovement* pin)
 {
-    for each (Movement *curMovement in curPiece->movements) {
+    for each (Movement* curMovement in curPiece->movements) {
         while (curMovement != nullptr) {
             validateMove(curPiece, curMovement, pin);
             curMovement = curMovement->next;
@@ -790,7 +768,7 @@ void Board::setGhost(Ghost* newGhost)
         delete curGhost;
         curGhost = newGhost;
 
-        for each (PieceMovement * curPieceMovement in curSquare->movements) {
+        for each (PieceMovement* curPieceMovement in curSquare->movements) {
             if (curPieceMovement->movement->mobility->flags.vigilant) {
                 PieceMovement* pin = getPin(curPieceMovement->piece);
                 validateMove(curPieceMovement->piece, curPieceMovement->movement, pin);
@@ -803,7 +781,7 @@ void Board::setGhost(Ghost* newGhost)
     if (newGhost != nullptr) {
         Square* newSquare = squares[newGhost->y][newGhost->x];
 
-        for each (PieceMovement * curPieceMovement in newSquare->movements) {
+        for each (PieceMovement* curPieceMovement in newSquare->movements) {
             if (curPieceMovement->movement->mobility->flags.vigilant) {
                 PieceMovement* pin = getPin(curPieceMovement->piece);
                 validateMove(curPieceMovement->piece, curPieceMovement->movement, pin);
@@ -862,7 +840,7 @@ PieceMovement* Board::getPin(Piece* curPiece)
         return nullptr;
 
     Square* curSquare = squares[curPiece->y][curPiece->x];
-    for (PieceMovement* virtualMovement : curSquare->virtualMovements) {
+    for each (PieceMovement* virtualMovement in curSquare->virtualMovements) {
         Piece* attackerPiece = virtualMovement->piece;
         if (attackerPiece->color != curPiece->color) {
             auto it = std::find_if(attackerPiece->virtualMovements.begin(), attackerPiece->virtualMovements.end(), [&](Movement* curMovement) -> bool {
@@ -913,14 +891,12 @@ void Board::removeMoves(Piece* curPiece)
     if (curPiece == nullptr)
         return;
 
-    std::list<Movement*> movements = curPiece->movements;
-    for (auto it = movements.begin(); it != movements.end(); ++it)
-        cutMovement(curPiece, *it);
+    for each (Movement* curMovement in curPiece->movements)
+        cutMovement(curPiece, curMovement);
     curPiece->movements.clear();
 
-    std::list<Movement*> virtualMovements = curPiece->virtualMovements;
-    for (auto it = virtualMovements.begin(); it != virtualMovements.end(); ++it)
-        removeVirtualMoves(curPiece, *it);
+    for each (Movement* curVirtualMovement in curPiece->virtualMovements)
+        removeVirtualMoves(curPiece, curVirtualMovement);
     curPiece->virtualMovements.clear();
 }
 
@@ -949,7 +925,7 @@ void Board::removeVirtualMoves(Piece* curPiece, Movement* curMovement)
         // remove this movement from the targeted square
         auto targetPieceMovementIt = std::find_if(targetSquare->virtualMovements.begin(), targetSquare->virtualMovements.end(), [&](PieceMovement* pieceMovement) -> bool {
             return pieceMovement->piece == curPiece && pieceMovement->movement == curMovement;
-            });
+        });
 
         if (targetPieceMovementIt != targetSquare->virtualMovements.end()) {
             PieceMovement* targetPieceMovement = *targetPieceMovementIt;
@@ -1036,12 +1012,6 @@ void Board::cutMovement(Piece* curPiece, Movement* curMovement)
             }
 
             if (targetPiece != nullptr && targetPiece->color != curPiece->color) {
-                // revalidate moves if I was attacking a piece (possible pin)
-                /*
-                PieceMovement* targetPin = getPin(targetPiece);
-                validateMoves(targetPiece, targetPin);
-                */
-
                 // continute movement calculation of cowardly moves if I was previously attacking opponent piece
                 if (!std::any_of(targetSquare->movements.begin(), targetSquare->movements.end(), [targetPiece](PieceMovement* curPieceMovement) {
                     return (curPieceMovement->movement->mobility->type == Attack || curPieceMovement->movement->mobility->type == AttackMove) && curPieceMovement->piece->color != targetPiece->color;
@@ -1093,7 +1063,7 @@ void Board::movePiece(Piece* curPiece, int x, int y, bool hasMoved)
         removePins(sourceSquare);
         makePins(destinationSquare);
 
-        for (PieceMovement* pieceMovement : destinationSquare->movements) {
+        for each (PieceMovement* pieceMovement in destinationSquare->movements) {
             Piece* attacker = pieceMovement->piece;
             Movement* movement = pieceMovement->movement;
             if (attacker->color != curPiece->color && (movement->mobility->type == Attack || movement->mobility->type == AttackMove)) {
@@ -1117,7 +1087,7 @@ void Board::movePiece(Piece* curPiece, int x, int y, bool hasMoved)
     calculateMoves(curPiece);
 
     // continue calculations of movements that were unblocked by moving this piece
-    for (PieceMovement* sourceMovement : sourceSquare->movements) {
+    for each (PieceMovement* sourceMovement in sourceSquare->movements) {
         if (sourceMovement->piece != curPiece) {
             PieceMovement* pin = getPin(sourceMovement->piece);
             calculateMoves(sourceMovement->piece, sourceMovement->movement->mobility, sourceMovement->movement, pin);
@@ -1125,7 +1095,7 @@ void Board::movePiece(Piece* curPiece, int x, int y, bool hasMoved)
     }
 
     // cut movements that were blocked by moving this piece
-    for (PieceMovement* destinationMovement : destinationSquare->movements)
+    for each (PieceMovement* destinationMovement in destinationSquare->movements)
         cutMovement(destinationMovement);
 }
 
@@ -1258,16 +1228,16 @@ void Board::makeMove(int x1, int y1, int x2, int y2, PieceType promotionType)
         case::White:
             switch (promotionType) {
             case Pawn:
-                promotionEssence = whitePawnEssence;
+                promotionEssence = essenceConfig.whitePawnEssence;
                 break;
             case Knight:
-                promotionEssence = whiteKnightEssence;
+                promotionEssence = essenceConfig.whiteKnightEssence;
                 break;
             case Bishop:
-                promotionEssence = whiteBishopEssence;
+                promotionEssence = essenceConfig.whiteBishopEssence;
                 break;
             case Rook:
-                promotionEssence = whiteRookEssence;
+                promotionEssence = essenceConfig.whiteRookEssence;
                 break;
             default:
                 promotionEssence = Classic;
@@ -1277,16 +1247,16 @@ void Board::makeMove(int x1, int y1, int x2, int y2, PieceType promotionType)
         case::Black:
             switch (promotionType) {
             case Pawn:
-                promotionEssence = blackPawnEssence;
+                promotionEssence = essenceConfig.blackPawnEssence;
                 break;
             case Knight:
-                promotionEssence = blackKnightEssence;
+                promotionEssence = essenceConfig.blackKnightEssence;
                 break;
             case Bishop:
-                promotionEssence = blackBishopEssence;
+                promotionEssence = essenceConfig.blackBishopEssence;
                 break;
             case Rook:
-                promotionEssence = blackRookEssence;
+                promotionEssence = essenceConfig.blackRookEssence;
                 break;
             default:
                 promotionEssence = Classic;
@@ -1344,9 +1314,9 @@ void Board::unmakeMove()
 
     if (lastMoveRecord.performedPromotion) {
         if (curTurn == White)
-            changePiece(sourcePiece, Pawn, whitePawnEssence);
+            changePiece(sourcePiece, Pawn, essenceConfig.whitePawnEssence);
         else
-            changePiece(sourcePiece, Pawn, blackPawnEssence);
+            changePiece(sourcePiece, Pawn, essenceConfig.blackPawnEssence);
     }
 
     if (lastMoveRecord.performedCapture) {
@@ -1356,31 +1326,31 @@ void Board::unmakeMove()
         if (curTurn == White) {
             switch (lastMoveRecord.capturedType) {
             case Pawn:
-                essence = whitePawnEssence;
+                essence = essenceConfig.whitePawnEssence;
                 break;
             case Rook:
-                essence = whiteRookEssence;
+                essence = essenceConfig.whiteRookEssence;
                 break;
             case Knight:
-                essence = whiteKnightEssence;
+                essence = essenceConfig.whiteKnightEssence;
                 break;
             case Bishop:
-                essence = whiteBishopEssence;
+                essence = essenceConfig.whiteBishopEssence;
                 break;
             }
         } else {
             switch (lastMoveRecord.capturedType) {
             case Pawn:
-                essence = blackPawnEssence;
+                essence = essenceConfig.blackPawnEssence;
                 break;
             case Rook:
-                essence = blackRookEssence;
+                essence = essenceConfig.blackRookEssence;
                 break;
             case Knight:
-                essence = blackKnightEssence;
+                essence = essenceConfig.blackKnightEssence;
                 break;
             case Bishop:
-                essence = blackBishopEssence;
+                essence = essenceConfig.blackBishopEssence;
                 break;
             }
         }
@@ -1498,20 +1468,20 @@ void Board::printBoard()
 
 void Board::printMoves()
 {
-    for (auto it = whitePieces.begin(); it != whitePieces.end(); ++it)
-        printMoves(*it);
+    for each (Piece* whitePiece in whitePieces)
+        printMoves(whitePiece);
 
-    for (auto it = blackPieces.begin(); it != blackPieces.end(); ++it)
-        printMoves(*it);
+    for each (Piece* blackPiece in blackPieces)
+        printMoves(blackPiece);
 }
 
 void Board::printVirtualMoves()
 {
-    for (auto it = whitePieces.begin(); it != whitePieces.end(); ++it)
-        printVirtualMoves(*it);
+    for each (Piece* whitePiece in whitePieces)
+        printVirtualMoves(whitePiece);
 
-    for (auto it = blackPieces.begin(); it != blackPieces.end(); ++it)
-        printVirtualMoves(*it);
+    for each (Piece* blackPiece in blackPieces)
+        printVirtualMoves(blackPiece);
 }
 
 void Board::printVirtualMoves(Piece* curPiece)
@@ -1571,9 +1541,8 @@ void Board::printVirtualMoves(Piece* curPiece)
     }
     pieceMoves[curPiece->y][curPiece->x] = '0';
 
-    std::list<Movement*> virtualMoves = curPiece->virtualMovements;
-    for (auto it = virtualMoves.begin(); it != virtualMoves.end(); ++it) {
-        Movement* curMove = *it;
+    for each (Movement* move in curPiece->virtualMovements) {
+        Movement* curMove = move;
 
         while (curMove != nullptr) {
             pieceMoves[curMove->y][curMove->x] = 'X';
@@ -1597,7 +1566,7 @@ void Board::printVirtualMoves(Piece* curPiece)
 
 void Board::makePins(Square* curSquare)
 {
-    for (PieceMovement* virtualMovement : curSquare->virtualMovements) {
+    for each (PieceMovement* virtualMovement in curSquare->virtualMovements) {
         Piece* attackerPiece = virtualMovement->piece;
 
         auto it = std::find_if(attackerPiece->virtualMovements.begin(), attackerPiece->virtualMovements.end(), [&](Movement* curMovement) -> bool {
@@ -1644,12 +1613,12 @@ void Board::makePins(Square* curSquare)
 
 void Board::removePins(Square* curSquare)
 {
-    for (PieceMovement* virtualMovement : curSquare->virtualMovements) {
+    for each (PieceMovement* virtualMovement in curSquare->virtualMovements) {
         Piece* attackerPiece = virtualMovement->piece;
 
         auto it = std::find_if(attackerPiece->virtualMovements.begin(), attackerPiece->virtualMovements.end(), [&](Movement* curMovement) -> bool {
             return curMovement->mobility == virtualMovement->movement->mobility;
-            });
+        });
 
         if (it != attackerPiece->virtualMovements.end()) {
             PinArgs pinArgs{};
@@ -1680,7 +1649,7 @@ void Board::removePins(Square* curSquare)
 
 void Board::unblockPins(Square* curSquare)
 {
-    for (PieceMovement* virtualMovement : curSquare->virtualMovements) {
+    for each (PieceMovement* virtualMovement in curSquare->virtualMovements) {
         Piece* attackerPiece = virtualMovement->piece;
 
         auto it = std::find_if(attackerPiece->virtualMovements.begin(), attackerPiece->virtualMovements.end(), [&](Movement* curMovement) -> bool {
@@ -1727,7 +1696,7 @@ void Board::unblockPins(Square* curSquare)
 
 void Board::blockPins(Square* curSquare)
 {
-    for (PieceMovement* virtualMovement : curSquare->virtualMovements) {
+    for each (PieceMovement* virtualMovement in curSquare->virtualMovements) {
         Piece* attackerPiece = virtualMovement->piece;
 
         auto it = std::find_if(attackerPiece->virtualMovements.begin(), attackerPiece->virtualMovements.end(), [&](Movement* curMovement) -> bool {
@@ -1825,9 +1794,8 @@ void Board::printMoves(Piece* curPiece)
     }
     pieceMoves[curPiece->y][curPiece->x] = '0';
 
-    std::list<Movement*> moves = curPiece->movements;
-    for (auto it = moves.begin(); it != moves.end(); ++it) {
-        Movement* curMove = *it;
+    for each (Movement* move in curPiece->movements) {
+        Movement* curMove = move;
 
         while (curMove != nullptr) {
             if (curMove->legal)

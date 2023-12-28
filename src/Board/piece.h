@@ -3,6 +3,7 @@
 
 #include "movement.h"
 #include <list>
+#include <vector>
 #include <unordered_map>
 
 enum PieceType { Pawn = 0, Knight = 1, Bishop = 2, Rook = 3, Queen = 4, King = 5 };
@@ -22,11 +23,11 @@ public:
     int x = 0, y = 0;
     bool hasMoved = false;
 
-    std::list<Mobility*> getMobilities();
+    std::vector<Mobility*> getMobilities();
     void change(PieceType type, Essence essence);
     bool operator==(const Piece& obj2) const;
 private:
-    static std::unordered_map<PieceType, std::unordered_map<Essence, std::list<Mobility*>>> mobilities;
+    static std::unordered_map<PieceType, std::unordered_map<Essence, std::vector<Mobility*>>> mobilities;
 };
 
 class Ghost {
