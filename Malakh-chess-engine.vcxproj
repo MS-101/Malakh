@@ -98,29 +98,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\ai.cpp" />
-    <ClCompile Include="src\board\board.cpp" />
-    <ClCompile Include="src\Board\evaluation.cpp" />
-    <ClCompile Include="src\board\mobility.cpp" />
-    <ClCompile Include="src\board\movement.cpp" />
-    <ClCompile Include="src\board\piece.cpp" />
-    <ClCompile Include="src\board\pieceMovement.cpp" />
-    <ClCompile Include="src\board\square.cpp" />
-    <ClCompile Include="src\Board\transpositions.cpp" />
-    <ClCompile Include="src\uci.cpp" />
+    <ClCompile Include="src\bitboard.cpp" />
+    <ClCompile Include="src\board.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\mobility.cpp" />
+    <ClCompile Include="src\moveGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\ai.h" />
-    <ClInclude Include="src\board\board.h" />
-    <ClInclude Include="src\Board\evaluation.h" />
-    <ClInclude Include="src\board\mobility.h" />
-    <ClInclude Include="src\board\movement.h" />
-    <ClInclude Include="src\board\piece.h" />
-    <ClInclude Include="src\board\pieceMovement.h" />
-    <ClInclude Include="src\board\square.h" />
-    <ClInclude Include="src\Board\transpositions.h" />
-    <ClInclude Include="src\uci.h" />
+    <ClInclude Include="src\bitboard.h" />
+    <ClInclude Include="src\board.h" />
+    <ClInclude Include="src\chess.h" />
+    <ClInclude Include="src\mobility.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

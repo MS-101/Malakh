@@ -15,69 +15,33 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\board\board.cpp">
+    <ClCompile Include="src\bitboard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\board\mobility.cpp">
+    <ClCompile Include="src\board.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\board\movement.cpp">
+    <ClCompile Include="src\moveGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\board\piece.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\board\pieceMovement.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\board\square.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\uci.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ai.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Board\evaluation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Board\transpositions.cpp">
+    <ClCompile Include="src\mobility.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\board\board.h">
+    <ClInclude Include="src\bitboard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\board\mobility.h">
+    <ClInclude Include="src\board.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\board\movement.h">
+    <ClInclude Include="src\chess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\board\piece.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\board\pieceMovement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\board\square.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\uci.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ai.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Board\evaluation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Board\transpositions.h">
+    <ClInclude Include="src\mobility.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
