@@ -100,6 +100,7 @@
   <ItemGroup>
     <ClCompile Include="src\bitboard.cpp" />
     <ClCompile Include="src\board.cpp" />
+    <ClCompile Include="src\chess.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\mobility.cpp" />
     <ClCompile Include="src\moveGenerator.cpp" />

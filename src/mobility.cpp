@@ -1,5 +1,9 @@
 #include "mobility.h"
 
+Mobility::Mobility()
+{
+}
+
 Mobility::Mobility(MovementType type, int start_x, int start_y, int direction_x, int direction_y, int limit)
 {
     this->type = type;
@@ -79,7 +83,7 @@ std::unordered_map<PieceEssence, std::vector<Mobility>> MobilityConfig::knightCo
     }},
     {Red, {
         // knight hops
-        {AttackMove, -2, -1, +0, +0, 1),
+        {AttackMove, -2, -1, +0, +0, 1},
         {AttackMove, -1, -2, +0, +0, 1},
         {AttackMove, +1, -2, +0, +0, 1},
         {AttackMove, +2, -1, +0, +0, 1},

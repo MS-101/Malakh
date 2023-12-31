@@ -3,6 +3,7 @@
 #include "chess.h"
 #include "bitboard.h"
 #include "mobility.h"
+#include <vector>
 #include <list>
 
 struct EssenceConfig {
@@ -19,6 +20,8 @@ struct EssenceConfig {
 struct LegalMove {
     int x1, y1, x2, y2;
     Mobility mobility;
+
+    void printMove();
 };
 
 class Board {    
@@ -29,14 +32,19 @@ public:
 	BitBoard whitePieces, blackPieces, allPieces, notMoved;
 	BitBoard whiteAttacks, blackAttacks;
     std::list<LegalMove> whiteMoves, blackMoves;
+
+    
 	void initBoard(EssenceConfig essenceConfig);
+    void printBoard();
     void makeMove(char x1, char y1, char x2, char y2);
+    std::vector<Mobility> getMobilities(PieceType type, PieceColor color);
     std::list<LegalMove> getLegalMoves(PieceColor color);
 private:
-	void refreshAggregations();  
+	void refreshAggregations();
 };
 
 class MoveGenerator {
 public:
-    static void generateMoves(Board board);
+    static void generateMoves(Board* board);
+    static void generateMoves(Board* board, PieceType type, PieceColor color, char x, char y);
 };
