@@ -1,105 +1,75 @@
 #include "board.h"
 #include <iostream>
 
+void MoveGenerator::clearMoves(Board* board)
+{
+	board->attacks[White].value = 0;
+	board->attacks[Black].value = 0;
+	board->moves[White].clear();
+	board->moves[Black].clear();
+}
+
 void MoveGenerator::generateMoves(Board* board)
 {
-	board->whiteAttacks.value = 0;
-	board->blackAttacks.value = 0;
-	board->whiteMoves.clear();
-	board->blackMoves.clear();
+	clearMoves(board);
 
 	for (int y = 0; y < 8; y++) {
 		for (int x = 0; x < 8; x++) {
-			if (board->whitePawns.getBit(x, y)) {
-				generateMoves(board, Pawn, White, x, y);
-			} else if (board->whiteRooks.getBit(x, y)) {
-				generateMoves(board, Rook, White, x, y);
-			} else if (board->whiteKnights.getBit(x, y)) {
-				generateMoves(board, Knight, White, x, y);
-			} else if (board->whiteBishops.getBit(x, y)) {
-				generateMoves(board, Bishop, White, x, y);
-			} else if (board->whiteQueens.getBit(x, y)) {
-				generateMoves(board, Queen, White, x, y);
-			} else if (board->whiteKings.getBit(x, y)) {
-				generateMoves(board, King, White, x, y);
-			} else if (board->blackPawns.getBit(x, y)) {
-				generateMoves(board, Pawn, Black, x, y);
-			} else if (board->blackRooks.getBit(x, y)) {
-				generateMoves(board, Rook, Black, x, y);
-			} else if (board->blackKnights.getBit(x, y)) {
-				generateMoves(board, Knight, Black, x, y);
-			} else if (board->blackBishops.getBit(x, y)) {
-				generateMoves(board, Bishop, Black, x, y);
-			} else if (board->blackQueens.getBit(x, y)) {
-				generateMoves(board, Queen, Black, x, y);
-			} else if (board->blackKings.getBit(x, y)) {
-				generateMoves(board, King, Black, x, y);
+			auto result = board->getPiece(x, y);
+
+			if (result.first) {
+				auto piece = result.second;
+				generateMoves(board, piece, x, y);
 			}
 		}
 	}
 }
 
-void MoveGenerator::generateMoves(Board* board, PieceType type, PieceColor color, char x, char y)
+void MoveGenerator::generateMoves(Board* board, Piece piece, char x, char y)
 {
-	for (Mobility& mobility : board->getMobilities(type, color)) {
-		int prevX = x;
-		int prevY = y;
-		int curX = prevX;
-		int curY = prevY;
+	for (Mobility& mobility : mobilityConfig[piece.type][piece.essence]) {
+		int destinationX = x;
+		int destinationY = y;
 		int moveCounter = 0;
 		
-		if (color == White) {
-			curX += mobility.start_x;
-			curY += mobility.start_y;
+		if (piece.color == White) {
+			destinationX += mobility.start_x;
+			destinationY += mobility.start_y;
 		} else {
-			curX -= mobility.start_x;
-			curY -= mobility.start_y;
+			destinationX -= mobility.start_x;
+			destinationY -= mobility.start_y;
 		}
 
-		while ((mobility.limit == 0 || moveCounter < mobility.limit) && curX >= 0 && curX < 8 && curY >= 0 && curY < 8) {
+		while ((mobility.limit == 0 || moveCounter < mobility.limit) && destinationX >= 0 && destinationX < 8 && destinationY >= 0 && destinationY < 8) {
 			LegalMove legalMove{};
-			legalMove.x1 = prevX;
-			legalMove.y1 = prevY;
-			legalMove.x2 = curX;
-			legalMove.y2 = curY;
+			legalMove.x1 = x;
+			legalMove.y1 = y;
+			legalMove.x2 = destinationX;
+			legalMove.y2 = destinationY;
 			legalMove.mobility = mobility;
 
-			if (mobility.type == Attack || mobility.type == AttackMove) {
-				if (color == White)
-					board->whiteAttacks.setBit(curX, curY);
-				else
-					board->blackAttacks.setBit(curX, curY);
-			}
+			if (mobility.type == Attack || mobility.type == AttackMove)
+				board->attacks[piece.color].setBit(destinationX, destinationY);
 
-			if (auto piece = board->allPieces.getBit(curX, curY)) {
+			if (board->allPieces.getBit(destinationX, destinationY)) {
 				if (mobility.type == Attack || mobility.type == AttackMove) {
-					if (color == White && board->blackPieces.value & piece) {
-						board->whiteMoves.push_back(legalMove);
-					} else if (color == Black && board->whitePieces.value & piece) {
-						board->blackMoves.push_back(legalMove);
-					}
+					if (board->colors[opponent[piece.color]].getBit(destinationX, destinationY))
+						board->moves[piece.color].push_back(legalMove);
 				}
 
 				break;
 			} else {
 				if (mobility.type == Move || mobility.type == AttackMove) {
-					if (color == White) {
-						board->whiteMoves.push_back(legalMove);
-					} else {
-						board->blackMoves.push_back(legalMove);
-					}
+					board->moves[piece.color].push_back(legalMove);
 				}
 			}
 
-			prevX = curX;
-			prevY = curY;
-
-			if (color == White) {
-				curX += mobility.direction_x;
-				curY += mobility.direction_y;
+			if (piece.color == White) {
+				destinationX += mobility.direction_x;
+				destinationY += mobility.direction_y;
 			} else {
-				curX -= mobility.direction_x;
-				curY -= mobility.direction_y;
+				destinationX -= mobility.direction_x;
+				destinationY -= mobility.direction_y;
 			}
 
 			moveCounter++;
@@ -113,5 +83,5 @@ void LegalMove::printMove() {
 	char col2 =  'a' + x2;
 	char row2 =  '0' + 8 - y2;
 
-	std::cout << col1 << row1 << col2 << row2;
+	std::cout << col1 << row1 << col2 << row2 << std::endl;
 }

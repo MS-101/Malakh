@@ -6,6 +6,13 @@ enum PieceColor { White, Black };
 enum PieceEssence { Classic, Red, Blue };
 enum PieceType { Pawn, Rook, Knight, Bishop, Queen, King };
 
+struct Piece {
+    PieceColor color;
+    PieceType type;
+    PieceEssence essence;
+};
+
+extern std::unordered_map<PieceColor, PieceColor> opponent;
 extern std::unordered_map<PieceColor, char> colorChars;
 extern std::unordered_map<PieceEssence, char> essenceChars;
 extern std::unordered_map<PieceType, char> typeChars;

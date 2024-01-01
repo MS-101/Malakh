@@ -1,5 +1,10 @@
 #include "chess.h"
 
+std::unordered_map<PieceColor, PieceColor> opponent = {
+	{White, Black},
+	{Black, White}
+};
+
 std::unordered_map<PieceColor, char> colorChars = {
 	{White, 'W'},
 	{Black, 'B'}

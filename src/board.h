@@ -3,10 +3,12 @@
 #include "chess.h"
 #include "bitboard.h"
 #include "mobility.h"
+#include <unordered_map>
 #include <vector>
 #include <list>
 
-struct EssenceConfig {
+
+struct EssenceArgs {
     PieceEssence whitePawn = Classic;
     PieceEssence whiteRook = Classic;
     PieceEssence whiteKnight = Classic;
@@ -18,33 +20,41 @@ struct EssenceConfig {
 };
 
 struct LegalMove {
-    int x1, y1, x2, y2;
+    int x1 = 0;
+    int y1 = 0;
+    int x2 = 0;
+    int y2 = 0;
     Mobility mobility;
 
     void printMove();
 };
 
-class Board {    
+class Board {
 public:
-    EssenceConfig essenceConfig;
-	BitBoard whitePawns, whiteRooks, whiteKnights, whiteBishops, whiteQueens, whiteKings;
-	BitBoard blackPawns, blackRooks, blackKnights, blackBishops, blackQueens, blackKings;
-	BitBoard whitePieces, blackPieces, allPieces, notMoved;
-	BitBoard whiteAttacks, blackAttacks;
-    std::list<LegalMove> whiteMoves, blackMoves;
-
+    PieceEssence essenceConfig[2][6];
+    BitBoard pieces[2][6];
+    BitBoard colors[2];
+    BitBoard attacks[2];
+	BitBoard allPieces, notMoved;
+    std::list<LegalMove> moves[2];
+    PieceColor curTurn = White;
     
-	void initBoard(EssenceConfig essenceConfig);
+	void initBoard(EssenceArgs essenceArgs);
     void printBoard();
-    void makeMove(char x1, char y1, char x2, char y2);
-    std::vector<Mobility> getMobilities(PieceType type, PieceColor color);
-    std::list<LegalMove> getLegalMoves(PieceColor color);
+    bool makeMove(LegalMove move);
+    std::pair<bool, Piece> getPiece(char x, char y);
+    std::list<LegalMove> getLegalMoves();
 private:
+    void setEssenceConfig(EssenceArgs essenceArgs);
+    void clearBoard();
+    void addPiece(PieceColor color, PieceType type, char x, char y);
+    std::pair<bool, Piece> removePiece(char x, char y);
 	void refreshAggregations();
 };
 
 class MoveGenerator {
 public:
+    static void clearMoves(Board* board);
     static void generateMoves(Board* board);
-    static void generateMoves(Board* board, PieceType type, PieceColor color, char x, char y);
+    static void generateMoves(Board* board, Piece piece, char x, char y);
 };

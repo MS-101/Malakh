@@ -104,12 +104,14 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\mobility.cpp" />
     <ClCompile Include="src\moveGenerator.cpp" />
+    <ClCompile Include="src\search.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\bitboard.h" />
     <ClInclude Include="src\board.h" />
     <ClInclude Include="src\chess.h" />
     <ClInclude Include="src\mobility.h" />
+    <ClInclude Include="src\search.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

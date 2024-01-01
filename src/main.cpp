@@ -1,13 +1,12 @@
 #include <iostream>
-#include "board.h"
+#include "search.h"
 
 int main() {
     Board board;
-    board.initBoard(EssenceConfig{});
+    board.initBoard(EssenceArgs{});
 
-    board.whiteAttacks.printBits();
-    board.blackAttacks.printBits();
-    board.printBoard();
+    LegalMove bestMove = SearchManager::calculateBestMove(board, 5, true);
+    bestMove.printMove();
 
     return 0;
 }
