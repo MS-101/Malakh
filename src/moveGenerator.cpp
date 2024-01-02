@@ -3,6 +3,10 @@
 
 void MoveGenerator::clearMoves(Board* board)
 {
+	for (int color = 0; color < 2; color++)
+		for (int type = 0; type < 6; type++)
+			board->eval.mobCounts[color][type] = 0;
+
 	board->attacks[White].value = 0;
 	board->attacks[Black].value = 0;
 	board->moves[White].clear();
@@ -53,14 +57,17 @@ void MoveGenerator::generateMoves(Board* board, Piece piece, char x, char y)
 
 			if (board->allPieces.getBit(destinationX, destinationY)) {
 				if (mobility.type == Attack || mobility.type == AttackMove) {
-					if (board->colors[opponent[piece.color]].getBit(destinationX, destinationY))
+					if (board->colors[opponent[piece.color]].getBit(destinationX, destinationY)) {
 						board->moves[piece.color].push_back(legalMove);
+						board->eval.mobCounts[piece.color][piece.type]++;
+					}
 				}
 
 				break;
 			} else {
 				if (mobility.type == Move || mobility.type == AttackMove) {
 					board->moves[piece.color].push_back(legalMove);
+					board->eval.mobCounts[piece.color][piece.type]++;
 				}
 			}
 

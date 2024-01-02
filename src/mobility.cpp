@@ -14,19 +14,19 @@ Mobility::Mobility(MovementType type, int start_x, int start_y, int direction_x,
     this->limit = limit;
 }
 
-std::unordered_map<PieceType, std::unordered_map<PieceEssence, std::vector<Mobility>>> mobilityConfig = {
-    {Pawn, {
-        {Classic, {
+std::vector<Mobility> mobilityConfig[6][3] = {
+    { // Pawn
+        { // Classic
             {Move, +0, +1, +0, +0, 1},
             {Attack, -1, +1, +0, +0, 1},
             {Attack, +1, +1, +0, +0, 1}
-        }},
-        {Red, {
+        },
+        { // Red
             {Move, +0, +1, +0, +1, 2},
             {AttackMove, -1, +1, +0, +0, 1},
             {AttackMove, +1, +1, +0, +0, 1}
-        }},
-        {Blue, {
+        },
+        { //Blue
             // pawn moves
             {Move, +0, +1, +0, +0, 1},
             {Attack, -1, +1, +0, +0, 1},
@@ -35,16 +35,16 @@ std::unordered_map<PieceType, std::unordered_map<PieceEssence, std::vector<Mobil
             {Move, +0, -1, +0, +0, 1},
             {Attack, -1, -1, +0, +0, 1},
             {Attack, +1, -1, +0, +0, 1}
-        }}
-    }},
-    {Rook, {
-        {Classic, {
+        }
+    },
+    { // Rook
+        { // Classic
             {AttackMove, -1, +0, -1, +0, 0},
             {AttackMove, +0, -1, +0, -1, 0},
             {AttackMove, +1, +0, +1, +0, 0},
             {AttackMove, +0, +1, +0, +1, 0}
-        }},
-        {Red, {
+        },
+        { // Red
             // Rook moves
             {AttackMove, -1, +0, -1, +0, 0},
             {AttackMove, +0, -1, +0, -1, 0},
@@ -55,8 +55,8 @@ std::unordered_map<PieceType, std::unordered_map<PieceEssence, std::vector<Mobil
             {AttackMove, +1, +2, +0, +0, 1},
             {AttackMove, -1, +2, +0, +0, 1},
             {AttackMove, -2, +1, +0, +0, 1},
-        }},
-        {Blue, {
+        },
+        { // Blue
             // Rook moves
             {AttackMove, -1, +0, -1, +0, 0},
             {AttackMove, +0, -1, +0, -1, 0},
@@ -67,10 +67,10 @@ std::unordered_map<PieceType, std::unordered_map<PieceEssence, std::vector<Mobil
             {AttackMove, -1, +1, +0, +0, 1},
             {AttackMove, +1, -1, +0, +0, 1},
             {AttackMove, +1, +1, +0, +0, 1}
-        }}
-    }},
-    {Knight, {
-        {Classic, {
+        }
+    },
+    { // Knight
+        { // Classic
             {AttackMove, -2, -1, +0, +0, 1},
             {AttackMove, -1, -2, +0, +0, 1},
             {AttackMove, +1, -2, +0, +0, 1},
@@ -79,8 +79,8 @@ std::unordered_map<PieceType, std::unordered_map<PieceEssence, std::vector<Mobil
             {AttackMove, +1, +2, +0, +0, 1},
             {AttackMove, -1, +2, +0, +0, 1},
             {AttackMove, -2, +1, +0, +0, 1}
-        }},
-        {Red, {
+        },
+        { // Red
             // knight hops
             {AttackMove, -2, -1, +0, +0, 1},
             {AttackMove, -1, -2, +0, +0, 1},
@@ -95,8 +95,8 @@ std::unordered_map<PieceType, std::unordered_map<PieceEssence, std::vector<Mobil
             {AttackMove, +3, +0, +0, +0, 1},
             {AttackMove, +0, -3, +0, +0, 1},
             {AttackMove, +0, +3, +0, +0, 1},
-        }},
-        {Blue, {
+        },
+        { // Blue
             // knight hops
             {AttackMove, -2, -1, +0, +0, 1},
             {AttackMove, -1, -2, +0, +0, 1},
@@ -115,16 +115,16 @@ std::unordered_map<PieceType, std::unordered_map<PieceEssence, std::vector<Mobil
             {AttackMove, +0, +1, +0, +0, 1},
             {AttackMove, -1, +1, +0, +0, 1},
             {AttackMove, -1, +0, +0, +0, 1}
-        }}
-    }},
-    {Bishop, {
-        {Classic, {
+        }
+    },
+    { // Bishop
+        { // Classic
             {AttackMove, -1, -1, -1, -1, 0},
             {AttackMove, +1, -1, +1, -1, 0},
             {AttackMove, +1, +1, +1, +1, 0},
             {AttackMove, -1, +1, -1, +1, 0}
-        }},
-        {Red, {
+        },
+        { // Red
             // bishop moves
             {AttackMove, -1, -1, -1, -1, 0},
             {AttackMove, +1, -1, +1, -1, 0},
@@ -135,8 +135,8 @@ std::unordered_map<PieceType, std::unordered_map<PieceEssence, std::vector<Mobil
             {AttackMove, +1, +2, +0, +0, 1},
             {AttackMove, -1, +2, +0, +0, 1},
             {AttackMove, -2, +1, +0, +0, 1}
-        }},
-        {Blue, {
+        },
+        { // Blue
             // bishop moves
             {AttackMove, -1, -1, -1, -1, 0},
             {AttackMove, +1, -1, +1, -1, 0},
@@ -147,10 +147,10 @@ std::unordered_map<PieceType, std::unordered_map<PieceEssence, std::vector<Mobil
             {AttackMove, -1, +0, +0, +0, 1},
             {AttackMove, +1, +0, +0, +0, 1},
             {AttackMove, +0, +1, +0, +0, 1}
-        }}
-    }},
-    {Queen, {
-        {Classic, {
+        }
+    },
+    { // Queen
+        { // Classic
             // Rook moves
             {AttackMove, -1, +0, -1, +0, 0},
             {AttackMove, +0, -1, +0, -1, 0},
@@ -161,10 +161,10 @@ std::unordered_map<PieceType, std::unordered_map<PieceEssence, std::vector<Mobil
             {AttackMove, +1, -1, +1, -1, 0},
             {AttackMove, +1, +1, +1, +1, 0},
             {AttackMove, -1, +1, -1, +1, 0}
-        }}
-    }},
-    {King, {
-        {Classic, {
+        }
+    },
+    { // King
+        { // Classic
             {AttackMove, -1, -1, +0, +0, 1},
             {AttackMove, +0, -1, +0, +0, 1},
             {AttackMove, +1, -1, +0, +0, 1},
@@ -173,6 +173,6 @@ std::unordered_map<PieceType, std::unordered_map<PieceEssence, std::vector<Mobil
             {AttackMove, +0, +1, +0, +0, 1},
             {AttackMove, -1, +1, +0, +0, 1},
             {AttackMove, -1, +0, +0, +0, 1},
-        }}
-    }}
+        }
+    }
 };

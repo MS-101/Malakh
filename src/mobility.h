@@ -1,8 +1,7 @@
 #pragma once
 
-#include "chess.h"
-#include "vector"
-#include "unordered_map"
+#include "piece.h"
+#include <vector>
 
 enum MovementType { Move, Attack, AttackMove };
 
@@ -19,4 +18,4 @@ public:
     int limit = 0;
 };
 
-extern std::unordered_map<PieceType, std::unordered_map<PieceEssence, std::vector<Mobility>>> mobilityConfig;
+extern std::vector<Mobility> mobilityConfig[6][3];

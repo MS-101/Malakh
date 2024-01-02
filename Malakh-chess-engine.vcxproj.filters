@@ -30,10 +30,13 @@
     <ClCompile Include="src\mobility.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\chess.cpp">
+    <ClCompile Include="src\piece.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\search.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\evaluation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,13 +47,16 @@
     <ClInclude Include="src\board.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\chess.h">
+    <ClInclude Include="src\piece.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\mobility.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\search.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\evaluation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

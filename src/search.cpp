@@ -40,7 +40,7 @@ int SearchManager::minimax(Board board, PieceColor playerColor, SearchArgs searc
 	searchArgs.curDepth++;
 
 	if (searchArgs.curDepth == searchArgs.maxDepth) {
-		int value = 0;
+		int value = board.evalBoard(playerColor);
 
 		if (debug) {
 			performanceArgs->positionsCur++;
@@ -62,20 +62,21 @@ int SearchManager::minimax(Board board, PieceColor playerColor, SearchArgs searc
 
 	for (const LegalMove& move : board.moves[board.curTurn]) {
 		Board newBoard = board;
-		newBoard.makeMove(move);
+		if (newBoard.makeMove(move))
+		{
+			int value = minimax(newBoard, playerColor, searchArgs, performanceArgs, debug);
 
-		int value = minimax(board, playerColor, searchArgs, performanceArgs, debug);
+			if (maximizingPlayer) {
+				bestScore = std::max(value, bestScore);
+				searchArgs.alpha = std::max(searchArgs.alpha, bestScore);
+			} else {
+				bestScore = std::min(value, bestScore);
+				searchArgs.beta = std::min(searchArgs.beta, bestScore);
+			}
 
-		if (maximizingPlayer) {
-			bestScore = std::max(value, bestScore);
-			searchArgs.alpha = std::max(searchArgs.alpha, bestScore);
-		} else {
-			bestScore = std::min(value, bestScore);
-			searchArgs.beta = std::min(searchArgs.beta, bestScore);
+			if (searchArgs.beta <= searchArgs.alpha)
+				break;
 		}
-
-		if (searchArgs.beta <= searchArgs.alpha)
-			break;
 	}
 
 	return bestScore;

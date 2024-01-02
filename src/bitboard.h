@@ -4,10 +4,12 @@ struct BitBoard {
 public:
 	unsigned long long value = 0;
 
+	BitBoard();
 	unsigned long long getBit(char x, char y);
 	void setBit(char x, char y);
 	void clearBit(char x, char y);
 	void printBits();
 private:
-	unsigned long long getMask(char x, char y);
+	static bool maskInitialized;
+	static unsigned long long mask[8][8];
 };

@@ -1,9 +1,9 @@
 #include "board.h"
 #include <iostream>
 
-void Board::initBoard(EssenceArgs essenceConfig)
+void Board::initBoard(EssenceArgs essenceArgs)
 {
-	setEssenceConfig(essenceConfig);
+	setEssenceConfig(essenceArgs);
 
 	clearBoard();
 
@@ -65,6 +65,8 @@ void Board::clearBoard()
 			bitboard.value = 0;
 		}
 	}
+
+	eval = EvalArgs{};
 }
 
 void Board::printBoard()
@@ -96,16 +98,45 @@ void Board::printBoard()
 	}
 }
 
+int Board::evalBoard(PieceColor color)
+{
+	int score = eval.matEval[White] - eval.matEval[Black];
+	
+	int mgScore = eval.mg_pcsqEval[White] - eval.mg_pcsqEval[Black];
+	int egScore = eval.eg_pcsqEval[White] - eval.eg_pcsqEval[Black];
+
+	for (int type = 0; type < 6; type++) {
+		mgScore += Evaluation::mg_pieceMobWeights[type] * (eval.mobCounts[White][type] - pieceCounts[White][type] * Evaluation::pieceMobPenalties[type]);
+		mgScore -= Evaluation::mg_pieceMobWeights[type] * (eval.mobCounts[Black][type] - pieceCounts[Black][type] * Evaluation::pieceMobPenalties[type]);
+
+		egScore += Evaluation::eg_pieceMobWeights[type] * (eval.mobCounts[White][type] - pieceCounts[White][type] * Evaluation::pieceMobPenalties[type]);
+		egScore -= Evaluation::eg_pieceMobWeights[type] * (eval.mobCounts[Black][type] - pieceCounts[Black][type] * Evaluation::pieceMobPenalties[type]);
+	}
+
+	int curPhase = eval.curPhase;
+	if (curPhase > Evaluation::startPhase)
+		curPhase = Evaluation::startPhase;
+
+	score += (curPhase * mgScore + (Evaluation::startPhase - curPhase) * egScore) / Evaluation::startPhase;
+
+	if (color == Black)
+		score *= -1;
+
+	return score;
+}
+
 std::pair<bool, Piece> Board::getPiece(char x, char y)
 {
-	for (int color = 0; color < 2; color++) {
-		for (int type = 0; type < 6; type++) {
-			auto& bitboard = pieces[color][type];
+	for (int c = 0; c < 2; c++) {
+		for (int t = 0; t < 6; t++) {
+			auto& bitboard = pieces[c][t];
 
 			if (bitboard.getBit(x, y)) {
-				PieceEssence essence = essenceConfig[(PieceColor)color][(PieceType)type];
+				PieceColor color = (PieceColor)c;
+				PieceType type = (PieceType)t;
+				PieceEssence essence = essenceConfig[c][t];
 
-				return std::make_pair(true, Piece{ (PieceColor)color, (PieceType)type, essence });
+				return std::make_pair(true, Piece{ color, type, essence });
 			}
 		}
 	}
@@ -115,15 +146,23 @@ std::pair<bool, Piece> Board::getPiece(char x, char y)
 
 std::pair<bool, Piece> Board::removePiece(char x, char y)
 {
-	for (int color = 0; color < 2; color++) {
-		for (int type = 0; type < 6; type++) {
-			auto& bitboard = pieces[color][type];
+	for (int c = 0; c < 2; c++) {
+		for (int t = 0; t < 6; t++) {
+			auto& bitboard = pieces[c][t];
 
 			if (bitboard.getBit(x, y)) {
 				bitboard.clearBit(x, y);
-				PieceEssence essence = essenceConfig[(PieceColor)color][(PieceType)type];
+				
+				PieceColor color = (PieceColor)c;
+				PieceType type = (PieceType)t;
+				PieceEssence essence = essenceConfig[c][t];
 
-				return std::make_pair(true, Piece{ (PieceColor)color, (PieceType)type, essence });
+				pieceCounts[color][type]--;
+				eval.matEval[color] -= Evaluation::pieceMatValues[type];
+				eval.mg_pcsqEval[color] -= Evaluation::get_mg_pcsq(color, type, x, y);
+				eval.eg_pcsqEval[color] -= Evaluation::get_eg_pcsq(color, type, x, y);
+
+				return std::make_pair(true, Piece{ color, type, essence });
 			}
 		}
 	}
@@ -134,6 +173,10 @@ std::pair<bool, Piece> Board::removePiece(char x, char y)
 void Board::addPiece(PieceColor color, PieceType type, char x, char y)
 {
 	pieces[color][type].setBit(x, y);
+	pieceCounts[color][type]++;
+	eval.matEval[color] += Evaluation::pieceMatValues[type];
+	eval.mg_pcsqEval[color] += Evaluation::get_mg_pcsq(color, type, x, y);
+	eval.eg_pcsqEval[color] += Evaluation::get_eg_pcsq(color, type, x, y);
 }
 
 void Board::refreshAggregations()

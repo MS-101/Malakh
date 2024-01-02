@@ -1,12 +1,10 @@
 #pragma once
 
-#include "chess.h"
 #include "bitboard.h"
+#include "piece.h"
 #include "mobility.h"
-#include <unordered_map>
-#include <vector>
+#include "evaluation.h"
 #include <list>
-
 
 struct EssenceArgs {
     PieceEssence whitePawn = Classic;
@@ -36,11 +34,14 @@ public:
     BitBoard colors[2];
     BitBoard attacks[2];
 	BitBoard allPieces, notMoved;
+    int pieceCounts[2][6];
     std::list<LegalMove> moves[2];
     PieceColor curTurn = White;
+    EvalArgs eval{};
     
 	void initBoard(EssenceArgs essenceArgs);
     void printBoard();
+    int evalBoard(PieceColor maximizingPlayer);
     bool makeMove(LegalMove move);
     std::pair<bool, Piece> getPiece(char x, char y);
     std::list<LegalMove> getLegalMoves();
