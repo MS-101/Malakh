@@ -115,7 +115,7 @@ int Board::evalBoard(PieceColor color)
 
 	score += matScore + safetyScore;
 
-	// evaluation dependent from game phase
+	// evaluation dependent on game phase
 
 	int curPhase = eval.curPhase;
 	if (curPhase > Evaluation::startPhase)
@@ -166,6 +166,11 @@ int Board::evalBoard(PieceColor color)
 		score *= -1;
 
 	return score;
+}
+
+bool Board::isQuiet()
+{
+	return !(colors[White].value & attacks[Black].value || colors[Black].value & attacks[White].value);
 }
 
 std::pair<bool, Piece> Board::getPiece(char x, char y)
@@ -255,9 +260,9 @@ bool Board::makeMove(LegalMove move)
 	return legal;
 }
 
-std::list<LegalMove> Board::getLegalMoves()
+std::vector<LegalMove> Board::getLegalMoves()
 {
-	std::list<LegalMove> legalMoves;
+	std::vector<LegalMove> legalMoves;
 	for (LegalMove& move : moves[curTurn]) {
 		Board newBoard = *this;
 		if (newBoard.makeMove(move))

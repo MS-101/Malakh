@@ -12,8 +12,9 @@ int main() {
         move.printMove();
     */
 
-    LegalMove bestMove = SearchManager::calculateBestMove(board, 5, true);
-    bestMove.printMove();
+    auto result = SearchManager::calculateBestMove(board, 5, true);
+    if (result.first)
+        result.second.printMove();
 
     return 0;
 }

@@ -2,12 +2,13 @@
 #include <iostream>
 #include <thread>
 
-LegalMove SearchManager::calculateBestMove(Board board, int depth, bool debug)
+std::pair<bool, LegalMove> SearchManager::calculateBestMove(Board board, int depth, bool debug)
 {
 	LegalMove bestMove{};
+	bool moveFound = false;
 
 	if (depth <= 0)
-		return bestMove;
+		return std::make_pair(moveFound, bestMove);
 
 	PieceColor playerColor = board.curTurn;
 	int max = INT_MIN;
@@ -25,6 +26,7 @@ LegalMove SearchManager::calculateBestMove(Board board, int depth, bool debug)
 			if (value > max) {
 				max = value;
 				bestMove = move;
+				moveFound = true;
 			}
 		}
 	}
@@ -32,14 +34,14 @@ LegalMove SearchManager::calculateBestMove(Board board, int depth, bool debug)
 	if (debug)
 		performanceArgs.printPerformance();
 
-	return bestMove;
+	return std::make_pair(moveFound, bestMove);
 }
 
 int SearchManager::minimax(Board board, PieceColor playerColor, SearchArgs searchArgs, PerformanceArgs* performanceArgs, bool debug)
 {
 	searchArgs.curDepth++;
 
-	if (searchArgs.curDepth == searchArgs.maxDepth) {
+	if (searchArgs.curDepth >= searchArgs.maxDepth && (board.isQuiet() || searchArgs.curDepth < searchArgs.maxDepth + qLimit)) {
 		int value = board.evalBoard(playerColor);
 
 		if (debug) {
@@ -62,7 +64,7 @@ int SearchManager::minimax(Board board, PieceColor playerColor, SearchArgs searc
 
 	for (const LegalMove& move : board.moves[board.curTurn]) {
 		Board newBoard = board;
-		if (newBoard.makeMove(move))
+		if (newBoard.makeMove(move)) // performed move was not pseudolegal
 		{
 			int value = minimax(newBoard, playerColor, searchArgs, performanceArgs, debug);
 

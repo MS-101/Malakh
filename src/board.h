@@ -4,7 +4,7 @@
 #include "piece.h"
 #include "mobility.h"
 #include "evaluation.h"
-#include <list>
+#include <vector>
 
 struct EssenceArgs {
     PieceEssence whitePawn = Classic;
@@ -35,16 +35,17 @@ public:
     BitBoard attacks[2];
 	BitBoard allPieces, notMoved;
     int pieceCounts[2][6] = {};
-    std::list<LegalMove> moves[2];
+    std::vector<LegalMove> moves[2];
     PieceColor curTurn = White;
     EvalArgs eval{};
     
 	void initBoard(EssenceArgs essenceArgs);
     void printBoard();
     int evalBoard(PieceColor maximizingPlayer);
+    bool isQuiet();
     bool makeMove(LegalMove move);
     std::pair<bool, Piece> getPiece(char x, char y);
-    std::list<LegalMove> getLegalMoves();
+    std::vector<LegalMove> getLegalMoves();
 private:
     void setEssenceConfig(EssenceArgs essenceArgs);
     void clearBoard();

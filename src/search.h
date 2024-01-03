@@ -22,6 +22,8 @@ struct PerformanceArgs {
 
 class SearchManager {
 public:
-	static LegalMove calculateBestMove(Board board, int depth, bool debug);
+	static std::pair<bool, LegalMove> calculateBestMove(Board board, int depth, bool debug);
 	static int minimax(Board board, PieceColor playerColor, SearchArgs searchArgs, PerformanceArgs* performanceArgs, bool debug);
+private:
+	static const int qLimit = 5;
 };
