@@ -40,4 +40,53 @@ void BitBoard::printBits()
     }
 }
 
+unsigned long long BitBoard::getKingPattern(unsigned long long value)
+{
+    unsigned long long pattern = value;
+
+    pattern |= value << 9;
+    pattern |= value << 8;
+    pattern |= value << 7;
+    pattern |= value << 1;
+    pattern |= value >> 1;
+    pattern |= value >> 7;
+    pattern |= value >> 8;
+    pattern |= value >> 9;
+
+    return pattern;
+}
+
+unsigned long long BitBoard::getKingAttack(char x, char y)
+{
+    return getKingPattern(value) & mask[y][x];
+}
+
+unsigned long long BitBoard::getTropismPattern(unsigned long long value)
+{
+    unsigned long long pattern = value;
+
+    pattern |= value << 8;
+    pattern |= value << 1;
+    pattern |= value >> 1;
+    pattern |= value >> 8;
+
+    return pattern;
+}
+
+char BitBoard::getTropism(char x, char y)
+{
+    unsigned long long curPattern = value;
+    int tropism = 0;
+
+    if (curPattern) {
+        while (!(curPattern & mask[y][x])) {
+            curPattern = getTropismPattern(curPattern);
+
+            tropism++;
+        }
+    }
+
+    return tropism;
+}
+
 

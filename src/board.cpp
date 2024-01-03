@@ -100,24 +100,67 @@ void Board::printBoard()
 
 int Board::evalBoard(PieceColor color)
 {
-	int score = eval.matEval[White] - eval.matEval[Black];
-	
-	int mgScore = eval.mg_pcsqEval[White] - eval.mg_pcsqEval[Black];
-	int egScore = eval.eg_pcsqEval[White] - eval.eg_pcsqEval[Black];
+	int score = 0;
 
-	for (int type = 0; type < 6; type++) {
-		mgScore += Evaluation::mg_pieceMobWeights[type] * (eval.mobCounts[White][type] - pieceCounts[White][type] * Evaluation::pieceMobPenalties[type]);
-		mgScore -= Evaluation::mg_pieceMobWeights[type] * (eval.mobCounts[Black][type] - pieceCounts[Black][type] * Evaluation::pieceMobPenalties[type]);
+	// evaluation independent from game phase
 
-		egScore += Evaluation::eg_pieceMobWeights[type] * (eval.mobCounts[White][type] - pieceCounts[White][type] * Evaluation::pieceMobPenalties[type]);
-		egScore -= Evaluation::eg_pieceMobWeights[type] * (eval.mobCounts[Black][type] - pieceCounts[Black][type] * Evaluation::pieceMobPenalties[type]);
-	}
+	int matScore = eval.matEval[White] - eval.matEval[Black];
+
+	if (eval.attCount[White] < 2)
+		eval.attWeight[White] = 0;
+	if (eval.attCount[Black] < 2)
+		eval.attWeight[Black] = 0;
+
+	int safetyScore = Evaluation::safetyTable[eval.attWeight[White]] - Evaluation::safetyTable[eval.attWeight[Black]];
+
+	score += matScore + safetyScore;
+
+	// evaluation dependent from game phase
 
 	int curPhase = eval.curPhase;
 	if (curPhase > Evaluation::startPhase)
 		curPhase = Evaluation::startPhase;
 
+	int mgPcsqScore = eval.mg_pcsqEval[White] - eval.mg_pcsqEval[Black];
+	int egPcsqScore = eval.eg_pcsqEval[White] - eval.eg_pcsqEval[Black];
+
+	int mgMobScore = 0;
+	int egMobScore = 0;
+
+	for (int type = 0; type < 6; type++) {
+		mgMobScore += Evaluation::mg_pieceMobWeights[type] * (eval.mobCount[White][type] - pieceCounts[White][type] * Evaluation::pieceMobPenalties[type]);
+		mgMobScore -= Evaluation::mg_pieceMobWeights[type] * (eval.mobCount[Black][type] - pieceCounts[Black][type] * Evaluation::pieceMobPenalties[type]);
+
+		egMobScore += Evaluation::eg_pieceMobWeights[type] * (eval.mobCount[White][type] - pieceCounts[White][type] * Evaluation::pieceMobPenalties[type]);
+		egMobScore -= Evaluation::eg_pieceMobWeights[type] * (eval.mobCount[Black][type] - pieceCounts[Black][type] * Evaluation::pieceMobPenalties[type]);
+	}
+
+	int mgTropismScore = 0;
+	int egTropismScore = 0;
+
+	for (int y = 0; y < 8; y++) {
+		for (int x = 0; x < 8; x++) {
+			auto result = getPiece(y, x);
+			if (result.first) {
+				Piece piece = result.second;
+
+				if (piece.color == White) {
+					mgTropismScore -= pieces[opponent[piece.color]][King].getTropism(y, x) * Evaluation::mg_pieceTropismWeights[piece.type];
+					egTropismScore -= pieces[opponent[piece.color]][King].getTropism(y, x) * Evaluation::eg_pieceTropismWeights[piece.type];
+				} else {
+					mgTropismScore += pieces[opponent[piece.color]][King].getTropism(y, x) * Evaluation::mg_pieceTropismWeights[piece.type];
+					egTropismScore += pieces[opponent[piece.color]][King].getTropism(y, x) * Evaluation::eg_pieceTropismWeights[piece.type];
+				}
+			}
+		}
+	}
+
+	int mgScore = mgPcsqScore + mgMobScore + mgTropismScore;
+	int egScore = egPcsqScore + egMobScore + egTropismScore;
+
 	score += (curPhase * mgScore + (Evaluation::startPhase - curPhase) * egScore) / Evaluation::startPhase;
+
+	// revert score if we are calculating for back
 
 	if (color == Black)
 		score *= -1;
