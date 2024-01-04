@@ -5,6 +5,7 @@
 #include "mobility.h"
 #include "evaluation.h"
 #include <vector>
+#include <string>
 
 struct EssenceArgs {
     PieceEssence whitePawn = Classic;
@@ -17,14 +18,17 @@ struct EssenceArgs {
     PieceEssence blackBishop = Classic;
 };
 
+enum Castling { none, kingSide, queenSide };
+
 struct LegalMove {
     int x1 = 0;
     int y1 = 0;
     int x2 = 0;
     int y2 = 0;
     Mobility mobility;
+    Castling castling = none;
 
-    void printMove();
+    std::string toString();
 };
 
 class Board {
@@ -41,6 +45,7 @@ public:
     
 	void initBoard(EssenceArgs essenceArgs);
     void printBoard();
+    void printMoves();
     int evalBoard(PieceColor maximizingPlayer);
     bool isQuiet();
     bool makeMove(LegalMove move);

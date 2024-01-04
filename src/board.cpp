@@ -98,6 +98,15 @@ void Board::printBoard()
 	}
 }
 
+void Board::printMoves()
+{
+	for (LegalMove& move : getLegalMoves()) {
+		std::cout << move.toString() << " ";
+	}
+
+	std::cout << std::endl;
+}
+
 int Board::evalBoard(PieceColor color)
 {
 	int score = 0;
@@ -205,6 +214,7 @@ std::pair<bool, Piece> Board::removePiece(char x, char y)
 				PieceType type = (PieceType)t;
 				PieceEssence essence = essenceConfig[c][t];
 
+				notMoved.clearBit(x, y);
 				pieceCounts[color][type]--;
 				eval.matEval[color] -= Evaluation::pieceMatValues[type];
 				eval.mg_pcsqEval[color] -= Evaluation::get_mg_pcsq(color, type, x, y);
@@ -236,20 +246,49 @@ void Board::refreshAggregations()
 
 bool Board::makeMove(LegalMove move)
 {
-	auto result = removePiece(move.x1, move.y1);
-	if (!result.first)
-		return false; // no piece was found on source square
+	switch (move.castling) {
+	case::kingSide:
+		switch (curTurn) {
+		case::White:
+			removePiece(0, 0);
+			removePiece(4, 0);
+			addPiece(White, King, 1, 0);
+			addPiece(White, Rook, 2, 0);
+			break;
+		case::Black:
+			removePiece(0, 7);
+			removePiece(4, 7);
+			addPiece(Black, King, 1, 7);
+			addPiece(Black, Rook, 2, 7);
+			break;
+		}
+		break;
+	case::queenSide:
+		switch (curTurn) {
+		case::White:
+			removePiece(4, 0);
+			removePiece(7, 0);
+			addPiece(White, Rook, 5, 0);
+			addPiece(White, King, 6, 0);
+			break;
+		case::Black:
+			removePiece(4, 7);
+			removePiece(7, 7);
+			addPiece(Black, Rook, 5, 7);
+			addPiece(Black, King, 6, 7);
+			break;
+		}
+		break;
+	default:
+		auto result = removePiece(move.x1, move.y1);
+		if (!result.first)
+			return false; // no piece was found on source square
 
-	auto movedPiece = result.second;
-	if (movedPiece.color == curTurn) {
+		auto movedPiece = result.second;
 		removePiece(move.x2, move.y2);
 		addPiece(movedPiece.color, movedPiece.type, move.x2, move.y2);
-	} else {
-		addPiece(movedPiece.color, movedPiece.type, move.x1, move.y1);
-		return false; // moved piece is not owned by current player
+		break;
 	}
-
-	notMoved.clearBit(move.x1, move.y1);
 
 	refreshAggregations();
 	MoveGenerator::generateMoves(this);
@@ -271,4 +310,26 @@ std::vector<LegalMove> Board::getLegalMoves()
 
 	moves[curTurn] = legalMoves;
 	return legalMoves;
+}
+
+std::string LegalMove::toString()
+{
+	std::string value;
+
+	switch (castling) {
+	case kingSide:
+		value = "o-o";
+		break;
+	case queenSide:
+		value = "o-o-o";
+		break;
+	default:
+		value.push_back('a' + x1);
+		value.push_back('1' + y1);
+		value.push_back('a' + x2);
+		value.push_back('1' + y2);
+		break;
+	}
+
+	return value;
 }
