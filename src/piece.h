@@ -5,9 +5,16 @@ enum PieceEssence { Classic, Red, Blue };
 enum PieceType { Pawn, Rook, Knight, Bishop, Queen, King };
 
 struct Piece {
-    PieceColor color;
-    PieceType type;
-    PieceEssence essence;
+    PieceColor color = White;
+    PieceType type = Pawn;
+    PieceEssence essence = Classic;
+};
+
+struct Ghost {
+    int x = -1;
+    int y = -1;
+    int parentX = -1;
+    int parentY = -1;
 };
 
 extern PieceColor opponent[];

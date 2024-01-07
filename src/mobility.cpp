@@ -1,40 +1,27 @@
 #include "mobility.h"
 
-Mobility::Mobility()
-{
-}
-
-Mobility::Mobility(MovementType type, int start_x, int start_y, int direction_x, int direction_y, int limit)
-{
-    this->type = type;
-    this->start_x = start_x;
-    this->start_y = start_y;
-    this->direction_x = direction_x;
-    this->direction_y = direction_y;
-    this->limit = limit;
-}
-
 std::vector<Mobility> mobilityConfig[6][3] = {
     { // Pawn
         { // Classic
             {Move, +0, +1, +0, +0, 1},
-            {Attack, -1, +1, +0, +0, 1},
-            {Attack, +1, +1, +0, +0, 1}
+            {Move, +0, +1, +0, +1, 2, {true, true, true, false}},
+            {Attack, -1, +1, +0, +0, 1, {false, false, false, true}},
+            {Attack, +1, +1, +0, +0, 1, {false, false, false, true}}
         },
         { // Red
             {Move, +0, +1, +0, +1, 2},
-            {AttackMove, -1, +1, +0, +0, 1},
-            {AttackMove, +1, +1, +0, +0, 1}
+            {AttackMove, -1, +1, +0, +0, 1, {false, false, false, true}},
+            {AttackMove, +1, +1, +0, +0, 1, {false, false, false, true}}
         },
         { //Blue
             // pawn moves
             {Move, +0, +1, +0, +0, 1},
-            {Attack, -1, +1, +0, +0, 1},
-            {Attack, +1, +1, +0, +0, 1},
+            {Attack, -1, +1, +0, +0, 1, {false, false, false, true}},
+            {Attack, +1, +1, +0, +0, 1, {false, false, false, true}},
             // backward pawn moves
             {Move, +0, -1, +0, +0, 1},
-            {Attack, -1, -1, +0, +0, 1},
-            {Attack, +1, -1, +0, +0, 1}
+            {Attack, -1, -1, +0, +0, 1, {false, false, false, true}},
+            {Attack, +1, -1, +0, +0, 1, {false, false, false, true}}
         }
     },
     { // Rook

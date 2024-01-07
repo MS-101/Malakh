@@ -84,6 +84,9 @@ void MoveGenerator::generateMoves(Board* board, Piece piece, char x, char y)
 	bool kingAttacked = false;
 
 	for (Mobility& mobility : mobilityConfig[piece.type][piece.essence]) {
+		if (mobility.flags.initiative && !board->notMoved.getBit(x, y))
+			continue;
+
 		int destinationX = x;
 		int destinationY = y;
 		int moveCounter = 0;
@@ -99,35 +102,57 @@ void MoveGenerator::generateMoves(Board* board, Piece piece, char x, char y)
 			break;
 		}
 
-		while ((mobility.limit == 0 || moveCounter < mobility.limit) && destinationX >= 0 && destinationX < 8 && destinationY >= 0 && destinationY < 8) {
-			LegalMove legalMove{};
-			legalMove.x1 = x;
-			legalMove.y1 = y;
-			legalMove.x2 = destinationX;
-			legalMove.y2 = destinationY;
-			legalMove.mobility = mobility;
+		while ((mobility.limit == 0 || moveCounter < mobility.limit)
+			&& destinationX >= 0 && destinationX < 8 && destinationY >= 0 && destinationY < 8) {
+			LegalMove legalMove{x, y, destinationX, destinationY, mobility};
+			bool isPromotion = (piece.type == Pawn
+				&& ((piece.color == White && destinationY == 7) || (piece.color == Black && destinationY == 0)));
 
 			if (mobility.type == Attack || mobility.type == AttackMove) {
 				board->attacks[piece.color].setBit(destinationX, destinationY);
 
-				if (board->pieces[opponent[piece.color]]->getKingAttack(destinationX, destinationY)) {
+				if (board->pieces[opponent[piece.color]][King].getKingAttack(destinationX, destinationY)) {
 					board->eval.attWeight[piece.color] += Evaluation::pieceAttWeights[piece.type];
 					kingAttacked = true;
 				}
 			}
 
-			if (board->allPieces.getBit(destinationX, destinationY)) {
-				if (mobility.type == Attack || mobility.type == AttackMove) {
-					if (board->colors[opponent[piece.color]].getBit(destinationX, destinationY)) {
-						board->moves[piece.color].push_back(legalMove);
+			if (!mobility.flags.uninterruptible || moveCounter + 1 == mobility.limit) {
+				if (board->allPieces.getBit(destinationX, destinationY)) {
+					if ((mobility.type == Attack || mobility.type == AttackMove)
+						&& (board->colors[opponent[piece.color]].getBit(destinationX, destinationY))) {
+						if (!isPromotion) {
+							board->moves[piece.color].push_back(legalMove);
+						} else {
+							legalMove.promotion = Queen;
+							board->moves[piece.color].push_back(legalMove);
+							legalMove.promotion = Rook;
+							board->moves[piece.color].push_back(legalMove);
+							legalMove.promotion = Bishop;
+							board->moves[piece.color].push_back(legalMove);
+							legalMove.promotion = Knight;
+							board->moves[piece.color].push_back(legalMove);
+						}
+
 						board->eval.mobCount[piece.color][piece.type]++;
 					}
-				}
 
-				break;
-			} else {
-				if (mobility.type == Move || mobility.type == AttackMove) {
-					board->moves[piece.color].push_back(legalMove);
+					break;
+				} else if (mobility.type == Move || mobility.type == AttackMove || (mobility.type == Attack
+					&& mobility.flags.vigilant && board->ghost.x == destinationX && board->ghost.y == destinationY)) {
+					if (!isPromotion) {
+						board->moves[piece.color].push_back(legalMove);
+					} else {
+						legalMove.promotion = Queen;
+						board->moves[piece.color].push_back(legalMove);
+						legalMove.promotion = Rook;
+						board->moves[piece.color].push_back(legalMove);
+						legalMove.promotion = Bishop;
+						board->moves[piece.color].push_back(legalMove);
+						legalMove.promotion = Knight;
+						board->moves[piece.color].push_back(legalMove);
+					}
+
 					board->eval.mobCount[piece.color][piece.type]++;
 				}
 			}

@@ -26,6 +26,7 @@ struct LegalMove {
     int x2 = 0;
     int y2 = 0;
     Mobility mobility;
+    PieceType promotion = Pawn;
     Castling castling = none;
 
     std::string toString();
@@ -38,6 +39,7 @@ public:
     BitBoard colors[2];
     BitBoard attacks[2];
 	BitBoard allPieces, notMoved;
+    Ghost ghost;
     int pieceCounts[2][6] = {};
     std::vector<LegalMove> moves[2];
     PieceColor curTurn = White;
@@ -48,6 +50,7 @@ public:
     void printMoves();
     int evalBoard(PieceColor maximizingPlayer);
     bool isQuiet();
+    bool makeMove(char x1, char y1, char x2, char y2, PieceType promotion);
     bool makeMove(LegalMove move);
     std::pair<bool, Piece> getPiece(char x, char y);
     std::vector<LegalMove> getLegalMoves();

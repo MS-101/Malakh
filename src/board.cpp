@@ -244,6 +244,16 @@ void Board::refreshAggregations()
 	allPieces.value = colors[White].value | colors[Black].value;
 }
 
+bool Board::makeMove(char x1, char y1, char x2, char y2, PieceType promotion)
+{
+	for (LegalMove& move : getLegalMoves()) {
+		if (move.x1 == x1 && move.y1 == y1 && move.x2 == x2 && move.y2 == y2 && move.promotion == promotion)
+			return makeMove(move);
+	}
+
+	return false;
+}
+
 bool Board::makeMove(LegalMove move)
 {
 	switch (move.castling) {
@@ -286,7 +296,37 @@ bool Board::makeMove(LegalMove move)
 
 		auto movedPiece = result.second;
 		removePiece(move.x2, move.y2);
-		addPiece(movedPiece.color, movedPiece.type, move.x2, move.y2);
+		if (move.promotion == Pawn)
+			addPiece(movedPiece.color, movedPiece.type, move.x2, move.y2);
+		else
+			addPiece(movedPiece.color, move.promotion, move.x2, move.y2);
+
+		if (move.mobility.flags.vigilant && ghost.x == move.x2 && ghost.y == move.y2) {
+			removePiece(ghost.parentX, ghost.parentY);
+		}
+
+		if (move.mobility.flags.hasty) {
+			int parentX = move.x2;
+			int parentY = move.y2;
+			int ghostX = parentX;
+			int ghostY = parentY;
+
+			switch (curTurn) {
+			case White:
+				parentX -= move.mobility.direction_x;
+				parentY -= move.mobility.direction_y;
+				break;
+			case Black:
+				parentX += move.mobility.direction_x;
+				parentY += move.mobility.direction_y;
+				break;
+			}
+
+			ghost = { ghostX, ghostY, parentX, parentY };
+		} else {
+			ghost = {};
+		}
+			
 		break;
 	}
 

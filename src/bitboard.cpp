@@ -1,43 +1,34 @@
 #include "bitboard.h"
 #include <iostream>
 
-bool BitBoard::maskInitialized = false;
-unsigned long long BitBoard::mask[8][8];
-
-BitBoard::BitBoard()
-{
-    if (!maskInitialized) {
-        for (int y = 0; y < 8; y++)
-            for (int x = 0; x < 8; x++)
-                mask[y][x] = 1ull << (x + y * 8);
-
-        maskInitialized = true;
-    }
-}
-
 unsigned long long BitBoard::getBit(char x, char y)
 {
-    return value & mask[y][x];
+    return value & getMask(x, y);
 }
 
 void BitBoard::setBit(char x, char y)
 {
-	value |= mask[y][x];
+	value |= getMask(x, y);
 }
 
 void BitBoard::clearBit(char x, char y)
 {
-    value &= ~mask[y][x];
+    value &= getMask(x, y);
 }
 
 void BitBoard::printBits()
 {
     for (int y = 7; y >= 0; y--) {
         for (int x = 0; x < 8; x++)
-            std::cout << ((value & mask[y][x]) ? '1' : '0');
+            std::cout << ((value & getMask(x, y)) ? '1' : '0');
 
         std::cout << std::endl;
     }
+}
+
+unsigned long long BitBoard::getMask(char x, char y)
+{
+    return 1ull << (x + y * 8);
 }
 
 unsigned long long BitBoard::getKingPattern(unsigned long long value)
@@ -56,9 +47,9 @@ unsigned long long BitBoard::getKingPattern(unsigned long long value)
     return pattern;
 }
 
-unsigned long long BitBoard::getKingAttack(char x, char y)
+bool BitBoard::getKingAttack(char x, char y)
 {
-    return getKingPattern(value) & mask[y][x];
+    return getKingPattern(value) & getMask(x, y);
 }
 
 unsigned long long BitBoard::getTropismPattern(unsigned long long value)
@@ -75,12 +66,12 @@ unsigned long long BitBoard::getTropismPattern(unsigned long long value)
 
 char BitBoard::getTropism(char x, char y)
 {
-    unsigned long long curPattern = value;
+    unsigned long long pattern = value;
     int tropism = 0;
 
-    if (curPattern) {
-        while (!(curPattern & mask[y][x])) {
-            curPattern = getTropismPattern(curPattern);
+    if (pattern) {
+        while (!(pattern & getMask(x, y))) {
+            pattern = getTropismPattern(pattern);
 
             tropism++;
         }
