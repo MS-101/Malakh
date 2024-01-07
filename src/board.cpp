@@ -8,33 +8,32 @@ void Board::initBoard(EssenceArgs essenceArgs)
 	clearBoard();
 
 	for (int i = 0; i < 8; i++) {
-		addPiece(White, Pawn, i, 1);
-		addPiece(Black, Pawn, i, 6);
+		addPiece(White, Pawn, i, 1, true);
+		addPiece(Black, Pawn, i, 6, true);
 	}
 
-	addPiece(White, Rook, 0, 0);
-	addPiece(White, Rook, 7, 0);
-	addPiece(Black, Rook, 0, 7);
-	addPiece(Black, Rook, 7, 7);
+	addPiece(White, Rook, 0, 0, true);
+	addPiece(White, Rook, 7, 0, true);
+	addPiece(Black, Rook, 0, 7, true);
+	addPiece(Black, Rook, 7, 7, true);
 
-	addPiece(White, Knight, 1, 0);
-	addPiece(White, Knight, 6, 0);
-	addPiece(Black, Knight, 1, 7);
-	addPiece(Black, Knight, 6, 7);
+	addPiece(White, Knight, 1, 0, true);
+	addPiece(White, Knight, 6, 0, true);
+	addPiece(Black, Knight, 1, 7, true);
+	addPiece(Black, Knight, 6, 7, true);
 
-	addPiece(White, Bishop, 2, 0);
-	addPiece(White, Bishop, 5, 0);
-	addPiece(Black, Bishop, 2, 7);
-	addPiece(Black, Bishop, 5, 7);
+	addPiece(White, Bishop, 2, 0, true);
+	addPiece(White, Bishop, 5, 0, true);
+	addPiece(Black, Bishop, 2, 7, true);
+	addPiece(Black, Bishop, 5, 7, true);
 
-	addPiece(White, Queen, 3, 0);
-	addPiece(Black, Queen, 3, 7);
+	addPiece(White, Queen, 3, 0, true);
+	addPiece(Black, Queen, 3, 7, true);
 
-	addPiece(White, King, 4, 0);
-	addPiece(Black, King, 4, 7);
+	addPiece(White, King, 4, 0, true);
+	addPiece(Black, King, 4, 7, true);
 
 	refreshAggregations();
-	notMoved.value = allPieces.value;
 
 	curTurn = White;
 	MoveGenerator::generateMoves(this);
@@ -168,9 +167,6 @@ int Board::evalBoard(PieceColor color)
 	int egScore = egPcsqScore + egMobScore + egTropismScore;
 
 	score += (curPhase * mgScore + (Evaluation::startPhase - curPhase) * egScore) / Evaluation::startPhase;
-
-	// revert score if we are calculating for back
-
 	if (color == Black)
 		score *= -1;
 
@@ -216,9 +212,14 @@ std::pair<bool, Piece> Board::removePiece(char x, char y)
 
 				notMoved.clearBit(x, y);
 				pieceCounts[color][type]--;
+
 				eval.matEval[color] -= Evaluation::pieceMatValues[type];
 				eval.mg_pcsqEval[color] -= Evaluation::get_mg_pcsq(color, type, x, y);
 				eval.eg_pcsqEval[color] -= Evaluation::get_eg_pcsq(color, type, x, y);
+
+				hash.switchSquare({ color, type }, x, y);
+				if (notMoved.getBit(x, y))
+					hash.switchNotMoved(x, y);
 
 				return std::make_pair(true, Piece{ color, type, essence });
 			}
@@ -228,13 +229,20 @@ std::pair<bool, Piece> Board::removePiece(char x, char y)
 	return std::make_pair(false, Piece{});
 }
 
-void Board::addPiece(PieceColor color, PieceType type, char x, char y)
+void Board::addPiece(PieceColor color, PieceType type, char x, char y, bool isNew)
 {
 	pieces[color][type].setBit(x, y);
 	pieceCounts[color][type]++;
+
 	eval.matEval[color] += Evaluation::pieceMatValues[type];
 	eval.mg_pcsqEval[color] += Evaluation::get_mg_pcsq(color, type, x, y);
 	eval.eg_pcsqEval[color] += Evaluation::get_eg_pcsq(color, type, x, y);
+
+	hash.switchSquare({ color, type }, x, y);
+	if (isNew) {
+		notMoved.setBit(x, y);
+		hash.switchNotMoved(x, y);
+	}
 }
 
 void Board::refreshAggregations()
@@ -262,14 +270,14 @@ bool Board::makeMove(LegalMove move)
 		case::White:
 			removePiece(0, 0);
 			removePiece(4, 0);
-			addPiece(White, King, 1, 0);
-			addPiece(White, Rook, 2, 0);
+			addPiece(White, King, 1, 0, false);
+			addPiece(White, Rook, 2, 0, false);
 			break;
 		case::Black:
 			removePiece(0, 7);
 			removePiece(4, 7);
-			addPiece(Black, King, 1, 7);
-			addPiece(Black, Rook, 2, 7);
+			addPiece(Black, King, 1, 7, false);
+			addPiece(Black, Rook, 2, 7, false);
 			break;
 		}
 		break;
@@ -278,14 +286,14 @@ bool Board::makeMove(LegalMove move)
 		case::White:
 			removePiece(4, 0);
 			removePiece(7, 0);
-			addPiece(White, Rook, 5, 0);
-			addPiece(White, King, 6, 0);
+			addPiece(White, Rook, 5, 0, false);
+			addPiece(White, King, 6, 0, false);
 			break;
 		case::Black:
 			removePiece(4, 7);
 			removePiece(7, 7);
-			addPiece(Black, Rook, 5, 7);
-			addPiece(Black, King, 6, 7);
+			addPiece(Black, Rook, 5, 7, false);
+			addPiece(Black, King, 6, 7, false);
 			break;
 		}
 		break;
@@ -297,44 +305,49 @@ bool Board::makeMove(LegalMove move)
 		auto movedPiece = result.second;
 		removePiece(move.x2, move.y2);
 		if (move.promotion == Pawn)
-			addPiece(movedPiece.color, movedPiece.type, move.x2, move.y2);
+			addPiece(movedPiece.color, movedPiece.type, move.x2, move.y2, false);
 		else
-			addPiece(movedPiece.color, move.promotion, move.x2, move.y2);
+			addPiece(movedPiece.color, move.promotion, move.x2, move.y2, false);
 
 		if (move.mobility.flags.vigilant && ghost.x == move.x2 && ghost.y == move.y2) {
 			removePiece(ghost.parentX, ghost.parentY);
 		}
-
-		if (move.mobility.flags.hasty) {
-			int parentX = move.x2;
-			int parentY = move.y2;
-			int ghostX = parentX;
-			int ghostY = parentY;
-
-			switch (curTurn) {
-			case White:
-				parentX -= move.mobility.direction_x;
-				parentY -= move.mobility.direction_y;
-				break;
-			case Black:
-				parentX += move.mobility.direction_x;
-				parentY += move.mobility.direction_y;
-				break;
-			}
-
-			ghost = { ghostX, ghostY, parentX, parentY };
-		} else {
-			ghost = {};
-		}
 			
 		break;
 	}
+
+	hash.switchGhost(ghost);
+
+	if (move.mobility.flags.hasty) {
+		int parentX = move.x2;
+		int parentY = move.y2;
+		int ghostX = parentX;
+		int ghostY = parentY;
+
+		switch (curTurn) {
+		case White:
+			parentX -= move.mobility.direction_x;
+			parentY -= move.mobility.direction_y;
+			break;
+		case Black:
+			parentX += move.mobility.direction_x;
+			parentY += move.mobility.direction_y;
+			break;
+		}
+
+		ghost = { ghostX, ghostY, parentX, parentY };
+	} else {
+		ghost = {};
+	}
+
+	hash.switchGhost(ghost);
 
 	refreshAggregations();
 	MoveGenerator::generateMoves(this);
 
 	bool legal = !(pieces[curTurn][King].value & attacks[opponent[curTurn]].value);
 	curTurn = opponent[curTurn];
+	hash.switchTurn();
 
 	return legal;
 }
@@ -350,26 +363,4 @@ std::vector<LegalMove> Board::getLegalMoves()
 
 	moves[curTurn] = legalMoves;
 	return legalMoves;
-}
-
-std::string LegalMove::toString()
-{
-	std::string value;
-
-	switch (castling) {
-	case kingSide:
-		value = "o-o";
-		break;
-	case queenSide:
-		value = "o-o-o";
-		break;
-	default:
-		value.push_back('a' + x1);
-		value.push_back('1' + y1);
-		value.push_back('a' + x2);
-		value.push_back('1' + y2);
-		break;
-	}
-
-	return value;
 }

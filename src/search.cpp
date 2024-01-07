@@ -2,6 +2,8 @@
 #include <iostream>
 #include <thread>
 
+TranspositionCache SearchManager::cache = TranspositionCache(4096);
+
 std::pair<bool, LegalMove> SearchManager::calculateBestMove(Board board, int depth, bool debug)
 {
 	LegalMove bestMove{};
@@ -41,6 +43,10 @@ int SearchManager::minimax(Board board, PieceColor playerColor, SearchArgs searc
 {
 	searchArgs.curDepth++;
 
+	Transposition transposition = cache.get(board.hash.value);
+	if (transposition.depth >= searchArgs.maxDepth)
+		return transposition.value;
+
 	if (searchArgs.curDepth >= searchArgs.maxDepth && (board.isQuiet() || searchArgs.curDepth < searchArgs.maxDepth + qLimit)) {
 		int value = board.evalBoard(playerColor);
 
@@ -55,6 +61,10 @@ int SearchManager::minimax(Board board, PieceColor playerColor, SearchArgs searc
 			if (durationCur > 1000)
 				performanceArgs->printPerformance(stop, durationCur);
 		}
+
+		transposition.value = value;
+		transposition.depth = searchArgs.maxDepth;
+		cache.put(board.hash.value, transposition);
 
 		return value;
 	}
@@ -80,6 +90,10 @@ int SearchManager::minimax(Board board, PieceColor playerColor, SearchArgs searc
 				break;
 		}
 	}
+
+	transposition.value = bestScore;
+	transposition.depth = searchArgs.maxDepth;
+	cache.put(board.hash.value, transposition);
 
 	return bestScore;
 }

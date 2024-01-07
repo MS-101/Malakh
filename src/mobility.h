@@ -2,8 +2,11 @@
 
 #include "piece.h"
 #include <vector>
+#include <string>
 
 enum MovementType { Move, Attack, AttackMove };
+
+enum Castling { none, kingSide, queenSide };
 
 struct MobilityFlags {
     bool initiative = false;
@@ -20,6 +23,18 @@ struct Mobility {
     int direction_y = 0;
     int limit = 0;
     MobilityFlags flags{};
+};
+
+struct LegalMove {
+    int x1 = 0;
+    int y1 = 0;
+    int x2 = 0;
+    int y2 = 0;
+    Mobility mobility;
+    PieceType promotion = Pawn;
+    Castling castling = none;
+
+    std::string toString();
 };
 
 extern std::vector<Mobility> mobilityConfig[6][3];

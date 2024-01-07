@@ -1,5 +1,27 @@
 #include "mobility.h"
 
+std::string LegalMove::toString()
+{
+    std::string value;
+
+    switch (castling) {
+    case kingSide:
+        value = "o-o";
+        break;
+    case queenSide:
+        value = "o-o-o";
+        break;
+    default:
+        value.push_back('a' + x1);
+        value.push_back('1' + y1);
+        value.push_back('a' + x2);
+        value.push_back('1' + y2);
+        break;
+    }
+
+    return value;
+}
+
 std::vector<Mobility> mobilityConfig[6][3] = {
     { // Pawn
         { // Classic

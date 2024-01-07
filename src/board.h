@@ -4,8 +4,8 @@
 #include "piece.h"
 #include "mobility.h"
 #include "evaluation.h"
+#include "hashing.h"
 #include <vector>
-#include <string>
 
 struct EssenceArgs {
     PieceEssence whitePawn = Classic;
@@ -16,20 +16,6 @@ struct EssenceArgs {
     PieceEssence blackRook = Classic;
     PieceEssence blackKnight = Classic;
     PieceEssence blackBishop = Classic;
-};
-
-enum Castling { none, kingSide, queenSide };
-
-struct LegalMove {
-    int x1 = 0;
-    int y1 = 0;
-    int x2 = 0;
-    int y2 = 0;
-    Mobility mobility;
-    PieceType promotion = Pawn;
-    Castling castling = none;
-
-    std::string toString();
 };
 
 class Board {
@@ -44,11 +30,12 @@ public:
     std::vector<LegalMove> moves[2];
     PieceColor curTurn = White;
     EvalArgs eval{};
+    BoardHash hash{};
     
 	void initBoard(EssenceArgs essenceArgs);
     void printBoard();
     void printMoves();
-    int evalBoard(PieceColor maximizingPlayer);
+    int evalBoard(PieceColor color);
     bool isQuiet();
     bool makeMove(char x1, char y1, char x2, char y2, PieceType promotion);
     bool makeMove(LegalMove move);
@@ -57,7 +44,7 @@ public:
 private:
     void setEssenceConfig(EssenceArgs essenceArgs);
     void clearBoard();
-    void addPiece(PieceColor color, PieceType type, char x, char y);
+    void addPiece(PieceColor color, PieceType type, char x, char y, bool isNew);
     std::pair<bool, Piece> removePiece(char x, char y);
 	void refreshAggregations();
 };

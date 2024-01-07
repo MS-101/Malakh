@@ -2,6 +2,8 @@
 #include "search.h"
 
 int main() {
+    ZobristHashing::initZobrist();
+
     Board board;
     board.initBoard(EssenceArgs{});
 
