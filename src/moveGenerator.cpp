@@ -5,7 +5,8 @@ void MoveGenerator::clearMoves(Board* board)
 {
 	for (int color = 0; color < 2; color++) {
 		for (int type = 0; type < 6; type++)
-			board->eval.mobCount[color][type] = 0;
+			board->eval.mobCount[getPieceIndex(color, type)] = 0;
+			
 
 		board->eval.attCount[color] = 0;
 		board->eval.attWeight[color] = 0;
@@ -32,9 +33,14 @@ void MoveGenerator::generateMoves(Board* board)
 		}
 	}
 
+	char whiteKingIndex = getPieceIndex(White, King);
+	char whiteRookIndex = getPieceIndex(White, Rook);
+	char blackKingIndex = getPieceIndex(Black, King);
+	char blackRookIndex = getPieceIndex(Black, Rook);
+
 	// white queen-side castle
-	if (board->pieces[White][King].getBit(4, 0) && board->notMoved.getBit(4, 0) && !board->attacks[Black].getBit(4, 0)
-		&& board->pieces[White][Rook].getBit(0, 0) && board->notMoved.getBit(0, 0)
+	if (board->pieces[whiteKingIndex].getBit(4, 0) && board->notMoved.getBit(4, 0) && !board->attacks[Black].getBit(4, 0)
+		&& board->pieces[whiteRookIndex].getBit(0, 0) && board->notMoved.getBit(0, 0)
 		&& !board->allPieces.getBit(1, 0) && !board->attacks[Black].getBit(1, 0)
 		&& !board->allPieces.getBit(2, 0) && !board->attacks[Black].getBit(2, 0)
 		&& !board->allPieces.getBit(3, 0) && !board->attacks[Black].getBit(3, 0)) {
@@ -45,8 +51,8 @@ void MoveGenerator::generateMoves(Board* board)
 	}
 
 	// black queen-side castle
-	if (board->pieces[Black][King].getBit(4, 7) && board->notMoved.getBit(4, 7) && !board->attacks[White].getBit(4, 7)
-		&& board->pieces[Black][Rook].getBit(0, 7) && board->notMoved.getBit(0, 7)
+	if (board->pieces[blackKingIndex].getBit(4, 7) && board->notMoved.getBit(4, 7) && !board->attacks[White].getBit(4, 7)
+		&& board->pieces[blackRookIndex].getBit(0, 7) && board->notMoved.getBit(0, 7)
 		&& !board->allPieces.getBit(1, 7) && !board->attacks[White].getBit(1, 7)
 		&& !board->allPieces.getBit(2, 7) && !board->attacks[White].getBit(2, 7)
 		&& !board->allPieces.getBit(3, 7) && !board->attacks[White].getBit(3, 7)) {
@@ -57,8 +63,8 @@ void MoveGenerator::generateMoves(Board* board)
 	}
 
 	// white king-side castle
-	if (board->pieces[White][King].getBit(4, 0) && board->notMoved.getBit(4, 0) && !board->attacks[Black].getBit(4, 0)
-		&& board->pieces[White][Rook].getBit(7, 0) && board->notMoved.getBit(7, 0)
+	if (board->pieces[whiteKingIndex].getBit(4, 0) && board->notMoved.getBit(4, 0) && !board->attacks[Black].getBit(4, 0)
+		&& board->pieces[whiteRookIndex].getBit(7, 0) && board->notMoved.getBit(7, 0)
 		&& !board->allPieces.getBit(5, 7) && !board->attacks[Black].getBit(5, 7)
 		&& !board->allPieces.getBit(6, 7) && !board->attacks[Black].getBit(6, 7)) {
 		LegalMove move{};
@@ -68,8 +74,8 @@ void MoveGenerator::generateMoves(Board* board)
 	}
 
 	// black king-side castle
-	if (board->pieces[Black][King].getBit(4, 7) && board->notMoved.getBit(4, 7) && !board->attacks[White].getBit(4, 7)
-		&& board->pieces[Black][Rook].getBit(7, 7) && board->notMoved.getBit(7, 7)
+	if (board->pieces[blackKingIndex].getBit(4, 7) && board->notMoved.getBit(4, 7) && !board->attacks[White].getBit(4, 7)
+		&& board->pieces[blackRookIndex].getBit(7, 7) && board->notMoved.getBit(7, 7)
 		&& !board->allPieces.getBit(5, 7) && !board->attacks[White].getBit(5, 7)
 		&& !board->allPieces.getBit(6, 7) && !board->attacks[White].getBit(6, 7)) {
 		LegalMove move{};
@@ -82,6 +88,8 @@ void MoveGenerator::generateMoves(Board* board)
 void MoveGenerator::generateMoves(Board* board, Piece piece, char x, char y)
 {
 	bool kingAttacked = false;
+	char pieceIndex = getPieceIndex(piece.color, piece.type);
+	char kingIndex = getPieceIndex(opponent[piece.color], King);
 
 	for (Mobility& mobility : Mobilities::mobilityConfig[piece.type][piece.essence]) {
 		if (mobility.flags.initiative && !board->notMoved.getBit(x, y))
@@ -111,7 +119,7 @@ void MoveGenerator::generateMoves(Board* board, Piece piece, char x, char y)
 			if (mobility.type == Attack || mobility.type == AttackMove) {
 				board->attacks[piece.color].setBit(destinationX, destinationY);
 
-				if (board->pieces[opponent[piece.color]][King].getKingAttack(destinationX, destinationY)) {
+				if (board->pieces[kingIndex].getKingAttack(destinationX, destinationY)) {
 					board->eval.attWeight[piece.color] += Evaluation::pieceAttWeights[piece.type];
 					kingAttacked = true;
 				}
@@ -134,7 +142,7 @@ void MoveGenerator::generateMoves(Board* board, Piece piece, char x, char y)
 							board->moves[piece.color].push_back(legalMove);
 						}
 
-						board->eval.mobCount[piece.color][piece.type]++;
+						board->eval.mobCount[pieceIndex]++;
 					}
 
 					break;
@@ -153,7 +161,7 @@ void MoveGenerator::generateMoves(Board* board, Piece piece, char x, char y)
 						board->moves[piece.color].push_back(legalMove);
 					}
 
-					board->eval.mobCount[piece.color][piece.type]++;
+					board->eval.mobCount[pieceIndex]++;
 				}
 			}
 

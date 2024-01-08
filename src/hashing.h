@@ -4,9 +4,9 @@
 
 class ZobristHashing {
 public:
-    static unsigned long long squares[64][2][6];
+    static unsigned long long squares[64*2*6];
     static unsigned long long notMoved[64];
-    static unsigned long long ghosts[64][64];
+    static unsigned long long ghosts[64*64];
     static unsigned long long turn;
 
     static void initZobrist();

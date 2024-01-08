@@ -86,9 +86,9 @@ bool uci::parseCommand(std::string command) {
 
             std::cout << "legalmoves" + legalMovesStr + '\n';
         } else {
-            if (board.curTurn == White && (board.pieces[White][King].value & board.attacks[Black].value))
+            if (board.curTurn == White && (board.pieces[getPieceIndex(White, King)].value & board.attacks[Black].value))
                 std::cout << "result Black" << std::endl;
-            else if (board.curTurn == Black && (board.pieces[Black][King].value & board.attacks[White].value))
+            else if (board.curTurn == Black && (board.pieces[getPieceIndex(Black, King)].value & board.attacks[White].value))
                 std::cout << "result White" << std::endl;
             else
                 std::cout << "result Stalemate" << std::endl;
@@ -125,8 +125,8 @@ bool uci::parseCommand(std::string command) {
 
                     bool foo = board.makeMove(sourceX, sourceY, destinationX, destinationY, promotionType);
 
-                    if ((board.pieces[White][King].value & board.attacks[Black].value)
-                        || (board.pieces[Black][King].value & board.attacks[White].value))
+                    if ((board.pieces[getPieceIndex(White, King)].value & board.attacks[Black].value)
+                        || (board.pieces[getPieceIndex(Black, King)].value & board.attacks[White].value))
                         std::cout << "check" << std::endl;
                 }
             }
@@ -143,9 +143,9 @@ bool uci::parseCommand(std::string command) {
                     std::cout << "bestmove " << bestMove.toString(board.curTurn) << std::endl;
                 }
             } else {
-                if (board.curTurn == White && (board.pieces[White][King].value & board.attacks[Black].value))
+                if (board.curTurn == White && (board.pieces[getPieceIndex(White, King)].value & board.attacks[Black].value))
                     std::cout << "result Black" << std::endl;
-                else if (board.curTurn == Black && (board.pieces[Black][King].value & board.attacks[White].value))
+                else if (board.curTurn == Black && (board.pieces[getPieceIndex(Black, King)].value & board.attacks[White].value))
                     std::cout << "result White" << std::endl;
                 else
                     std::cout << "result Stalemate" << std::endl;

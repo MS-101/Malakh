@@ -2,9 +2,9 @@
 
 bool ZobristHashing::isInitalized = false;
 
-unsigned long long ZobristHashing::squares[64][2][6];
+unsigned long long ZobristHashing::squares[64*2*6];
 unsigned long long ZobristHashing::notMoved[64];
-unsigned long long ZobristHashing::ghosts[64][64];
+unsigned long long ZobristHashing::ghosts[64*64];
 unsigned long long ZobristHashing::turn;
 
 void ZobristHashing::initZobrist()
@@ -16,11 +16,11 @@ void ZobristHashing::initZobrist()
     for (char square = 0; square < 64; square++) {
         for (char color = 0; color < 2; color++)
             for (char type = 0; type < 6; type++)
-                squares[square][color][type] = rand64();
+                squares[square*2*6 + color*6 + type] = rand64();
 
         notMoved[square] = rand64();
         for (char parent = 0; parent < 64; parent++)
-            ghosts[square][parent] = rand64();
+            ghosts[square*64 + parent] = rand64();
     }
 
     turn = rand64();
@@ -36,17 +36,24 @@ unsigned long long ZobristHashing::rand64()
 
 void BoardHash::switchSquare(Piece piece, char x, char y)
 {
-    value ^= ZobristHashing::squares[y * 8 + x][piece.color][piece.type];
+    char square = y * 8 + x;
+
+    value ^= ZobristHashing::squares[square*2*6 + piece.color*6 + piece.type];
 }
 
 void BoardHash::switchNotMoved(char x, char y)
 {
-    value ^= ZobristHashing::notMoved[y*8+x];
+    char square = y * 8 + x;
+
+    value ^= ZobristHashing::notMoved[square];
 }
 
 void BoardHash::switchGhost(Ghost ghost)
 {
-    value ^= ZobristHashing::ghosts[ghost.y * 8 + ghost.x][ghost.parentY * 8 + ghost.parentX];
+    char ghostSquare = ghost.y * 8 + ghost.x;
+    char parentSquare = ghost.parentY * 8 + ghost.parentX;
+
+    value ^= ZobristHashing::ghosts[ghostSquare*64 + parentSquare];
 }
 
 void BoardHash::switchTurn()

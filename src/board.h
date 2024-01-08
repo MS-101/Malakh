@@ -20,13 +20,13 @@ struct EssenceArgs {
 
 class Board {
 public:
-    PieceEssence essenceConfig[2][6] = {};
-    BitBoard pieces[2][6];
+    PieceEssence essenceConfig[2*6] = {};
+    BitBoard pieces[2*6];
     BitBoard colors[2];
     BitBoard attacks[2];
 	BitBoard allPieces, notMoved;
     Ghost ghost;
-    int pieceCounts[2][6] = {};
+    int pieceCounts[2*6] = {};
     std::vector<LegalMove> moves[2];
     PieceColor curTurn = White;
     EvalArgs eval{};

@@ -5,6 +5,11 @@ char colorChars[] = { 'W', 'B' };
 char essenceChars[] = { 'C', 'R', 'B' };
 char typeChars[] = { 'P', 'R', 'N', 'B', 'Q', 'K' };
 
+char getPieceIndex(char color, char type)
+{
+    return color * 6 + type;
+}
+
 PieceColor stringToColor(std::string value)
 {
     if (value == "Black")

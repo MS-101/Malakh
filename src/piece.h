@@ -24,6 +24,7 @@ extern char colorChars[];
 extern char essenceChars[];
 extern char typeChars[];
 
+char getPieceIndex(char color, char type);
 PieceColor stringToColor(std::string value);
 PieceType stringToType(std::string value);
 PieceEssence stringToEssence(std::string value);

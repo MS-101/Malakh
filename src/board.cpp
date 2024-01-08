@@ -41,26 +41,26 @@ void Board::initBoard(EssenceArgs essenceArgs)
 
 void Board::setEssenceConfig(EssenceArgs essenceArgs)
 {
-	essenceConfig[White][Pawn] = essenceArgs.whitePawn;
-	essenceConfig[White][Rook] = essenceArgs.whiteRook;
-	essenceConfig[White][Knight] = essenceArgs.whiteKnight;
-	essenceConfig[White][Bishop] = essenceArgs.whiteBishop;
-	essenceConfig[White][Queen] = Classic;
-	essenceConfig[White][King] = Classic;
+	essenceConfig[getPieceIndex(White, Pawn)] = essenceArgs.whitePawn;
+	essenceConfig[getPieceIndex(White, Rook)] = essenceArgs.whiteRook;
+	essenceConfig[getPieceIndex(White, Knight)] = essenceArgs.whiteKnight;
+	essenceConfig[getPieceIndex(White, Bishop)] = essenceArgs.whiteBishop;
+	essenceConfig[getPieceIndex(White, Queen)] = Classic;
+	essenceConfig[getPieceIndex(White, King)] = Classic;
 
-	essenceConfig[Black][Pawn] = essenceArgs.blackPawn;
-	essenceConfig[Black][Rook] = essenceArgs.blackRook;
-	essenceConfig[Black][Knight] = essenceArgs.blackKnight;
-	essenceConfig[Black][Bishop] = essenceArgs.blackBishop;
-	essenceConfig[Black][Queen] = Classic;
-	essenceConfig[Black][King] = Classic;
+	essenceConfig[getPieceIndex(Black, Pawn)] = essenceArgs.blackPawn;
+	essenceConfig[getPieceIndex(Black, Rook)] = essenceArgs.blackRook;
+	essenceConfig[getPieceIndex(Black, Knight)] = essenceArgs.blackKnight;
+	essenceConfig[getPieceIndex(Black, Bishop)] = essenceArgs.blackBishop;
+	essenceConfig[getPieceIndex(Black, Queen)] = Classic;
+	essenceConfig[getPieceIndex(Black, King)] = Classic;
 }
 
 void Board::clearBoard()
 {
 	for (int color = 0; color < 2; color++) {
 		for (int type = 0; type < 6; type++) {
-			auto& bitboard = pieces[color][type];
+			auto& bitboard = pieces[getPieceIndex((PieceColor)color, (PieceType)type)];
 			bitboard.value = 0;
 		}
 	}
@@ -136,11 +136,14 @@ int Board::evalBoard(PieceColor color)
 	int egMobScore = 0;
 
 	for (int type = 0; type < 6; type++) {
-		mgMobScore += Evaluation::mg_pieceMobWeights[type] * (eval.mobCount[White][type] - pieceCounts[White][type] * Evaluation::pieceMobPenalties[type]);
-		mgMobScore -= Evaluation::mg_pieceMobWeights[type] * (eval.mobCount[Black][type] - pieceCounts[Black][type] * Evaluation::pieceMobPenalties[type]);
+		char whitePieceIndex = getPieceIndex(White, type);
+		char blackPieceIndex = getPieceIndex(Black, type);
 
-		egMobScore += Evaluation::eg_pieceMobWeights[type] * (eval.mobCount[White][type] - pieceCounts[White][type] * Evaluation::pieceMobPenalties[type]);
-		egMobScore -= Evaluation::eg_pieceMobWeights[type] * (eval.mobCount[Black][type] - pieceCounts[Black][type] * Evaluation::pieceMobPenalties[type]);
+		mgMobScore += Evaluation::mg_pieceMobWeights[type] * (eval.mobCount[whitePieceIndex] - pieceCounts[whitePieceIndex] * Evaluation::pieceMobPenalties[type]);
+		mgMobScore -= Evaluation::mg_pieceMobWeights[type] * (eval.mobCount[blackPieceIndex] - pieceCounts[blackPieceIndex] * Evaluation::pieceMobPenalties[type]);
+
+		egMobScore += Evaluation::eg_pieceMobWeights[type] * (eval.mobCount[whitePieceIndex] - pieceCounts[whitePieceIndex] * Evaluation::pieceMobPenalties[type]);
+		egMobScore -= Evaluation::eg_pieceMobWeights[type] * (eval.mobCount[blackPieceIndex] - pieceCounts[blackPieceIndex] * Evaluation::pieceMobPenalties[type]);
 	}
 
 	int mgTropismScore = 0;
@@ -152,12 +155,14 @@ int Board::evalBoard(PieceColor color)
 			if (result.first) {
 				Piece piece = result.second;
 
+				char kingIndex = getPieceIndex(opponent[piece.color], King);
+
 				if (piece.color == White) {
-					mgTropismScore -= pieces[opponent[piece.color]][King].getTropism(y, x) * Evaluation::mg_pieceTropismWeights[piece.type];
-					egTropismScore -= pieces[opponent[piece.color]][King].getTropism(y, x) * Evaluation::eg_pieceTropismWeights[piece.type];
+					mgTropismScore -= pieces[kingIndex].getTropism(y, x) * Evaluation::mg_pieceTropismWeights[piece.type];
+					egTropismScore -= pieces[kingIndex].getTropism(y, x) * Evaluation::eg_pieceTropismWeights[piece.type];
 				} else {
-					mgTropismScore += pieces[opponent[piece.color]][King].getTropism(y, x) * Evaluation::mg_pieceTropismWeights[piece.type];
-					egTropismScore += pieces[opponent[piece.color]][King].getTropism(y, x) * Evaluation::eg_pieceTropismWeights[piece.type];
+					mgTropismScore += pieces[kingIndex].getTropism(y, x) * Evaluation::mg_pieceTropismWeights[piece.type];
+					egTropismScore += pieces[kingIndex].getTropism(y, x) * Evaluation::eg_pieceTropismWeights[piece.type];
 				}
 			}
 		}
@@ -182,12 +187,13 @@ std::pair<bool, Piece> Board::getPiece(char x, char y)
 {
 	for (int c = 0; c < 2; c++) {
 		for (int t = 0; t < 6; t++) {
-			auto& bitboard = pieces[c][t];
+			char pieceIndex = getPieceIndex(c, t);
+			auto& bitboard = pieces[pieceIndex];
 
 			if (bitboard.getBit(x, y)) {
 				PieceColor color = (PieceColor)c;
 				PieceType type = (PieceType)t;
-				PieceEssence essence = essenceConfig[c][t];
+				PieceEssence essence = essenceConfig[pieceIndex];
 
 				return std::make_pair(true, Piece{ color, type, essence });
 			}
@@ -201,17 +207,18 @@ std::pair<bool, Piece> Board::removePiece(char x, char y)
 {
 	for (int c = 0; c < 2; c++) {
 		for (int t = 0; t < 6; t++) {
-			auto& bitboard = pieces[c][t];
+			char pieceIndex = getPieceIndex(c, t);
+			auto& bitboard = pieces[pieceIndex];
 
 			if (bitboard.getBit(x, y)) {
 				bitboard.clearBit(x, y);
 				
 				PieceColor color = (PieceColor)c;
 				PieceType type = (PieceType)t;
-				PieceEssence essence = essenceConfig[c][t];
+				PieceEssence essence = essenceConfig[pieceIndex];
 
 				notMoved.clearBit(x, y);
-				pieceCounts[color][type]--;
+				pieceCounts[pieceIndex]--;
 
 				eval.matEval[color] -= Evaluation::pieceMatValues[type];
 				eval.mg_pcsqEval[color] -= Evaluation::get_mg_pcsq(color, type, x, y);
@@ -231,8 +238,9 @@ std::pair<bool, Piece> Board::removePiece(char x, char y)
 
 void Board::addPiece(PieceColor color, PieceType type, char x, char y, bool isNew)
 {
-	pieces[color][type].setBit(x, y);
-	pieceCounts[color][type]++;
+	char pieceIndex = getPieceIndex(color, type);
+	pieces[pieceIndex].setBit(x, y);
+	pieceCounts[pieceIndex]++;
 
 	eval.matEval[color] += Evaluation::pieceMatValues[type];
 	eval.mg_pcsqEval[color] += Evaluation::get_mg_pcsq(color, type, x, y);
@@ -247,8 +255,20 @@ void Board::addPiece(PieceColor color, PieceType type, char x, char y, bool isNe
 
 void Board::refreshAggregations()
 {
-	colors[White].value = pieces[White][Pawn].value | pieces[White][Rook].value | pieces[White][Knight].value | pieces[White][Bishop].value | pieces[White][Queen].value | pieces[White][King].value;
-	colors[Black].value = pieces[Black][Pawn].value | pieces[Black][Rook].value | pieces[Black][Knight].value | pieces[Black][Bishop].value | pieces[Black][Queen].value | pieces[Black][King].value;
+	colors[White].value = pieces[getPieceIndex(White, Pawn)].value;
+	colors[White].value |= pieces[getPieceIndex(White, Rook)].value;
+	colors[White].value |= pieces[getPieceIndex(White, Knight)].value;
+	colors[White].value |= pieces[getPieceIndex(White, Bishop)].value;
+	colors[White].value |= pieces[getPieceIndex(White, Queen)].value;
+	colors[White].value |= pieces[getPieceIndex(White, King)].value;
+
+	colors[Black].value = pieces[getPieceIndex(Black, Pawn)].value;
+	colors[Black].value |= pieces[getPieceIndex(Black, Rook)].value;
+	colors[Black].value |= pieces[getPieceIndex(Black, Knight)].value;
+	colors[Black].value |= pieces[getPieceIndex(Black, Bishop)].value;
+	colors[Black].value |= pieces[getPieceIndex(Black, Queen)].value;
+	colors[Black].value |= pieces[getPieceIndex(Black, King)].value;
+
 	allPieces.value = colors[White].value | colors[Black].value;
 }
 
@@ -350,7 +370,7 @@ bool Board::makeMove(LegalMove move)
 	refreshAggregations();
 	MoveGenerator::generateMoves(this);
 
-	bool legal = !(pieces[curTurn][King].value & attacks[opponent[curTurn]].value);
+	bool legal = !(pieces[getPieceIndex(curTurn, King)].value & attacks[opponent[curTurn]].value);
 	curTurn = opponent[curTurn];
 	hash.switchTurn();
 

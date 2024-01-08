@@ -5,7 +5,7 @@ struct EvalArgs {
     int curPhase = 0;
     int mg_pcsqEval[2];
     int eg_pcsqEval[2];
-    int mobCount[2][6];
+    int mobCount[2*6];
     int attCount[2];
     int attWeight[2];
 };

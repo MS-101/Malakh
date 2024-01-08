@@ -43,9 +43,9 @@ void startUCI()
 }
 
 int main() {
-    // startUCI();
+    startUCI();
     // testUCI();
-    testEngine();
+    // testEngine();
 
     return 0;
 }
