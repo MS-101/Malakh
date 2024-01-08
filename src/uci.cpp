@@ -81,7 +81,7 @@ bool uci::parseCommand(std::string command) {
 
         if (!legalMoves.empty()) {
             std::string legalMovesStr = "";
-            for each (LegalMove legalMove in legalMoves)
+            for (LegalMove& legalMove : legalMoves)
                 legalMovesStr += " " + legalMove.toString(board.curTurn);
 
             std::cout << "legalmoves" + legalMovesStr + '\n';
@@ -100,9 +100,9 @@ bool uci::parseCommand(std::string command) {
                     std::string move = tokens[i];
 
                     int sourceX = move[0] - 'a';
-                    int sourceY = 7 - (move[1] - '1');
+                    int sourceY = move[1] - '1';
                     int destinationX = move[2] - 'a';
-                    int destinationY = 7 - (move[3] - '1');
+                    int destinationY = move[3] - '1';
 
                     PieceType promotionType = Pawn;
                     if (move.length() == 5) {
@@ -123,7 +123,7 @@ bool uci::parseCommand(std::string command) {
                         }
                     }
 
-                    board.makeMove(sourceX, sourceY, destinationX, destinationY, promotionType);
+                    bool foo = board.makeMove(sourceX, sourceY, destinationX, destinationY, promotionType);
 
                     if ((board.pieces[White][King].value & board.attacks[Black].value)
                         || (board.pieces[Black][King].value & board.attacks[White].value))
@@ -137,7 +137,7 @@ bool uci::parseCommand(std::string command) {
 
             std::vector<LegalMove> legalMoves = board.getLegalMoves();
             if (!legalMoves.empty()) {
-                auto result = SearchManager::calculateBestMove(board, depth, true);
+                auto result = SearchManager::calculateBestMove(board, depth, false);
                 if (result.first) {
                     LegalMove bestMove = result.second;
                     std::cout << "bestmove " << bestMove.toString(board.curTurn) << std::endl;

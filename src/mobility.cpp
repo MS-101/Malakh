@@ -34,7 +34,6 @@ std::string LegalMove::toString(PieceColor color)
             value.push_back('a' + hastyX);
             value.push_back('1' + hastyY);
         }
-            
 
         if (mobility.flags.vigilant)
             value += "_V";

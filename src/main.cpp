@@ -33,7 +33,6 @@ void testUCI()
     api.parseCommand("ucinewgame");
     api.parseCommand("position curpos moves e2e4");
     api.parseCommand("position curpos moves g8f6");
-
     api.parseCommand("go depth 4");
 }
 
@@ -44,9 +43,9 @@ void startUCI()
 }
 
 int main() {
-    startUCI();
+    // startUCI();
     // testUCI();
-    // testEngine();
+    testEngine();
 
     return 0;
 }
