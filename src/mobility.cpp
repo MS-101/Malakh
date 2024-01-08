@@ -1,6 +1,7 @@
 #include "mobility.h"
+#include <iostream>
 
-std::string LegalMove::toString()
+std::string LegalMove::toString(PieceColor color)
 {
     std::string value;
 
@@ -16,13 +17,35 @@ std::string LegalMove::toString()
         value.push_back('1' + y1);
         value.push_back('a' + x2);
         value.push_back('1' + y2);
+
+        if (mobility.flags.hasty) {
+            value += "_H";
+
+            int hastyX = x2;
+            int hastyY = y2;
+            if (color == White) {
+                hastyX -= mobility.direction_x;
+                hastyY -= mobility.direction_y;
+            } else {
+                hastyX += mobility.direction_x;
+                hastyY += mobility.direction_y;
+            }
+
+            value.push_back('a' + hastyX);
+            value.push_back('1' + hastyY);
+        }
+            
+
+        if (mobility.flags.vigilant)
+            value += "_V";
+
         break;
     }
 
     return value;
 }
 
-std::vector<Mobility> mobilityConfig[6][3] = {
+std::vector<Mobility> Mobilities::mobilityConfig[6][3] = {
     { // Pawn
         { // Classic
             {Move, +0, +1, +0, +0, 1},
@@ -185,3 +208,26 @@ std::vector<Mobility> mobilityConfig[6][3] = {
         }
     }
 };
+
+void Mobilities::printMobilities(PieceType type, PieceEssence essence)
+{
+    for (Mobility& mobility : mobilityConfig[type][essence]) {
+        std::string movementType = "";
+        switch (mobility.type) {
+        case::Move:
+            movementType = "Move";
+            break;
+        case::Attack:
+            movementType = "Attack";
+            break;
+        case::AttackMove:
+            movementType = "AttackMove";
+            break;
+        }
+
+        std::cout << "mobility " << typeToString(type) << " " << essenceToString(essence) << " " << movementType
+            << " " << mobility.start_x << " " << mobility.start_y
+            << " " << mobility.direction_x << " " << mobility.direction_y
+            << " " << mobility.limit << "\n";
+    }
+}

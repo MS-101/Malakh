@@ -83,7 +83,7 @@ void MoveGenerator::generateMoves(Board* board, Piece piece, char x, char y)
 {
 	bool kingAttacked = false;
 
-	for (Mobility& mobility : mobilityConfig[piece.type][piece.essence]) {
+	for (Mobility& mobility : Mobilities::mobilityConfig[piece.type][piece.essence]) {
 		if (mobility.flags.initiative && !board->notMoved.getBit(x, y))
 			continue;
 

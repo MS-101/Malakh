@@ -1,8 +1,10 @@
 #pragma once
 
+#include <string>
+
 enum PieceColor { White, Black };
-enum PieceEssence { Classic, Red, Blue };
 enum PieceType { Pawn, Rook, Knight, Bishop, Queen, King };
+enum PieceEssence { Classic, Red, Blue };
 
 struct Piece {
     PieceColor color = White;
@@ -21,3 +23,10 @@ extern PieceColor opponent[];
 extern char colorChars[];
 extern char essenceChars[];
 extern char typeChars[];
+
+PieceColor stringToColor(std::string value);
+PieceType stringToType(std::string value);
+PieceEssence stringToEssence(std::string value);
+std::string colorToString(PieceColor value);
+std::string typeToString(PieceType value);
+std::string essenceToString(PieceEssence value);

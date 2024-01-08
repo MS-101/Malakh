@@ -108,6 +108,7 @@
     <ClCompile Include="src\moveGenerator.cpp" />
     <ClCompile Include="src\search.cpp" />
     <ClCompile Include="src\transpositions.cpp" />
+    <ClCompile Include="src\uci.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\bitboard.h" />
@@ -118,6 +119,7 @@
     <ClInclude Include="src\mobility.h" />
     <ClInclude Include="src\search.h" />
     <ClInclude Include="src\transpositions.h" />
+    <ClInclude Include="src\uci.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

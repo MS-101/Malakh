@@ -47,7 +47,7 @@ int SearchManager::minimax(Board board, PieceColor playerColor, SearchArgs searc
 	if (transposition.depth >= searchArgs.maxDepth)
 		return transposition.value;
 
-	if (searchArgs.curDepth >= searchArgs.maxDepth && (board.isQuiet() || searchArgs.curDepth < searchArgs.maxDepth + qLimit)) {
+	if (searchArgs.curDepth >= searchArgs.maxDepth && (board.isQuiet() || searchArgs.curDepth >= searchArgs.maxDepth + qLimit)) {
 		int value = board.evalBoard(playerColor);
 
 		if (debug) {

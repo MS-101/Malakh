@@ -37,6 +37,7 @@ public:
     void printMoves();
     int evalBoard(PieceColor color);
     bool isQuiet();
+    bool makeMove(char x1, char y1, char x2, char y2);
     bool makeMove(char x1, char y1, char x2, char y2, PieceType promotion);
     bool makeMove(LegalMove move);
     std::pair<bool, Piece> getPiece(char x, char y);

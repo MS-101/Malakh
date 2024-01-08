@@ -100,7 +100,7 @@ void Board::printBoard()
 void Board::printMoves()
 {
 	for (LegalMove& move : getLegalMoves()) {
-		std::cout << move.toString() << " ";
+		std::cout << move.toString(curTurn) << " ";
 	}
 
 	std::cout << std::endl;
@@ -250,6 +250,11 @@ void Board::refreshAggregations()
 	colors[White].value = pieces[White][Pawn].value | pieces[White][Rook].value | pieces[White][Knight].value | pieces[White][Bishop].value | pieces[White][Queen].value | pieces[White][King].value;
 	colors[Black].value = pieces[Black][Pawn].value | pieces[Black][Rook].value | pieces[Black][Knight].value | pieces[Black][Bishop].value | pieces[Black][Queen].value | pieces[Black][King].value;
 	allPieces.value = colors[White].value | colors[Black].value;
+}
+
+bool Board::makeMove(char x1, char y1, char x2, char y2)
+{
+	return makeMove(x1, y1, x2, y2, Pawn);
 }
 
 bool Board::makeMove(char x1, char y1, char x2, char y2, PieceType promotion)

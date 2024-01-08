@@ -34,7 +34,11 @@ struct LegalMove {
     PieceType promotion = Pawn;
     Castling castling = none;
 
-    std::string toString();
+    std::string toString(PieceColor color);
 };
 
-extern std::vector<Mobility> mobilityConfig[6][3];
+class Mobilities {
+public:
+    static std::vector<Mobility> mobilityConfig[6][3];
+    static void printMobilities(PieceType type, PieceEssence essence);
+};
