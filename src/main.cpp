@@ -31,9 +31,9 @@ void testUCI()
     api.parseCommand("setoption name BlackBishop value Blue");
     api.parseCommand("setoption name BlackRook value Blue");
     api.parseCommand("ucinewgame");
-    api.parseCommand("position curpos moves e2e4");
-    api.parseCommand("position curpos moves g8f6");
-    api.parseCommand("go depth 4");
+    api.parseCommand("legalmoves");
+    api.parseCommand("position curpos moves d2d4");
+    api.parseCommand("go depth 3");
 }
 
 void startUCI()

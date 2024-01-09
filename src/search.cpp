@@ -3,6 +3,8 @@
 #include <thread>
 #include <queue>
 
+TranspositionCache SearchManager::cache = TranspositionCache(4096);
+
 std::pair<bool, LegalMove> SearchManager::calculateBestMove(Board board, int depth, bool debug)
 {
 	LegalMove bestMove{};
@@ -105,6 +107,7 @@ std::pair<bool, LegalMove> SearchManager::calculateBestMove_threads(Board board,
 		if (curBestMove.first > max) {
 			max = curBestMove.first;
 			bestMove = curBestMove.second;
+			moveFound = true;
 		}
 	}
 
