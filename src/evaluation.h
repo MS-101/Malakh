@@ -15,8 +15,8 @@ public:
     static const int pieceMatValues[6];
     static const int piecePhaseValues[6];
     static const int startPhase;
-    static const int mg_pcsq[6][8][8];
-    static const int eg_pcsq[6][8][8];
+    static const int mg_pcsq[6][64];
+    static const int eg_pcsq[6][64];
     static const int mg_pieceMobWeights[6];
     static const int eg_pieceMobWeights[6];
     static const int pieceMobPenalties[6];

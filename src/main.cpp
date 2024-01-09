@@ -11,7 +11,7 @@ void testEngine()
     board.makeMove({ 4, 1, 4, 3 }); // e2-e4
     board.makeMove(6, 7, 5, 5); // g8-f6
 
-    auto result = SearchManager::calculateBestMove(board, 4, true);
+    auto result = SearchManager::calculateBestMove_threads(board, 4, 4, true);
     if (result.first)
         LegalMove bestMove = result.second;
 }

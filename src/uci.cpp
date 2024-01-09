@@ -137,7 +137,7 @@ bool uci::parseCommand(std::string command) {
 
             std::vector<LegalMove> legalMoves = board.getLegalMoves();
             if (!legalMoves.empty()) {
-                auto result = SearchManager::calculateBestMove(board, depth, false);
+                auto result = SearchManager::calculateBestMove_threads(board, depth, 4, false);
                 if (result.first) {
                     LegalMove bestMove = result.second;
                     std::cout << "bestmove " << bestMove.toString(board.curTurn) << std::endl;

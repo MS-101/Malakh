@@ -279,7 +279,7 @@ bool Board::makeMove(char x1, char y1, char x2, char y2)
 
 bool Board::makeMove(char x1, char y1, char x2, char y2, PieceType promotion)
 {
-	for (LegalMove& move : getLegalMoves()) {
+	for (LegalMove& move : moves[curTurn]) {
 		if (move.x1 == x1 && move.y1 == y1 && move.x2 == x2 && move.y2 == y2 && move.promotion == promotion)
 			return makeMove(move);
 	}

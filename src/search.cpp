@@ -1,8 +1,7 @@
 #include "search.h"
 #include <iostream>
 #include <thread>
-
-TranspositionCache SearchManager::cache = TranspositionCache(4096);
+#include <queue>
 
 std::pair<bool, LegalMove> SearchManager::calculateBestMove(Board board, int depth, bool debug)
 {
@@ -35,6 +34,79 @@ std::pair<bool, LegalMove> SearchManager::calculateBestMove(Board board, int dep
 
 	if (debug)
 		performanceArgs.printPerformance();
+
+	return std::make_pair(moveFound, bestMove);
+}
+
+std::pair<bool, LegalMove> SearchManager::calculateBestMove_threads(Board board, int depth, int threadCount, bool debug)
+{
+	LegalMove bestMove{};
+	bool moveFound = false;
+
+	if (depth <= 0)
+		return std::make_pair(moveFound, bestMove);
+
+	int max = INT_MIN;
+	std::mutex maxMutex;
+
+	PieceColor playerColor = board.curTurn;
+
+	SearchArgs searchArgs{};
+	searchArgs.maxDepth = depth;
+
+	// create move queue
+	std::mutex moveQueueMutex;
+	std::queue<LegalMove> moveQueue;
+	for (const LegalMove& move : board.getLegalMoves())
+		moveQueue.push(move);
+
+	// create worker threads
+	std::vector<std::pair<int, LegalMove>> bestMoves;
+	bestMoves.assign(threadCount, std::make_pair(INT_MIN, bestMove));
+	std::vector<std::thread> threads;
+
+	for (int i = 0; i < threadCount; i++) {
+		threads.emplace_back([&, i]() {
+			PerformanceArgs performanceArgs{};
+
+			while (true) {
+				moveQueueMutex.lock();
+
+				if (moveQueue.empty()) {
+					moveQueueMutex.unlock();
+					break;
+				}
+
+				LegalMove move = moveQueue.front();
+				moveQueue.pop();
+
+				moveQueueMutex.unlock();
+
+				Board newBoard = board;
+				newBoard.makeMove(move);
+
+				int value = minimax(newBoard, playerColor, searchArgs, &performanceArgs, debug);
+
+				std::pair<int, LegalMove> myBestMove = bestMoves[i];
+				if (value > myBestMove.first)
+					bestMoves[i] = std::make_pair(value, move);
+			}
+
+			if (debug)
+				performanceArgs.printPerformance();
+		});
+	}
+
+	// perform tasks
+	for (std::thread& thread : threads)
+		thread.join();
+
+	for (std::pair<int, LegalMove>& curBestMove : bestMoves) {
+		if (curBestMove.first > max) {
+			max = curBestMove.first;
+			bestMove = curBestMove.second;
+		}
+	}
 
 	return std::make_pair(moveFound, bestMove);
 }
@@ -98,6 +170,8 @@ int SearchManager::minimax(Board board, PieceColor playerColor, SearchArgs searc
 	return bestScore;
 }
 
+std::mutex PerformanceArgs::mutex;
+
 void PerformanceArgs::printPerformance()
 {
 	auto stop = std::chrono::high_resolution_clock::now();
@@ -109,6 +183,8 @@ void PerformanceArgs::printPerformance()
 
 void PerformanceArgs::printPerformance(std::chrono::high_resolution_clock::time_point stop, long long durationCur)
 {
+	std::lock_guard<std::mutex> lock(mutex);
+
 	positionsTotal += positionsCur;
 	durationTotal += durationCur;
 
