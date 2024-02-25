@@ -22,6 +22,7 @@
     <VCProjectVersion>17.0</VCProjectVersion>
     <ProjectGuid>{EEFA1E83-E597-42AF-A868-BC56DFDF8A0B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -97,9 +98,17 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalIncludeDirectories>C:\Program Files\libpqxx\include</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\bitboard.cpp" />
     <ClCompile Include="src\board.cpp" />
+    <ClCompile Include="src\database.cpp" />
     <ClCompile Include="src\hashing.cpp" />
     <ClCompile Include="src\piece.cpp" />
     <ClCompile Include="src\evaluation.cpp" />
@@ -113,6 +122,7 @@
   <ItemGroup>
     <ClInclude Include="src\bitboard.h" />
     <ClInclude Include="src\board.h" />
+    <ClInclude Include="src\database.h" />
     <ClInclude Include="src\hashing.h" />
     <ClInclude Include="src\piece.h" />
     <ClInclude Include="src\evaluation.h" />

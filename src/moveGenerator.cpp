@@ -6,7 +6,6 @@ void MoveGenerator::clearMoves(Board* board)
 	for (int color = 0; color < 2; color++) {
 		for (int type = 0; type < 6; type++)
 			board->eval.mobCount[getPieceIndex(color, type)] = 0;
-			
 
 		board->eval.attCount[color] = 0;
 		board->eval.attWeight[color] = 0;
@@ -65,8 +64,8 @@ void MoveGenerator::generateMoves(Board* board)
 	// white king-side castle
 	if (board->pieces[whiteKingIndex].getBit(4, 0) && board->notMoved.getBit(4, 0) && !board->attacks[Black].getBit(4, 0)
 		&& board->pieces[whiteRookIndex].getBit(7, 0) && board->notMoved.getBit(7, 0)
-		&& !board->allPieces.getBit(5, 7) && !board->attacks[Black].getBit(5, 7)
-		&& !board->allPieces.getBit(6, 7) && !board->attacks[Black].getBit(6, 7)) {
+		&& !board->allPieces.getBit(5, 0) && !board->attacks[Black].getBit(5, 0)
+		&& !board->allPieces.getBit(6, 0) && !board->attacks[Black].getBit(6, 0)) {
 		LegalMove move{};
 		move.castling = kingSide;
 

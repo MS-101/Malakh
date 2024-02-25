@@ -9,7 +9,7 @@ public:
     static unsigned long long ghosts[64*64];
     static unsigned long long turn;
 
-    static void initZobrist();
+    static void init();
 private:
     static bool isInitalized;
     static unsigned long long rand64();

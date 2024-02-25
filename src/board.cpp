@@ -1,4 +1,5 @@
 #include "board.h"
+#include "database.h"
 #include <iostream>
 
 void Board::initBoard(EssenceArgs essenceArgs)
@@ -174,6 +175,9 @@ int Board::evalBoard(PieceColor color)
 	score += (curPhase * mgScore + (Evaluation::startPhase - curPhase) * egScore) / Evaluation::startPhase;
 	if (color == Black)
 		score *= -1;
+
+	int trainingScore = DatabaseManager::getTrainingValue(100);
+	score += trainingScore;
 
 	return score;
 }

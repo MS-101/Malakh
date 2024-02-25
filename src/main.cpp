@@ -1,9 +1,10 @@
 #include <iostream>
+#include "database.h"
 #include "uci.h"
 
 void testEngine()
 {
-    ZobristHashing::initZobrist();
+    ZobristHashing::init();
 
     Board board;
     board.initBoard({});
@@ -43,8 +44,9 @@ void startUCI()
 }
 
 int main() {
-    startUCI();
-    // testUCI();
+    // auto foo = DatabaseManager::getTrainingValue(0);
+    // startUCI();
+    testUCI();
     // testEngine();
 
     return 0;

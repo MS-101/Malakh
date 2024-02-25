@@ -7,7 +7,7 @@ unsigned long long ZobristHashing::notMoved[64];
 unsigned long long ZobristHashing::ghosts[64*64];
 unsigned long long ZobristHashing::turn;
 
-void ZobristHashing::initZobrist()
+void ZobristHashing::init()
 {
     if (isInitalized)
         return;

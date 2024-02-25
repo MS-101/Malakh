@@ -1,4 +1,5 @@
 #include "uci.h"
+#include "database.h"
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -52,7 +53,8 @@ bool uci::parseCommand(std::string command) {
 
         std::cout << "uciok\n";
     } else if (tokens[0] == "isready") {
-        ZobristHashing::initZobrist();
+        ZobristHashing::init();
+        DatabaseManager::init();
         std::cout << "readyok\n";
     } else if (tokens[0] == "setoption") {
         std::string name = tokens[2];
@@ -137,7 +139,7 @@ bool uci::parseCommand(std::string command) {
 
             std::vector<LegalMove> legalMoves = board.getLegalMoves();
             if (!legalMoves.empty()) {
-                auto result = SearchManager::calculateBestMove_threads(board, depth, 4, false);
+                auto result = SearchManager::calculateBestMove_threads(board, depth, 4, true);
                 if (result.first) {
                     LegalMove bestMove = result.second;
                     std::cout << "bestmove " << bestMove.toString(board.curTurn) << std::endl;
