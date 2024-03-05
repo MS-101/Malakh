@@ -2,6 +2,7 @@
 
 #include "board.h"
 #include "transpositions.h"
+#include "database.h"
 #include <chrono>
 
 struct SearchArgs {

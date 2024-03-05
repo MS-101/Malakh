@@ -1,5 +1,4 @@
 #include "uci.h"
-#include "database.h"
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -54,7 +53,7 @@ bool uci::parseCommand(std::string command) {
         std::cout << "uciok\n";
     } else if (tokens[0] == "isready") {
         ZobristHashing::init();
-        DatabaseManager::init();
+
         std::cout << "readyok\n";
     } else if (tokens[0] == "setoption") {
         std::string name = tokens[2];

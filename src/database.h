@@ -1,6 +1,6 @@
 #pragma once
 
-#include <unordered_map>
+#include <pqxx/pqxx>
 #include <string>
 
 struct ConnectionString {
@@ -12,23 +12,22 @@ struct ConnectionString {
 	std::string toString();
 };
 
-struct TrainingData {
-	int whiteCount = 0;
-	int blackCount = 0;
-	int stalemateCount = 0;
-	int getTotalCount();
-};
+enum GameResult { white, black, stalemate };
 
 class DatabaseManager {
 public:
-	static void init();
-	static int getTrainingValue(unsigned long long boardHash);
-	static void saveWhiteVictory(unsigned long long boardHash);
-	static void saveBlackVictory(unsigned long long boardHash);
-	static void saveStalemate(unsigned long long boardHash);
+	static ConnectionString connectionString;
+	static void initConnectionString();
 private:
-	static std::unordered_map<unsigned long long, TrainingData> cache;
-	static struct ConnectionString connectionString;
-	static void loadEnvFromFile(const std::string& filePath);
-	static void loadTrainingData();
+	static void loadEnvFromFile(std::string filePath);
+};
+
+class DatabaseConnection {
+public:
+	DatabaseConnection();
+	void addBoardResult(unsigned long long boardHash, GameResult gameResult);
+	void addModelTraining(int idModel, unsigned long long boardHash, GameResult gameResult);
+private:
+	pqxx::connection connection;
+	pqxx::work txn;
 };

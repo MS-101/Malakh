@@ -1,6 +1,5 @@
-#include <iostream>
-#include "database.h"
 #include "uci.h"
+#include <torch/torch.h>
 
 void testEngine()
 {
@@ -44,9 +43,11 @@ void startUCI()
 }
 
 int main() {
-    // auto foo = DatabaseManager::getTrainingValue(0);
+    torch::Tensor tensor = torch::rand({ 2, 3 });
+    std::cout << tensor << std::endl;
+
     // startUCI();
-    testUCI();
+    // testUCI();
     // testEngine();
 
     return 0;
