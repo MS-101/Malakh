@@ -82,6 +82,8 @@ void MoveGenerator::generateMoves(Board* board)
 
 		board->moves[Black].push_back(move);
 	}
+
+	board->movesValidated = false;
 }
 
 void MoveGenerator::generateMoves(Board* board, Piece piece, char x, char y)

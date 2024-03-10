@@ -26,6 +26,10 @@ struct Mobility {
 };
 
 struct LegalMove {
+    LegalMove();
+    LegalMove(int x1, int y1, int x2, int y2, Mobility mobility);
+    LegalMove(std::string value);
+
     int x1 = 0;
     int y1 = 0;
     int x2 = 0;
@@ -34,7 +38,8 @@ struct LegalMove {
     PieceType promotion = Pawn;
     Castling castling = none;
 
-    std::string toString(PieceColor color);
+    std::string toString();
+    std::string toStringWithFlags(PieceColor color);
 };
 
 class Mobilities {

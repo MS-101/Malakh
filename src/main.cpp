@@ -1,5 +1,6 @@
 #include "uci.h"
-#include <torch/torch.h>
+#include "simulation.h"
+#include <iostream>
 
 void testEngine()
 {
@@ -8,7 +9,7 @@ void testEngine()
     Board board;
     board.initBoard({});
 
-    board.makeMove({ 4, 1, 4, 3 }); // e2-e4
+    board.makeMove(4, 1, 4, 3 ); // e2-e4
     board.makeMove(6, 7, 5, 5); // g8-f6
 
     auto result = SearchManager::calculateBestMove_threads(board, 4, 4, true);
@@ -42,13 +43,19 @@ void startUCI()
     api.run();
 }
 
-int main() {
-    torch::Tensor tensor = torch::rand({ 2, 3 });
-    std::cout << tensor << std::endl;
+void startSimulation()
+{
+    ZobristHashing::init();
 
+    SimulationManager::simulateGames(1000, {}, 3, 5);
+}
+
+int main()
+{
     // startUCI();
     // testUCI();
     // testEngine();
+    startSimulation();
 
     return 0;
 }

@@ -100,7 +100,7 @@ void Board::printBoard()
 void Board::printMoves()
 {
 	for (LegalMove& move : getLegalMoves()) {
-		std::cout << move.toString(curTurn) << " ";
+		std::cout << move.toStringWithFlags(curTurn) << " ";
 	}
 
 	std::cout << std::endl;
@@ -380,12 +380,40 @@ bool Board::makeMove(LegalMove move)
 std::vector<LegalMove> Board::getLegalMoves()
 {
 	std::vector<LegalMove> legalMoves;
-	for (LegalMove& move : moves[curTurn]) {
-		Board newBoard = *this;
-		if (newBoard.makeMove(move))
-			legalMoves.push_back(move);
+
+	if (movesValidated) {
+		legalMoves = moves[curTurn];
+	} else {
+		for (LegalMove& move : moves[curTurn]) {
+			Board newBoard = *this;
+			if (newBoard.makeMove(move))
+				legalMoves.push_back(move);
+		}
+
+		moves[curTurn] = legalMoves;
 	}
 
-	moves[curTurn] = legalMoves;
 	return legalMoves;
+}
+
+std::string Board::toString()
+{
+	return std::string();
+}
+
+GameResult Board::getResult()
+{
+	if (getLegalMoves().empty())
+	{
+		if (curTurn == White && (pieces[getPieceIndex(White, King)].value & attacks[Black].value))
+			return BlackWin;
+		else if (curTurn == Black && (pieces[getPieceIndex(Black, King)].value & attacks[White].value))
+			return WhiteWin;
+		else
+			return Stalemate;
+	}
+	else
+	{
+		return Unresolved;
+	}
 }

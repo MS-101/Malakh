@@ -7,6 +7,8 @@
 #include "hashing.h"
 #include <vector>
 
+enum GameResult { Unresolved, WhiteWin, BlackWin, Stalemate};
+
 struct EssenceArgs {
     PieceEssence whitePawn = Classic;
     PieceEssence whiteRook = Classic;
@@ -28,6 +30,7 @@ public:
     Ghost ghost;
     int pieceCounts[2*6] = {};
     std::vector<LegalMove> moves[2];
+    bool movesValidated = false;
     PieceColor curTurn = White;
     EvalArgs eval{};
     BoardHash hash{};
@@ -42,6 +45,8 @@ public:
     bool makeMove(LegalMove move);
     std::pair<bool, Piece> getPiece(char x, char y);
     std::vector<LegalMove> getLegalMoves();
+    std::string toString();
+    GameResult getResult();
 private:
     void setEssenceConfig(EssenceArgs essenceArgs);
     void clearBoard();

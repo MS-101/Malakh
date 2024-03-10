@@ -1,5 +1,6 @@
 #pragma once
 
+#include "board.h"
 #include <pqxx/pqxx>
 #include <string>
 
@@ -11,8 +12,6 @@ struct ConnectionString {
 	std::string port;
 	std::string toString();
 };
-
-enum GameResult { white, black, stalemate };
 
 class DatabaseManager {
 public:

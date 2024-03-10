@@ -120,6 +120,7 @@
     <ClCompile Include="src\bitboard.cpp" />
     <ClCompile Include="src\board.cpp" />
     <ClCompile Include="src\database.cpp" />
+    <ClCompile Include="src\fairyStockfish.cpp" />
     <ClCompile Include="src\hashing.cpp" />
     <ClCompile Include="src\piece.cpp" />
     <ClCompile Include="src\evaluation.cpp" />
@@ -127,6 +128,7 @@
     <ClCompile Include="src\mobility.cpp" />
     <ClCompile Include="src\moveGenerator.cpp" />
     <ClCompile Include="src\search.cpp" />
+    <ClCompile Include="src\simulation.cpp" />
     <ClCompile Include="src\training.cpp" />
     <ClCompile Include="src\transpositions.cpp" />
     <ClCompile Include="src\uci.cpp" />
@@ -135,11 +137,13 @@
     <ClInclude Include="src\bitboard.h" />
     <ClInclude Include="src\board.h" />
     <ClInclude Include="src\database.h" />
+    <ClInclude Include="src\fairyStockfish.h" />
     <ClInclude Include="src\hashing.h" />
     <ClInclude Include="src\piece.h" />
     <ClInclude Include="src\evaluation.h" />
     <ClInclude Include="src\mobility.h" />
     <ClInclude Include="src\search.h" />
+    <ClInclude Include="src\simulation.h" />
     <ClInclude Include="src\training.h" />
     <ClInclude Include="src\transpositions.h" />
     <ClInclude Include="src\uci.h" />

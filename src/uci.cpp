@@ -78,21 +78,28 @@ bool uci::parseCommand(std::string command) {
     } else if (tokens[0] == "ucinewgame") {
         board.initBoard(essenceConfig);
     } else if (tokens[0] == "legalmoves") {
-        std::vector<LegalMove> legalMoves = board.getLegalMoves();
+        GameResult gameResult = board.getResult();
 
-        if (!legalMoves.empty()) {
+        switch (gameResult) {
+        case Unresolved: {
+            std::vector<LegalMove> legalMoves = board.getLegalMoves();
+
             std::string legalMovesStr = "";
             for (LegalMove& legalMove : legalMoves)
-                legalMovesStr += " " + legalMove.toString(board.curTurn);
+                legalMovesStr += " " + legalMove.toStringWithFlags(board.curTurn);
 
             std::cout << "legalmoves" + legalMovesStr + '\n';
-        } else {
-            if (board.curTurn == White && (board.pieces[getPieceIndex(White, King)].value & board.attacks[Black].value))
-                std::cout << "result Black" << std::endl;
-            else if (board.curTurn == Black && (board.pieces[getPieceIndex(Black, King)].value & board.attacks[White].value))
-                std::cout << "result White" << std::endl;
-            else
-                std::cout << "result Stalemate" << std::endl;
+            break;
+        }
+        case WhiteWin:
+            std::cout << "result White" << std::endl;
+            break;
+        case BlackWin:
+            std::cout << "result Black" << std::endl;
+            break;
+        case Stalemate:
+            std::cout << "result Stalemate" << std::endl;
+            break;
         }
     } else if (tokens[0] == "position") {
         if (tokens[1] == "curpos") {
@@ -124,7 +131,7 @@ bool uci::parseCommand(std::string command) {
                         }
                     }
 
-                    bool foo = board.makeMove(sourceX, sourceY, destinationX, destinationY, promotionType);
+                    board.makeMove(sourceX, sourceY, destinationX, destinationY, promotionType);
 
                     if ((board.pieces[getPieceIndex(White, King)].value & board.attacks[Black].value)
                         || (board.pieces[getPieceIndex(Black, King)].value & board.attacks[White].value))
@@ -136,20 +143,25 @@ bool uci::parseCommand(std::string command) {
         if (tokens[1] == "depth") {
             int depth = stoi(tokens[2]);
 
-            std::vector<LegalMove> legalMoves = board.getLegalMoves();
-            if (!legalMoves.empty()) {
+            GameResult gameResult = board.getResult();
+            switch (gameResult) {
+            case Unresolved: {
                 auto result = SearchManager::calculateBestMove_threads(board, depth, 4, true);
                 if (result.first) {
                     LegalMove bestMove = result.second;
-                    std::cout << "bestmove " << bestMove.toString(board.curTurn) << std::endl;
+                    std::cout << "bestmove " << bestMove.toStringWithFlags(board.curTurn) << std::endl;
                 }
-            } else {
-                if (board.curTurn == White && (board.pieces[getPieceIndex(White, King)].value & board.attacks[Black].value))
-                    std::cout << "result Black" << std::endl;
-                else if (board.curTurn == Black && (board.pieces[getPieceIndex(Black, King)].value & board.attacks[White].value))
-                    std::cout << "result White" << std::endl;
-                else
-                    std::cout << "result Stalemate" << std::endl;
+                break;
+            }
+            case WhiteWin:
+                std::cout << "result White" << std::endl;
+                break;
+            case BlackWin:
+                std::cout << "result Black" << std::endl;
+                break;
+            case Stalemate:
+                std::cout << "result Stalemate" << std::endl;
+                break;
             }
         }
     } else if (tokens[0] == "quit") {

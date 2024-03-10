@@ -57,7 +57,7 @@ void DatabaseConnection::addBoardResult(unsigned long long boardHash, GameResult
         pqxx::result result;
 
         switch (gameResult) {
-        case white:
+        case WhiteWin:
             result = txn.exec_params(R"(
                 INSERT INTO public.boards_results (board_hash, white_count)
                 VALUES ($1, 1)
@@ -65,7 +65,7 @@ void DatabaseConnection::addBoardResult(unsigned long long boardHash, GameResult
                 DO UPDATE SET white_count = boards_results.white_count + 1;
             )", boardHash);
             break;
-        case black:
+        case BlackWin:
             result = txn.exec_params(R"(
                 INSERT INTO public.boards_results (board_hash, black_count)
                 VALUES ($1, 1)
@@ -73,7 +73,7 @@ void DatabaseConnection::addBoardResult(unsigned long long boardHash, GameResult
                 DO UPDATE SET black_count = boards_results.black_count + 1;
             )", boardHash);
             break;
-        case stalemate:
+        case Stalemate:
             result = txn.exec_params(R"(
                 INSERT INTO public.boards_results (board_hash, stalemate_count)
                 VALUES ($1, 1)
@@ -96,7 +96,7 @@ void DatabaseConnection::addModelTraining(int idModel, unsigned long long boardH
         pqxx::result result;
 
         switch (gameResult) {
-        case white:
+        case WhiteWin:
             result = txn.exec_params(R"(
                 INSERT INTO public.models_training (id_model, board_hash, white_count)
                 VALUES ($1, $2, 1)
@@ -104,7 +104,7 @@ void DatabaseConnection::addModelTraining(int idModel, unsigned long long boardH
                 DO UPDATE SET white_count = models_training.white_count + 1;
             )", idModel, boardHash);
             break;
-        case black:
+        case BlackWin:
             result = txn.exec_params(R"(
                 INSERT INTO public.models_training (id_model, board_hash, black_count)
                 VALUES ($1, $2, 1)
@@ -112,7 +112,7 @@ void DatabaseConnection::addModelTraining(int idModel, unsigned long long boardH
                 DO UPDATE SET black_count = models_training.black_count + 1;
             )", idModel, boardHash);
             break;
-        case stalemate:
+        case Stalemate:
             result = txn.exec_params(R"(
                 INSERT INTO public.models_training (id_model, board_hash, stalemate_count)
                 VALUES ($1, $2, 1)

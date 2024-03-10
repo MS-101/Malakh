@@ -2,5 +2,4 @@
 
 class TrainingManager {
 public:
-
 };

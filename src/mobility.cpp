@@ -1,7 +1,23 @@
 #include "mobility.h"
 #include <iostream>
 
-std::string LegalMove::toString(PieceColor color)
+LegalMove::LegalMove() {}
+
+LegalMove::LegalMove(int x1, int y1, int x2, int y2, Mobility mobility)
+{
+    this->x1 = x1;
+    this->y1 = y1;
+    this->x2 = y2;
+    this->y2 = y2;
+    this->mobility = mobility;
+}
+
+LegalMove::LegalMove(std::string value)
+{
+
+}
+
+std::string LegalMove::toString()
 {
     std::string value;
 
@@ -17,29 +33,36 @@ std::string LegalMove::toString(PieceColor color)
         value.push_back('1' + y1);
         value.push_back('a' + x2);
         value.push_back('1' + y2);
-
-        if (mobility.flags.hasty) {
-            value += "_H";
-
-            int hastyX = x2;
-            int hastyY = y2;
-            if (color == White) {
-                hastyX -= mobility.direction_x;
-                hastyY -= mobility.direction_y;
-            } else {
-                hastyX += mobility.direction_x;
-                hastyY += mobility.direction_y;
-            }
-
-            value.push_back('a' + hastyX);
-            value.push_back('1' + hastyY);
-        }
-
-        if (mobility.flags.vigilant)
-            value += "_V";
-
         break;
     }
+
+    return value;
+}
+
+std::string LegalMove::toStringWithFlags(PieceColor color)
+{
+    std::string value = toString();
+
+    if (mobility.flags.hasty) {
+        value += "_H";
+
+        int hastyX = x2;
+        int hastyY = y2;
+        if (color == White) {
+            hastyX -= mobility.direction_x;
+            hastyY -= mobility.direction_y;
+        }
+        else {
+            hastyX += mobility.direction_x;
+            hastyY += mobility.direction_y;
+        }
+
+        value.push_back('a' + hastyX);
+        value.push_back('1' + hastyY);
+    }
+
+    if (mobility.flags.vigilant)
+        value += "_V";
 
     return value;
 }
