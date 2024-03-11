@@ -2,12 +2,15 @@
 #include "fairyStockfish.h"
 #include "search.h"
 #include "random.h"
+#include "database.h"
 #include <iostream>
 
 
 void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, int malakhDepth, int fairyStockfishDepth)
 {
+	DatabaseManager::initConnectionString();
 	Random::initSeed();
+	DatabaseConnection conn;
 
 	Board board;
 
@@ -43,11 +46,11 @@ void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, 
 		fairyStockfish.sendCommand("ucinewgame");
 		fairyStockfish.sendCommand("position fen " + board.toString());
 
-		board.printBoard();
-
 		bool malakhTurn = Random::coinFlip();
-		GameResult result;
+		std::vector<unsigned long long> gameHistory{};
+		gameHistory.push_back(board.hash.value);
 
+		GameResult result;
 		while ((result = board.getResult()) == Unresolved)
 		{
 			LegalMove bestMove;
@@ -75,6 +78,7 @@ void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, 
 			}
 
 			board.makeMove(bestMove);
+			gameHistory.push_back(board.hash.value);
 			std::string command = "position fen " + board.toString() + " moves " + bestMove.toString();
 			fairyStockfish.sendCommand(command);
 
@@ -87,7 +91,9 @@ void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, 
 			malakhTurn = !malakhTurn;
 		}
 
-		// iterate through moves and store result in database
+		for (unsigned long long boardHash : gameHistory) {
+			conn.addBoardResult(boardHash, result);
+		}
 	}
 
 	fairyStockfish.exit();
