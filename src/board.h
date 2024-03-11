@@ -34,6 +34,8 @@ public:
     PieceColor curTurn = White;
     EvalArgs eval{};
     BoardHash hash{};
+    int halfmoveClock = 0;
+    int fullmoveClock = 1;
     
 	void initBoard(EssenceArgs essenceArgs);
     void printBoard();

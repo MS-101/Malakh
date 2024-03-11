@@ -47,7 +47,7 @@ void startSimulation()
 {
     ZobristHashing::init();
 
-    SimulationManager::simulateGames(1000, {}, 3, 5);
+    SimulationManager::simulateGames(10, {}, 3, 5);
 }
 
 int main()

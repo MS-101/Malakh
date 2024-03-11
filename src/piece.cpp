@@ -94,3 +94,67 @@ std::string essenceToString(PieceEssence value)
         break;
     }
 }
+
+char Piece::toChar()
+{
+    switch (type) {
+    case Pawn:
+        switch (essence) {
+        case Classic:
+            return 'p';
+            break;
+        case Red:
+            return 'w';
+            break;
+        case Blue:
+            return 'e';
+            break;
+        }
+        break;
+    case Rook:
+        switch (essence) {
+        case Classic:
+            return 'r';
+            break;
+        case Red:
+            return 't';
+            break;
+        case Blue:
+            return 'z';
+            break;
+        }
+        break;
+    case Knight:
+        switch (essence) {
+        case Classic:
+            return 'n';
+            break;
+        case Red:
+            return 'u';
+            break;
+        case Blue:
+            return 'i';
+            break;
+        }
+        break;
+    case Bishop:
+        switch (essence) {
+        case Classic:
+            return 'b';
+            break;
+        case Red:
+            return 'o';
+            break;
+        case Blue:
+            return 'a';
+            break;
+        }
+        break;
+    case Queen:
+        return 'q';
+        break;
+    case King:
+        return 'k';
+        break;
+    }
+}

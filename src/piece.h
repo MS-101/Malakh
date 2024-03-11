@@ -10,6 +10,7 @@ struct Piece {
     PieceColor color = White;
     PieceType type = Pawn;
     PieceEssence essence = Classic;
+    char toChar();
 };
 
 struct Ghost {

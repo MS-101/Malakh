@@ -31,7 +31,8 @@ bool FairyStockfish::start()
     siStartInfo.hStdInput = handleStdinRead;
     siStartInfo.dwFlags |= STARTF_USESTDHANDLES;
 
-    if (CreateProcess("trainer\\fairy-stockfish.exe", NULL, NULL, NULL, TRUE, 0, NULL, NULL, &siStartInfo, &piProcInfo))
+    std::string command = "trainer\\fairy-stockfish.exe load variants.ini";
+    if (CreateProcess(NULL, const_cast<char*>(command.c_str()), NULL, NULL, TRUE, 0, NULL, NULL, &siStartInfo, &piProcInfo))
     {
         receiveResponse();
 

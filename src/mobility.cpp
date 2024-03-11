@@ -14,7 +14,10 @@ LegalMove::LegalMove(int x1, int y1, int x2, int y2, Mobility mobility)
 
 LegalMove::LegalMove(std::string value)
 {
-
+    this->x1 = value[0] - 'a';
+    this->y1 = value[1] - '1';
+    this->x2 = value[2] - 'a';
+    this->y2 = value[3] - '1';
 }
 
 std::string LegalMove::toString()

@@ -35,6 +35,9 @@ void Board::initBoard(EssenceArgs essenceArgs)
 
 	refreshAggregations();
 
+	halfmoveClock = 0;
+	fullmoveClock = 1;
+
 	curTurn = White;
 	MoveGenerator::generateMoves(this);
 }
@@ -289,6 +292,8 @@ bool Board::makeMove(char x1, char y1, char x2, char y2, PieceType promotion)
 
 bool Board::makeMove(LegalMove move)
 {
+	bool halfmoveClockReset = false;
+
 	switch (move.castling) {
 	case::kingSide:
 		switch (curTurn) {
@@ -328,14 +333,20 @@ bool Board::makeMove(LegalMove move)
 			return false; // no piece was found on source square
 
 		auto movedPiece = result.second;
-		removePiece(move.x2, move.y2);
+		if (movedPiece.type == Pawn)
+			halfmoveClockReset = true;
+
+		if (removePiece(move.x2, move.y2).first)
+			halfmoveClockReset = true;
+
 		if (move.promotion == Pawn)
 			addPiece(movedPiece.color, movedPiece.type, move.x2, move.y2, false);
 		else
 			addPiece(movedPiece.color, move.promotion, move.x2, move.y2, false);
 
 		if (move.mobility.flags.vigilant && ghost.x == move.x2 && ghost.y == move.y2) {
-			removePiece(ghost.parentX, ghost.parentY);
+			if (removePiece(ghost.parentX, ghost.parentY).first)
+				halfmoveClockReset = true;
 		}
 			
 		break;
@@ -371,6 +382,15 @@ bool Board::makeMove(LegalMove move)
 	MoveGenerator::generateMoves(this);
 
 	bool legal = !(pieces[getPieceIndex(curTurn, King)].value & attacks[opponent[curTurn]].value);
+
+	if (halfmoveClockReset)
+		halfmoveClock = 0;
+	else
+		halfmoveClock++;
+
+	if (curTurn == Black)
+		fullmoveClock++;
+
 	curTurn = opponent[curTurn];
 	hash.switchTurn();
 
@@ -398,22 +418,116 @@ std::vector<LegalMove> Board::getLegalMoves()
 
 std::string Board::toString()
 {
-	return std::string();
+	std::string fen = "";
+	
+	// piece placement
+	int emptyCounter = 0;
+	for (int y = 0; y < 8; y++) {
+		for (int x = 0; x < 8; x++) {
+			auto result = getPiece(x, y);
+
+			if (result.first) {
+				if (emptyCounter > 0) {
+					fen += std::to_string(emptyCounter);
+					emptyCounter = 0;
+				}
+
+				fen += result.second.toChar();
+			} else {
+				emptyCounter++;
+			}
+		}
+
+		if (emptyCounter > 0) {
+			fen += std::to_string(emptyCounter);
+			emptyCounter = 0;
+		}
+
+		fen += "/";
+	}
+
+	fen += " ";
+
+	// active color
+	switch (curTurn) {
+	case White:
+		fen += "w";
+		break;
+	case Black:
+		fen += "b";
+		break;
+	}
+
+	fen += " ";
+
+	// castling rights
+	char whiteKingIndex = getPieceIndex(White, King);
+	char whiteRookIndex = getPieceIndex(White, Rook);
+	char blackKingIndex = getPieceIndex(Black, King);
+	char blackRookIndex = getPieceIndex(Black, Rook);
+
+	// white king-side castle
+	if (pieces[whiteKingIndex].getBit(4, 0) && notMoved.getBit(4, 0)
+		&& pieces[whiteRookIndex].getBit(7, 0) && notMoved.getBit(7, 0)) {
+		fen += "K";
+	}
+
+	// white queen-side castle
+	if (pieces[whiteKingIndex].getBit(4, 0) && notMoved.getBit(4, 0)
+		&& pieces[whiteRookIndex].getBit(0, 0) && notMoved.getBit(0, 0)) {
+		fen += "Q";
+	}
+
+	// black king-side castle
+	if (pieces[blackKingIndex].getBit(4, 7) && notMoved.getBit(4, 7)
+		&& pieces[blackRookIndex].getBit(7, 7) && notMoved.getBit(7, 7)) {
+		fen += "k";
+	}
+
+	// black queen-side castle
+	if (pieces[blackKingIndex].getBit(4, 7) && notMoved.getBit(4, 7)
+		&& pieces[blackRookIndex].getBit(0, 7) && notMoved.getBit(0, 7)) {
+		fen += "q";
+	}
+
+	fen += " ";
+
+	// En Passant targets
+	if (ghost.x < 0 || ghost.y < 0) {
+		fen += "-";
+	} else {
+		char column = 'a' + ghost.x;
+		char row = '0' + ghost.y;
+
+		fen += column;
+		fen += row;
+	}
+
+	fen += " ";
+
+	// halfmove clock
+	fen += std::to_string(halfmoveClock);
+
+	fen += " ";
+
+	// fullmove clock
+	fen += std::to_string(fullmoveClock);
+
+	return fen;
 }
 
 GameResult Board::getResult()
 {
-	if (getLegalMoves().empty())
-	{
+	if (getLegalMoves().empty()) {
 		if (curTurn == White && (pieces[getPieceIndex(White, King)].value & attacks[Black].value))
 			return BlackWin;
 		else if (curTurn == Black && (pieces[getPieceIndex(Black, King)].value & attacks[White].value))
 			return WhiteWin;
 		else
 			return Stalemate;
-	}
-	else
-	{
+	} else if (halfmoveClock == 100) {
+		return Stalemate;
+	} else {
 		return Unresolved;
 	}
 }
