@@ -1,11 +1,12 @@
 #include "fairyStockfish.h"
 #include <iostream>
 #include <sstream>
+#include <fstream>
 
 
 #define BUFSIZE 4096
 
-bool FairyStockfish::start()
+bool FairyStockfish::start(EssenceArgs essenceArgs)
 {
     SECURITY_ATTRIBUTES saAttr;
     saAttr.nLength = sizeof(SECURITY_ATTRIBUTES);
@@ -31,7 +32,9 @@ bool FairyStockfish::start()
     siStartInfo.hStdInput = handleStdinRead;
     siStartInfo.dwFlags |= STARTF_USESTDHANDLES;
 
-    std::string command = "trainer\\fairy-stockfish.exe load variants.ini";
+    setConfigFile(essenceArgs);
+
+    std::string command = "trainer\\fairy-stockfish.exe load chess-evolved-tmp.ini";
     if (CreateProcess(NULL, const_cast<char*>(command.c_str()), NULL, NULL, TRUE, 0, NULL, NULL, &siStartInfo, &piProcInfo))
     {
         receiveResponse();
@@ -45,6 +48,43 @@ bool FairyStockfish::start()
 
         return false;
     }
+}
+
+void FairyStockfish::setConfigFile(EssenceArgs essenceArgs)
+{
+    Board board;
+    board.initBoard(essenceArgs);
+
+    std::string inputFile = "trainer\\chess-evolved.ini";
+    std::string outputFile = "trainer\\chess-evolved-tmp.ini";
+
+    std::ifstream inFile(inputFile);
+    if (!inFile) {
+        std::cerr << "Error: Could not open input file '" << inputFile << "'" << std::endl;
+        return;
+    }
+
+    std::ofstream outFile(outputFile, std::ios::trunc);
+    if (!outFile) {
+        std::cerr << "Error: Could not open output file '" << outputFile << "'" << std::endl;
+        return;
+    }
+
+    outFile << inFile.rdbuf();
+    outFile << "promotionPieceTypesWhite = "
+        << Piece(White, Bishop, essenceArgs.whiteBishop).toChar()
+        << Piece(White, Knight, essenceArgs.whiteKnight).toChar()
+        << Piece(White, Rook, essenceArgs.whiteRook).toChar()
+        << "q" << std::endl;
+    outFile << "promotionPieceTypesBlack = "
+        << Piece(Black, Bishop, essenceArgs.blackBishop).toChar()
+        << Piece(Black, Knight, essenceArgs.blackKnight).toChar()
+        << Piece(Black, Rook, essenceArgs.blackRook).toChar()
+        << "q" << std::endl;
+    outFile << "startFen = " << board.toString() << std::endl;
+
+    inFile.close();
+    outFile.close();
 }
 
 void FairyStockfish::exit()
@@ -62,7 +102,7 @@ bool FairyStockfish::sendCommand(std::string command)
 
     if (WriteFile(handleStdinWrite, commandEndl.c_str(), commandEndl.size(), &dwWritten, NULL) || dwWritten == 0)
     {
-        std::cout << "Sent command to FairyStockfish: " << command << std::endl;
+        //std::cout << "Sent command to FairyStockfish: " << command << std::endl;
 
         return true;
     }
@@ -99,7 +139,7 @@ std::string FairyStockfish::receiveResponse()
     if (ReadFile(handleStdoutRead, chBuf, BUFSIZE, &dwRead, NULL) && dwRead > 0)
     {
         std::string response(chBuf, dwRead);
-        std::cout << "Received response from FairyStockfish: " << response << std::endl;
+        //std::cout << "Received response from FairyStockfish: " << response << std::endl;
 
         return response;
     }

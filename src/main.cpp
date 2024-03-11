@@ -47,7 +47,17 @@ void startSimulation()
 {
     ZobristHashing::init();
 
-    SimulationManager::simulateGames(10, {}, 3, 5);
+    EssenceArgs essenceArgs;
+    essenceArgs.whitePawn = Red;
+    essenceArgs.whiteKnight = Red;
+    essenceArgs.whiteBishop = Red;
+    essenceArgs.whiteRook = Red;
+    essenceArgs.blackPawn = Blue;
+    essenceArgs.blackKnight = Blue;
+    essenceArgs.blackBishop = Blue;
+    essenceArgs.blackRook = Blue;
+
+    SimulationManager::simulateGames(10, essenceArgs, 4, 8);
 }
 
 int main()

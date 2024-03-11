@@ -113,7 +113,7 @@ void MoveGenerator::generateMoves(Board* board, Piece piece, char x, char y)
 
 		while ((mobility.limit == 0 || moveCounter < mobility.limit)
 			&& destinationX >= 0 && destinationX < 8 && destinationY >= 0 && destinationY < 8) {
-			LegalMove legalMove{x, y, destinationX, destinationY, mobility};
+			LegalMove legalMove(x, y, destinationX, destinationY, mobility);
 			bool isPromotion = (piece.type == Pawn
 				&& ((piece.color == White && destinationY == 7) || (piece.color == Black && destinationY == 0)));
 

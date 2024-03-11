@@ -97,64 +97,71 @@ std::string essenceToString(PieceEssence value)
 
 char Piece::toChar()
 {
+    char retValue = 'x';
+
     switch (type) {
     case Pawn:
         switch (essence) {
         case Classic:
-            return 'p';
+            retValue = 'p';
             break;
         case Red:
-            return 'w';
+            retValue = 'w';
             break;
         case Blue:
-            return 'e';
+            retValue = 'e';
             break;
         }
         break;
     case Rook:
         switch (essence) {
         case Classic:
-            return 'r';
+            retValue = 'r';
             break;
         case Red:
-            return 't';
+            retValue = 't';
             break;
         case Blue:
-            return 'z';
+            retValue = 'z';
             break;
         }
         break;
     case Knight:
         switch (essence) {
         case Classic:
-            return 'n';
+            retValue = 'n';
             break;
         case Red:
-            return 'u';
+            retValue = 'u';
             break;
         case Blue:
-            return 'i';
+            retValue = 'i';
             break;
         }
         break;
     case Bishop:
         switch (essence) {
         case Classic:
-            return 'b';
+            retValue = 'b';
             break;
         case Red:
-            return 'o';
+            retValue = 'o';
             break;
         case Blue:
-            return 'a';
+            retValue = 'a';
             break;
         }
         break;
     case Queen:
-        return 'q';
+        retValue = 'q';
         break;
     case King:
-        return 'k';
+        retValue = 'k';
         break;
     }
+
+    if (color == White)
+        retValue = std::toupper(retValue);
+
+    return retValue;
 }

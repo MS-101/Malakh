@@ -127,6 +127,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\mobility.cpp" />
     <ClCompile Include="src\moveGenerator.cpp" />
+    <ClCompile Include="src\random.cpp" />
     <ClCompile Include="src\search.cpp" />
     <ClCompile Include="src\simulation.cpp" />
     <ClCompile Include="src\training.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="src\piece.h" />
     <ClInclude Include="src\evaluation.h" />
     <ClInclude Include="src\mobility.h" />
+    <ClInclude Include="src\random.h" />
     <ClInclude Include="src\search.h" />
     <ClInclude Include="src\simulation.h" />
     <ClInclude Include="src\training.h" />

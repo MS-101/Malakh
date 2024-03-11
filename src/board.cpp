@@ -1,6 +1,7 @@
 #include "board.h"
 #include <iostream>
 
+
 void Board::initBoard(EssenceArgs essenceArgs)
 {
 	setEssenceConfig(essenceArgs);
@@ -422,7 +423,10 @@ std::string Board::toString()
 	
 	// piece placement
 	int emptyCounter = 0;
-	for (int y = 0; y < 8; y++) {
+	for (int y = 7; y >= 0; y--) {
+		if (y < 7)
+			fen += "/";
+
 		for (int x = 0; x < 8; x++) {
 			auto result = getPiece(x, y);
 
@@ -442,8 +446,6 @@ std::string Board::toString()
 			fen += std::to_string(emptyCounter);
 			emptyCounter = 0;
 		}
-
-		fen += "/";
 	}
 
 	fen += " ";

@@ -1,15 +1,18 @@
 #include "simulation.h"
 #include "fairyStockfish.h"
 #include "search.h"
+#include "random.h"
 #include <iostream>
 
 
 void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, int malakhDepth, int fairyStockfishDepth)
 {
+	Random::initSeed();
+
 	Board board;
 
 	FairyStockfish fairyStockfish;
-	fairyStockfish.start();
+	fairyStockfish.start(essenceArgs);
 
 	fairyStockfish.sendCommand("uci");
 	fairyStockfish.waitForResponse("uciok");
@@ -19,11 +22,30 @@ void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, 
 
 	for (int i = 0; i < gameCounter; i++)
 	{
-		board.initBoard(essenceArgs);
+		while (true)
+		{
+			int turnCount = Random::generateRandomNumber(6, 12);
+
+			board.initBoard(essenceArgs);
+			for (int i = 0; i < turnCount; i++)
+			{
+				auto legalMoves = board.getLegalMoves();
+				if (legalMoves.empty())
+					continue;
+
+				board.makeMove(Random::getRandomElement<LegalMove>(legalMoves));
+			}
+
+			if (board.getResult() == Unresolved)
+				break;
+		}
 
 		fairyStockfish.sendCommand("ucinewgame");
+		fairyStockfish.sendCommand("position fen " + board.toString());
 
-		bool malakhTurn = false;
+		board.printBoard();
+
+		bool malakhTurn = Random::coinFlip();
 		GameResult result;
 
 		while ((result = board.getResult()) == Unresolved)
@@ -52,16 +74,19 @@ void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, 
 				bestMove = LegalMove(tokens[1]);
 			}
 
-			if (!board.makeMove(bestMove))
-			{
-				int foo = 0;
+			board.makeMove(bestMove);
+			std::string command = "position fen " + board.toString() + " moves " + bestMove.toString();
+			fairyStockfish.sendCommand(command);
+
+			if (malakhTurn) {
+				std::cout << "Malakh: " << bestMove.toString() << std::endl;
+			} else {
+				std::cout << "FairyStockfish: " << bestMove.toString() << std::endl;
 			}
-			fairyStockfish.sendCommand("position " + board.toString() + " moves " + bestMove.toString());
 			
 			malakhTurn = !malakhTurn;
 		}
 
-		int foo = 0;
 		// iterate through moves and store result in database
 	}
 

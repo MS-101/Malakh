@@ -7,7 +7,7 @@ LegalMove::LegalMove(int x1, int y1, int x2, int y2, Mobility mobility)
 {
     this->x1 = x1;
     this->y1 = y1;
-    this->x2 = y2;
+    this->x2 = x2;
     this->y2 = y2;
     this->mobility = mobility;
 }
@@ -74,24 +74,23 @@ std::vector<Mobility> Mobilities::mobilityConfig[6][3] = {
     { // Pawn
         { // Classic
             {Move, +0, +1, +0, +0, 1},
-            {Move, +0, +1, +0, +1, 2, {true, true, true, false}},
-            {Attack, -1, +1, +0, +0, 1, {false, false, false, true}},
-            {Attack, +1, +1, +0, +0, 1, {false, false, false, true}}
+            {Attack, -1, +1, +0, +0, 1},
+            {Attack, +1, +1, +0, +0, 1}
         },
         { // Red
             {Move, +0, +1, +0, +1, 2},
-            {AttackMove, -1, +1, +0, +0, 1, {false, false, false, true}},
-            {AttackMove, +1, +1, +0, +0, 1, {false, false, false, true}}
+            {AttackMove, -1, +1, +0, +0, 1},
+            {AttackMove, +1, +1, +0, +0, 1}
         },
         { //Blue
             // pawn moves
             {Move, +0, +1, +0, +0, 1},
-            {Attack, -1, +1, +0, +0, 1, {false, false, false, true}},
-            {Attack, +1, +1, +0, +0, 1, {false, false, false, true}},
+            {Attack, -1, +1, +0, +0, 1},
+            {Attack, +1, +1, +0, +0, 1},
             // backward pawn moves
             {Move, +0, -1, +0, +0, 1},
-            {Attack, -1, -1, +0, +0, 1, {false, false, false, true}},
-            {Attack, +1, -1, +0, +0, 1, {false, false, false, true}}
+            {Attack, -1, -1, +0, +0, 1},
+            {Attack, +1, -1, +0, +0, 1}
         }
     },
     { // Rook
