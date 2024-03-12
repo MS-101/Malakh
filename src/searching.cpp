@@ -1,7 +1,8 @@
-#include "search.h"
+#include <searching.h>
 #include <iostream>
 #include <thread>
 #include <queue>
+
 
 TranspositionCache SearchManager::cache = TranspositionCache(4096);
 

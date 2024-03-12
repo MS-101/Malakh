@@ -1,11 +1,12 @@
 #pragma once
 
-#include "bitboard.h"
-#include "piece.h"
-#include "mobility.h"
-#include "evaluation.h"
-#include "hashing.h"
+#include <bitboard.h>
+#include <piece.h>
+#include <mobility.h>
+#include <evaluation.h>
+#include <hashing.h>
 #include <vector>
+
 
 enum GameResult { Unresolved, WhiteWin, BlackWin, Stalemate};
 

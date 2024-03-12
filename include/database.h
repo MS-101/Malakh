@@ -1,8 +1,10 @@
 #pragma once
 
-#include "board.h"
+#include <board.h>
 #include <pqxx/pqxx>
 #include <string>
+#include <vector>
+
 
 struct ConnectionString {
 	std::string dbname;
@@ -21,11 +23,17 @@ private:
 	static void loadEnvFromFile(std::string filePath);
 };
 
+struct TrainingData {
+	unsigned long long boardHash;
+	double value;
+};
+
 class DatabaseConnection {
 public:
 	DatabaseConnection();
-	void addBoardResult(unsigned long long boardHash, GameResult gameResult);
-	void addModelTraining(int idModel, unsigned long long boardHash, GameResult gameResult);
+	int getIdEssenceConfig(EssenceArgs essenceArgs);
+	void addBoardResult(unsigned long long boardHash, int idEssenceConfig, GameResult gameResult);
+	std::vector<TrainingData> getTrainingData(int idEssenceConfig, int page, int pageSize);
 private:
 	pqxx::connection connection;
 	pqxx::work txn;

@@ -3,7 +3,8 @@
 #include <Windows.h>
 #include <string>
 #include <vector>
-#include "board.h"
+#include <board.h>
+
 
 class FairyStockfish {
 public:

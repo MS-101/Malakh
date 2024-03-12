@@ -1,4 +1,4 @@
-#include "fairyStockfish.h"
+#include <fairyStockfish.h>
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -34,7 +34,7 @@ bool FairyStockfish::start(EssenceArgs essenceArgs)
 
     setConfigFile(essenceArgs);
 
-    std::string command = "trainer\\fairy-stockfish.exe load chess-evolved-tmp.ini";
+    std::string command = "training\\fairy-stockfish.exe load chess-evolved-tmp.ini";
     if (CreateProcess(NULL, const_cast<char*>(command.c_str()), NULL, NULL, TRUE, 0, NULL, NULL, &siStartInfo, &piProcInfo))
     {
         receiveResponse();
@@ -55,8 +55,8 @@ void FairyStockfish::setConfigFile(EssenceArgs essenceArgs)
     Board board;
     board.initBoard(essenceArgs);
 
-    std::string inputFile = "trainer\\chess-evolved.ini";
-    std::string outputFile = "trainer\\chess-evolved-tmp.ini";
+    std::string inputFile = "training\\chess-evolved.ini";
+    std::string outputFile = "training\\chess-evolved-tmp.ini";
 
     std::ifstream inFile(inputFile);
     if (!inFile) {

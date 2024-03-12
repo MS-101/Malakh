@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <mutex>
 
+
 struct Transposition {
     int value = 0;
     int depth = -1;

@@ -1,4 +1,5 @@
-#include "transpositions.h"
+#include <transpositions.h>
+
 
 TranspositionCache::TranspositionCache(int capacity)
 {

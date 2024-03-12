@@ -1,5 +1,6 @@
-#include "bitboard.h"
+#include <bitboard.h>
 #include <iostream>
+
 
 unsigned long long BitBoard::getBit(char x, char y)
 {

@@ -2,6 +2,7 @@
 
 #include <string>
 
+
 enum PieceColor { White, Black };
 enum PieceType { Pawn, Rook, Knight, Bishop, Queen, King };
 enum PieceEssence { Classic, Red, Blue };

@@ -1,8 +1,9 @@
 #pragma once
 
-#include "piece.h"
+#include <piece.h>
 #include <vector>
 #include <string>
+
 
 enum MovementType { Move, Attack, AttackMove };
 

@@ -1,5 +1,6 @@
-#include "mobility.h"
+#include <mobility.h>
 #include <iostream>
+
 
 LegalMove::LegalMove() {}
 

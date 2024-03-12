@@ -1,4 +1,5 @@
-#include "hashing.h"
+#include <hashing.h>
+
 
 bool ZobristHashing::isInitalized = false;
 

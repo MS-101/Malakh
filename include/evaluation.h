@@ -1,4 +1,7 @@
-#include "piece.h"
+#pragma once
+
+#include <piece.h>
+
 
 struct EvalArgs {
     int matEval[2];

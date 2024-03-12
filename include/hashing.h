@@ -1,6 +1,7 @@
 #pragma once
 
-#include "piece.h"
+#include <piece.h>
+
 
 class ZobristHashing {
 public:

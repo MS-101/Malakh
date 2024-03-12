@@ -1,9 +1,10 @@
 #pragma once
 
-#include "board.h"
-#include "transpositions.h"
-#include "database.h"
+#include <board.h>
+#include <transpositions.h>
+#include <database.h>
 #include <chrono>
+
 
 struct SearchArgs {
 	int curDepth = 0;

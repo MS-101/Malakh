@@ -1,5 +1,6 @@
-#include "board.h"
+#include <board.h>
 #include <iostream>
+
 
 void MoveGenerator::clearMoves(Board* board)
 {
@@ -92,7 +93,7 @@ void MoveGenerator::generateMoves(Board* board, Piece piece, char x, char y)
 	char pieceIndex = getPieceIndex(piece.color, piece.type);
 	char kingIndex = getPieceIndex(opponent[piece.color], King);
 
-	for (Mobility& mobility : Mobilities::mobilityConfig[piece.type][piece.essence]) {
+	for (const Mobility& mobility : Mobilities::mobilityConfig[piece.type][piece.essence]) {
 		if (mobility.flags.initiative && !board->notMoved.getBit(x, y))
 			continue;
 

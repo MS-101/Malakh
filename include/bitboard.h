@@ -1,5 +1,6 @@
 #pragma once
 
+
 struct BitBoard {
 public:
 	unsigned long long value = 0;

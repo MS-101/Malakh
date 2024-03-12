@@ -3,6 +3,7 @@
 #include <random>
 #include <vector>
 
+
 class Random {
 public:
 	static void initSeed();

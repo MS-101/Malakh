@@ -1,4 +1,5 @@
-#include "piece.h"
+#include <piece.h>
+
 
 PieceColor opponent[] = { Black, White };
 char colorChars[] = { 'W', 'B' };

@@ -33,7 +33,7 @@
     <ClCompile Include="src\piece.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\search.cpp">
+    <ClCompile Include="src\searching.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\evaluation.cpp">
@@ -65,46 +65,46 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\bitboard.h">
+    <ClInclude Include="include\bitboard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\board.h">
+    <ClInclude Include="include\board.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\piece.h">
+    <ClInclude Include="include\piece.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\mobility.h">
+    <ClInclude Include="include\mobility.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\search.h">
+    <ClInclude Include="include\searching.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\evaluation.h">
+    <ClInclude Include="include\evaluation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\hashing.h">
+    <ClInclude Include="include\hashing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\transpositions.h">
+    <ClInclude Include="include\transpositions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\uci.h">
+    <ClInclude Include="include\uci.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\database.h">
+    <ClInclude Include="include\database.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\training.h">
+    <ClInclude Include="include\training.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\simulation.h">
+    <ClInclude Include="include\simulation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\fairyStockfish.h">
+    <ClInclude Include="include\fairyStockfish.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\random.h">
+    <ClInclude Include="include\random.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -70,7 +70,7 @@
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);include</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
     <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Program Files\libtorch\release\include;C:\Program Files\libtorch\release\include\torch\csrc\api\include</ExternalIncludePath>
   </PropertyGroup>
@@ -128,27 +128,27 @@
     <ClCompile Include="src\mobility.cpp" />
     <ClCompile Include="src\moveGenerator.cpp" />
     <ClCompile Include="src\random.cpp" />
-    <ClCompile Include="src\search.cpp" />
+    <ClCompile Include="src\searching.cpp" />
     <ClCompile Include="src\simulation.cpp" />
     <ClCompile Include="src\training.cpp" />
     <ClCompile Include="src\transpositions.cpp" />
     <ClCompile Include="src\uci.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\bitboard.h" />
-    <ClInclude Include="src\board.h" />
-    <ClInclude Include="src\database.h" />
-    <ClInclude Include="src\fairyStockfish.h" />
-    <ClInclude Include="src\hashing.h" />
-    <ClInclude Include="src\piece.h" />
-    <ClInclude Include="src\evaluation.h" />
-    <ClInclude Include="src\mobility.h" />
-    <ClInclude Include="src\random.h" />
-    <ClInclude Include="src\search.h" />
-    <ClInclude Include="src\simulation.h" />
-    <ClInclude Include="src\training.h" />
-    <ClInclude Include="src\transpositions.h" />
-    <ClInclude Include="src\uci.h" />
+    <ClInclude Include="include\bitboard.h" />
+    <ClInclude Include="include\board.h" />
+    <ClInclude Include="include\database.h" />
+    <ClInclude Include="include\fairyStockfish.h" />
+    <ClInclude Include="include\hashing.h" />
+    <ClInclude Include="include\piece.h" />
+    <ClInclude Include="include\evaluation.h" />
+    <ClInclude Include="include\mobility.h" />
+    <ClInclude Include="include\random.h" />
+    <ClInclude Include="include\searching.h" />
+    <ClInclude Include="include\simulation.h" />
+    <ClInclude Include="include\training.h" />
+    <ClInclude Include="include\transpositions.h" />
+    <ClInclude Include="include\uci.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

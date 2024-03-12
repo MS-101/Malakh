@@ -1,18 +1,18 @@
-#include "simulation.h"
-#include "fairyStockfish.h"
-#include "search.h"
-#include "random.h"
-#include "database.h"
+#include <simulation.h>
+#include <fairyStockfish.h>
+#include <searching.h>
+#include <random.h>
+#include <database.h>
 #include <iostream>
 
 
 void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, int malakhDepth, int fairyStockfishDepth)
 {
-	DatabaseManager::initConnectionString();
 	Random::initSeed();
-	DatabaseConnection conn;
 
-	Board board;
+	DatabaseManager::initConnectionString();
+	DatabaseConnection conn;
+	int idEssenceConfig = conn.getIdEssenceConfig(essenceArgs);
 
 	FairyStockfish fairyStockfish;
 	fairyStockfish.start(essenceArgs);
@@ -23,6 +23,7 @@ void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, 
 	fairyStockfish.sendCommand("isready");
 	fairyStockfish.waitForResponse("readyok");
 
+	Board board;
 	for (int i = 0; i < gameCounter; i++)
 	{
 		while (true)
@@ -92,7 +93,7 @@ void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, 
 		}
 
 		for (unsigned long long boardHash : gameHistory) {
-			conn.addBoardResult(boardHash, result);
+			conn.addBoardResult(boardHash, idEssenceConfig, result);
 		}
 	}
 

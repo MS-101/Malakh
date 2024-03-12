@@ -1,6 +1,7 @@
-#include "uci.h"
-#include "simulation.h"
+#include <uci.h>
+#include <simulation.h>
 #include <iostream>
+
 
 void testEngine()
 {
@@ -60,12 +61,18 @@ void startSimulation()
     SimulationManager::simulateGames(10, essenceArgs, 4, 8);
 }
 
+void startTraining()
+{
+
+}
+
 int main()
 {
     // startUCI();
     // testUCI();
     // testEngine();
-    startSimulation();
+    // startSimulation();
+    startTraining();
 
     return 0;
 }

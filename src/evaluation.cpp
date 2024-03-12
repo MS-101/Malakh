@@ -1,4 +1,5 @@
-#include "evaluation.h"
+#include <evaluation.h>
+
 
 const int Evaluation::pieceMatValues[6] = { 100, 500, 320, 330, 900, 0 };
 
