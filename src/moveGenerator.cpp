@@ -33,6 +33,7 @@ void MoveGenerator::generateMoves(Board* board)
 		}
 	}
 
+	/*
 	char whiteKingIndex = getPieceIndex(White, King);
 	char whiteRookIndex = getPieceIndex(White, Rook);
 	char blackKingIndex = getPieceIndex(Black, King);
@@ -83,6 +84,7 @@ void MoveGenerator::generateMoves(Board* board)
 
 		board->moves[Black].push_back(move);
 	}
+	*/
 
 	board->movesValidated = false;
 }

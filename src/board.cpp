@@ -463,6 +463,9 @@ std::string Board::toString()
 	fen += " ";
 
 	// castling rights
+	bool canCastle = false;
+
+	/*
 	char whiteKingIndex = getPieceIndex(White, King);
 	char whiteRookIndex = getPieceIndex(White, Rook);
 	char blackKingIndex = getPieceIndex(Black, King);
@@ -472,25 +475,33 @@ std::string Board::toString()
 	if (pieces[whiteKingIndex].getBit(4, 0) && notMoved.getBit(4, 0)
 		&& pieces[whiteRookIndex].getBit(7, 0) && notMoved.getBit(7, 0)) {
 		fen += "K";
+		canCastle = true;
 	}
 
 	// white queen-side castle
 	if (pieces[whiteKingIndex].getBit(4, 0) && notMoved.getBit(4, 0)
 		&& pieces[whiteRookIndex].getBit(0, 0) && notMoved.getBit(0, 0)) {
 		fen += "Q";
+		canCastle = true;
 	}
 
 	// black king-side castle
 	if (pieces[blackKingIndex].getBit(4, 7) && notMoved.getBit(4, 7)
 		&& pieces[blackRookIndex].getBit(7, 7) && notMoved.getBit(7, 7)) {
 		fen += "k";
+		canCastle = true;
 	}
 
 	// black queen-side castle
 	if (pieces[blackKingIndex].getBit(4, 7) && notMoved.getBit(4, 7)
 		&& pieces[blackRookIndex].getBit(0, 7) && notMoved.getBit(0, 7)) {
 		fen += "q";
+		canCastle = true;
 	}
+	*/
+
+	if (!canCastle)
+		fen += "-";
 
 	fen += " ";
 

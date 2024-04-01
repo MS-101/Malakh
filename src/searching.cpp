@@ -27,10 +27,10 @@ std::pair<bool, LegalMove> SearchManager::calculateBestMove(Board board, int dep
 		if (newBoard.makeMove(move)) {
 			int value = minimax(newBoard, playerColor, searchArgs, &performanceArgs, debug);
 
-			if (value > max) {
+			if (!moveFound || value > max) {
+				moveFound = true;
 				max = value;
 				bestMove = move;
-				moveFound = true;
 			}
 		}
 	}
@@ -64,10 +64,13 @@ std::pair<bool, LegalMove> SearchManager::calculateBestMove_threads(Board board,
 		moveQueue.push(move);
 
 	// create worker threads
+	std::vector<bool> movesFound;
+	movesFound.assign(threadCount, false);
+
 	std::vector<std::pair<int, LegalMove>> bestMoves;
 	bestMoves.assign(threadCount, std::make_pair(INT_MIN, bestMove));
-	std::vector<std::thread> threads;
 
+	std::vector<std::thread> threads;
 	for (int i = 0; i < threadCount; i++) {
 		threads.emplace_back([&, i]() {
 			PerformanceArgs performanceArgs{};
@@ -86,13 +89,15 @@ std::pair<bool, LegalMove> SearchManager::calculateBestMove_threads(Board board,
 				moveQueueMutex.unlock();
 
 				Board newBoard = board;
-				newBoard.makeMove(move);
+				if (newBoard.makeMove(move)) {
+					int value = minimax(newBoard, playerColor, searchArgs, &performanceArgs, debug);
 
-				int value = minimax(newBoard, playerColor, searchArgs, &performanceArgs, debug);
-
-				std::pair<int, LegalMove> myBestMove = bestMoves[i];
-				if (value > myBestMove.first)
-					bestMoves[i] = std::make_pair(value, move);
+					std::pair<int, LegalMove> myBestMove = bestMoves[i];
+					if (!movesFound[i] || value > myBestMove.first) {
+						movesFound[i] = true;
+						bestMoves[i] = std::make_pair(value, move);
+					}
+				}
 			}
 
 			if (debug)
@@ -104,11 +109,11 @@ std::pair<bool, LegalMove> SearchManager::calculateBestMove_threads(Board board,
 	for (std::thread& thread : threads)
 		thread.join();
 
-	for (std::pair<int, LegalMove>& curBestMove : bestMoves) {
-		if (curBestMove.first > max) {
-			max = curBestMove.first;
-			bestMove = curBestMove.second;
+	for (int i = 0; i < threadCount; i++) {
+		if (movesFound[i] && (!moveFound || bestMoves[i].first > max)) {
 			moveFound = true;
+			max = bestMoves[i].first;
+			bestMove = bestMoves[i].second;
 		}
 	}
 

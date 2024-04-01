@@ -59,7 +59,8 @@ int DatabaseConnection::getIdEssenceConfig(EssenceArgs essenceArgs)
         INSERT INTO public.essence_configs 
         (white_pawn, white_rook, white_knight, white_bishop,
          black_pawn, black_rook, black_knight, black_bishop)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        VALUES
+        ($1, $2, $3, $4, $5, $6, $7, $8)
         ON CONFLICT
         (white_pawn, white_rook, white_knight, white_bishop,
          black_pawn, black_rook, black_knight, black_bishop)
@@ -71,8 +72,6 @@ int DatabaseConnection::getIdEssenceConfig(EssenceArgs essenceArgs)
     // retrieve id of this configuration
     pqxx::result result = txn.exec_params(R"(
         SELECT id_essence_config
-        , white_pawn, white_rook, white_knight, white_bishop
-        , black_pawn, black_rook, black_knight, black_bishop
         FROM public.essence_configs
         WHERE white_pawn = $1 AND white_rook = $2 AND white_knight = $3 AND white_bishop = $4
         AND black_pawn = $5 AND black_rook = $6 AND black_knight = $7 AND black_bishop = $8
@@ -86,35 +85,67 @@ int DatabaseConnection::getIdEssenceConfig(EssenceArgs essenceArgs)
     return retValue;
 }
 
-void DatabaseConnection::addBoardResult(unsigned long long boardHash, int idEssenceConfig, GameResult gameResult)
+void DatabaseConnection::addBoardResult(Board board, int idEssenceConfig, GameResult gameResult)
 {
+    // insert input features of board if they do not exist
+    txn.exec_params(R"(
+        INSERT INTO public.boards
+        (board_hash, white_pawns, white_rooks, white_knights, white_bishops, white_queens, white_kings,
+        black_pawns, black_rooks, black_knights, black_bishops, black_queens, black_kings, turn)
+        VALUES
+        ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
+        ON CONFLICT (board_hash)
+        DO NOTHING;
+    )", (long long)board.hash.value,
+        (long long)board.pieces[getPieceIndex(White, Pawn)].value,
+        (long long)board.pieces[getPieceIndex(White, Rook)].value,
+        (long long)board.pieces[getPieceIndex(White, Knight)].value,
+        (long long)board.pieces[getPieceIndex(White, Bishop)].value,
+        (long long)board.pieces[getPieceIndex(White, Queen)].value,
+        (long long)board.pieces[getPieceIndex(White, King)].value,
+        (long long)board.pieces[getPieceIndex(Black, Pawn)].value,
+        (long long)board.pieces[getPieceIndex(Black, Rook)].value,
+        (long long)board.pieces[getPieceIndex(Black, Knight)].value,
+        (long long)board.pieces[getPieceIndex(Black, Bishop)].value,
+        (long long)board.pieces[getPieceIndex(Black, Queen)].value,
+        (long long)board.pieces[getPieceIndex(Black, King)].value,
+        (int)board.curTurn
+    );
+    txn.commit();
+
+    // update target values of board
     switch (gameResult) {
     case WhiteWin:
         txn.exec_params(R"(
-            INSERT INTO public.board_results (board_hash, id_essence_config, white_count)
-            VALUES ($1, $2, 1)
+            INSERT INTO public.board_results
+            (board_hash, id_essence_config, white_count)
+            VALUES
+            ($1, $2, 1)
             ON CONFLICT (board_hash, id_essence_config)
-            DO UPDATE SET white_count = board_results.white_count + 1;
-        )", boardHash, idEssenceConfig);
+            DO UPDATE SET white_count = board_results.white_count + 1
+        )", (long long)board.hash.value, idEssenceConfig);
         break;
     case BlackWin:
         txn.exec_params(R"(
-            INSERT INTO public.board_results (board_hash, black_count)
-            VALUES ($1, $2, 1)
+            INSERT INTO public.board_results
+            (board_hash, id_essence_config, black_count)
+            VALUES
+            ($1, $2, 1)
             ON CONFLICT (board_hash, id_essence_config)
             DO UPDATE SET black_count = board_results.black_count + 1;
-        )", boardHash, idEssenceConfig);
+        )", (long long)board.hash.value, idEssenceConfig);
         break;
     case Stalemate:
         txn.exec_params(R"(
-            INSERT INTO public.board_results (board_hash, stalemate_count)
-            VALUES ($1, $2, 1)
+            INSERT INTO public.board_results
+            (board_hash, id_essence_config, stalemate_count)
+            VALUES
+            ($1, $2, 1)
             ON CONFLICT (board_hash, id_essence_config)
             DO UPDATE SET stalemate_count = board_results.stalemate_count + 1;
-        )", boardHash, idEssenceConfig);
+        )", (long long)board.hash.value, idEssenceConfig);
         break;
     }
-
     txn.commit();
 }
 

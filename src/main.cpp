@@ -1,6 +1,8 @@
 #include <uci.h>
 #include <simulation.h>
+#include <training.h>
 #include <iostream>
+#
 
 
 void testEngine()
@@ -48,22 +50,40 @@ void startSimulation()
 {
     ZobristHashing::init();
 
-    EssenceArgs essenceArgs;
-    essenceArgs.whitePawn = Red;
-    essenceArgs.whiteKnight = Red;
-    essenceArgs.whiteBishop = Red;
-    essenceArgs.whiteRook = Red;
-    essenceArgs.blackPawn = Blue;
-    essenceArgs.blackKnight = Blue;
-    essenceArgs.blackBishop = Blue;
-    essenceArgs.blackRook = Blue;
+    int gameCount = 10;
+    int malakhDepth = 4;
+    int fairyStockfishDepth = 6;
 
-    SimulationManager::simulateGames(10, essenceArgs, 4, 8);
+    EssenceArgs redEssenceConfig;
+    redEssenceConfig.whitePawn = Red;
+    redEssenceConfig.whiteKnight = Red;
+    redEssenceConfig.whiteBishop = Red;
+    redEssenceConfig.whiteRook = Red;
+    redEssenceConfig.blackPawn = Red;
+    redEssenceConfig.blackKnight = Red;
+    redEssenceConfig.blackBishop = Red;
+    redEssenceConfig.blackRook = Red;
+
+    SimulationManager::simulateGames(gameCount, redEssenceConfig, malakhDepth, fairyStockfishDepth);
+
+    EssenceArgs blueEssenceConfig;
+    redEssenceConfig.whitePawn = Blue;
+    redEssenceConfig.whiteKnight = Blue;
+    redEssenceConfig.whiteBishop = Blue;
+    redEssenceConfig.whiteRook = Blue;
+    redEssenceConfig.blackPawn = Blue;
+    redEssenceConfig.blackKnight = Blue;
+    redEssenceConfig.blackBishop = Blue;
+    redEssenceConfig.blackRook = Blue;
+
+    SimulationManager::simulateGames(gameCount, blueEssenceConfig, malakhDepth, fairyStockfishDepth);
 }
 
 void startTraining()
 {
+    int epochs = 10;
 
+    TrainingManager::trainModel("training/output.csv", "training/output.pt", epochs);
 }
 
 int main()

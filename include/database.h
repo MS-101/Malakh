@@ -32,7 +32,7 @@ class DatabaseConnection {
 public:
 	DatabaseConnection();
 	int getIdEssenceConfig(EssenceArgs essenceArgs);
-	void addBoardResult(unsigned long long boardHash, int idEssenceConfig, GameResult gameResult);
+	void addBoardResult(Board board, int idEssenceConfig, GameResult gameResult);
 	std::vector<TrainingData> getTrainingData(int idEssenceConfig, int page, int pageSize);
 private:
 	pqxx::connection connection;

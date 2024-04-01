@@ -34,7 +34,7 @@ bool FairyStockfish::start(EssenceArgs essenceArgs)
 
     setConfigFile(essenceArgs);
 
-    std::string command = "training\\fairy-stockfish.exe load chess-evolved-tmp.ini";
+    std::string command = "training\\fairy-stockfish.exe load training\\chess-evolved-tmp.ini";
     if (CreateProcess(NULL, const_cast<char*>(command.c_str()), NULL, NULL, TRUE, 0, NULL, NULL, &siStartInfo, &piProcInfo))
     {
         receiveResponse();
@@ -102,7 +102,7 @@ bool FairyStockfish::sendCommand(std::string command)
 
     if (WriteFile(handleStdinWrite, commandEndl.c_str(), commandEndl.size(), &dwWritten, NULL) || dwWritten == 0)
     {
-        //std::cout << "Sent command to FairyStockfish: " << command << std::endl;
+        // std::cout << "Sent command to FairyStockfish: " << command << std::endl;
 
         return true;
     }
@@ -139,7 +139,7 @@ std::string FairyStockfish::receiveResponse()
     if (ReadFile(handleStdoutRead, chBuf, BUFSIZE, &dwRead, NULL) && dwRead > 0)
     {
         std::string response(chBuf, dwRead);
-        //std::cout << "Received response from FairyStockfish: " << response << std::endl;
+        // std::cout << "Received response from FairyStockfish: " << response << std::endl;
 
         return response;
     }
