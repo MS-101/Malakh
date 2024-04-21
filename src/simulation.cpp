@@ -70,7 +70,7 @@ void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, 
 
 			if (malakhTurn)
 			{
-				auto result = SearchManager::calculateBestMove_threads(board, malakhDepth, 4, false);
+				auto result = SearchManager::calculateBestMove_threads(board, malakhDepth, 4, false, false);
 				if (result.first)
 					bestMove = result.second;
 			}

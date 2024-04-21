@@ -1,5 +1,4 @@
 #include <database.h>
-#include <pqxx/pqxx>
 #include <fstream>
 #include <cmath>
 

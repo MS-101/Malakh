@@ -2,7 +2,6 @@
 
 #include <board.h>
 #include <transpositions.h>
-#include <database.h>
 #include <chrono>
 
 
@@ -27,9 +26,10 @@ struct PerformanceArgs {
 class SearchManager {
 public:
 	static TranspositionCache cache;
-	static std::pair<bool, LegalMove> calculateBestMove(Board board, int depth, bool debug);
-	static std::pair<bool, LegalMove> calculateBestMove_threads(Board board, int depth, int threadCount, bool debug);
-	static int minimax(Board board, PieceColor playerColor, SearchArgs searchArgs, PerformanceArgs* performanceArgs, bool debug);
+	static Ensemble ensemble;
+	static std::pair<bool, LegalMove> calculateBestMove(Board board, int depth, bool debug, bool useEnsemble);
+	static std::pair<bool, LegalMove> calculateBestMove_threads(Board board, int depth, int threadCount, bool debug, bool useEnsemble);
+	static int minimax(Board board, PieceColor playerColor, SearchArgs searchArgs, PerformanceArgs* performanceArgs, bool debug, bool useEnsemble);
 private:
 	static const int qLimit = 0;
 };

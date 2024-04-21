@@ -12,7 +12,7 @@ void testEngine()
     board.makeMove(4, 1, 4, 3 ); // e2-e4
     board.makeMove(6, 7, 5, 5); // g8-f6
 
-    auto result = SearchManager::calculateBestMove_threads(board, 4, 4, true);
+    auto result = SearchManager::calculateBestMove_threads(board, 4, 4, true, false);
     if (result.first)
         LegalMove bestMove = result.second;
 }
@@ -53,7 +53,10 @@ void testNN()
     board.initBoard(essenceArgs);
 
     Ensemble ensemble;
-    double value = ensemble.forward(board);
+
+    int* inputArray = board.getInputArray();
+    double value = ensemble.forward(inputArray, board.essenceCounts);
+    delete[] inputArray;
 
     std::cout << value << std::endl;
 }
@@ -98,13 +101,12 @@ void startSimulation()
 int main()
 {
     ZobristHashing::init();
-    // LoadLibrary("torch_cuda.dll");
 
     // testEngine();
     // testUCI();
-    testNN();
+    // testNN();
 
-    // startUCI();
+    startUCI();
     // startSimulation();
 
     return 0;

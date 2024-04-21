@@ -1,5 +1,6 @@
 #include <board.h>
 #include <iostream>
+#include <cmath>
 
 
 void Board::initBoard(EssenceArgs essenceArgs)
@@ -120,7 +121,7 @@ void Board::printMoves()
 	std::cout << std::endl;
 }
 
-int Board::evalBoard(PieceColor color)
+int Board::evalBoard(PieceColor color, Ensemble ensemble, bool useEnsemble)
 {
 	int score = 0;
 
@@ -185,9 +186,20 @@ int Board::evalBoard(PieceColor color)
 	int mgScore = mgPcsqScore + mgMobScore + mgTropismScore;
 	int egScore = egPcsqScore + egMobScore + egTropismScore;
 
-
-
 	score += (curPhase * mgScore + (Evaluation::startPhase - curPhase) * egScore) / Evaluation::startPhase;
+
+	// evaluation using deep learning
+
+	if (useEnsemble) {
+		int* inputArray = getInputArray();
+		int ensembleScore = std::round(ensemble.forward(inputArray, essenceCounts));
+		delete[] inputArray;
+
+		score += ensembleScore;
+	}
+
+	// reverse score if black is evaluating
+
 	if (color == Black)
 		score *= -1;
 

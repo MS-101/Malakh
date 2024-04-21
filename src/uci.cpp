@@ -53,8 +53,6 @@ bool uci::parseCommand(std::string command) {
 
         std::cout << "uciok\n";
     } else if (tokens[0] == "isready") {
-        ZobristHashing::init();
-
         std::cout << "readyok\n";
     } else if (tokens[0] == "setoption") {
         std::string name = tokens[2];
@@ -147,7 +145,7 @@ bool uci::parseCommand(std::string command) {
             GameResult gameResult = board.getResult();
             switch (gameResult) {
             case Unresolved: {
-                auto result = SearchManager::calculateBestMove_threads(board, depth, 4, true);
+                auto result = SearchManager::calculateBestMove_threads(board, depth, 4, true, false);
                 if (result.first) {
                     LegalMove bestMove = result.second;
                     std::cout << "bestmove " << bestMove.toStringWithFlags(board.curTurn) << std::endl;

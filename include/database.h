@@ -1,9 +1,11 @@
 #pragma once
 
+#define NOMINMAX
 #include <board.h>
 #include <pqxx/pqxx>
 #include <string>
 #include <vector>
+#include <pqxx/transaction.hxx>
 
 
 struct ConnectionString {
