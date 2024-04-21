@@ -24,6 +24,9 @@ void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, 
 	fairyStockfish.waitForResponse("readyok");
 
 	Board board;
+	int malakhVictories = 0;
+	int errorCount = 0;
+
 	for (int i = 0; i < gameCounter; i++)
 	{
 		std::cout << "Game simulation " << (i+1) << ":" << std::endl << std::endl;
@@ -49,8 +52,6 @@ void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, 
 		std::cout << "starting position: " << board.toString() << std::endl;
 		// board.printBoard();
 
-		conn.addBoardResult(board, idEssenceConfig, WhiteWin);
-
 		fairyStockfish.sendCommand("ucinewgame");
 		fairyStockfish.sendCommand("position fen " + board.toString());
 
@@ -58,6 +59,9 @@ void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, 
 		bool malakhTurn = malakhWhite;
 		std::vector<Board> gameHistory{};
 		gameHistory.push_back(board);
+
+		int lazyCounter = 0;
+		bool error = false;
 
 		GameResult result;
 		while ((result = board.getResult()) == Unresolved)
@@ -94,27 +98,48 @@ void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, 
 
 			board.makeMove(bestMove);
 			// board.printBoard();
+			lazyCounter++;
 
 			gameHistory.push_back(board);
 			fairyStockfish.sendCommand("position fen " + board.toString());
 			
 			malakhTurn = !malakhTurn;
+
+			if (lazyCounter >= 100) {
+				error = true;
+				break;
+			}
 		}
 
-		if (result == WhiteWin && malakhWhite || result == BlackWin && !malakhWhite) {
-			std::cout << "Malakh wins!" << std::endl;
-		} else if (result == WhiteWin && !malakhWhite || result == BlackWin && malakhWhite){
-			std::cout << "FairyStockfish wins!" << std::endl;
-		} else {
-			std::cout << "Stalemate!" << std::endl;
-		}
-		std::cout << std::endl;
+		if (!error)
+		{
+			if (result == WhiteWin && malakhWhite || result == BlackWin && !malakhWhite) {
+				std::cout << "Malakh wins!" << std::endl;
+				malakhVictories++;
+			}
+			else if (result == WhiteWin && !malakhWhite || result == BlackWin && malakhWhite) {
+				std::cout << "FairyStockfish wins!" << std::endl;
+			}
+			else {
+				std::cout << "Stalemate!" << std::endl;
+			}
+			std::cout << std::endl;
 
-		for (Board board : gameHistory) {
-			conn.addBoardResult(board, idEssenceConfig, result);
+			for (Board board : gameHistory) {
+				conn.addBoardResult(board, idEssenceConfig, result);
+			}
 		}
+		else
+		{
+			errorCount++;
+			std::cout << "Error!" << std::endl;
+		}
+
 		gameHistory.clear();
 	}
+
+	std::cout << "Malakh won " << malakhVictories << " games!" << std::endl;
+	std::cout << "Errors: " << errorCount << std::endl;
 
 	fairyStockfish.exit();
 }

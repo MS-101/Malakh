@@ -23,6 +23,7 @@
     <ProjectGuid>{EEFA1E83-E597-42AF-A868-BC56DFDF8A0B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <CudaToolkitCustomDir>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.1</CudaToolkitCustomDir>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -47,6 +48,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\CUDA 12.1.props" />
   </ImportGroup>
   <ImportGroup Label="Shared">
   </ImportGroup>
@@ -72,7 +74,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);include</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
-    <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Program Files\libtorch\release\include;C:\Program Files\libtorch\release\include\torch\csrc\api\include</ExternalIncludePath>
+    <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -107,14 +109,26 @@
     <ClCompile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files\libtorch\release\include\torch\csrc\api\include;C:\Program Files\libtorch\release\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ConformanceMode>Default</ConformanceMode>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Program Files\libtorch\release\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);asmjit.lib;c10.lib;c10_cuda.lib;caffe2_nvrtc.lib;cpuinfo.lib;dnnl.lib;fbgemm.lib;fbjni.lib;fmt.lib;kineto.lib;libprotobuf.lib;libprotoc.lib;pthreadpool.lib;pytorch_jni.lib;torch.lib;torch_cpu.lib;torch_cuda.lib;XNNPACK.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Program Files\libtorch\release\lib;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.1\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(CoreLibraryDependencies);asmjit.lib;c10.lib;c10_cuda.lib;caffe2_nvrtc.lib;cpuinfo.lib;dnnl.lib;fbgemm.lib;fbjni.lib;fmt.lib;kineto.lib;libprotobuf.lib;libprotoc.lib;pthreadpool.lib;pytorch_jni.lib;torch.lib;torch_cpu.lib;torch_cuda.lib;XNNPACK.lib;cublas.lib;cusparse.lib;cudart.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <CudaCompile>
+      <CudaRuntime>Static</CudaRuntime>
+      <Include>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.1\include</Include>
+      <AdditionalDeps>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.1\bin</AdditionalDeps>
+    </CudaCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Link>
+      <AdditionalLibraryDirectories>C:\Program Files\libtorch\debug\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Program Files\libtorch\debug\include;C:\Program Files\libtorch\debug\include\torch\csrc\api\include</AdditionalIncludeDirectories>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\bitboard.cpp" />
@@ -122,6 +136,7 @@
     <ClCompile Include="src\database.cpp" />
     <ClCompile Include="src\fairyStockfish.cpp" />
     <ClCompile Include="src\hashing.cpp" />
+    <ClCompile Include="src\nn.cpp" />
     <ClCompile Include="src\piece.cpp" />
     <ClCompile Include="src\evaluation.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -130,7 +145,6 @@
     <ClCompile Include="src\random.cpp" />
     <ClCompile Include="src\searching.cpp" />
     <ClCompile Include="src\simulation.cpp" />
-    <ClCompile Include="src\training.cpp" />
     <ClCompile Include="src\transpositions.cpp" />
     <ClCompile Include="src\uci.cpp" />
   </ItemGroup>
@@ -140,17 +154,18 @@
     <ClInclude Include="include\database.h" />
     <ClInclude Include="include\fairyStockfish.h" />
     <ClInclude Include="include\hashing.h" />
+    <ClInclude Include="include\nn.h" />
     <ClInclude Include="include\piece.h" />
     <ClInclude Include="include\evaluation.h" />
     <ClInclude Include="include\mobility.h" />
     <ClInclude Include="include\random.h" />
     <ClInclude Include="include\searching.h" />
     <ClInclude Include="include\simulation.h" />
-    <ClInclude Include="include\training.h" />
     <ClInclude Include="include\transpositions.h" />
     <ClInclude Include="include\uci.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\CUDA 12.1.targets" />
   </ImportGroup>
 </Project>

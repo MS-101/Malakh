@@ -1,14 +1,11 @@
 #include <uci.h>
 #include <simulation.h>
-#include <training.h>
+#include <nn.h>
 #include <iostream>
-#
 
 
 void testEngine()
 {
-    ZobristHashing::init();
-
     Board board;
     board.initBoard({});
 
@@ -40,6 +37,27 @@ void testUCI()
     api.parseCommand("go depth 3");
 }
 
+void testNN()
+{
+    Board board;
+
+    EssenceArgs essenceArgs;
+    essenceArgs.whitePawn = Red;
+    essenceArgs.whiteKnight = Red;
+    essenceArgs.whiteBishop = Red;
+    essenceArgs.whiteRook = Blue;
+    essenceArgs.blackPawn = Red;
+    essenceArgs.blackKnight = Red;
+    essenceArgs.blackBishop = Red;
+    essenceArgs.blackRook = Blue;
+    board.initBoard(essenceArgs);
+
+    Ensemble ensemble;
+    double value = ensemble.forward(board);
+
+    std::cout << value << std::endl;
+}
+
 void startUCI()
 {
     uci api;
@@ -48,9 +66,7 @@ void startUCI()
 
 void startSimulation()
 {
-    ZobristHashing::init();
-
-    int gameCount = 10;
+    int gameCount = 200;
     int malakhDepth = 4;
     int fairyStockfishDepth = 6;
 
@@ -67,32 +83,29 @@ void startSimulation()
     SimulationManager::simulateGames(gameCount, redEssenceConfig, malakhDepth, fairyStockfishDepth);
 
     EssenceArgs blueEssenceConfig;
-    redEssenceConfig.whitePawn = Blue;
-    redEssenceConfig.whiteKnight = Blue;
-    redEssenceConfig.whiteBishop = Blue;
-    redEssenceConfig.whiteRook = Blue;
-    redEssenceConfig.blackPawn = Blue;
-    redEssenceConfig.blackKnight = Blue;
-    redEssenceConfig.blackBishop = Blue;
-    redEssenceConfig.blackRook = Blue;
+    blueEssenceConfig.whitePawn = Blue;
+    blueEssenceConfig.whiteKnight = Blue;
+    blueEssenceConfig.whiteBishop = Blue;
+    blueEssenceConfig.whiteRook = Blue;
+    blueEssenceConfig.blackPawn = Blue;
+    blueEssenceConfig.blackKnight = Blue;
+    blueEssenceConfig.blackBishop = Blue;
+    blueEssenceConfig.blackRook = Blue;
 
     SimulationManager::simulateGames(gameCount, blueEssenceConfig, malakhDepth, fairyStockfishDepth);
 }
 
-void startTraining()
-{
-    int epochs = 10;
-
-    TrainingManager::trainModel("training/output.csv", "training/output.pt", epochs);
-}
-
 int main()
 {
-    // startUCI();
-    // testUCI();
+    ZobristHashing::init();
+    // LoadLibrary("torch_cuda.dll");
+
     // testEngine();
+    // testUCI();
+    testNN();
+
+    // startUCI();
     // startSimulation();
-    startTraining();
 
     return 0;
 }

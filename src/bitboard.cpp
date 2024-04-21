@@ -29,7 +29,7 @@ void BitBoard::printBits()
 
 unsigned long long BitBoard::getMask(char x, char y)
 {
-    return 1ull << ((8 - x) + y * 8);
+    return 1ull << ((7 - x) + y * 8);
 }
 
 unsigned long long BitBoard::getKingPattern(unsigned long long value)

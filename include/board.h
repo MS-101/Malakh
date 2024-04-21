@@ -24,6 +24,7 @@ struct EssenceArgs {
 class Board {
 public:
     PieceEssence essenceConfig[2*6] = {};
+    int essenceCounts[3];
     BitBoard pieces[2*6];
     BitBoard colors[2];
     BitBoard attacks[2];
@@ -50,12 +51,14 @@ public:
     std::vector<LegalMove> getLegalMoves();
     std::string toString();
     GameResult getResult();
+    int* getInputArray();
 private:
     void setEssenceConfig(EssenceArgs essenceArgs);
     void clearBoard();
     void addPiece(PieceColor color, PieceType type, char x, char y, bool isNew);
     std::pair<bool, Piece> removePiece(char x, char y);
 	void refreshAggregations();
+    char getInputIndex(char channel, char x, char y);
 };
 
 class MoveGenerator {

@@ -58,6 +58,16 @@ void Board::setEssenceConfig(EssenceArgs essenceArgs)
 	essenceConfig[getPieceIndex(Black, Bishop)] = essenceArgs.blackBishop;
 	essenceConfig[getPieceIndex(Black, Queen)] = Classic;
 	essenceConfig[getPieceIndex(Black, King)] = Classic;
+
+	for (int i = 0; i < 3; i++)
+		essenceCounts[i] = 0;
+
+	for (char color = 0; color < 2; color++) {
+		for (char piece = 0; piece < 4; piece++) {
+			PieceEssence essence = essenceConfig[getPieceIndex(color, piece)];
+			essenceCounts[essence]++;
+		}
+	}
 }
 
 void Board::clearBoard()
@@ -174,6 +184,8 @@ int Board::evalBoard(PieceColor color)
 
 	int mgScore = mgPcsqScore + mgMobScore + mgTropismScore;
 	int egScore = egPcsqScore + egMobScore + egTropismScore;
+
+
 
 	score += (curPhase * mgScore + (Evaluation::startPhase - curPhase) * egScore) / Evaluation::startPhase;
 	if (color == Black)
@@ -543,4 +555,43 @@ GameResult Board::getResult()
 	} else {
 		return Unresolved;
 	}
+}
+
+char Board::getInputIndex(char channel, char x, char y)
+{
+	return channel * 8 * 8 + y * 8 + x;
+}
+
+int* Board::getInputArray()
+{
+	constexpr int inputSize = 2 * 8 * 8;
+	int* inputArray = new int[inputSize];
+	std::fill_n(inputArray, inputSize, 0);
+
+	// set piece channel
+	for (char color = 0; color < 2; color++) {
+		for (char type = 0; type < 6; type++) {
+			char pieceIndex = getPieceIndex(color, type);
+
+			for (char y = 0; y < 8; y++) {
+				for (char x = 0; x < 8; x++) {
+					char inputIndex = getInputIndex(0, x, y);
+
+					if (pieces[pieceIndex].getBit(x, y)) {
+						inputArray[inputIndex] = pieceIndex + 1;
+					}
+				}
+			}
+		}
+	}
+
+	// set turn channel
+	for (char y = 0; y < 8; y++) {
+		for (char x = 0; x < 8; x++) {
+			char inputIndex = getInputIndex(1, x, y);
+			inputArray[inputIndex] = curTurn;
+		}
+	}
+
+	return inputArray;
 }
