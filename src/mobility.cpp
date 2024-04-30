@@ -37,6 +37,22 @@ std::string LegalMove::toString()
         value.push_back('1' + y1);
         value.push_back('a' + x2);
         value.push_back('1' + y2);
+
+        switch (promotion) {
+        case Rook:
+            value.push_back('r');
+            break;
+        case Knight:
+            value.push_back('n');
+            break;
+        case Bishop:
+            value.push_back('b');
+            break;
+        case Queen:
+            value.push_back('q');
+            break;
+        }
+
         break;
     }
 

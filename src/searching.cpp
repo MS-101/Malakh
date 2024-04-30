@@ -125,8 +125,8 @@ int SearchManager::minimax(Board board, PieceColor playerColor, SearchArgs searc
 {
 	searchArgs.curDepth++;
 
-	Transposition transposition = cache.get(board.hash.value);
 	/*
+	Transposition transposition = cache.get(board.hash.value);
 	if (transposition.depth >= searchArgs.maxDepth)
 		return transposition.value;
 	*/
@@ -146,9 +146,11 @@ int SearchManager::minimax(Board board, PieceColor playerColor, SearchArgs searc
 				performanceArgs->printPerformance(stop, durationCur);
 		}
 
+		/*
 		transposition.value = value;
 		transposition.depth = searchArgs.maxDepth;
 		cache.put(board.hash.value, transposition);
+		*/
 
 		return value;
 	}
@@ -175,9 +177,11 @@ int SearchManager::minimax(Board board, PieceColor playerColor, SearchArgs searc
 		}
 	}
 
+	/*
 	transposition.value = bestScore;
 	transposition.depth = searchArgs.maxDepth;
 	cache.put(board.hash.value, transposition);
+	*/
 
 	return bestScore;
 }

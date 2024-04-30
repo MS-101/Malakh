@@ -145,7 +145,7 @@ bool uci::parseCommand(std::string command) {
             GameResult gameResult = board.getResult();
             switch (gameResult) {
             case Unresolved: {
-                auto result = SearchManager::calculateBestMove_threads(board, depth, 4, true, false);
+                auto result = SearchManager::calculateBestMove_threads(board, depth, 4, false, false);
                 if (result.first) {
                     LegalMove bestMove = result.second;
                     std::cout << "bestmove " << bestMove.toStringWithFlags(board.curTurn) << std::endl;
