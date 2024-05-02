@@ -60,7 +60,7 @@
     <ClCompile Include="src\random.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\nn.cpp">
+    <ClCompile Include="src\ensemble.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,7 +104,7 @@
     <ClInclude Include="include\random.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\nn.h">
+    <ClInclude Include="include\ensemble.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

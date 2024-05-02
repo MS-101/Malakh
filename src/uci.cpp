@@ -27,6 +27,7 @@ bool uci::parseCommand(std::string command) {
         std::cout << "id name Malakh\n";
         std::cout << "id author Martin Svab\n";
 
+        std::cout << "option name AI type combo default Basic var Basic var Ensemble\n";
         std::cout << "option name WhitePawn type combo default Classic var Classic var Red var Blue\n";
         std::cout << "option name WhiteRook type combo default Classic var Classic var Red var Blue\n";
         std::cout << "option name WhiteKnight type combo default Classic var Classic var Red var Blue\n";
@@ -74,6 +75,12 @@ bool uci::parseCommand(std::string command) {
             essenceConfig.blackKnight = stringToEssence(value);
         else if (name == "BlackBishop")
             essenceConfig.blackBishop = stringToEssence(value);
+        else if (name == "AI") {
+            if (value == "Basic")
+                useEnsemble = false;
+            else if (value == "Ensemble")
+                useEnsemble = true;
+        }
     } else if (tokens[0] == "ucinewgame") {
         board.initBoard(essenceConfig);
     } else if (tokens[0] == "legalmoves") {
@@ -145,7 +152,7 @@ bool uci::parseCommand(std::string command) {
             GameResult gameResult = board.getResult();
             switch (gameResult) {
             case Unresolved: {
-                auto result = SearchManager::calculateBestMove_threads(board, depth, 4, false, false);
+                auto result = SearchManager::calculateBestMove_threads(board, depth, 4, useEnsemble, false);
                 if (result.first) {
                     LegalMove bestMove = result.second;
                     std::cout << "bestmove " << bestMove.toStringWithFlags(board.curTurn) << std::endl;

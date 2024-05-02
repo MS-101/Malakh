@@ -1,4 +1,4 @@
-#include "nn.h"
+#include "ensemble.h"
 #include "piece.h"
 
 
@@ -18,6 +18,9 @@ double Ensemble::forward(int* inputArray, int* essenceCounts)
 	// calculate sum(w_i * x_i)
 	double value = 0;
 	for (int i = 0; i < 3; i++) {
+		if (essenceCounts[i] == 0)
+			continue;
+
 		torch::Tensor tensor = models[i].forward(iValue).toTensor();
 		double weight = (double)essenceCounts[i] / 8;
 		value += weight * tensor.item<double>();

@@ -6,7 +6,6 @@
 #include <evaluation.h>
 #include <hashing.h>
 #include <vector>
-#include <nn.h>
 
 
 enum GameResult { Unresolved, WhiteWin, BlackWin, Stalemate};
@@ -41,9 +40,10 @@ public:
     int fullmoveClock = 1;
     
 	void initBoard(EssenceArgs essenceArgs);
+    void initBoard(EssenceArgs essenceArgs, BitBoard pieces[12], PieceColor curTurn);
     void printBoard();
     void printMoves();
-    int evalBoard(PieceColor color, Ensemble ensemble, bool useEnsemble);
+    int evalBoard(PieceColor color);
     bool isQuiet();
     bool makeMove(char x1, char y1, char x2, char y2);
     bool makeMove(char x1, char y1, char x2, char y2, PieceType promotion);

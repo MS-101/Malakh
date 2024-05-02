@@ -7,7 +7,7 @@
 TranspositionCache SearchManager::cache = TranspositionCache(4096);
 Ensemble SearchManager::ensemble = Ensemble();
 
-std::pair<bool, LegalMove> SearchManager::calculateBestMove(Board board, int depth, bool debug, bool useEnsemble)
+std::pair<bool, LegalMove> SearchManager::calculateBestMove(Board board, int depth, bool useEnsemble, bool debug)
 {
 	LegalMove bestMove{};
 	bool moveFound = false;
@@ -26,7 +26,7 @@ std::pair<bool, LegalMove> SearchManager::calculateBestMove(Board board, int dep
 	for (const LegalMove& move : board.moves[board.curTurn]) {
 		Board newBoard = board;
 		if (newBoard.makeMove(move)) {
-			int value = minimax(newBoard, playerColor, searchArgs, &performanceArgs, debug, useEnsemble);
+			int value = minimax(newBoard, playerColor, searchArgs, &performanceArgs, useEnsemble, debug);
 
 			if (!moveFound || value > max) {
 				moveFound = true;
@@ -42,7 +42,7 @@ std::pair<bool, LegalMove> SearchManager::calculateBestMove(Board board, int dep
 	return std::make_pair(moveFound, bestMove);
 }
 
-std::pair<bool, LegalMove> SearchManager::calculateBestMove_threads(Board board, int depth, int threadCount, bool debug, bool useEnsemble)
+std::pair<bool, LegalMove> SearchManager::calculateBestMove_threads(Board board, int depth, int threadCount, bool useEnsemble, bool debug)
 {
 	LegalMove bestMove{};
 	bool moveFound = false;
@@ -91,7 +91,7 @@ std::pair<bool, LegalMove> SearchManager::calculateBestMove_threads(Board board,
 
 				Board newBoard = board;
 				if (newBoard.makeMove(move)) {
-					int value = minimax(newBoard, playerColor, searchArgs, &performanceArgs, debug, useEnsemble);
+					int value = minimax(newBoard, playerColor, searchArgs, &performanceArgs, useEnsemble, debug);
 
 					std::pair<int, LegalMove> myBestMove = bestMoves[i];
 					if (!movesFound[i] || value > myBestMove.first) {
@@ -121,7 +121,7 @@ std::pair<bool, LegalMove> SearchManager::calculateBestMove_threads(Board board,
 	return std::make_pair(moveFound, bestMove);
 }
 
-int SearchManager::minimax(Board board, PieceColor playerColor, SearchArgs searchArgs, PerformanceArgs* performanceArgs, bool debug, bool useEnsemble)
+int SearchManager::minimax(Board board, PieceColor playerColor, SearchArgs searchArgs, PerformanceArgs* performanceArgs, bool useEnsemble, bool debug)
 {
 	searchArgs.curDepth++;
 
@@ -132,7 +132,14 @@ int SearchManager::minimax(Board board, PieceColor playerColor, SearchArgs searc
 	*/
 
 	if (searchArgs.curDepth >= searchArgs.maxDepth && (board.isQuiet() || searchArgs.curDepth >= searchArgs.maxDepth + qLimit)) {
-		int value = board.evalBoard(playerColor, ensemble, useEnsemble);
+		int value;
+		if (useEnsemble) {
+			int* inputArray = board.getInputArray();
+			int ensembleScore = std::round(ensemble.forward(inputArray, board.essenceCounts));
+			delete[] inputArray;
+		} else {
+			value = board.evalBoard(playerColor);
+		}
 
 		if (debug) {
 			performanceArgs->positionsCur++;
@@ -162,7 +169,7 @@ int SearchManager::minimax(Board board, PieceColor playerColor, SearchArgs searc
 		Board newBoard = board;
 		if (newBoard.makeMove(move)) // performed move was not pseudolegal
 		{
-			int value = minimax(newBoard, playerColor, searchArgs, performanceArgs, debug, useEnsemble);
+			int value = minimax(newBoard, playerColor, searchArgs, performanceArgs, useEnsemble, debug);
 
 			if (maximizingPlayer) {
 				bestScore = std::max(value, bestScore);

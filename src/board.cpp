@@ -44,6 +44,31 @@ void Board::initBoard(EssenceArgs essenceArgs)
 	MoveGenerator::generateMoves(this);
 }
 
+void Board::initBoard(EssenceArgs essenceArgs, BitBoard pieces[12], PieceColor curTurn)
+{
+	setEssenceConfig(essenceArgs);
+
+	clearBoard();
+
+	for (char color = 0; color < 2; color++) {
+		for (char type = 0; type < 6; type++) {
+			BitBoard curBitboard = pieces[getPieceIndex(color, type)];
+
+			for (char x = 0; x < 8; x++) {
+				for (char y = 0; y < 8; y++) {
+					if (curBitboard.getBit(x, y))
+						addPiece((PieceColor)color, (PieceType)type, x, y, false);
+				}
+			}
+		}
+	}
+
+	refreshAggregations();
+
+	this->curTurn = curTurn;
+	MoveGenerator::generateMoves(this);
+}
+
 void Board::setEssenceConfig(EssenceArgs essenceArgs)
 {
 	essenceConfig[getPieceIndex(White, Pawn)] = essenceArgs.whitePawn;
@@ -121,7 +146,7 @@ void Board::printMoves()
 	std::cout << std::endl;
 }
 
-int Board::evalBoard(PieceColor color, Ensemble ensemble, bool useEnsemble)
+int Board::evalBoard(PieceColor color)
 {
 	int score = 0;
 
@@ -187,16 +212,6 @@ int Board::evalBoard(PieceColor color, Ensemble ensemble, bool useEnsemble)
 	int egScore = egPcsqScore + egMobScore + egTropismScore;
 
 	score += (curPhase * mgScore + (Evaluation::startPhase - curPhase) * egScore) / Evaluation::startPhase;
-
-	// evaluation using deep learning
-
-	if (useEnsemble) {
-		int* inputArray = getInputArray();
-		int ensembleScore = std::round(ensemble.forward(inputArray, essenceCounts));
-		delete[] inputArray;
-
-		score += ensembleScore;
-	}
 
 	// reverse score if black is evaluating
 

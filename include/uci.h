@@ -11,4 +11,5 @@ public:
 private:
 	EssenceArgs essenceConfig;
 	Board board;
+	bool useEnsemble = false;
 };

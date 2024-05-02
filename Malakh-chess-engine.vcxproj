@@ -134,7 +134,7 @@
     <ClCompile Include="src\database.cpp" />
     <ClCompile Include="src\fairyStockfish.cpp" />
     <ClCompile Include="src\hashing.cpp" />
-    <ClCompile Include="src\nn.cpp" />
+    <ClCompile Include="src\ensemble.cpp" />
     <ClCompile Include="src\piece.cpp" />
     <ClCompile Include="src\evaluation.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -152,7 +152,7 @@
     <ClInclude Include="include\database.h" />
     <ClInclude Include="include\fairyStockfish.h" />
     <ClInclude Include="include\hashing.h" />
-    <ClInclude Include="include\nn.h" />
+    <ClInclude Include="include\ensemble.h" />
     <ClInclude Include="include\piece.h" />
     <ClInclude Include="include\evaluation.h" />
     <ClInclude Include="include\mobility.h" />

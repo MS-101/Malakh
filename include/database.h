@@ -25,17 +25,12 @@ private:
 	static void loadEnvFromFile(std::string filePath);
 };
 
-struct TrainingData {
-	unsigned long long boardHash;
-	double value;
-};
-
 class DatabaseConnection {
 public:
 	DatabaseConnection();
 	int getIdEssenceConfig(EssenceArgs essenceArgs);
+	void updateScores();
 	void addBoardResult(Board board, int idEssenceConfig, GameResult gameResult);
-	std::vector<TrainingData> getTrainingData(int idEssenceConfig, int page, int pageSize);
 private:
 	pqxx::connection connection;
 	pqxx::work txn;
