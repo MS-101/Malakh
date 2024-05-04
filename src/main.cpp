@@ -12,7 +12,7 @@ void testEngine()
     board.makeMove(4, 1, 4, 3 ); // e2-e4
     board.makeMove(6, 7, 5, 5); // g8-f6
 
-    auto result = SearchManager::calculateBestMove_threads(board, 4, 4, true, false);
+    auto result = SearchManager::calculateBestMove_threads(board, 4, 4, false, false);
     if (result.first)
         LegalMove bestMove = result.second;
 }
@@ -69,7 +69,7 @@ void startUCI()
 
 void startSimulation()
 {
-    int gameCount = 200;
+    int gameCount = 100;
     int malakhDepth = 4;
     int fairyStockfishDepth = 6;
 
@@ -83,9 +83,8 @@ void startSimulation()
     redEssenceConfig.blackBishop = Red;
     redEssenceConfig.blackRook = Red;
 
-    SimulationManager::simulateGames(gameCount, redEssenceConfig, malakhDepth, fairyStockfishDepth);
+    SimulationManager::simulateGames(gameCount, redEssenceConfig, malakhDepth, fairyStockfishDepth, "simulation-red.txt");
 
-    /*
     EssenceArgs blueEssenceConfig;
     blueEssenceConfig.whitePawn = Blue;
     blueEssenceConfig.whiteKnight = Blue;
@@ -96,8 +95,7 @@ void startSimulation()
     blueEssenceConfig.blackBishop = Blue;
     blueEssenceConfig.blackRook = Blue;
 
-    SimulationManager::simulateGames(gameCount, blueEssenceConfig, malakhDepth, fairyStockfishDepth);
-    */
+    SimulationManager::simulateGames(gameCount, blueEssenceConfig, malakhDepth, fairyStockfishDepth, "simulation-blue.txt");
 }
 
 void updateSimulationScores()
@@ -116,8 +114,8 @@ int main()
     // testUCI();
     // testEnsemble();
 
-    startUCI();
-    // startSimulation();
+    // startUCI();
+    startSimulation();
     // updateSimulationScores();
 
     return 0;

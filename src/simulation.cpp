@@ -4,9 +4,10 @@
 #include <random.h>
 #include <database.h>
 #include <iostream>
+#include <fstream>
 
 
-void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, int malakhDepth, int fairyStockfishDepth)
+void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, int malakhDepth, int fairyStockfishDepth, std::string outpufFilename)
 {
 	Random::initSeed();
 
@@ -27,7 +28,7 @@ void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, 
 	int malakhVictories = 0;
 	int errorCount = 0;
 
-	for (int i = 0; i < gameCounter; i++)
+	for (int i = 0; i < gameCounter + errorCount; i++)
 	{
 		std::cout << "Game simulation " << (i+1) << ":" << std::endl << std::endl;
 
@@ -138,8 +139,10 @@ void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, 
 		gameHistory.clear();
 	}
 
-	std::cout << "Malakh won " << malakhVictories << " games!" << std::endl;
-	std::cout << "Errors: " << errorCount << std::endl;
+	std::ofstream outputFile(outpufFilename);
+	outputFile << "Malakh won " << malakhVictories << "/" << gameCounter << " games!" << std::endl;
+	outputFile << "Errors: " << errorCount << std::endl;
+	outputFile.close();
 
 	fairyStockfish.exit();
 }

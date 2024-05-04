@@ -5,5 +5,5 @@
 
 class SimulationManager {
 public:
-	static void simulateGames(int gameCounter, EssenceArgs essenceArgs, int malakhDepth, int fairyStockfishDepth);
+	static void simulateGames(int gameCounter, EssenceArgs essenceArgs, int malakhDepth, int fairyStockfishDepth, std::string outputFilename);
 };

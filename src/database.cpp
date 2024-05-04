@@ -206,10 +206,10 @@ void DatabaseConnection::addBoardResult(Board board, int idEssenceConfig, GameRe
     case BlackWin:
         txn.exec_params(R"(
             INSERT INTO public.board_results
-            (board_hash, id_essence_config, black_count)
+            (board_hash, id_essence_config, score, black_count)
             VALUES
             ($1, $2, $3, 1)
-            ON CONFLICT (board_hash, score, id_essence_config)
+            ON CONFLICT (board_hash, id_essence_config)
             DO UPDATE SET black_count = board_results.black_count + 1;
         )", (long long)board.hash.value, idEssenceConfig, score);
         break;
