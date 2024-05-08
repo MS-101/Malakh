@@ -7,7 +7,7 @@
 #include <fstream>
 
 
-void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, int malakhDepth, int fairyStockfishDepth, std::string outpufFilename)
+void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, int malakhDepth, int fairyStockfishDepth, bool useEnsemble, bool useDB, std::string outpufFilename)
 {
 	Random::initSeed();
 
@@ -56,8 +56,8 @@ void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, 
 		fairyStockfish.sendCommand("ucinewgame");
 		fairyStockfish.sendCommand("position fen " + board.toString());
 
-		bool malakhWhite = Random::coinFlip();
-		bool malakhTurn = malakhWhite;
+		bool malakhTurn = Random::coinFlip();
+		PieceColor malakhColor = board.curTurn;
 		std::vector<Board> gameHistory{};
 		gameHistory.push_back(board);
 
@@ -71,7 +71,7 @@ void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, 
 
 			if (malakhTurn)
 			{
-				auto result = SearchManager::calculateBestMove_threads(board, malakhDepth, 4, false, false);
+				auto result = SearchManager::calculateBestMove_threads(board, malakhDepth, 4, useEnsemble, false);
 				if (result.first)
 					bestMove = result.second;
 			}
@@ -114,20 +114,20 @@ void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, 
 
 		if (!error)
 		{
-			if (result == WhiteWin && malakhWhite || result == BlackWin && !malakhWhite) {
+			if (result == WhiteWin && malakhColor == White || result == BlackWin && malakhColor == Black) {
 				std::cout << "Malakh wins!" << std::endl;
 				malakhVictories++;
-			}
-			else if (result == WhiteWin && !malakhWhite || result == BlackWin && malakhWhite) {
+			} else if (result == WhiteWin && malakhColor == Black || result == BlackWin && malakhColor == White) {
 				std::cout << "FairyStockfish wins!" << std::endl;
-			}
-			else {
+			} else {
 				std::cout << "Stalemate!" << std::endl;
 			}
 			std::cout << std::endl;
 
-			for (Board board : gameHistory) {
-				conn.addBoardResult(board, idEssenceConfig, result);
+			if (useDB) {
+				for (Board board : gameHistory) {
+					conn.addBoardResult(board, idEssenceConfig, result);
+				}
 			}
 		}
 		else
@@ -141,7 +141,6 @@ void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, 
 
 	std::ofstream outputFile(outpufFilename);
 	outputFile << "Malakh won " << malakhVictories << "/" << gameCounter << " games!" << std::endl;
-	outputFile << "Errors: " << errorCount << std::endl;
 	outputFile.close();
 
 	fairyStockfish.exit();

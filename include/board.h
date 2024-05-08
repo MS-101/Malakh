@@ -31,6 +31,7 @@ public:
 	BitBoard allPieces, notMoved;
     Ghost ghost;
     int pieceCounts[2*6] = {};
+    int inputArray[2*8*8];
     std::vector<LegalMove> moves[2];
     bool movesValidated = false;
     PieceColor curTurn = White;
@@ -52,14 +53,13 @@ public:
     std::vector<LegalMove> getLegalMoves();
     std::string toString();
     GameResult getResult();
-    int* getInputArray();
 private:
     void setEssenceConfig(EssenceArgs essenceArgs);
     void clearBoard();
     void addPiece(PieceColor color, PieceType type, char x, char y, bool isNew);
     std::pair<bool, Piece> removePiece(char x, char y);
 	void refreshAggregations();
-    char getInputIndex(char channel, char x, char y);
+    void setInputArray(char pieceIndex, char x, char y);
 };
 
 class MoveGenerator {

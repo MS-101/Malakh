@@ -34,7 +34,7 @@ void testUCI()
     api.parseCommand("setoption name BlackRook value Red");
     api.parseCommand("ucinewgame");
 
-    api.parseCommand("go depth 3");
+    api.parseCommand("go depth 4");
 }
 
 void testEnsemble()
@@ -54,9 +54,7 @@ void testEnsemble()
 
     Ensemble ensemble;
 
-    int* inputArray = board.getInputArray();
-    double value = ensemble.forward(inputArray, board.essenceCounts);
-    delete[] inputArray;
+    double value = ensemble.forward(board.inputArray, board.essenceCounts);
 
     std::cout << value << std::endl;
 }
@@ -69,9 +67,11 @@ void startUCI()
 
 void startSimulation()
 {
-    int gameCount = 100;
-    int malakhDepth = 4;
+    int gameCount = 10;
+    int malakhDepth = 3;
     int fairyStockfishDepth = 6;
+    bool useEnsemble = true;
+    bool useDB = false;
 
     EssenceArgs redEssenceConfig;
     redEssenceConfig.whitePawn = Red;
@@ -83,7 +83,9 @@ void startSimulation()
     redEssenceConfig.blackBishop = Red;
     redEssenceConfig.blackRook = Red;
 
-    SimulationManager::simulateGames(gameCount, redEssenceConfig, malakhDepth, fairyStockfishDepth, "simulation-red.txt");
+    SimulationManager::simulateGames(
+        gameCount, redEssenceConfig, malakhDepth, fairyStockfishDepth, useEnsemble, useDB, "simulation-red.txt"
+    );
 
     EssenceArgs blueEssenceConfig;
     blueEssenceConfig.whitePawn = Blue;
@@ -94,8 +96,24 @@ void startSimulation()
     blueEssenceConfig.blackKnight = Blue;
     blueEssenceConfig.blackBishop = Blue;
     blueEssenceConfig.blackRook = Blue;
+    
+    SimulationManager::simulateGames(
+        gameCount, blueEssenceConfig, malakhDepth, fairyStockfishDepth, useEnsemble, useDB, "simulation-blue.txt"
+    );
 
-    SimulationManager::simulateGames(gameCount, blueEssenceConfig, malakhDepth, fairyStockfishDepth, "simulation-blue.txt");
+    EssenceArgs mixedEssenceConfig;
+    mixedEssenceConfig.whitePawn = Red;
+    mixedEssenceConfig.whiteKnight = Red;
+    mixedEssenceConfig.whiteBishop = Blue;
+    mixedEssenceConfig.whiteRook = Blue;
+    mixedEssenceConfig.blackPawn = Red;
+    mixedEssenceConfig.blackKnight = Red;
+    mixedEssenceConfig.blackBishop = Blue;
+    mixedEssenceConfig.blackRook = Blue;
+
+    SimulationManager::simulateGames(
+        gameCount, mixedEssenceConfig, malakhDepth, fairyStockfishDepth, useEnsemble, useDB, "simulation-mixed.txt"
+    );
 }
 
 void updateSimulationScores()
@@ -114,8 +132,8 @@ int main()
     // testUCI();
     // testEnsemble();
 
-    // startUCI();
-    startSimulation();
+    startUCI();
+    // startSimulation();
     // updateSimulationScores();
 
     return 0;

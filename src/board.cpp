@@ -41,6 +41,7 @@ void Board::initBoard(EssenceArgs essenceArgs)
 	fullmoveClock = 1;
 
 	curTurn = White;
+
 	MoveGenerator::generateMoves(this);
 }
 
@@ -66,6 +67,10 @@ void Board::initBoard(EssenceArgs essenceArgs, BitBoard pieces[12], PieceColor c
 	refreshAggregations();
 
 	this->curTurn = curTurn;
+	for (int i = 8 * 8; i < 2 * 8 * 8; i++) {
+		inputArray[i] = curTurn;
+	}
+
 	MoveGenerator::generateMoves(this);
 }
 
@@ -98,6 +103,8 @@ void Board::setEssenceConfig(EssenceArgs essenceArgs)
 
 void Board::clearBoard()
 {
+	std::fill_n(inputArray, 2*8*8, 0);
+
 	for (int color = 0; color < 2; color++) {
 		for (int type = 0; type < 6; type++) {
 			auto& bitboard = pieces[getPieceIndex((PieceColor)color, (PieceType)type)];
@@ -276,6 +283,8 @@ std::pair<bool, Piece> Board::removePiece(char x, char y)
 		}
 	}
 
+	setInputArray(0, x, y);
+
 	return std::make_pair(false, Piece{});
 }
 
@@ -284,6 +293,7 @@ void Board::addPiece(PieceColor color, PieceType type, char x, char y, bool isNe
 	char pieceIndex = getPieceIndex(color, type);
 	pieces[pieceIndex].setBit(x, y);
 	pieceCounts[pieceIndex]++;
+	inputArray[y*8 + x] = pieceIndex + 1;
 
 	eval.matEval[color] += Evaluation::pieceMatValues[type];
 	eval.mg_pcsqEval[color] += Evaluation::get_mg_pcsq(color, type, x, y);
@@ -294,6 +304,8 @@ void Board::addPiece(PieceColor color, PieceType type, char x, char y, bool isNe
 		notMoved.setBit(x, y);
 		hash.switchNotMoved(x, y);
 	}
+
+	setInputArray(getPieceIndex(color, type) + 1, x, y);
 }
 
 void Board::refreshAggregations()
@@ -433,6 +445,9 @@ bool Board::makeMove(LegalMove move)
 
 	curTurn = opponent[curTurn];
 	hash.switchTurn();
+	for (int i = 8 * 8; i < 2 * 8 * 8; i++) {
+		inputArray[i] = curTurn;
+	}
 
 	return legal;
 }
@@ -584,41 +599,7 @@ GameResult Board::getResult()
 	}
 }
 
-char Board::getInputIndex(char channel, char x, char y)
+void Board::setInputArray(char pieceIndex, char x, char y)
 {
-	return channel * 8 * 8 + y * 8 + x;
-}
-
-int* Board::getInputArray()
-{
-	constexpr int inputSize = 2 * 8 * 8;
-	int* inputArray = new int[inputSize];
-	std::fill_n(inputArray, inputSize, 0);
-
-	// set piece channel
-	for (char color = 0; color < 2; color++) {
-		for (char type = 0; type < 6; type++) {
-			char pieceIndex = getPieceIndex(color, type);
-
-			for (char y = 0; y < 8; y++) {
-				for (char x = 0; x < 8; x++) {
-					char inputIndex = getInputIndex(0, x, y);
-
-					if (pieces[pieceIndex].getBit(x, y)) {
-						inputArray[inputIndex] = pieceIndex + 1;
-					}
-				}
-			}
-		}
-	}
-
-	// set turn channel
-	for (char y = 0; y < 8; y++) {
-		for (char x = 0; x < 8; x++) {
-			char inputIndex = getInputIndex(1, x, y);
-			inputArray[inputIndex] = curTurn;
-		}
-	}
-
-	return inputArray;
+	inputArray[y*8 + x] = pieceIndex;
 }
