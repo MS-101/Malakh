@@ -1,0 +1,99 @@
+\doxysection{Dokumentácia triedy Database\+Connection}
+\hypertarget{class_database_connection}{}\label{class_database_connection}\index{DatabaseConnection@{DatabaseConnection}}
+
+
+{\ttfamily \#include $<$database.\+h$>$}
+
+\doxysubsubsection*{Verejné metódy}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_database_connection_a7f50e17550775f1803dea4084f1987f1}{Database\+Connection}} ()
+\item 
+int \mbox{\hyperlink{class_database_connection_a08acfd6e7dd28f2cd16c8a8d19053720}{get\+Id\+Essence\+Config}} (\mbox{\hyperlink{struct_essence_args}{Essence\+Args}} essence\+Args)
+\item 
+void \mbox{\hyperlink{class_database_connection_a9af604d3a2d4bbf4e808798bb013c92f}{update\+Scores}} ()
+\item 
+void \mbox{\hyperlink{class_database_connection_a69bbeadebc247189adf943eec9c2c60a}{add\+Board\+Result}} (\mbox{\hyperlink{class_board}{Board}} board, int id\+Essence\+Config, \mbox{\hyperlink{board_8h_a41741953d704b743544ce6383c27c7c6}{Game\+Result}} game\+Result)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Privátne atribúty}
+\begin{DoxyCompactItemize}
+\item 
+pqxx\+::connection \mbox{\hyperlink{class_database_connection_a6929cd3ca2b048cab5db9fb50178f346}{connection}}
+\item 
+pqxx\+::work \mbox{\hyperlink{class_database_connection_aa515e8c8e6b7e737caa658b8f63e6fca}{txn}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailný popis}
+Konkrétne pripojenie na databáze. 
+
+\doxysubsection{Dokumentácia konštruktoru a deštruktoru}
+\Hypertarget{class_database_connection_a7f50e17550775f1803dea4084f1987f1}\label{class_database_connection_a7f50e17550775f1803dea4084f1987f1} 
+\index{DatabaseConnection@{DatabaseConnection}!DatabaseConnection@{DatabaseConnection}}
+\index{DatabaseConnection@{DatabaseConnection}!DatabaseConnection@{DatabaseConnection}}
+\doxysubsubsection{\texorpdfstring{DatabaseConnection()}{DatabaseConnection()}}
+{\footnotesize\ttfamily Database\+Connection\+::\+Database\+Connection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Konštruktor vytvorí spojenie pomocou konekčného stringu z triedy \doxylink{class_database_manager}{Database\+Manager}. 
+
+\doxysubsection{Dokumentácia k metódam}
+\Hypertarget{class_database_connection_a69bbeadebc247189adf943eec9c2c60a}\label{class_database_connection_a69bbeadebc247189adf943eec9c2c60a} 
+\index{DatabaseConnection@{DatabaseConnection}!addBoardResult@{addBoardResult}}
+\index{addBoardResult@{addBoardResult}!DatabaseConnection@{DatabaseConnection}}
+\doxysubsubsection{\texorpdfstring{addBoardResult()}{addBoardResult()}}
+{\footnotesize\ttfamily void Database\+Connection\+::add\+Board\+Result (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_board}{Board}}}]{board,  }\item[{int}]{id\+Essence\+Config,  }\item[{\mbox{\hyperlink{board_8h_a41741953d704b743544ce6383c27c7c6}{Game\+Result}}}]{game\+Result }\end{DoxyParamCaption})}
+
+Do databázy uložíme výsledok hry pre danú šachovú pozíciu. Ak táto pozícia ešte v databáze neexistuje, tak vložíme nový záznam. Ak táto pozícia sa už v databáze nachádza, tak len inkrementujeme počítadlo výsledku.
+
+
+\begin{DoxyParams}{Parametre}
+{\em board} & Uložená šachovnica. \\
+\hline
+{\em id\+Essence\+Config} & ID konfigurácie esencií. \\
+\hline
+{\em game\+Result} & Výsledok hry. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_database_connection_a08acfd6e7dd28f2cd16c8a8d19053720}\label{class_database_connection_a08acfd6e7dd28f2cd16c8a8d19053720} 
+\index{DatabaseConnection@{DatabaseConnection}!getIdEssenceConfig@{getIdEssenceConfig}}
+\index{getIdEssenceConfig@{getIdEssenceConfig}!DatabaseConnection@{DatabaseConnection}}
+\doxysubsubsection{\texorpdfstring{getIdEssenceConfig()}{getIdEssenceConfig()}}
+{\footnotesize\ttfamily int Database\+Connection\+::get\+Id\+Essence\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_essence_args}{Essence\+Args}}}]{essence\+Args }\end{DoxyParamCaption})}
+
+Pre danú konfiguráciu esencií zistíme jej ID.
+
+
+\begin{DoxyParams}{Parametre}
+{\em essence\+Args} & Konfigurácia esencií. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+ID konfigurácie esencií. 
+\end{DoxyReturn}
+\Hypertarget{class_database_connection_a9af604d3a2d4bbf4e808798bb013c92f}\label{class_database_connection_a9af604d3a2d4bbf4e808798bb013c92f} 
+\index{DatabaseConnection@{DatabaseConnection}!updateScores@{updateScores}}
+\index{updateScores@{updateScores}!DatabaseConnection@{DatabaseConnection}}
+\doxysubsubsection{\texorpdfstring{updateScores()}{updateScores()}}
+{\footnotesize\ttfamily void Database\+Connection\+::update\+Scores (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Pomocou tejto metódy môžeme upraviť skóre šachových pozícii uložených v databáze pri zmene evaluačnej funkcie. 
+
+\doxysubsection{Dokumentácia k dátovým členom}
+\Hypertarget{class_database_connection_a6929cd3ca2b048cab5db9fb50178f346}\label{class_database_connection_a6929cd3ca2b048cab5db9fb50178f346} 
+\index{DatabaseConnection@{DatabaseConnection}!connection@{connection}}
+\index{connection@{connection}!DatabaseConnection@{DatabaseConnection}}
+\doxysubsubsection{\texorpdfstring{connection}{connection}}
+{\footnotesize\ttfamily pqxx\+::connection Database\+Connection\+::connection\hspace{0.3cm}{\ttfamily [private]}}
+
+Pripojenie do databázy. \Hypertarget{class_database_connection_aa515e8c8e6b7e737caa658b8f63e6fca}\label{class_database_connection_aa515e8c8e6b7e737caa658b8f63e6fca} 
+\index{DatabaseConnection@{DatabaseConnection}!txn@{txn}}
+\index{txn@{txn}!DatabaseConnection@{DatabaseConnection}}
+\doxysubsubsection{\texorpdfstring{txn}{txn}}
+{\footnotesize\ttfamily pqxx\+::work Database\+Connection\+::txn\hspace{0.3cm}{\ttfamily [private]}}
+
+Tranzakcia v databáze. 
+
+Dokumentácia pre túto triedu bola generovaná z nasledujúcich súborov\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{database_8h}{database.\+h}}\item 
+database.\+cpp\end{DoxyCompactItemize}

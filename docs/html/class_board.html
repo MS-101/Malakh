@@ -1,0 +1,1031 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sk">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Malakh: Dokumentácia triedy Board</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Malakh
+   </div>
+   <div id="projectbrief">Šachový engine na hru s neštandardnými šachovými pravidlami</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generované programom Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Hľadať');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Načítam...</div>
+<div class="SRStatus" id="Searching">Vyhľadávam...</div>
+<div class="SRStatus" id="NoMatches">Nič sa nenašlo</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Verejné metódy</a> &#124;
+<a href="#pub-attribs">Verejné atribúty</a> &#124;
+<a href="#pri-methods">Privátne metódy</a> &#124;
+<a href="class_board-members.html">Zoznam všetkých členov</a>  </div>
+  <div class="headertitle"><div class="title">Dokumentácia triedy Board</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="board_8h_source.html">board.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Verejné metódy</h2></td></tr>
+<tr class="memitem:a4861064ac719acf27641cbd201ee4b9f" id="r_a4861064ac719acf27641cbd201ee4b9f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4861064ac719acf27641cbd201ee4b9f">initBoard</a> (<a class="el" href="struct_essence_args.html">EssenceArgs</a> essenceArgs)</td></tr>
+<tr class="separator:a4861064ac719acf27641cbd201ee4b9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95bbf8e3de4e5a577713326c67a07311" id="r_a95bbf8e3de4e5a577713326c67a07311"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95bbf8e3de4e5a577713326c67a07311">initBoard</a> (<a class="el" href="struct_essence_args.html">EssenceArgs</a> essenceArgs, <a class="el" href="struct_bit_board.html">BitBoard</a> <a class="el" href="#a477b2c864704409b6de2adcccd3a7cc4">pieces</a>[12], <a class="el" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a> <a class="el" href="#abfcf8d0d90b81f2038fd323f10bebd9a">curTurn</a>)</td></tr>
+<tr class="separator:a95bbf8e3de4e5a577713326c67a07311"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca49f093314a104381d05998bbf62f7f" id="r_aca49f093314a104381d05998bbf62f7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca49f093314a104381d05998bbf62f7f">printBoard</a> ()</td></tr>
+<tr class="separator:aca49f093314a104381d05998bbf62f7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c6836ef97eee26a9a14286f25ab1a6a" id="r_a5c6836ef97eee26a9a14286f25ab1a6a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c6836ef97eee26a9a14286f25ab1a6a">printMoves</a> ()</td></tr>
+<tr class="separator:a5c6836ef97eee26a9a14286f25ab1a6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf44ea325d72ee68a1f13dba584e35c4" id="r_adf44ea325d72ee68a1f13dba584e35c4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf44ea325d72ee68a1f13dba584e35c4">evalBoard</a> (<a class="el" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a> color)</td></tr>
+<tr class="separator:adf44ea325d72ee68a1f13dba584e35c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48a67b7c679ec646bd86708945cba929" id="r_a48a67b7c679ec646bd86708945cba929"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48a67b7c679ec646bd86708945cba929">isQuiet</a> ()</td></tr>
+<tr class="separator:a48a67b7c679ec646bd86708945cba929"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ec5449d5dd18a9eb9186557f2f20aa2" id="r_a0ec5449d5dd18a9eb9186557f2f20aa2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ec5449d5dd18a9eb9186557f2f20aa2">makeMove</a> (char x1, char y1, char x2, char y2)</td></tr>
+<tr class="separator:a0ec5449d5dd18a9eb9186557f2f20aa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7083844c5bd35e350d5c311d42adce8" id="r_ab7083844c5bd35e350d5c311d42adce8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7083844c5bd35e350d5c311d42adce8">makeMove</a> (char x1, char y1, char x2, char y2, <a class="el" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021">PieceType</a> promotion)</td></tr>
+<tr class="separator:ab7083844c5bd35e350d5c311d42adce8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5a9d63233b2bfd5405be615dd637f65" id="r_ad5a9d63233b2bfd5405be615dd637f65"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5a9d63233b2bfd5405be615dd637f65">makeMove</a> (<a class="el" href="struct_legal_move.html">LegalMove</a> move)</td></tr>
+<tr class="separator:ad5a9d63233b2bfd5405be615dd637f65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb083ebae3329806866834301c7c6e70" id="r_aeb083ebae3329806866834301c7c6e70"><td class="memItemLeft" align="right" valign="top">std::pair&lt; bool, <a class="el" href="struct_piece.html">Piece</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb083ebae3329806866834301c7c6e70">getPiece</a> (char x, char y)</td></tr>
+<tr class="separator:aeb083ebae3329806866834301c7c6e70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c7dcac424cdb27bb3154848a4cffd46" id="r_a0c7dcac424cdb27bb3154848a4cffd46"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="struct_legal_move.html">LegalMove</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c7dcac424cdb27bb3154848a4cffd46">getLegalMoves</a> ()</td></tr>
+<tr class="separator:a0c7dcac424cdb27bb3154848a4cffd46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cf2b2f6adc453bc3b086c9f10c77e11" id="r_a2cf2b2f6adc453bc3b086c9f10c77e11"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2cf2b2f6adc453bc3b086c9f10c77e11">toString</a> ()</td></tr>
+<tr class="separator:a2cf2b2f6adc453bc3b086c9f10c77e11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7233d5d3555b01d01e3bbe6bd7cd0ba0" id="r_a7233d5d3555b01d01e3bbe6bd7cd0ba0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="board_8h.html#a41741953d704b743544ce6383c27c7c6">GameResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7233d5d3555b01d01e3bbe6bd7cd0ba0">getResult</a> ()</td></tr>
+<tr class="separator:a7233d5d3555b01d01e3bbe6bd7cd0ba0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Verejné atribúty</h2></td></tr>
+<tr class="memitem:af11604d1376de5e1316fac0f2bdfbc31" id="r_af11604d1376de5e1316fac0f2bdfbc31"><td class="memItemLeft" align="right" valign="top"><a class="el" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af11604d1376de5e1316fac0f2bdfbc31">essenceConfig</a> [2 *6] = {}</td></tr>
+<tr class="separator:af11604d1376de5e1316fac0f2bdfbc31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5c6ac4324ddaca2c07af79786514599" id="r_ac5c6ac4324ddaca2c07af79786514599"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5c6ac4324ddaca2c07af79786514599">essenceCounts</a> [3]</td></tr>
+<tr class="separator:ac5c6ac4324ddaca2c07af79786514599"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a477b2c864704409b6de2adcccd3a7cc4" id="r_a477b2c864704409b6de2adcccd3a7cc4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_bit_board.html">BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a477b2c864704409b6de2adcccd3a7cc4">pieces</a> [2 *6]</td></tr>
+<tr class="separator:a477b2c864704409b6de2adcccd3a7cc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eeccb5434e5b6f5b438b3ae4bb00c1a" id="r_a9eeccb5434e5b6f5b438b3ae4bb00c1a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_bit_board.html">BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9eeccb5434e5b6f5b438b3ae4bb00c1a">colors</a> [2]</td></tr>
+<tr class="separator:a9eeccb5434e5b6f5b438b3ae4bb00c1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c9c72604abf50b3e737fbfe7c31ba6a" id="r_a4c9c72604abf50b3e737fbfe7c31ba6a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_bit_board.html">BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c9c72604abf50b3e737fbfe7c31ba6a">attacks</a> [2]</td></tr>
+<tr class="separator:a4c9c72604abf50b3e737fbfe7c31ba6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8e50329a1396f78c8d9de949a4c1a71" id="r_aa8e50329a1396f78c8d9de949a4c1a71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_bit_board.html">BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8e50329a1396f78c8d9de949a4c1a71">allPieces</a></td></tr>
+<tr class="separator:aa8e50329a1396f78c8d9de949a4c1a71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46632db88a4dfbef041000a8cc25ffbe" id="r_a46632db88a4dfbef041000a8cc25ffbe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_bit_board.html">BitBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46632db88a4dfbef041000a8cc25ffbe">notMoved</a></td></tr>
+<tr class="separator:a46632db88a4dfbef041000a8cc25ffbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6aae66b2955b7ed6ae7b85b683ca43b2" id="r_a6aae66b2955b7ed6ae7b85b683ca43b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_ghost.html">Ghost</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6aae66b2955b7ed6ae7b85b683ca43b2">ghost</a></td></tr>
+<tr class="separator:a6aae66b2955b7ed6ae7b85b683ca43b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accf5a5a0d1a0cb1c2eedd5573d58fe4c" id="r_accf5a5a0d1a0cb1c2eedd5573d58fe4c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#accf5a5a0d1a0cb1c2eedd5573d58fe4c">pieceCounts</a> [2 *6] = {}</td></tr>
+<tr class="separator:accf5a5a0d1a0cb1c2eedd5573d58fe4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0862f51a22afd6a742067d79feee5e68" id="r_a0862f51a22afd6a742067d79feee5e68"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0862f51a22afd6a742067d79feee5e68">inputArray</a> [2 *8 *8]</td></tr>
+<tr class="separator:a0862f51a22afd6a742067d79feee5e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd403f28e1bd81b3213fd9cee0e5bebe" id="r_abd403f28e1bd81b3213fd9cee0e5bebe"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="struct_legal_move.html">LegalMove</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd403f28e1bd81b3213fd9cee0e5bebe">moves</a> [2]</td></tr>
+<tr class="separator:abd403f28e1bd81b3213fd9cee0e5bebe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef3ed78cfd3b267dc41642ecf96b1583" id="r_aef3ed78cfd3b267dc41642ecf96b1583"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef3ed78cfd3b267dc41642ecf96b1583">movesValidated</a> = false</td></tr>
+<tr class="separator:aef3ed78cfd3b267dc41642ecf96b1583"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfcf8d0d90b81f2038fd323f10bebd9a" id="r_abfcf8d0d90b81f2038fd323f10bebd9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abfcf8d0d90b81f2038fd323f10bebd9a">curTurn</a> = <a class="el" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985ab548046646b36c12aa6ba841de500094">White</a></td></tr>
+<tr class="separator:abfcf8d0d90b81f2038fd323f10bebd9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add03c85c9815dcf2d0bc12a4ece29e4d" id="r_add03c85c9815dcf2d0bc12a4ece29e4d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_eval_args.html">EvalArgs</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add03c85c9815dcf2d0bc12a4ece29e4d">eval</a> {}</td></tr>
+<tr class="separator:add03c85c9815dcf2d0bc12a4ece29e4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a288a41584c21590ff39910ce6855e311" id="r_a288a41584c21590ff39910ce6855e311"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_board_hash.html">BoardHash</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a288a41584c21590ff39910ce6855e311">hash</a> {}</td></tr>
+<tr class="separator:a288a41584c21590ff39910ce6855e311"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac4d76570dc61ef5c08f1412c2d7cc41" id="r_aac4d76570dc61ef5c08f1412c2d7cc41"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac4d76570dc61ef5c08f1412c2d7cc41">halfmoveClock</a> = 0</td></tr>
+<tr class="separator:aac4d76570dc61ef5c08f1412c2d7cc41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dddeeab8704e09f948e047c15cf76d3" id="r_a1dddeeab8704e09f948e047c15cf76d3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1dddeeab8704e09f948e047c15cf76d3">fullmoveClock</a> = 1</td></tr>
+<tr class="separator:a1dddeeab8704e09f948e047c15cf76d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Privátne metódy</h2></td></tr>
+<tr class="memitem:aa1eb6406e0acc66a1c3d5a72f8d8154b" id="r_aa1eb6406e0acc66a1c3d5a72f8d8154b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1eb6406e0acc66a1c3d5a72f8d8154b">setEssenceConfig</a> (<a class="el" href="struct_essence_args.html">EssenceArgs</a> essenceArgs)</td></tr>
+<tr class="separator:aa1eb6406e0acc66a1c3d5a72f8d8154b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f148daa03da25d40dff3fc613568d6f" id="r_a5f148daa03da25d40dff3fc613568d6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f148daa03da25d40dff3fc613568d6f">clearBoard</a> ()</td></tr>
+<tr class="separator:a5f148daa03da25d40dff3fc613568d6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7818025d0683c18fb658db472583dd0" id="r_af7818025d0683c18fb658db472583dd0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7818025d0683c18fb658db472583dd0">addPiece</a> (<a class="el" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a> color, <a class="el" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021">PieceType</a> type, char x, char y, bool isNew)</td></tr>
+<tr class="separator:af7818025d0683c18fb658db472583dd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa66f030fd6e0510459eb8b8e8b8afbe7" id="r_aa66f030fd6e0510459eb8b8e8b8afbe7"><td class="memItemLeft" align="right" valign="top">std::pair&lt; bool, <a class="el" href="struct_piece.html">Piece</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa66f030fd6e0510459eb8b8e8b8afbe7">removePiece</a> (char x, char y)</td></tr>
+<tr class="separator:aa66f030fd6e0510459eb8b8e8b8afbe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab114cb4461c0027dd4463ac4689f88b6" id="r_ab114cb4461c0027dd4463ac4689f88b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab114cb4461c0027dd4463ac4689f88b6">refreshAggregations</a> ()</td></tr>
+<tr class="separator:ab114cb4461c0027dd4463ac4689f88b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a892932cfd734870c18a838576635d11b" id="r_a892932cfd734870c18a838576635d11b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a892932cfd734870c18a838576635d11b">setInputArrayPiece</a> (char pieceIndex, char x, char y)</td></tr>
+<tr class="separator:a892932cfd734870c18a838576635d11b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a151c19df4b2a1e2a55fb284c8d6c1377" id="r_a151c19df4b2a1e2a55fb284c8d6c1377"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a151c19df4b2a1e2a55fb284c8d6c1377">setInputArrayColor</a> (<a class="el" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a> color)</td></tr>
+<tr class="separator:a151c19df4b2a1e2a55fb284c8d6c1377"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailný popis</h2>
+<div class="textblock"><p>Táto štruktúra reprezentuje šachovnicu so všetkými relevantnými informáciami. </p>
+</div><h2 class="groupheader">Dokumentácia k metódam</h2>
+<a id="af7818025d0683c18fb658db472583dd0" name="af7818025d0683c18fb658db472583dd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7818025d0683c18fb658db472583dd0">&#9670;&#160;</a></span>addPiece()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Board::addPiece </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a></td>          <td class="paramname"><span class="paramname"><em>color</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021">PieceType</a></td>          <td class="paramname"><span class="paramname"><em>type</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>x</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>y</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>isNew</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Pridá figúrku na šachovnicu a aktualizuje relevantné evaluačné argumenty.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">color</td><td>Vlastník novej figúrky. </td></tr>
+    <tr><td class="paramname">type</td><td>Typ novej figúrky. </td></tr>
+    <tr><td class="paramname">x</td><td>Koordinát X novej figúrky. </td></tr>
+    <tr><td class="paramname">y</td><td>Koordinát Y novej figúrky. </td></tr>
+    <tr><td class="paramname">isNew</td><td>Ak je figúrka nová, tak sa nastaví aj notMoved bitboard. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5f148daa03da25d40dff3fc613568d6f" name="a5f148daa03da25d40dff3fc613568d6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f148daa03da25d40dff3fc613568d6f">&#9670;&#160;</a></span>clearBoard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Board::clearBoard </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Odstráni všetky figúrky zo šachovnice a resetuje evaluačné argumenty. </p>
+
+</div>
+</div>
+<a id="adf44ea325d72ee68a1f13dba584e35c4" name="adf44ea325d72ee68a1f13dba584e35c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf44ea325d72ee68a1f13dba584e35c4">&#9670;&#160;</a></span>evalBoard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Board::evalBoard </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a></td>          <td class="paramname"><span class="paramname"><em>color</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Táto funkcia vypočíta číselnú hodnotu aktuálnej pozície podľa daného hráča.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">color</td><td>Hráč pre ktorého je vypočítaná hodnota pozície. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>Hodnota pozície. </dd></dl>
+
+</div>
+</div>
+<a id="a0c7dcac424cdb27bb3154848a4cffd46" name="a0c7dcac424cdb27bb3154848a4cffd46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c7dcac424cdb27bb3154848a4cffd46">&#9670;&#160;</a></span>getLegalMoves()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="struct_legal_move.html">LegalMove</a> &gt; Board::getLegalMoves </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Vráti legálne pohyby aktuálneho hráča. Vykoná validáciu pohybov ak ešte nebola vykonaná.</p>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>Zoznam legálnych pohybov hráča, ktorý je na rade. </dd></dl>
+
+</div>
+</div>
+<a id="aeb083ebae3329806866834301c7c6e70" name="aeb083ebae3329806866834301c7c6e70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb083ebae3329806866834301c7c6e70">&#9670;&#160;</a></span>getPiece()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; bool, <a class="el" href="struct_piece.html">Piece</a> &gt; Board::getPiece </td>
+          <td>(</td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>x</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Nájde sa figúrka na konkrétnej pozícii na šachovnici.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Koordinát X danej pozície. </td></tr>
+    <tr><td class="paramname">y</td><td>Koordinát Y danej pozície. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>Vráti pár bitu reprezentujúci úšpešné/neúspešné nájdenie figúrky a nájdenú figúrku. </dd></dl>
+
+</div>
+</div>
+<a id="a7233d5d3555b01d01e3bbe6bd7cd0ba0" name="a7233d5d3555b01d01e3bbe6bd7cd0ba0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7233d5d3555b01d01e3bbe6bd7cd0ba0">&#9670;&#160;</a></span>getResult()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="board_8h.html#a41741953d704b743544ce6383c27c7c6">GameResult</a> Board::getResult </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Vráti aktuálny výsledok hry.</p>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>Enumerátor reprezentujúci aktuálny výsledok hry. </dd></dl>
+
+</div>
+</div>
+<a id="a4861064ac719acf27641cbd201ee4b9f" name="a4861064ac719acf27641cbd201ee4b9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4861064ac719acf27641cbd201ee4b9f">&#9670;&#160;</a></span>initBoard() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Board::initBoard </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_essence_args.html">EssenceArgs</a></td>          <td class="paramname"><span class="paramname"><em>essenceArgs</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Inicializácia počiatočného stavu šachovnice.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">essenceArgs</td><td>Herná konfigurácia esencií. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a95bbf8e3de4e5a577713326c67a07311" name="a95bbf8e3de4e5a577713326c67a07311"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95bbf8e3de4e5a577713326c67a07311">&#9670;&#160;</a></span>initBoard() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Board::initBoard </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_essence_args.html">EssenceArgs</a></td>          <td class="paramname"><span class="paramname"><em>essenceArgs</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_bit_board.html">BitBoard</a></td>          <td class="paramname"><span class="paramname"><em>pieces</em>[12], </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a></td>          <td class="paramname"><span class="paramname"><em>curTurn</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Inicializáccia šachovnice podľa argumentov.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">essenceArgs</td><td>Herná konfigurácia esencií. </td></tr>
+    <tr><td class="paramname">pieces</td><td>Bitboardy reprezentujúce konkrétny typ figúrok. </td></tr>
+    <tr><td class="paramname">curTurn</td><td>Aktuálny hráč na rade. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a48a67b7c679ec646bd86708945cba929" name="a48a67b7c679ec646bd86708945cba929"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48a67b7c679ec646bd86708945cba929">&#9670;&#160;</a></span>isQuiet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Board::isQuiet </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Overenie či je daná pozícia považovaná za tichú.</p>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>Vráti 1 ak je pozícia tichá, 0 ak pozícia nie je tichá. </dd></dl>
+
+</div>
+</div>
+<a id="a0ec5449d5dd18a9eb9186557f2f20aa2" name="a0ec5449d5dd18a9eb9186557f2f20aa2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ec5449d5dd18a9eb9186557f2f20aa2">&#9670;&#160;</a></span>makeMove() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Board::makeMove </td>
+          <td>(</td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>x1</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>y1</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>x2</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>y2</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Vykoná sa pohyb figúrky bez nastavenej promócie pešiaka (len ak je pohyb legálny).</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x1</td><td>Koordinát X zdrojovej pozície. </td></tr>
+    <tr><td class="paramname">y1</td><td>Koordinát Y zdrojovej pozície. </td></tr>
+    <tr><td class="paramname">x2</td><td>Koordinát X cieľovej pozície. </td></tr>
+    <tr><td class="paramname">y2</td><td>Koordinát Y cieľovej pozície. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>Bit reprezentujúci či bol pohyb úspešne vykonaný. </dd></dl>
+
+</div>
+</div>
+<a id="ab7083844c5bd35e350d5c311d42adce8" name="ab7083844c5bd35e350d5c311d42adce8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7083844c5bd35e350d5c311d42adce8">&#9670;&#160;</a></span>makeMove() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Board::makeMove </td>
+          <td>(</td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>x1</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>y1</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>x2</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>y2</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021">PieceType</a></td>          <td class="paramname"><span class="paramname"><em>promotion</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Vykoná sa pohyb figúrky s nastevenou promóciou pešiaka (len ak je pohyb legálny).</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x1</td><td>Koordinát X zdrojovej pozície. </td></tr>
+    <tr><td class="paramname">y1</td><td>Koordinát Y zdrojovej pozície. </td></tr>
+    <tr><td class="paramname">x2</td><td>Koordinát X cieľovej pozície. </td></tr>
+    <tr><td class="paramname">y2</td><td>Koordinát Y cieľovej pozície. </td></tr>
+    <tr><td class="paramname">promotion</td><td>Typ figúrky na ktorý sa presunutý pešiak zmení. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>Bit reprezentujúci či bol pohyb úspešne vykonaný. </dd></dl>
+
+</div>
+</div>
+<a id="ad5a9d63233b2bfd5405be615dd637f65" name="ad5a9d63233b2bfd5405be615dd637f65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5a9d63233b2bfd5405be615dd637f65">&#9670;&#160;</a></span>makeMove() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Board::makeMove </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_legal_move.html">LegalMove</a></td>          <td class="paramname"><span class="paramname"><em>move</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Vykoná sa konkrétny pseudolegálny pohyb figúrky.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">move</td><td>Vykonávaný pseudolegálny pohyb. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>Vráti 1 ak je vykonaný pohyb legálny, vráti 0 ak je vykonaný pohyb pseudolegálny. </dd></dl>
+
+</div>
+</div>
+<a id="aca49f093314a104381d05998bbf62f7f" name="aca49f093314a104381d05998bbf62f7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca49f093314a104381d05998bbf62f7f">&#9670;&#160;</a></span>printBoard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Board::printBoard </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Táto funkcia vypíše umiestnenie figúrok na šachovnicí. </p>
+
+</div>
+</div>
+<a id="a5c6836ef97eee26a9a14286f25ab1a6a" name="a5c6836ef97eee26a9a14286f25ab1a6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c6836ef97eee26a9a14286f25ab1a6a">&#9670;&#160;</a></span>printMoves()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Board::printMoves </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Táto funkcia vypíše dostupné pohyby figúrok. </p>
+
+</div>
+</div>
+<a id="ab114cb4461c0027dd4463ac4689f88b6" name="ab114cb4461c0027dd4463ac4689f88b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab114cb4461c0027dd4463ac4689f88b6">&#9670;&#160;</a></span>refreshAggregations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Board::refreshAggregations </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Aktualizuje agregácie bitboardov - colors, allPieces. </p>
+
+</div>
+</div>
+<a id="aa66f030fd6e0510459eb8b8e8b8afbe7" name="aa66f030fd6e0510459eb8b8e8b8afbe7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa66f030fd6e0510459eb8b8e8b8afbe7">&#9670;&#160;</a></span>removePiece()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; bool, <a class="el" href="struct_piece.html">Piece</a> &gt; Board::removePiece </td>
+          <td>(</td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>x</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Odstráni zo šachovnice figúrku a aktualizuje relevantné evaluačné argumenty.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Koordinát X odstránenej figúrky. </td></tr>
+    <tr><td class="paramname">y</td><td>Koordinát Y odstránenej figúrky. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>Vráti pár bitu, ktorý reprezentuje úspešné/neúspešné odstránenie figúrky a odstránenú figúrku. </dd></dl>
+
+</div>
+</div>
+<a id="aa1eb6406e0acc66a1c3d5a72f8d8154b" name="aa1eb6406e0acc66a1c3d5a72f8d8154b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1eb6406e0acc66a1c3d5a72f8d8154b">&#9670;&#160;</a></span>setEssenceConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Board::setEssenceConfig </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_essence_args.html">EssenceArgs</a></td>          <td class="paramname"><span class="paramname"><em>essenceArgs</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Nastaví konfigurácia esencií na šachovnici.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">essenceArgs</td><td>Nová konfigurácia esencií. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a151c19df4b2a1e2a55fb284c8d6c1377" name="a151c19df4b2a1e2a55fb284c8d6c1377"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a151c19df4b2a1e2a55fb284c8d6c1377">&#9670;&#160;</a></span>setInputArrayColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Board::setInputArrayColor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a></td>          <td class="paramname"><span class="paramname"><em>color</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Nastaví farbu hráča na druhom kanáli vstupnej matice pre CNN.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">color</td><td>Farba hráča na rade </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a892932cfd734870c18a838576635d11b" name="a892932cfd734870c18a838576635d11b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a892932cfd734870c18a838576635d11b">&#9670;&#160;</a></span>setInputArrayPiece()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Board::setInputArrayPiece </td>
+          <td>(</td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>pieceIndex</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>x</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Nastaví figúrku na prvom kanáli vstupnej matice pre CNN.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pieceIndex</td><td>Identifikátor figúrky na danej pozícii. </td></tr>
+    <tr><td class="paramname">x</td><td>Koordinát X danej pozície. </td></tr>
+    <tr><td class="paramname">y</td><td>Koordinát Y danej pozície. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2cf2b2f6adc453bc3b086c9f10c77e11" name="a2cf2b2f6adc453bc3b086c9f10c77e11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cf2b2f6adc453bc3b086c9f10c77e11">&#9670;&#160;</a></span>toString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Board::toString </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Zapíše našu šachovnicu do FEN stringu.</p>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>FEN string reprezentujúci našu šachovnicu. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentácia k dátovým členom</h2>
+<a id="aa8e50329a1396f78c8d9de949a4c1a71" name="aa8e50329a1396f78c8d9de949a4c1a71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8e50329a1396f78c8d9de949a4c1a71">&#9670;&#160;</a></span>allPieces</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_bit_board.html">BitBoard</a> Board::allPieces</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Bitboard reprezentujúci všetky figúrky na šacchovnici. </p>
+
+</div>
+</div>
+<a id="a4c9c72604abf50b3e737fbfe7c31ba6a" name="a4c9c72604abf50b3e737fbfe7c31ba6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c9c72604abf50b3e737fbfe7c31ba6a">&#9670;&#160;</a></span>attacks</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_bit_board.html">BitBoard</a> Board::attacks[2]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Bitboardy reprezentujúce napadnuté políčka konkrétneho hráča. </p>
+
+</div>
+</div>
+<a id="a9eeccb5434e5b6f5b438b3ae4bb00c1a" name="a9eeccb5434e5b6f5b438b3ae4bb00c1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9eeccb5434e5b6f5b438b3ae4bb00c1a">&#9670;&#160;</a></span>colors</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_bit_board.html">BitBoard</a> Board::colors[2]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Bitboardy reprezentujúce všetky figúrky konkrétneho hráča. </p>
+
+</div>
+</div>
+<a id="abfcf8d0d90b81f2038fd323f10bebd9a" name="abfcf8d0d90b81f2038fd323f10bebd9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfcf8d0d90b81f2038fd323f10bebd9a">&#9670;&#160;</a></span>curTurn</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a> Board::curTurn = <a class="el" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985ab548046646b36c12aa6ba841de500094">White</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Aktuálny hráč na rade. </p>
+
+</div>
+</div>
+<a id="af11604d1376de5e1316fac0f2bdfbc31" name="af11604d1376de5e1316fac0f2bdfbc31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af11604d1376de5e1316fac0f2bdfbc31">&#9670;&#160;</a></span>essenceConfig</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a> Board::essenceConfig[2 *6] = {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Konfigurácia esencií fúgurok. </p>
+
+</div>
+</div>
+<a id="ac5c6ac4324ddaca2c07af79786514599" name="ac5c6ac4324ddaca2c07af79786514599"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5c6ac4324ddaca2c07af79786514599">&#9670;&#160;</a></span>essenceCounts</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Board::essenceCounts[3]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Počítadlo herných esencií. </p>
+
+</div>
+</div>
+<a id="add03c85c9815dcf2d0bc12a4ece29e4d" name="add03c85c9815dcf2d0bc12a4ece29e4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add03c85c9815dcf2d0bc12a4ece29e4d">&#9670;&#160;</a></span>eval</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_eval_args.html">EvalArgs</a> Board::eval {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Priebežne aktualizované argumenty evaluačnej funkcie. </p>
+
+</div>
+</div>
+<a id="a1dddeeab8704e09f948e047c15cf76d3" name="a1dddeeab8704e09f948e047c15cf76d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dddeeab8704e09f948e047c15cf76d3">&#9670;&#160;</a></span>fullmoveClock</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Board::fullmoveClock = 1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Počítadlo všetkých plných pohybov. Inkrementované po každom pohybe čierneho hráča. </p>
+
+</div>
+</div>
+<a id="a6aae66b2955b7ed6ae7b85b683ca43b2" name="a6aae66b2955b7ed6ae7b85b683ca43b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6aae66b2955b7ed6ae7b85b683ca43b2">&#9670;&#160;</a></span>ghost</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_ghost.html">Ghost</a> Board::ghost</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Figúrka zanechaná po vykonaní špeciálneho pohybu pešiaka na začiatku hry. </p>
+
+</div>
+</div>
+<a id="aac4d76570dc61ef5c08f1412c2d7cc41" name="aac4d76570dc61ef5c08f1412c2d7cc41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac4d76570dc61ef5c08f1412c2d7cc41">&#9670;&#160;</a></span>halfmoveClock</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Board::halfmoveClock = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Počítadlo polovičných pohybov. Toto počítadlo sa resetuje po pohybu pešiaka alebo obsadení figúrky. </p>
+
+</div>
+</div>
+<a id="a288a41584c21590ff39910ce6855e311" name="a288a41584c21590ff39910ce6855e311"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a288a41584c21590ff39910ce6855e311">&#9670;&#160;</a></span>hash</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_board_hash.html">BoardHash</a> Board::hash {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Hash šachovej pozície pomocou ktorého vieme identifikovať šachovnicu. </p>
+
+</div>
+</div>
+<a id="a0862f51a22afd6a742067d79feee5e68" name="a0862f51a22afd6a742067d79feee5e68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0862f51a22afd6a742067d79feee5e68">&#9670;&#160;</a></span>inputArray</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Board::inputArray[2 *8 *8]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Reprezentácia šachovnice pre vstup do modelu CNN. </p>
+
+</div>
+</div>
+<a id="abd403f28e1bd81b3213fd9cee0e5bebe" name="abd403f28e1bd81b3213fd9cee0e5bebe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd403f28e1bd81b3213fd9cee0e5bebe">&#9670;&#160;</a></span>moves</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="struct_legal_move.html">LegalMove</a>&gt; Board::moves[2]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Zoznamy dostupných pohybov pre konkrétneho hráča. </p>
+
+</div>
+</div>
+<a id="aef3ed78cfd3b267dc41642ecf96b1583" name="aef3ed78cfd3b267dc41642ecf96b1583"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef3ed78cfd3b267dc41642ecf96b1583">&#9670;&#160;</a></span>movesValidated</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Board::movesValidated = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Bit pomocou ktorého si pamätáme či sme zvalidovali vygenerované pseudolegálne pohyby. </p>
+
+</div>
+</div>
+<a id="a46632db88a4dfbef041000a8cc25ffbe" name="a46632db88a4dfbef041000a8cc25ffbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46632db88a4dfbef041000a8cc25ffbe">&#9670;&#160;</a></span>notMoved</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_bit_board.html">BitBoard</a> Board::notMoved</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Bitboard reprezentujúci figúrky, ktoré sa ešte nepohli (pre En Passant a rošádu). </p>
+
+</div>
+</div>
+<a id="accf5a5a0d1a0cb1c2eedd5573d58fe4c" name="accf5a5a0d1a0cb1c2eedd5573d58fe4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accf5a5a0d1a0cb1c2eedd5573d58fe4c">&#9670;&#160;</a></span>pieceCounts</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Board::pieceCounts[2 *6] = {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Počítadla figúrok. </p>
+
+</div>
+</div>
+<a id="a477b2c864704409b6de2adcccd3a7cc4" name="a477b2c864704409b6de2adcccd3a7cc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a477b2c864704409b6de2adcccd3a7cc4">&#9670;&#160;</a></span>pieces</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_bit_board.html">BitBoard</a> Board::pieces[2 *6]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Bitboardy reprezentujúce konkrétny typ figúrok. </p>
+
+</div>
+</div>
+<hr/>Dokumentácia pre túto triedu bola generovaná z nasledujúcich súborov:<ul>
+<li><a class="el" href="board_8h_source.html">board.h</a></li>
+<li><b>board.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generované programom&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

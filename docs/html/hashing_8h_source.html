@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sk">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Malakh: Zdrojový súbor hashing.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Malakh
+   </div>
+   <div id="projectbrief">Šachový engine na hru s neštandardnými šachovými pravidlami</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generované programom Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Hľadať');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Načítam...</div>
+<div class="SRStatus" id="Searching">Vyhľadávam...</div>
+<div class="SRStatus" id="NoMatches">Nič sa nenašlo</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">hashing.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="hashing_8h.html">Zobraziť dokumentáciu tohoto súboru.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">/*****************************************************************/</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="piece_8h.html">piece.h</a>&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="};">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="class_zobrist_hashing.html">   17</a></span><span class="keyword">class </span><a class="code hl_class" href="class_zobrist_hashing.html">ZobristHashing</a> {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="class_zobrist_hashing.html#aad2247cfc6b057702a7f423d000ce951">   22</a></span>    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="class_zobrist_hashing.html#aad2247cfc6b057702a7f423d000ce951">squares</a>[64*2*6];</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="class_zobrist_hashing.html#ab8bc646b666dc3453e54cd40c9aa8430">   27</a></span>    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="class_zobrist_hashing.html#ab8bc646b666dc3453e54cd40c9aa8430">notMoved</a>[64];</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="class_zobrist_hashing.html#aeb10761f74d28b3b28838c5c640a236b">   32</a></span>    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="class_zobrist_hashing.html#aeb10761f74d28b3b28838c5c640a236b">ghosts</a>[64*64];</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="class_zobrist_hashing.html#a069448b084d399bdfe612a6208a0ca42">   37</a></span>    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="class_zobrist_hashing.html#a069448b084d399bdfe612a6208a0ca42">turn</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_zobrist_hashing.html#ae01d3424e3410cdf6ab57c49b9434841">init</a>();</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="class_zobrist_hashing.html#a75255ddfb07caee03d41e133773c002c">   47</a></span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_zobrist_hashing.html#a75255ddfb07caee03d41e133773c002c">isInitalized</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code hl_function" href="class_zobrist_hashing.html#a98ee3b247c159141fc28b358afdcebe5">rand64</a>();</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>};</div>
+</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="foldopen" id="foldopen00060" data-start="{" data-end="};">
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="struct_board_hash.html">   60</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_board_hash.html">BoardHash</a> {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="struct_board_hash.html#ad7b2a937d79127733fa1166480ff0eb0">   64</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="struct_board_hash.html#ad7b2a937d79127733fa1166480ff0eb0">value</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="struct_board_hash.html#a7fb34604874df3d269b0c1131bbe7b78">switchSquare</a>(<a class="code hl_struct" href="struct_piece.html">Piece</a> piece, <span class="keywordtype">char</span> x, <span class="keywordtype">char</span> y);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="struct_board_hash.html#a13ec16d355f246d203f21161d39a2189">switchNotMoved</a>(<span class="keywordtype">char</span> x, <span class="keywordtype">char</span> y);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="struct_board_hash.html#a9b0cf153acbdd9c0cfeab04b225e2df8">switchGhost</a>(<a class="code hl_struct" href="struct_ghost.html">Ghost</a> ghost);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="struct_board_hash.html#a1201d61143b132bd480b40e603ec445d">switchTurn</a>();</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>};</div>
+</div>
+<div class="ttc" id="aclass_zobrist_hashing_html"><div class="ttname"><a href="class_zobrist_hashing.html">ZobristHashing</a></div><div class="ttdef"><b>Definition</b> hashing.h:17</div></div>
+<div class="ttc" id="aclass_zobrist_hashing_html_a069448b084d399bdfe612a6208a0ca42"><div class="ttname"><a href="class_zobrist_hashing.html#a069448b084d399bdfe612a6208a0ca42">ZobristHashing::turn</a></div><div class="ttdeci">static unsigned long long turn</div><div class="ttdef"><b>Definition</b> hashing.h:37</div></div>
+<div class="ttc" id="aclass_zobrist_hashing_html_a75255ddfb07caee03d41e133773c002c"><div class="ttname"><a href="class_zobrist_hashing.html#a75255ddfb07caee03d41e133773c002c">ZobristHashing::isInitalized</a></div><div class="ttdeci">static bool isInitalized</div><div class="ttdef"><b>Definition</b> hashing.h:47</div></div>
+<div class="ttc" id="aclass_zobrist_hashing_html_a98ee3b247c159141fc28b358afdcebe5"><div class="ttname"><a href="class_zobrist_hashing.html#a98ee3b247c159141fc28b358afdcebe5">ZobristHashing::rand64</a></div><div class="ttdeci">static unsigned long long rand64()</div><div class="ttdef"><b>Definition</b> hashing.cpp:30</div></div>
+<div class="ttc" id="aclass_zobrist_hashing_html_aad2247cfc6b057702a7f423d000ce951"><div class="ttname"><a href="class_zobrist_hashing.html#aad2247cfc6b057702a7f423d000ce951">ZobristHashing::squares</a></div><div class="ttdeci">static unsigned long long squares[64 *2 *6]</div><div class="ttdef"><b>Definition</b> hashing.h:22</div></div>
+<div class="ttc" id="aclass_zobrist_hashing_html_ab8bc646b666dc3453e54cd40c9aa8430"><div class="ttname"><a href="class_zobrist_hashing.html#ab8bc646b666dc3453e54cd40c9aa8430">ZobristHashing::notMoved</a></div><div class="ttdeci">static unsigned long long notMoved[64]</div><div class="ttdef"><b>Definition</b> hashing.h:27</div></div>
+<div class="ttc" id="aclass_zobrist_hashing_html_ae01d3424e3410cdf6ab57c49b9434841"><div class="ttname"><a href="class_zobrist_hashing.html#ae01d3424e3410cdf6ab57c49b9434841">ZobristHashing::init</a></div><div class="ttdeci">static void init()</div><div class="ttdef"><b>Definition</b> hashing.cpp:11</div></div>
+<div class="ttc" id="aclass_zobrist_hashing_html_aeb10761f74d28b3b28838c5c640a236b"><div class="ttname"><a href="class_zobrist_hashing.html#aeb10761f74d28b3b28838c5c640a236b">ZobristHashing::ghosts</a></div><div class="ttdeci">static unsigned long long ghosts[64 *64]</div><div class="ttdef"><b>Definition</b> hashing.h:32</div></div>
+<div class="ttc" id="apiece_8h_html"><div class="ttname"><a href="piece_8h.html">piece.h</a></div><div class="ttdoc">Definícia šachových figúrok.</div></div>
+<div class="ttc" id="astruct_board_hash_html"><div class="ttname"><a href="struct_board_hash.html">BoardHash</a></div><div class="ttdef"><b>Definition</b> hashing.h:60</div></div>
+<div class="ttc" id="astruct_board_hash_html_a1201d61143b132bd480b40e603ec445d"><div class="ttname"><a href="struct_board_hash.html#a1201d61143b132bd480b40e603ec445d">BoardHash::switchTurn</a></div><div class="ttdeci">void switchTurn()</div><div class="ttdef"><b>Definition</b> hashing.cpp:60</div></div>
+<div class="ttc" id="astruct_board_hash_html_a13ec16d355f246d203f21161d39a2189"><div class="ttname"><a href="struct_board_hash.html#a13ec16d355f246d203f21161d39a2189">BoardHash::switchNotMoved</a></div><div class="ttdeci">void switchNotMoved(char x, char y)</div><div class="ttdef"><b>Definition</b> hashing.cpp:45</div></div>
+<div class="ttc" id="astruct_board_hash_html_a7fb34604874df3d269b0c1131bbe7b78"><div class="ttname"><a href="struct_board_hash.html#a7fb34604874df3d269b0c1131bbe7b78">BoardHash::switchSquare</a></div><div class="ttdeci">void switchSquare(Piece piece, char x, char y)</div><div class="ttdef"><b>Definition</b> hashing.cpp:38</div></div>
+<div class="ttc" id="astruct_board_hash_html_a9b0cf153acbdd9c0cfeab04b225e2df8"><div class="ttname"><a href="struct_board_hash.html#a9b0cf153acbdd9c0cfeab04b225e2df8">BoardHash::switchGhost</a></div><div class="ttdeci">void switchGhost(Ghost ghost)</div><div class="ttdef"><b>Definition</b> hashing.cpp:52</div></div>
+<div class="ttc" id="astruct_board_hash_html_ad7b2a937d79127733fa1166480ff0eb0"><div class="ttname"><a href="struct_board_hash.html#ad7b2a937d79127733fa1166480ff0eb0">BoardHash::value</a></div><div class="ttdeci">unsigned long long value</div><div class="ttdef"><b>Definition</b> hashing.h:64</div></div>
+<div class="ttc" id="astruct_ghost_html"><div class="ttname"><a href="struct_ghost.html">Ghost</a></div><div class="ttdef"><b>Definition</b> piece.h:107</div></div>
+<div class="ttc" id="astruct_piece_html"><div class="ttname"><a href="struct_piece.html">Piece</a></div><div class="ttdef"><b>Definition</b> piece.h:80</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generované programom&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

@@ -1,0 +1,745 @@
+\begin{theindex}
+
+  \item {addBoardResult}
+    \subitem {DatabaseConnection}, \hyperpage{22}
+  \item {addPiece}
+    \subitem {Board}, \hyperpage{11}
+  \item {allPieces}
+    \subitem {Board}, \hyperpage{16}
+  \item {alpha}
+    \subitem {SearchArgs}, \hyperpage{49}
+  \item {Attack}
+    \subitem {mobility.h}, \hyperpage{68}
+  \item {AttackMove}
+    \subitem {mobility.h}, \hyperpage{68}
+  \item {attacks}
+    \subitem {Board}, \hyperpage{16}
+  \item {attCount}
+    \subitem {EvalArgs}, \hyperpage{28}
+  \item {attWeight}
+    \subitem {EvalArgs}, \hyperpage{28}
+
+  \indexspace
+
+  \item {beta}
+    \subitem {SearchArgs}, \hyperpage{49}
+  \item {Bishop}
+    \subitem {piece.h}, \hyperpage{71}
+  \item {BitBoard}, \hyperpage{7}
+    \subitem {clearBit}, \hyperpage{7}
+    \subitem {getBit}, \hyperpage{8}
+    \subitem {getKingAttack}, \hyperpage{8}
+    \subitem {getKingPattern}, \hyperpage{8}
+    \subitem {getMask}, \hyperpage{8}
+    \subitem {getTropism}, \hyperpage{9}
+    \subitem {getTropismPattern}, \hyperpage{9}
+    \subitem {printBits}, \hyperpage{9}
+    \subitem {setBit}, \hyperpage{9}
+    \subitem {value}, \hyperpage{10}
+  \item {bitboard.h}, \hyperpage{59}
+  \item {Black}
+    \subitem {piece.h}, \hyperpage{71}
+  \item {blackBishop}
+    \subitem {EssenceArgs}, \hyperpage{27}
+  \item {blackKnight}
+    \subitem {EssenceArgs}, \hyperpage{27}
+  \item {blackPawn}
+    \subitem {EssenceArgs}, \hyperpage{27}
+  \item {blackRook}
+    \subitem {EssenceArgs}, \hyperpage{27}
+  \item {BlackWin}
+    \subitem {board.h}, \hyperpage{60}
+  \item {Blue}
+    \subitem {piece.h}, \hyperpage{71}
+  \item {Board}, \hyperpage{10}
+    \subitem {addPiece}, \hyperpage{11}
+    \subitem {allPieces}, \hyperpage{16}
+    \subitem {attacks}, \hyperpage{16}
+    \subitem {clearBoard}, \hyperpage{12}
+    \subitem {colors}, \hyperpage{17}
+    \subitem {curTurn}, \hyperpage{17}
+    \subitem {essenceConfig}, \hyperpage{17}
+    \subitem {essenceCounts}, \hyperpage{17}
+    \subitem {eval}, \hyperpage{17}
+    \subitem {evalBoard}, \hyperpage{12}
+    \subitem {fullmoveClock}, \hyperpage{17}
+    \subitem {getLegalMoves}, \hyperpage{12}
+    \subitem {getPiece}, \hyperpage{12}
+    \subitem {getResult}, \hyperpage{12}
+    \subitem {ghost}, \hyperpage{17}
+    \subitem {halfmoveClock}, \hyperpage{17}
+    \subitem {hash}, \hyperpage{18}
+    \subitem {initBoard}, \hyperpage{13}
+    \subitem {inputArray}, \hyperpage{18}
+    \subitem {isQuiet}, \hyperpage{13}
+    \subitem {makeMove}, \hyperpage{13, 14}
+    \subitem {moves}, \hyperpage{18}
+    \subitem {movesValidated}, \hyperpage{18}
+    \subitem {notMoved}, \hyperpage{18}
+    \subitem {pieceCounts}, \hyperpage{18}
+    \subitem {pieces}, \hyperpage{18}
+    \subitem {printBoard}, \hyperpage{15}
+    \subitem {printMoves}, \hyperpage{15}
+    \subitem {refreshAggregations}, \hyperpage{15}
+    \subitem {removePiece}, \hyperpage{15}
+    \subitem {setEssenceConfig}, \hyperpage{15}
+    \subitem {setInputArrayColor}, \hyperpage{16}
+    \subitem {setInputArrayPiece}, \hyperpage{16}
+    \subitem {toString}, \hyperpage{16}
+  \item {board}
+    \subitem {uci}, \hyperpage{56}
+  \item {board.h}, \hyperpage{60, 61}
+    \subitem {BlackWin}, \hyperpage{60}
+    \subitem {GameResult}, \hyperpage{60}
+    \subitem {Stalemate}, \hyperpage{60}
+    \subitem {Unresolved}, \hyperpage{60}
+    \subitem {WhiteWin}, \hyperpage{60}
+  \item {BoardHash}, \hyperpage{19}
+    \subitem {switchGhost}, \hyperpage{19}
+    \subitem {switchNotMoved}, \hyperpage{19}
+    \subitem {switchSquare}, \hyperpage{20}
+    \subitem {switchTurn}, \hyperpage{20}
+    \subitem {value}, \hyperpage{20}
+
+  \indexspace
+
+  \item {cache}
+    \subitem {SearchManager}, \hyperpage{51}
+    \subitem {TranspositionCache}, \hyperpage{55}
+  \item {calculateBestMove}
+    \subitem {SearchManager}, \hyperpage{50}
+  \item {calculateBestMove\_threads}
+    \subitem {SearchManager}, \hyperpage{50}
+  \item {capacity}
+    \subitem {TranspositionCache}, \hyperpage{55}
+  \item {Castling}
+    \subitem {mobility.h}, \hyperpage{68}
+  \item {castling}
+    \subitem {LegalMove}, \hyperpage{38}
+  \item {Classic}
+    \subitem {piece.h}, \hyperpage{71}
+  \item {clearBit}
+    \subitem {BitBoard}, \hyperpage{7}
+  \item {clearBoard}
+    \subitem {Board}, \hyperpage{12}
+  \item {clearMoves}
+    \subitem {MoveGenerator}, \hyperpage{42}
+  \item {coinFlip}
+    \subitem {Random}, \hyperpage{47}
+  \item {color}
+    \subitem {Piece}, \hyperpage{46}
+  \item {colorChars}
+    \subitem {piece.h}, \hyperpage{74}
+  \item {colors}
+    \subitem {Board}, \hyperpage{17}
+  \item {colorToString}
+    \subitem {piece.h}, \hyperpage{71}
+  \item {connection}
+    \subitem {DatabaseConnection}, \hyperpage{23}
+  \item {ConnectionString}, \hyperpage{21}
+    \subitem {hostaddr}, \hyperpage{21}
+    \subitem {password}, \hyperpage{21}
+    \subitem {port}, \hyperpage{21}
+    \subitem {toString}, \hyperpage{21}
+    \subitem {user}, \hyperpage{22}
+  \item {connectionString}
+    \subitem {DatabaseManager}, \hyperpage{24}
+  \item {curDepth}
+    \subitem {SearchArgs}, \hyperpage{49}
+  \item {curPhase}
+    \subitem {EvalArgs}, \hyperpage{28}
+  \item {curTurn}
+    \subitem {Board}, \hyperpage{17}
+
+  \indexspace
+
+  \item {database.h}, \hyperpage{62, 63}
+  \item {DatabaseConnection}, \hyperpage{22}
+    \subitem {addBoardResult}, \hyperpage{22}
+    \subitem {connection}, \hyperpage{23}
+    \subitem {DatabaseConnection}, \hyperpage{22}
+    \subitem {getIdEssenceConfig}, \hyperpage{23}
+    \subitem {txn}, \hyperpage{23}
+    \subitem {updateScores}, \hyperpage{23}
+  \item {DatabaseManager}, \hyperpage{24}
+    \subitem {connectionString}, \hyperpage{24}
+    \subitem {initConnectionString}, \hyperpage{24}
+    \subitem {loadEnvFromFile}, \hyperpage{24}
+  \item {depth}
+    \subitem {Transposition}, \hyperpage{53}
+  \item {direction\_x}
+    \subitem {Mobility}, \hyperpage{40}
+  \item {direction\_y}
+    \subitem {Mobility}, \hyperpage{40}
+  \item {durationTotal}
+    \subitem {PerformanceArgs}, \hyperpage{44}
+
+  \indexspace
+
+  \item {eg\_pcsq}
+    \subitem {Evaluation}, \hyperpage{31}
+  \item {eg\_pcsqEval}
+    \subitem {EvalArgs}, \hyperpage{28}
+  \item {eg\_pieceMobWeights}
+    \subitem {Evaluation}, \hyperpage{31}
+  \item {eg\_pieceTropismWeights}
+    \subitem {Evaluation}, \hyperpage{31}
+  \item {Ensemble}, \hyperpage{25}
+    \subitem {Ensemble}, \hyperpage{25}
+    \subitem {forward}, \hyperpage{25}
+    \subitem {models}, \hyperpage{26}
+  \item {ensemble}
+    \subitem {SearchManager}, \hyperpage{51}
+  \item {ensemble.h}, \hyperpage{63, 64}
+  \item {essence}
+    \subitem {Piece}, \hyperpage{46}
+  \item {EssenceArgs}, \hyperpage{26}
+    \subitem {blackBishop}, \hyperpage{27}
+    \subitem {blackKnight}, \hyperpage{27}
+    \subitem {blackPawn}, \hyperpage{27}
+    \subitem {blackRook}, \hyperpage{27}
+    \subitem {whiteBishop}, \hyperpage{27}
+    \subitem {whiteKnight}, \hyperpage{27}
+    \subitem {whitePawn}, \hyperpage{27}
+    \subitem {whiteRook}, \hyperpage{27}
+  \item {essenceChars}
+    \subitem {piece.h}, \hyperpage{74}
+  \item {essenceConfig}
+    \subitem {Board}, \hyperpage{17}
+    \subitem {uci}, \hyperpage{56}
+  \item {essenceCounts}
+    \subitem {Board}, \hyperpage{17}
+  \item {essenceToString}
+    \subitem {piece.h}, \hyperpage{72}
+  \item {eval}
+    \subitem {Board}, \hyperpage{17}
+  \item {EvalArgs}, \hyperpage{28}
+    \subitem {attCount}, \hyperpage{28}
+    \subitem {attWeight}, \hyperpage{28}
+    \subitem {curPhase}, \hyperpage{28}
+    \subitem {eg\_pcsqEval}, \hyperpage{28}
+    \subitem {matEval}, \hyperpage{29}
+    \subitem {mg\_pcsqEval}, \hyperpage{29}
+    \subitem {mobCount}, \hyperpage{29}
+  \item {evalBoard}
+    \subitem {Board}, \hyperpage{12}
+  \item {Evaluation}, \hyperpage{29}
+    \subitem {eg\_pcsq}, \hyperpage{31}
+    \subitem {eg\_pieceMobWeights}, \hyperpage{31}
+    \subitem {eg\_pieceTropismWeights}, \hyperpage{31}
+    \subitem {get\_eg\_pcsq}, \hyperpage{30}
+    \subitem {get\_mg\_pcsq}, \hyperpage{30}
+    \subitem {mg\_pcsq}, \hyperpage{31}
+    \subitem {mg\_pieceMobWeights}, \hyperpage{31}
+    \subitem {mg\_pieceTropismWeights}, \hyperpage{31}
+    \subitem {pieceAttWeights}, \hyperpage{31}
+    \subitem {pieceMatValues}, \hyperpage{31}
+    \subitem {pieceMobPenalties}, \hyperpage{32}
+    \subitem {piecePhaseValues}, \hyperpage{32}
+    \subitem {safetyTable}, \hyperpage{32}
+    \subitem {startPhase}, \hyperpage{32}
+  \item {evaluation.h}, \hyperpage{64, 65}
+  \item {exit}
+    \subitem {FairyStockfish}, \hyperpage{33}
+
+  \indexspace
+
+  \item {FairyStockfish}, \hyperpage{33}
+    \subitem {exit}, \hyperpage{33}
+    \subitem {receiveResponse}, \hyperpage{33}
+    \subitem {sendCommand}, \hyperpage{33}
+    \subitem {setConfigFile}, \hyperpage{34}
+    \subitem {start}, \hyperpage{34}
+    \subitem {waitForResponse}, \hyperpage{34}
+  \item {fairyStockfish.h}, \hyperpage{65, 66}
+  \item {flags}
+    \subitem {Mobility}, \hyperpage{40}
+  \item {forward}
+    \subitem {Ensemble}, \hyperpage{25}
+  \item {fullmoveClock}
+    \subitem {Board}, \hyperpage{17}
+
+  \indexspace
+
+  \item {GameResult}
+    \subitem {board.h}, \hyperpage{60}
+  \item {gen}
+    \subitem {Random}, \hyperpage{48}
+  \item {generateMoves}
+    \subitem {MoveGenerator}, \hyperpage{43}
+  \item {generateRandomNumber}
+    \subitem {Random}, \hyperpage{47}
+  \item {get}
+    \subitem {TranspositionCache}, \hyperpage{54}
+  \item {get\_eg\_pcsq}
+    \subitem {Evaluation}, \hyperpage{30}
+  \item {get\_mg\_pcsq}
+    \subitem {Evaluation}, \hyperpage{30}
+  \item {getBit}
+    \subitem {BitBoard}, \hyperpage{8}
+  \item {getIdEssenceConfig}
+    \subitem {DatabaseConnection}, \hyperpage{23}
+  \item {getKingAttack}
+    \subitem {BitBoard}, \hyperpage{8}
+  \item {getKingPattern}
+    \subitem {BitBoard}, \hyperpage{8}
+  \item {getLegalMoves}
+    \subitem {Board}, \hyperpage{12}
+  \item {getMask}
+    \subitem {BitBoard}, \hyperpage{8}
+  \item {getPiece}
+    \subitem {Board}, \hyperpage{12}
+  \item {getPieceIndex}
+    \subitem {piece.h}, \hyperpage{72}
+  \item {getRandomElement}
+    \subitem {Random}, \hyperpage{47}
+  \item {getResult}
+    \subitem {Board}, \hyperpage{12}
+  \item {getTropism}
+    \subitem {BitBoard}, \hyperpage{9}
+  \item {getTropismPattern}
+    \subitem {BitBoard}, \hyperpage{9}
+  \item {Ghost}, \hyperpage{35}
+    \subitem {parentX}, \hyperpage{35}
+    \subitem {parentY}, \hyperpage{35}
+    \subitem {x}, \hyperpage{35}
+    \subitem {y}, \hyperpage{35}
+  \item {ghost}
+    \subitem {Board}, \hyperpage{17}
+  \item {ghosts}
+    \subitem {ZobristHashing}, \hyperpage{58}
+
+  \indexspace
+
+  \item {halfmoveClock}
+    \subitem {Board}, \hyperpage{17}
+  \item {hash}
+    \subitem {Board}, \hyperpage{18}
+  \item {hashing.h}, \hyperpage{66, 67}
+  \item {hasty}
+    \subitem {MobilityFlags}, \hyperpage{41}
+  \item {hostaddr}
+    \subitem {ConnectionString}, \hyperpage{21}
+
+  \indexspace
+
+  \item {init}
+    \subitem {ZobristHashing}, \hyperpage{58}
+  \item {initBoard}
+    \subitem {Board}, \hyperpage{13}
+  \item {initConnectionString}
+    \subitem {DatabaseManager}, \hyperpage{24}
+  \item {initiative}
+    \subitem {MobilityFlags}, \hyperpage{41}
+  \item {initSeed}
+    \subitem {Random}, \hyperpage{48}
+  \item {inputArray}
+    \subitem {Board}, \hyperpage{18}
+  \item {isInitalized}
+    \subitem {ZobristHashing}, \hyperpage{58}
+  \item {isQuiet}
+    \subitem {Board}, \hyperpage{13}
+
+  \indexspace
+
+  \item {King}
+    \subitem {piece.h}, \hyperpage{71}
+  \item {kingSide}
+    \subitem {mobility.h}, \hyperpage{68}
+  \item {Knight}
+    \subitem {piece.h}, \hyperpage{71}
+
+  \indexspace
+
+  \item {LegalMove}, \hyperpage{36}
+    \subitem {castling}, \hyperpage{38}
+    \subitem {LegalMove}, \hyperpage{36, 37}
+    \subitem {mobility}, \hyperpage{38}
+    \subitem {promotion}, \hyperpage{38}
+    \subitem {toString}, \hyperpage{37}
+    \subitem {toStringWithFlags}, \hyperpage{37}
+    \subitem {x1}, \hyperpage{38}
+    \subitem {x2}, \hyperpage{38}
+    \subitem {y1}, \hyperpage{38}
+    \subitem {y2}, \hyperpage{38}
+  \item {limit}
+    \subitem {Mobility}, \hyperpage{40}
+  \item {loadEnvFromFile}
+    \subitem {DatabaseManager}, \hyperpage{24}
+
+  \indexspace
+
+  \item {makeMove}
+    \subitem {Board}, \hyperpage{13, 14}
+  \item {Malakh}, \hyperpage{1}
+  \item {matEval}
+    \subitem {EvalArgs}, \hyperpage{29}
+  \item {maxDepth}
+    \subitem {SearchArgs}, \hyperpage{49}
+  \item {mg\_pcsq}
+    \subitem {Evaluation}, \hyperpage{31}
+  \item {mg\_pcsqEval}
+    \subitem {EvalArgs}, \hyperpage{29}
+  \item {mg\_pieceMobWeights}
+    \subitem {Evaluation}, \hyperpage{31}
+  \item {mg\_pieceTropismWeights}
+    \subitem {Evaluation}, \hyperpage{31}
+  \item {minimax}
+    \subitem {SearchManager}, \hyperpage{51}
+  \item {mobCount}
+    \subitem {EvalArgs}, \hyperpage{29}
+  \item {Mobilities}, \hyperpage{39}
+    \subitem {mobilityConfig}, \hyperpage{39}
+    \subitem {printMobilities}, \hyperpage{39}
+  \item {Mobility}, \hyperpage{40}
+    \subitem {direction\_x}, \hyperpage{40}
+    \subitem {direction\_y}, \hyperpage{40}
+    \subitem {flags}, \hyperpage{40}
+    \subitem {limit}, \hyperpage{40}
+    \subitem {start\_x}, \hyperpage{40}
+    \subitem {start\_y}, \hyperpage{41}
+    \subitem {type}, \hyperpage{41}
+  \item {mobility}
+    \subitem {LegalMove}, \hyperpage{38}
+  \item {mobility.h}, \hyperpage{67}, \hyperpage{69}
+    \subitem {Attack}, \hyperpage{68}
+    \subitem {AttackMove}, \hyperpage{68}
+    \subitem {Castling}, \hyperpage{68}
+    \subitem {kingSide}, \hyperpage{68}
+    \subitem {Move}, \hyperpage{68}
+    \subitem {MovementType}, \hyperpage{68}
+    \subitem {none}, \hyperpage{68}
+    \subitem {queenSide}, \hyperpage{68}
+  \item {mobilityConfig}
+    \subitem {Mobilities}, \hyperpage{39}
+  \item {MobilityFlags}, \hyperpage{41}
+    \subitem {hasty}, \hyperpage{41}
+    \subitem {initiative}, \hyperpage{41}
+    \subitem {uninterruptible}, \hyperpage{42}
+    \subitem {vigilant}, \hyperpage{42}
+  \item {models}
+    \subitem {Ensemble}, \hyperpage{26}
+  \item {Move}
+    \subitem {mobility.h}, \hyperpage{68}
+  \item {MoveGenerator}, \hyperpage{42}
+    \subitem {clearMoves}, \hyperpage{42}
+    \subitem {generateMoves}, \hyperpage{43}
+  \item {MovementType}
+    \subitem {mobility.h}, \hyperpage{68}
+  \item {moves}
+    \subitem {Board}, \hyperpage{18}
+  \item {movesValidated}
+    \subitem {Board}, \hyperpage{18}
+  \item {mutex}
+    \subitem {PerformanceArgs}, \hyperpage{44}
+    \subitem {TranspositionCache}, \hyperpage{55}
+
+  \indexspace
+
+  \item {none}
+    \subitem {mobility.h}, \hyperpage{68}
+  \item {notMoved}
+    \subitem {Board}, \hyperpage{18}
+    \subitem {ZobristHashing}, \hyperpage{58}
+
+  \indexspace
+
+  \item {opponent}
+    \subitem {piece.h}, \hyperpage{74}
+  \item {order}
+    \subitem {TranspositionCache}, \hyperpage{55}
+
+  \indexspace
+
+  \item {parentX}
+    \subitem {Ghost}, \hyperpage{35}
+  \item {parentY}
+    \subitem {Ghost}, \hyperpage{35}
+  \item {parseCommand}
+    \subitem {uci}, \hyperpage{56}
+  \item {password}
+    \subitem {ConnectionString}, \hyperpage{21}
+  \item {Pawn}
+    \subitem {piece.h}, \hyperpage{71}
+  \item {PerformanceArgs}, \hyperpage{43}
+    \subitem {durationTotal}, \hyperpage{44}
+    \subitem {mutex}, \hyperpage{44}
+    \subitem {positionsCur}, \hyperpage{45}
+    \subitem {positionsTotal}, \hyperpage{45}
+    \subitem {printPerformance}, \hyperpage{44}
+    \subitem {start}, \hyperpage{45}
+  \item {Piece}, \hyperpage{45}
+    \subitem {color}, \hyperpage{46}
+    \subitem {essence}, \hyperpage{46}
+    \subitem {toChar}, \hyperpage{46}
+    \subitem {type}, \hyperpage{46}
+  \item {piece.h}, \hyperpage{70}, \hyperpage{74}
+    \subitem {Bishop}, \hyperpage{71}
+    \subitem {Black}, \hyperpage{71}
+    \subitem {Blue}, \hyperpage{71}
+    \subitem {Classic}, \hyperpage{71}
+    \subitem {colorChars}, \hyperpage{74}
+    \subitem {colorToString}, \hyperpage{71}
+    \subitem {essenceChars}, \hyperpage{74}
+    \subitem {essenceToString}, \hyperpage{72}
+    \subitem {getPieceIndex}, \hyperpage{72}
+    \subitem {King}, \hyperpage{71}
+    \subitem {Knight}, \hyperpage{71}
+    \subitem {opponent}, \hyperpage{74}
+    \subitem {Pawn}, \hyperpage{71}
+    \subitem {PieceColor}, \hyperpage{70}
+    \subitem {PieceEssence}, \hyperpage{71}
+    \subitem {PieceType}, \hyperpage{71}
+    \subitem {Queen}, \hyperpage{71}
+    \subitem {Red}, \hyperpage{71}
+    \subitem {Rook}, \hyperpage{71}
+    \subitem {stringToColor}, \hyperpage{72}
+    \subitem {stringToEssence}, \hyperpage{73}
+    \subitem {stringToType}, \hyperpage{73}
+    \subitem {typeChars}, \hyperpage{74}
+    \subitem {typeToString}, \hyperpage{73}
+    \subitem {White}, \hyperpage{71}
+  \item {pieceAttWeights}
+    \subitem {Evaluation}, \hyperpage{31}
+  \item {PieceColor}
+    \subitem {piece.h}, \hyperpage{70}
+  \item {pieceCounts}
+    \subitem {Board}, \hyperpage{18}
+  \item {PieceEssence}
+    \subitem {piece.h}, \hyperpage{71}
+  \item {pieceMatValues}
+    \subitem {Evaluation}, \hyperpage{31}
+  \item {pieceMobPenalties}
+    \subitem {Evaluation}, \hyperpage{32}
+  \item {piecePhaseValues}
+    \subitem {Evaluation}, \hyperpage{32}
+  \item {pieces}
+    \subitem {Board}, \hyperpage{18}
+  \item {PieceType}
+    \subitem {piece.h}, \hyperpage{71}
+  \item {port}
+    \subitem {ConnectionString}, \hyperpage{21}
+  \item {positionsCur}
+    \subitem {PerformanceArgs}, \hyperpage{45}
+  \item {positionsTotal}
+    \subitem {PerformanceArgs}, \hyperpage{45}
+  \item {printBits}
+    \subitem {BitBoard}, \hyperpage{9}
+  \item {printBoard}
+    \subitem {Board}, \hyperpage{15}
+  \item {printMobilities}
+    \subitem {Mobilities}, \hyperpage{39}
+  \item {printMoves}
+    \subitem {Board}, \hyperpage{15}
+  \item {printPerformance}
+    \subitem {PerformanceArgs}, \hyperpage{44}
+  \item {promotion}
+    \subitem {LegalMove}, \hyperpage{38}
+  \item {put}
+    \subitem {TranspositionCache}, \hyperpage{55}
+
+  \indexspace
+
+  \item {qLimit}
+    \subitem {SearchManager}, \hyperpage{52}
+  \item {Queen}
+    \subitem {piece.h}, \hyperpage{71}
+  \item {queenSide}
+    \subitem {mobility.h}, \hyperpage{68}
+
+  \indexspace
+
+  \item {rand64}
+    \subitem {ZobristHashing}, \hyperpage{58}
+  \item {Random}, \hyperpage{46}
+    \subitem {coinFlip}, \hyperpage{47}
+    \subitem {gen}, \hyperpage{48}
+    \subitem {generateRandomNumber}, \hyperpage{47}
+    \subitem {getRandomElement}, \hyperpage{47}
+    \subitem {initSeed}, \hyperpage{48}
+  \item {random.h}, \hyperpage{75, 76}
+  \item {receiveResponse}
+    \subitem {FairyStockfish}, \hyperpage{33}
+  \item {Red}
+    \subitem {piece.h}, \hyperpage{71}
+  \item {refreshAggregations}
+    \subitem {Board}, \hyperpage{15}
+  \item {removePiece}
+    \subitem {Board}, \hyperpage{15}
+  \item {Rook}
+    \subitem {piece.h}, \hyperpage{71}
+  \item {run}
+    \subitem {uci}, \hyperpage{56}
+
+  \indexspace
+
+  \item {safetyTable}
+    \subitem {Evaluation}, \hyperpage{32}
+  \item {SearchArgs}, \hyperpage{48}
+    \subitem {alpha}, \hyperpage{49}
+    \subitem {beta}, \hyperpage{49}
+    \subitem {curDepth}, \hyperpage{49}
+    \subitem {maxDepth}, \hyperpage{49}
+  \item {searching.h}, \hyperpage{76, 77}
+  \item {SearchManager}, \hyperpage{49}
+    \subitem {cache}, \hyperpage{51}
+    \subitem {calculateBestMove}, \hyperpage{50}
+    \subitem {calculateBestMove\_threads}, \hyperpage{50}
+    \subitem {ensemble}, \hyperpage{51}
+    \subitem {minimax}, \hyperpage{51}
+    \subitem {qLimit}, \hyperpage{52}
+  \item {sendCommand}
+    \subitem {FairyStockfish}, \hyperpage{33}
+  \item {setBit}
+    \subitem {BitBoard}, \hyperpage{9}
+  \item {setConfigFile}
+    \subitem {FairyStockfish}, \hyperpage{34}
+  \item {setEssenceConfig}
+    \subitem {Board}, \hyperpage{15}
+  \item {setInputArrayColor}
+    \subitem {Board}, \hyperpage{16}
+  \item {setInputArrayPiece}
+    \subitem {Board}, \hyperpage{16}
+  \item {simulateGames}
+    \subitem {SimulationManager}, \hyperpage{52}
+  \item {simulation.h}, \hyperpage{77, 78}
+  \item {SimulationManager}, \hyperpage{52}
+    \subitem {simulateGames}, \hyperpage{52}
+  \item {squares}
+    \subitem {ZobristHashing}, \hyperpage{58}
+  \item {Stalemate}
+    \subitem {board.h}, \hyperpage{60}
+  \item {start}
+    \subitem {FairyStockfish}, \hyperpage{34}
+    \subitem {PerformanceArgs}, \hyperpage{45}
+  \item {start\_x}
+    \subitem {Mobility}, \hyperpage{40}
+  \item {start\_y}
+    \subitem {Mobility}, \hyperpage{41}
+  \item {startPhase}
+    \subitem {Evaluation}, \hyperpage{32}
+  \item {stringToColor}
+    \subitem {piece.h}, \hyperpage{72}
+  \item {stringToEssence}
+    \subitem {piece.h}, \hyperpage{73}
+  \item {stringToType}
+    \subitem {piece.h}, \hyperpage{73}
+  \item {switchGhost}
+    \subitem {BoardHash}, \hyperpage{19}
+  \item {switchNotMoved}
+    \subitem {BoardHash}, \hyperpage{19}
+  \item {switchSquare}
+    \subitem {BoardHash}, \hyperpage{20}
+  \item {switchTurn}
+    \subitem {BoardHash}, \hyperpage{20}
+
+  \indexspace
+
+  \item {toChar}
+    \subitem {Piece}, \hyperpage{46}
+  \item {toString}
+    \subitem {Board}, \hyperpage{16}
+    \subitem {ConnectionString}, \hyperpage{21}
+    \subitem {LegalMove}, \hyperpage{37}
+  \item {toStringWithFlags}
+    \subitem {LegalMove}, \hyperpage{37}
+  \item {Transposition}, \hyperpage{53}
+    \subitem {depth}, \hyperpage{53}
+    \subitem {value}, \hyperpage{53}
+  \item {TranspositionCache}, \hyperpage{54}
+    \subitem {cache}, \hyperpage{55}
+    \subitem {capacity}, \hyperpage{55}
+    \subitem {get}, \hyperpage{54}
+    \subitem {mutex}, \hyperpage{55}
+    \subitem {order}, \hyperpage{55}
+    \subitem {put}, \hyperpage{55}
+    \subitem {TranspositionCache}, \hyperpage{54}
+  \item {transpositions.h}, \hyperpage{78, 79}
+  \item {turn}
+    \subitem {ZobristHashing}, \hyperpage{58}
+  \item {txn}
+    \subitem {DatabaseConnection}, \hyperpage{23}
+  \item {type}
+    \subitem {Mobility}, \hyperpage{41}
+    \subitem {Piece}, \hyperpage{46}
+  \item {typeChars}
+    \subitem {piece.h}, \hyperpage{74}
+  \item {typeToString}
+    \subitem {piece.h}, \hyperpage{73}
+
+  \indexspace
+
+  \item {uci}, \hyperpage{56}
+    \subitem {board}, \hyperpage{56}
+    \subitem {essenceConfig}, \hyperpage{56}
+    \subitem {parseCommand}, \hyperpage{56}
+    \subitem {run}, \hyperpage{56}
+    \subitem {useEnsemble}, \hyperpage{57}
+  \item {uci.h}, \hyperpage{79, 80}
+  \item {uninterruptible}
+    \subitem {MobilityFlags}, \hyperpage{42}
+  \item {Unresolved}
+    \subitem {board.h}, \hyperpage{60}
+  \item {updateScores}
+    \subitem {DatabaseConnection}, \hyperpage{23}
+  \item {useEnsemble}
+    \subitem {uci}, \hyperpage{57}
+  \item {user}
+    \subitem {ConnectionString}, \hyperpage{22}
+
+  \indexspace
+
+  \item {value}
+    \subitem {BitBoard}, \hyperpage{10}
+    \subitem {BoardHash}, \hyperpage{20}
+    \subitem {Transposition}, \hyperpage{53}
+  \item {vigilant}
+    \subitem {MobilityFlags}, \hyperpage{42}
+
+  \indexspace
+
+  \item {waitForResponse}
+    \subitem {FairyStockfish}, \hyperpage{34}
+  \item {White}
+    \subitem {piece.h}, \hyperpage{71}
+  \item {whiteBishop}
+    \subitem {EssenceArgs}, \hyperpage{27}
+  \item {whiteKnight}
+    \subitem {EssenceArgs}, \hyperpage{27}
+  \item {whitePawn}
+    \subitem {EssenceArgs}, \hyperpage{27}
+  \item {whiteRook}
+    \subitem {EssenceArgs}, \hyperpage{27}
+  \item {WhiteWin}
+    \subitem {board.h}, \hyperpage{60}
+
+  \indexspace
+
+  \item {x}
+    \subitem {Ghost}, \hyperpage{35}
+  \item {x1}
+    \subitem {LegalMove}, \hyperpage{38}
+  \item {x2}
+    \subitem {LegalMove}, \hyperpage{38}
+
+  \indexspace
+
+  \item {y}
+    \subitem {Ghost}, \hyperpage{35}
+  \item {y1}
+    \subitem {LegalMove}, \hyperpage{38}
+  \item {y2}
+    \subitem {LegalMove}, \hyperpage{38}
+
+  \indexspace
+
+  \item {ZobristHashing}, \hyperpage{57}
+    \subitem {ghosts}, \hyperpage{58}
+    \subitem {init}, \hyperpage{58}
+    \subitem {isInitalized}, \hyperpage{58}
+    \subitem {notMoved}, \hyperpage{58}
+    \subitem {rand64}, \hyperpage{58}
+    \subitem {squares}, \hyperpage{58}
+    \subitem {turn}, \hyperpage{58}
+
+\end{theindex}

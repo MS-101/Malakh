@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sk">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Malakh: Zdrojový súbor random.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Malakh
+   </div>
+   <div id="projectbrief">Šachový engine na hru s neštandardnými šachovými pravidlami</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generované programom Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Hľadať');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Načítam...</div>
+<div class="SRStatus" id="Searching">Vyhľadávam...</div>
+<div class="SRStatus" id="NoMatches">Nič sa nenašlo</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">random.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="random_8h.html">Zobraziť dokumentáciu tohoto súboru.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*****************************************************************/</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;random&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_random.html">   18</a></span><span class="keyword">class </span><a class="code hl_class" href="class_random.html">Random</a> {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_random.html#a105d98732f9e4d2a6f060d015876a04e">initSeed</a>();</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_random.html#abe0b220529ca9c9ccc9bd7b5305f1464">coinFlip</a>();</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code hl_function" href="class_random.html#a5884ca7b101d758c27e56d9103313a04">generateRandomNumber</a>(<span class="keywordtype">int</span> lowerBound, <span class="keywordtype">int</span> upperBound);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;<span class="keyword">static</span> T <a class="code hl_function" href="class_random.html#adf9249f79e8a1c88cf24c72933657ad0">getRandomElement</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; vec);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="class_random.html#a38a7a46405d481770095f86ff792a0f8">   52</a></span>    <span class="keyword">static</span> std::mt19937 <a class="code hl_variable" href="class_random.html#a38a7a46405d481770095f86ff792a0f8">gen</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>};</div>
+</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00056" data-start="{" data-end="}">
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="class_random.html#adf9249f79e8a1c88cf24c72933657ad0">   56</a></span><span class="keyword">inline</span> T <a class="code hl_function" href="class_random.html#adf9249f79e8a1c88cf24c72933657ad0">Random::getRandomElement</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; vec)</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>{</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordflow">if</span> (vec.empty()) {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">return</span> T();</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">return</span> vec[<a class="code hl_function" href="class_random.html#a5884ca7b101d758c27e56d9103313a04">generateRandomNumber</a>(0, vec.size() - 1)];</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>}</div>
+</div>
+<div class="ttc" id="aclass_random_html"><div class="ttname"><a href="class_random.html">Random</a></div><div class="ttdef"><b>Definition</b> random.h:18</div></div>
+<div class="ttc" id="aclass_random_html_a105d98732f9e4d2a6f060d015876a04e"><div class="ttname"><a href="class_random.html#a105d98732f9e4d2a6f060d015876a04e">Random::initSeed</a></div><div class="ttdeci">static void initSeed()</div><div class="ttdef"><b>Definition</b> random.cpp:6</div></div>
+<div class="ttc" id="aclass_random_html_a38a7a46405d481770095f86ff792a0f8"><div class="ttname"><a href="class_random.html#a38a7a46405d481770095f86ff792a0f8">Random::gen</a></div><div class="ttdeci">static std::mt19937 gen</div><div class="ttdef"><b>Definition</b> random.h:52</div></div>
+<div class="ttc" id="aclass_random_html_a5884ca7b101d758c27e56d9103313a04"><div class="ttname"><a href="class_random.html#a5884ca7b101d758c27e56d9103313a04">Random::generateRandomNumber</a></div><div class="ttdeci">static int generateRandomNumber(int lowerBound, int upperBound)</div><div class="ttdef"><b>Definition</b> random.cpp:17</div></div>
+<div class="ttc" id="aclass_random_html_abe0b220529ca9c9ccc9bd7b5305f1464"><div class="ttname"><a href="class_random.html#abe0b220529ca9c9ccc9bd7b5305f1464">Random::coinFlip</a></div><div class="ttdeci">static bool coinFlip()</div><div class="ttdef"><b>Definition</b> random.cpp:12</div></div>
+<div class="ttc" id="aclass_random_html_adf9249f79e8a1c88cf24c72933657ad0"><div class="ttname"><a href="class_random.html#adf9249f79e8a1c88cf24c72933657ad0">Random::getRandomElement</a></div><div class="ttdeci">static T getRandomElement(const std::vector&lt; T &gt; &amp;vec)</div><div class="ttdef"><b>Definition</b> random.h:56</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generované programom&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

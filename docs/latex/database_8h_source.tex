@@ -1,0 +1,57 @@
+\doxysection{database.\+h}
+\hypertarget{database_8h_source}{}\label{database_8h_source}\index{database.h@{database.h}}
+\mbox{\hyperlink{database_8h}{Zobraziť dokumentáciu tohoto súboru.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{/*****************************************************************/}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ NOMINMAX}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{board_8h}{board.h}}>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <pqxx/pqxx>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <pqxx/transaction.hxx>}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_connection_string}{ConnectionString}}\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ \ \ *\ Meno\ databázy}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00026\ \ \ \ \ std::string\ dbname;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00031\ \ \ \ \ std::string\ \mbox{\hyperlink{struct_connection_string_a02e5d870d852e114125ffd70e97b9497}{user}};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00036\ \ \ \ \ std::string\ \mbox{\hyperlink{struct_connection_string_aece44d93579f86afa2ef25e384a6a4be}{password}};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00041\ \ \ \ \ std::string\ \mbox{\hyperlink{struct_connection_string_abb517c720bfe910c7da34a1a61c3d2dd}{hostaddr}};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00046\ \ \ \ \ std::string\ \mbox{\hyperlink{struct_connection_string_a064bab2f88232e11e48d96f81b240693}{port}};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00053\ \ \ \ \ std::string\ \mbox{\hyperlink{struct_connection_string_ab97eff72b49b5bd6b201486c2eab39fe}{toString}}();}
+\DoxyCodeLine{00054\ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_database_manager}{DatabaseManager}}\ \{}
+\DoxyCodeLine{00060\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{struct_connection_string}{ConnectionString}}\ \mbox{\hyperlink{class_database_manager_a980a4b32c9d47a11d5f0fc27bad664fc}{connectionString}};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_manager_a9cd2b1af058394873d3b9a7a59000d4d}{initConnectionString}}();}
+\DoxyCodeLine{00070\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_manager_a11349196fd9767c1d8ec22dd57c3e5f7}{loadEnvFromFile}}(std::string\ filePath);}
+\DoxyCodeLine{00077\ \};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_database_connection}{DatabaseConnection}}\ \{}
+\DoxyCodeLine{00083\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{class_database_connection_a7f50e17550775f1803dea4084f1987f1}{DatabaseConnection}}();}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_database_connection_a08acfd6e7dd28f2cd16c8a8d19053720}{getIdEssenceConfig}}(\mbox{\hyperlink{struct_essence_args}{EssenceArgs}}\ essenceArgs);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_connection_a9af604d3a2d4bbf4e808798bb013c92f}{updateScores}}();}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_connection_a69bbeadebc247189adf943eec9c2c60a}{addBoardResult}}(\mbox{\hyperlink{class_board}{Board}}\ board,\ \textcolor{keywordtype}{int}\ idEssenceConfig,\ \mbox{\hyperlink{board_8h_a41741953d704b743544ce6383c27c7c6}{GameResult}}\ gameResult);}
+\DoxyCodeLine{00112\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00116\ \ \ \ \ pqxx::connection\ \mbox{\hyperlink{class_database_connection_a6929cd3ca2b048cab5db9fb50178f346}{connection}};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00121\ \ \ \ \ pqxx::work\ \mbox{\hyperlink{class_database_connection_aa515e8c8e6b7e737caa658b8f63e6fca}{txn}};}
+\DoxyCodeLine{00122\ \};}
+
+\end{DoxyCode}

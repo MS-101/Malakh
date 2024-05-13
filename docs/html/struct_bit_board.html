@@ -1,0 +1,415 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sk">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Malakh: Dokumentácia štruktúry BitBoard</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Malakh
+   </div>
+   <div id="projectbrief">Šachový engine na hru s neštandardnými šachovými pravidlami</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generované programom Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Hľadať');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Načítam...</div>
+<div class="SRStatus" id="Searching">Vyhľadávam...</div>
+<div class="SRStatus" id="NoMatches">Nič sa nenašlo</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Verejné metódy</a> &#124;
+<a href="#pub-attribs">Verejné atribúty</a> &#124;
+<a href="#pri-methods">Privátne metódy</a> &#124;
+<a href="struct_bit_board-members.html">Zoznam všetkých členov</a>  </div>
+  <div class="headertitle"><div class="title">Dokumentácia štruktúry BitBoard</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="bitboard_8h_source.html">bitboard.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Verejné metódy</h2></td></tr>
+<tr class="memitem:ae823ec29f0df9fb70c3c1cc2c03dc050" id="r_ae823ec29f0df9fb70c3c1cc2c03dc050"><td class="memItemLeft" align="right" valign="top">unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae823ec29f0df9fb70c3c1cc2c03dc050">getBit</a> (char x, char y)</td></tr>
+<tr class="separator:ae823ec29f0df9fb70c3c1cc2c03dc050"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a3535649a3ac128917031c1758096af" id="r_a8a3535649a3ac128917031c1758096af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a3535649a3ac128917031c1758096af">setBit</a> (char x, char y)</td></tr>
+<tr class="separator:a8a3535649a3ac128917031c1758096af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2256a342032360b50ecf9c8d4d81ff67" id="r_a2256a342032360b50ecf9c8d4d81ff67"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2256a342032360b50ecf9c8d4d81ff67">clearBit</a> (char x, char y)</td></tr>
+<tr class="separator:a2256a342032360b50ecf9c8d4d81ff67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca9f1bc6cdae319f7ba5549de49d877e" id="r_aca9f1bc6cdae319f7ba5549de49d877e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca9f1bc6cdae319f7ba5549de49d877e">printBits</a> ()</td></tr>
+<tr class="separator:aca9f1bc6cdae319f7ba5549de49d877e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a752b6dd867835fbfdc35d5fb9da81b8e" id="r_a752b6dd867835fbfdc35d5fb9da81b8e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a752b6dd867835fbfdc35d5fb9da81b8e">getKingAttack</a> (char x, char y)</td></tr>
+<tr class="separator:a752b6dd867835fbfdc35d5fb9da81b8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0ae17e0216bf40c841483a11755297d" id="r_ac0ae17e0216bf40c841483a11755297d"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac0ae17e0216bf40c841483a11755297d">getTropism</a> (char x, char y)</td></tr>
+<tr class="separator:ac0ae17e0216bf40c841483a11755297d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Verejné atribúty</h2></td></tr>
+<tr class="memitem:a767bb5d3915b9c5b3a617db322df970b" id="r_a767bb5d3915b9c5b3a617db322df970b"><td class="memItemLeft" align="right" valign="top">unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a767bb5d3915b9c5b3a617db322df970b">value</a> = 0</td></tr>
+<tr class="separator:a767bb5d3915b9c5b3a617db322df970b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Privátne metódy</h2></td></tr>
+<tr class="memitem:a703d78299861e928c15a55985d043138" id="r_a703d78299861e928c15a55985d043138"><td class="memItemLeft" align="right" valign="top">unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a703d78299861e928c15a55985d043138">getMask</a> (char x, char y)</td></tr>
+<tr class="separator:a703d78299861e928c15a55985d043138"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9d96cb94972f035f40d3dde0ef12d56" id="r_ab9d96cb94972f035f40d3dde0ef12d56"><td class="memItemLeft" align="right" valign="top">unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9d96cb94972f035f40d3dde0ef12d56">getKingPattern</a> (unsigned long long <a class="el" href="#a767bb5d3915b9c5b3a617db322df970b">value</a>)</td></tr>
+<tr class="separator:ab9d96cb94972f035f40d3dde0ef12d56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade0270b8024ebbd6d299a7b0cd1a5395" id="r_ade0270b8024ebbd6d299a7b0cd1a5395"><td class="memItemLeft" align="right" valign="top">unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade0270b8024ebbd6d299a7b0cd1a5395">getTropismPattern</a> (unsigned long long <a class="el" href="#a767bb5d3915b9c5b3a617db322df970b">value</a>)</td></tr>
+<tr class="separator:ade0270b8024ebbd6d299a7b0cd1a5395"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailný popis</h2>
+<div class="textblock"><p>Táto štruktúra reprezentuje určitú vlastnosť šachovnice pomocou 64-bitového čísla. Každý bit reprezentuje určitú pozíciu na šachovnici. </p>
+</div><h2 class="groupheader">Dokumentácia k metódam</h2>
+<a id="a2256a342032360b50ecf9c8d4d81ff67" name="a2256a342032360b50ecf9c8d4d81ff67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2256a342032360b50ecf9c8d4d81ff67">&#9670;&#160;</a></span>clearBit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BitBoard::clearBit </td>
+          <td>(</td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>x</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pre požadovanú pozíciu na šachovnici táto funkcia nastaví jej bit na hodnotu 0.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Koordinát X požadovanej pozície. </td></tr>
+    <tr><td class="paramname">y</td><td>Koordinát y požadovanej pozície. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae823ec29f0df9fb70c3c1cc2c03dc050" name="ae823ec29f0df9fb70c3c1cc2c03dc050"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae823ec29f0df9fb70c3c1cc2c03dc050">&#9670;&#160;</a></span>getBit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long long BitBoard::getBit </td>
+          <td>(</td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>x</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pre požadovanú pozíciu na šachovnici táto funkcia vráti jej bit.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Koordinát X požadovanej pozície. </td></tr>
+    <tr><td class="paramname">y</td><td>Koordinát y požadovanej pozície. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a752b6dd867835fbfdc35d5fb9da81b8e" name="a752b6dd867835fbfdc35d5fb9da81b8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a752b6dd867835fbfdc35d5fb9da81b8e">&#9670;&#160;</a></span>getKingAttack()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BitBoard::getKingAttack </td>
+          <td>(</td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>x</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Táto funkcia zistí či požadovaná pozícia je v blízkosti bitu 1.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Koordinát X požadovanej pozície. </td></tr>
+    <tr><td class="paramname">y</td><td>Koordinát y požadovanej pozície. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab9d96cb94972f035f40d3dde0ef12d56" name="ab9d96cb94972f035f40d3dde0ef12d56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9d96cb94972f035f40d3dde0ef12d56">&#9670;&#160;</a></span>getKingPattern()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long long BitBoard::getKingPattern </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Táto funkcia vytvorí masku s paternou kráľa - všetky bity 1 sú rozšírené o ich štvorcové okolie.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>Hodnota bitboardu z ktorého generujeme paternu. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a703d78299861e928c15a55985d043138" name="a703d78299861e928c15a55985d043138"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a703d78299861e928c15a55985d043138">&#9670;&#160;</a></span>getMask()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long long BitBoard::getMask </td>
+          <td>(</td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>x</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Táto funkcia vytvorí masku potrebnú na získanie bitu pre požadovanú pozíciu na šachovnici.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Koordinát X požadovanej pozície. </td></tr>
+    <tr><td class="paramname">y</td><td>Koordinát y požadovanej pozície. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac0ae17e0216bf40c841483a11755297d" name="ac0ae17e0216bf40c841483a11755297d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0ae17e0216bf40c841483a11755297d">&#9670;&#160;</a></span>getTropism()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char BitBoard::getTropism </td>
+          <td>(</td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>x</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Táto funkcia vypočíta vzdialenosť medzi požadovanou pozíciou na šachovnici a najbližším bitom 1 na bitboarde.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Koordinát X požadovanej pozície. </td></tr>
+    <tr><td class="paramname">y</td><td>Koordinát y požadovanej pozície. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ade0270b8024ebbd6d299a7b0cd1a5395" name="ade0270b8024ebbd6d299a7b0cd1a5395"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade0270b8024ebbd6d299a7b0cd1a5395">&#9670;&#160;</a></span>getTropismPattern()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long long BitBoard::getTropismPattern </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long long</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Táto funkcia vytvorí masku s paternou kráľa - všetky bity 1 sú rozšírené o ich krížové okolie.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>Hodnota bitboardu z ktorého generujeme paternu. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aca9f1bc6cdae319f7ba5549de49d877e" name="aca9f1bc6cdae319f7ba5549de49d877e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca9f1bc6cdae319f7ba5549de49d877e">&#9670;&#160;</a></span>printBits()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BitBoard::printBits </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Táto funkcia vypíše jednotlivé bity bitboardu.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Koordinát X požadovanej pozície. </td></tr>
+    <tr><td class="paramname">y</td><td>Koordinát y požadovanej pozície. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8a3535649a3ac128917031c1758096af" name="a8a3535649a3ac128917031c1758096af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a3535649a3ac128917031c1758096af">&#9670;&#160;</a></span>setBit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BitBoard::setBit </td>
+          <td>(</td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>x</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>y</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pre požadovanú pozíciu na šachovnici táto funkcia nastaví jej bit na hodnotu 1.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Koordinát X požadovanej pozície. </td></tr>
+    <tr><td class="paramname">y</td><td>Koordinát y požadovanej pozície. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentácia k dátovým členom</h2>
+<a id="a767bb5d3915b9c5b3a617db322df970b" name="a767bb5d3915b9c5b3a617db322df970b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a767bb5d3915b9c5b3a617db322df970b">&#9670;&#160;</a></span>value</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long long BitBoard::value = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>64-bitové číslo reprezentujúce určitú vlastnosť na šachovnici. </p>
+
+</div>
+</div>
+<hr/>Dokumentácia pre túto štruktúru (struct) bola generovaná z nasledujúcich súborov:<ul>
+<li><a class="el" href="bitboard_8h_source.html">bitboard.h</a></li>
+<li><b>bitboard.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generované programom&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

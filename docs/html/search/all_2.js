@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['cache_0',['cache',['../class_search_manager.html#a72513eda202572889dfb1d42469ac1b3',1,'SearchManager::cache'],['../class_transposition_cache.html#af527742a73cba577d3821b6c43ce17b8',1,'TranspositionCache::cache']]],
+  ['calculatebestmove_1',['calculateBestMove',['../class_search_manager.html#a116a698e019f52e242f9b27630f8e8bf',1,'SearchManager']]],
+  ['calculatebestmove_5fthreads_2',['calculateBestMove_threads',['../class_search_manager.html#ab2757f480978bc355bf3341358696f86',1,'SearchManager']]],
+  ['capacity_3',['capacity',['../class_transposition_cache.html#ac598df0ac2b60e85d866473540d39136',1,'TranspositionCache']]],
+  ['castling_4',['castling',['../struct_legal_move.html#adb86e512e2cc0dc905ec2c0ad6ba41a9',1,'LegalMove']]],
+  ['castling_5',['Castling',['../mobility_8h.html#ac663d85beab039663f297c3992360793',1,'mobility.h']]],
+  ['classic_6',['Classic',['../piece_8h.html#ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e',1,'piece.h']]],
+  ['clearbit_7',['clearBit',['../struct_bit_board.html#a2256a342032360b50ecf9c8d4d81ff67',1,'BitBoard']]],
+  ['clearboard_8',['clearBoard',['../class_board.html#a5f148daa03da25d40dff3fc613568d6f',1,'Board']]],
+  ['clearmoves_9',['clearMoves',['../class_move_generator.html#a4fbc5c9a0a49af3879afb14b43877c9a',1,'MoveGenerator']]],
+  ['coinflip_10',['coinFlip',['../class_random.html#abe0b220529ca9c9ccc9bd7b5305f1464',1,'Random']]],
+  ['color_11',['color',['../struct_piece.html#a8dfe0501fe95a1a7618cf5ad3b9fda69',1,'Piece']]],
+  ['colorchars_12',['colorChars',['../piece_8h.html#a3659e621cc28bdd541c3a9d65b309c90',1,'piece.cpp']]],
+  ['colors_13',['colors',['../class_board.html#a9eeccb5434e5b6f5b438b3ae4bb00c1a',1,'Board']]],
+  ['colortostring_14',['colorToString',['../piece_8h.html#aa83c6cdc7aff34aa249524d5be3bca0b',1,'piece.cpp']]],
+  ['connection_15',['connection',['../class_database_connection.html#a6929cd3ca2b048cab5db9fb50178f346',1,'DatabaseConnection']]],
+  ['connectionstring_16',['ConnectionString',['../struct_connection_string.html',1,'']]],
+  ['connectionstring_17',['connectionString',['../class_database_manager.html#a980a4b32c9d47a11d5f0fc27bad664fc',1,'DatabaseManager']]],
+  ['curdepth_18',['curDepth',['../struct_search_args.html#a90bd0fd284363f3e2617e6516ad2e6b3',1,'SearchArgs']]],
+  ['curphase_19',['curPhase',['../struct_eval_args.html#a882a727cbf8494142c1cd90785d4b506',1,'EvalArgs']]],
+  ['curturn_20',['curTurn',['../class_board.html#abfcf8d0d90b81f2038fd323f10bebd9a',1,'Board']]]
+];

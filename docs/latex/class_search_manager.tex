@@ -1,0 +1,132 @@
+\doxysection{Dokumentácia triedy Search\+Manager}
+\hypertarget{class_search_manager}{}\label{class_search_manager}\index{SearchManager@{SearchManager}}
+
+
+{\ttfamily \#include $<$searching.\+h$>$}
+
+\doxysubsubsection*{Statické verejné metódy}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::pair$<$ bool, \mbox{\hyperlink{struct_legal_move}{Legal\+Move}} $>$ \mbox{\hyperlink{class_search_manager_a116a698e019f52e242f9b27630f8e8bf}{calculate\+Best\+Move}} (\mbox{\hyperlink{class_board}{Board}} board, int depth, bool use\+Ensemble, bool debug)
+\item 
+static std\+::pair$<$ bool, \mbox{\hyperlink{struct_legal_move}{Legal\+Move}} $>$ \mbox{\hyperlink{class_search_manager_ab2757f480978bc355bf3341358696f86}{calculate\+Best\+Move\+\_\+threads}} (\mbox{\hyperlink{class_board}{Board}} board, int depth, int thread\+Count, bool use\+Ensemble, bool debug)
+\item 
+static int \mbox{\hyperlink{class_search_manager_a716990ca512d5d1785521365d2d7aa76}{minimax}} (\mbox{\hyperlink{class_board}{Board}} board, \mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}} player\+Color, \mbox{\hyperlink{struct_search_args}{Search\+Args}} search\+Args, \mbox{\hyperlink{struct_performance_args}{Performance\+Args}} \texorpdfstring{$\ast$}{*}performance\+Args, bool use\+Ensemble, bool debug)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Statické verejné atribúty}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_transposition_cache}{Transposition\+Cache}} \mbox{\hyperlink{class_search_manager_a72513eda202572889dfb1d42469ac1b3}{cache}} = \mbox{\hyperlink{class_transposition_cache}{Transposition\+Cache}}(4096)
+\item 
+static \mbox{\hyperlink{class_ensemble}{Ensemble}} \mbox{\hyperlink{class_search_manager_a71a687724619752868ee2e8395eb8b16}{ensemble}} = \mbox{\hyperlink{class_ensemble}{Ensemble}}()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Statické privátne atribúty}
+\begin{DoxyCompactItemize}
+\item 
+static const int \mbox{\hyperlink{class_search_manager_ace5562a64849495c152abbde8d5f6d2d}{q\+Limit}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailný popis}
+Trieda zodpovedná za prehľadávanie pozícií na šachovnici. 
+
+\doxysubsection{Dokumentácia k metódam}
+\Hypertarget{class_search_manager_a116a698e019f52e242f9b27630f8e8bf}\label{class_search_manager_a116a698e019f52e242f9b27630f8e8bf} 
+\index{SearchManager@{SearchManager}!calculateBestMove@{calculateBestMove}}
+\index{calculateBestMove@{calculateBestMove}!SearchManager@{SearchManager}}
+\doxysubsubsection{\texorpdfstring{calculateBestMove()}{calculateBestMove()}}
+{\footnotesize\ttfamily std\+::pair$<$ bool, \mbox{\hyperlink{struct_legal_move}{Legal\+Move}} $>$ Search\+Manager\+::calculate\+Best\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_board}{Board}}}]{board,  }\item[{int}]{depth,  }\item[{bool}]{use\+Ensemble,  }\item[{bool}]{debug }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Sériový výpočet najlepšieho pohybu.
+
+
+\begin{DoxyParams}{Parametre}
+{\em board} & Šachovnica kde hľadáme najlepší pohyb. \\
+\hline
+{\em depth} & Hĺbka do ktorej vykonávame prehľadávanie. \\
+\hline
+{\em use\+Ensemble} & Bit ktorým môžeme nastaviť či chceme namiesto štandardnej evaluačnej funkcie použiť súborové učenie. \\
+\hline
+{\em debug} & Bit ktorým môžeme nastaviť či chceme vypisovať debug správy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Vráti pár bitu, ktorý reprezentuje či sme našli legálny pohyb a najlepšieho možného pohybu. 
+\end{DoxyReturn}
+\Hypertarget{class_search_manager_ab2757f480978bc355bf3341358696f86}\label{class_search_manager_ab2757f480978bc355bf3341358696f86} 
+\index{SearchManager@{SearchManager}!calculateBestMove\_threads@{calculateBestMove\_threads}}
+\index{calculateBestMove\_threads@{calculateBestMove\_threads}!SearchManager@{SearchManager}}
+\doxysubsubsection{\texorpdfstring{calculateBestMove\_threads()}{calculateBestMove\_threads()}}
+{\footnotesize\ttfamily std\+::pair$<$ bool, \mbox{\hyperlink{struct_legal_move}{Legal\+Move}} $>$ Search\+Manager\+::calculate\+Best\+Move\+\_\+threads (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_board}{Board}}}]{board,  }\item[{int}]{depth,  }\item[{int}]{thread\+Count,  }\item[{bool}]{use\+Ensemble,  }\item[{bool}]{debug }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Paralelný výpočet najlepšieho pohybu.
+
+
+\begin{DoxyParams}{Parametre}
+{\em board} & Šachovnica kde hľadáme najlepší pohyb. \\
+\hline
+{\em depth} & Hĺbka do ktorej vykonávame prehľadávanie. \\
+\hline
+{\em thread\+Count} & Počet paralelných vlákien, ktoré hľadajú najlepší pohyb. \\
+\hline
+{\em use\+Ensemble} & Bit ktorým môžeme nastaviť či chceme namiesto štandardnej evaluačnej funkcie použiť súborové učenie. \\
+\hline
+{\em debug} & Bit ktorým môžeme nastaviť či chceme vypisovať debug správy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Vráti pár bitu, ktorý reprezentuje či sme našli legálny pohyb a najlepšieho možného pohybu. 
+\end{DoxyReturn}
+\Hypertarget{class_search_manager_a716990ca512d5d1785521365d2d7aa76}\label{class_search_manager_a716990ca512d5d1785521365d2d7aa76} 
+\index{SearchManager@{SearchManager}!minimax@{minimax}}
+\index{minimax@{minimax}!SearchManager@{SearchManager}}
+\doxysubsubsection{\texorpdfstring{minimax()}{minimax()}}
+{\footnotesize\ttfamily int Search\+Manager\+::minimax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_board}{Board}}}]{board,  }\item[{\mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}}}]{player\+Color,  }\item[{\mbox{\hyperlink{struct_search_args}{Search\+Args}}}]{search\+Args,  }\item[{\mbox{\hyperlink{struct_performance_args}{Performance\+Args}} \texorpdfstring{$\ast$}{*}}]{performance\+Args,  }\item[{bool}]{use\+Ensemble,  }\item[{bool}]{debug }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Rekurzívny algoritmus, ktorý vypočíta hodnotu najlepšieho možného pohybu.
+
+
+\begin{DoxyParams}{Parametre}
+{\em board} & Šachovnica kde hľadáme najlepší pohyb. \\
+\hline
+{\em player\+Color} & Farba maximalizujúceho hráča. \\
+\hline
+{\em search\+Args} & Argumenty prehľadávania. \\
+\hline
+{\em performance\+Args} & Výkonnostné argumenty. \\
+\hline
+{\em use\+Ensemble} & Bit ktorým môžeme nastaviť či chceme namiesto štandardnej evaluačnej funkcie použiť súborové učenie. \\
+\hline
+{\em debug} & Bit ktorým môžeme nastaviť či chceme vypisovať debug správy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Hodnota najlepšieho pohybu. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Dokumentácia k dátovým členom}
+\Hypertarget{class_search_manager_a72513eda202572889dfb1d42469ac1b3}\label{class_search_manager_a72513eda202572889dfb1d42469ac1b3} 
+\index{SearchManager@{SearchManager}!cache@{cache}}
+\index{cache@{cache}!SearchManager@{SearchManager}}
+\doxysubsubsection{\texorpdfstring{cache}{cache}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_transposition_cache}{Transposition\+Cache}} Search\+Manager\+::cache = \mbox{\hyperlink{class_transposition_cache}{Transposition\+Cache}}(4096)\hspace{0.3cm}{\ttfamily [static]}}
+
+Cache s transpozíciami. \Hypertarget{class_search_manager_a71a687724619752868ee2e8395eb8b16}\label{class_search_manager_a71a687724619752868ee2e8395eb8b16} 
+\index{SearchManager@{SearchManager}!ensemble@{ensemble}}
+\index{ensemble@{ensemble}!SearchManager@{SearchManager}}
+\doxysubsubsection{\texorpdfstring{ensemble}{ensemble}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_ensemble}{Ensemble}} Search\+Manager\+::ensemble = \mbox{\hyperlink{class_ensemble}{Ensemble}}()\hspace{0.3cm}{\ttfamily [static]}}
+
+Súbor modelov, ktorý sa používa v \textquotesingle{}ensemble\textquotesingle{} AI na evaluáciu. \Hypertarget{class_search_manager_ace5562a64849495c152abbde8d5f6d2d}\label{class_search_manager_ace5562a64849495c152abbde8d5f6d2d} 
+\index{SearchManager@{SearchManager}!qLimit@{qLimit}}
+\index{qLimit@{qLimit}!SearchManager@{SearchManager}}
+\doxysubsubsection{\texorpdfstring{qLimit}{qLimit}}
+{\footnotesize\ttfamily const int Search\+Manager\+::q\+Limit = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Limit Q-\/searchu (zabraňuje horizont efekt). 
+
+Dokumentácia pre túto triedu bola generovaná z nasledujúcich súborov\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{searching_8h}{searching.\+h}}\item 
+searching.\+cpp\end{DoxyCompactItemize}

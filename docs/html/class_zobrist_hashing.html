@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sk">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Malakh: Dokumentácia triedy ZobristHashing</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Malakh
+   </div>
+   <div id="projectbrief">Šachový engine na hru s neštandardnými šachovými pravidlami</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generované programom Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Hľadať');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Načítam...</div>
+<div class="SRStatus" id="Searching">Vyhľadávam...</div>
+<div class="SRStatus" id="NoMatches">Nič sa nenašlo</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-static-methods">Statické verejné metódy</a> &#124;
+<a href="#pub-static-attribs">Statické verejné atribúty</a> &#124;
+<a href="#pri-static-methods">Statické privátne metódy</a> &#124;
+<a href="#pri-static-attribs">Statické privátne atribúty</a> &#124;
+<a href="class_zobrist_hashing-members.html">Zoznam všetkých členov</a>  </div>
+  <div class="headertitle"><div class="title">Dokumentácia triedy ZobristHashing</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="hashing_8h_source.html">hashing.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Statické verejné metódy</h2></td></tr>
+<tr class="memitem:ae01d3424e3410cdf6ab57c49b9434841" id="r_ae01d3424e3410cdf6ab57c49b9434841"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae01d3424e3410cdf6ab57c49b9434841">init</a> ()</td></tr>
+<tr class="separator:ae01d3424e3410cdf6ab57c49b9434841"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Statické verejné atribúty</h2></td></tr>
+<tr class="memitem:aad2247cfc6b057702a7f423d000ce951" id="r_aad2247cfc6b057702a7f423d000ce951"><td class="memItemLeft" align="right" valign="top">static unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad2247cfc6b057702a7f423d000ce951">squares</a> [64 *2 *6]</td></tr>
+<tr class="separator:aad2247cfc6b057702a7f423d000ce951"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8bc646b666dc3453e54cd40c9aa8430" id="r_ab8bc646b666dc3453e54cd40c9aa8430"><td class="memItemLeft" align="right" valign="top">static unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8bc646b666dc3453e54cd40c9aa8430">notMoved</a> [64]</td></tr>
+<tr class="separator:ab8bc646b666dc3453e54cd40c9aa8430"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb10761f74d28b3b28838c5c640a236b" id="r_aeb10761f74d28b3b28838c5c640a236b"><td class="memItemLeft" align="right" valign="top">static unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb10761f74d28b3b28838c5c640a236b">ghosts</a> [64 *64]</td></tr>
+<tr class="separator:aeb10761f74d28b3b28838c5c640a236b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a069448b084d399bdfe612a6208a0ca42" id="r_a069448b084d399bdfe612a6208a0ca42"><td class="memItemLeft" align="right" valign="top">static unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a069448b084d399bdfe612a6208a0ca42">turn</a></td></tr>
+<tr class="separator:a069448b084d399bdfe612a6208a0ca42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
+Statické privátne metódy</h2></td></tr>
+<tr class="memitem:a98ee3b247c159141fc28b358afdcebe5" id="r_a98ee3b247c159141fc28b358afdcebe5"><td class="memItemLeft" align="right" valign="top">static unsigned long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a98ee3b247c159141fc28b358afdcebe5">rand64</a> ()</td></tr>
+<tr class="separator:a98ee3b247c159141fc28b358afdcebe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+Statické privátne atribúty</h2></td></tr>
+<tr class="memitem:a75255ddfb07caee03d41e133773c002c" id="r_a75255ddfb07caee03d41e133773c002c"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75255ddfb07caee03d41e133773c002c">isInitalized</a> = false</td></tr>
+<tr class="separator:a75255ddfb07caee03d41e133773c002c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailný popis</h2>
+<div class="textblock"><p>Trieda zodpovedná za implementáciu zobristovho hashovania. </p>
+</div><h2 class="groupheader">Dokumentácia k metódam</h2>
+<a id="ae01d3424e3410cdf6ab57c49b9434841" name="ae01d3424e3410cdf6ab57c49b9434841"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae01d3424e3410cdf6ab57c49b9434841">&#9670;&#160;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ZobristHashing::init </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Pomocou tejto funkcie inicializujeme hodnoty zobristovho hashovania. </p>
+
+</div>
+</div>
+<a id="a98ee3b247c159141fc28b358afdcebe5" name="a98ee3b247c159141fc28b358afdcebe5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98ee3b247c159141fc28b358afdcebe5">&#9670;&#160;</a></span>rand64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long long ZobristHashing::rand64 </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Generácia pseudonáhodného čísla.</p>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>64-bitové číslo </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentácia k dátovým členom</h2>
+<a id="aeb10761f74d28b3b28838c5c640a236b" name="aeb10761f74d28b3b28838c5c640a236b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb10761f74d28b3b28838c5c640a236b">&#9670;&#160;</a></span>ghosts</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long long ZobristHashing::ghosts</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Hodnoty reprezentujúce špeciálnu figúrku na danej pozícii. </p>
+
+</div>
+</div>
+<a id="a75255ddfb07caee03d41e133773c002c" name="a75255ddfb07caee03d41e133773c002c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75255ddfb07caee03d41e133773c002c">&#9670;&#160;</a></span>isInitalized</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ZobristHashing::isInitalized = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Bit pomocou ktorého vieme či sme vykonali inicializáciu. </p>
+
+</div>
+</div>
+<a id="ab8bc646b666dc3453e54cd40c9aa8430" name="ab8bc646b666dc3453e54cd40c9aa8430"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8bc646b666dc3453e54cd40c9aa8430">&#9670;&#160;</a></span>notMoved</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long long ZobristHashing::notMoved</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Hodnoty reprezentujúce nepohnuté figúrky na danej pozícii. </p>
+
+</div>
+</div>
+<a id="aad2247cfc6b057702a7f423d000ce951" name="aad2247cfc6b057702a7f423d000ce951"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad2247cfc6b057702a7f423d000ce951">&#9670;&#160;</a></span>squares</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long long ZobristHashing::squares</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Hodnoty reprezentujúce konkrétne figúrky na danej pozícii. </p>
+
+</div>
+</div>
+<a id="a069448b084d399bdfe612a6208a0ca42" name="a069448b084d399bdfe612a6208a0ca42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a069448b084d399bdfe612a6208a0ca42">&#9670;&#160;</a></span>turn</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long long ZobristHashing::turn</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Hodnota reprezentujúca hráča na rade. </p>
+
+</div>
+</div>
+<hr/>Dokumentácia pre túto triedu bola generovaná z nasledujúcich súborov:<ul>
+<li><a class="el" href="hashing_8h_source.html">hashing.h</a></li>
+<li><b>hashing.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generované programom&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

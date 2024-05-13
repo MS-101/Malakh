@@ -1,0 +1,35 @@
+\doxysection{transpositions.\+h}
+\hypertarget{transpositions_8h_source}{}\label{transpositions_8h_source}\index{transpositions.h@{transpositions.h}}
+\mbox{\hyperlink{transpositions_8h}{Zobraziť dokumentáciu tohoto súboru.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************/}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_transposition}{Transposition}}\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_transposition_aa0782a30af5ff30812adaaa293f246e7}{value}}\ =\ 0;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_transposition_aea99a0598f0b6472061f35000c7f76fe}{depth}}\ =\ -\/1;}
+\DoxyCodeLine{00028\ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_transposition_cache}{TranspositionCache}}\ \{}
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{class_transposition_cache_aa03551ed534cb29fdf51d6fe1243ec65}{TranspositionCache}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_transposition_cache_ac598df0ac2b60e85d866473540d39136}{capacity}});}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{struct_transposition}{Transposition}}\ \mbox{\hyperlink{class_transposition_cache_a5dec3183dbb4ca40a8f0c55e1db577df}{get}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ key);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_transposition_cache_ac4cf9795e807843763b769b90273ac2f}{put}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ key,\ \mbox{\hyperlink{struct_transposition}{Transposition}}\ value);}
+\DoxyCodeLine{00057\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00061\ \ \ \ \ std::unordered\_map<unsigned\ long\ long,\ Transposition>\ \mbox{\hyperlink{class_transposition_cache_af527742a73cba577d3821b6c43ce17b8}{cache}};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00066\ \ \ \ \ std::list<unsigned\ long\ long>\ \mbox{\hyperlink{class_transposition_cache_a73bcf5ea6ceb0f0860c22cf72185fdc3}{order}};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_transposition_cache_ac598df0ac2b60e85d866473540d39136}{capacity}};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00076\ \ \ \ \ std::mutex*\ \mbox{\hyperlink{class_transposition_cache_a53744c04e7a924ff6af2900f3f20300d}{mutex}};}
+\DoxyCodeLine{00077\ \};}
+
+\end{DoxyCode}

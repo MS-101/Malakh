@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sk">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Malakh: Malakh</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Malakh
+   </div>
+   <div id="projectbrief">Šachový engine na hru s neštandardnými šachovými pravidlami</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generované programom Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Hľadať');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Načítam...</div>
+<div class="SRStatus" id="Searching">Vyhľadávam...</div>
+<div class="SRStatus" id="NoMatches">Nič sa nenašlo</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">Malakh </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="md__c_1_2_users_2marti_2_desktop_2_skola_2_d_p_2_implementacia_2_malakh_2_r_e_a_d_m_e"></a> Tento projekt je šachový engine, ktorý je schopný hrať s neštandardnými šachovými pravidlami. Tento engine sa dá ovládať pomocou UCI príkazov.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+AI režimy</h1>
+<p>Tento engine má implementované nasledujúce AI režimy:</p>
+<ul>
+<li><b>basic</b> - využíva staticku evaluačnú funkciu na evaluáciu šachovej pozície</li>
+<li><b>ensemble</b> - využíva súborové učenie na evaluáciu šachovej pozície. Modely súborového učenia boli vytrénované v skripte <a href="https://github.com/MS-101/Malakh-Trainer">Malakh Trainer</a>.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md2"></a>
+UCI príkazy</h1>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Engine -&gt; GUI</h2>
+<p>Zoznam štandardných UCI príkazov:</p>
+<ul>
+<li><b>id</b> - pomocou tohto príkazu sa engine identifikuje po prijatí uci príkazu<ul>
+<li><b>id name [name]</b> - engine odošle enginu svoje meno (id name Malakh)</li>
+<li><b>id author [author]</b> - engine odošle enginu svojho autora (id author Martin Svab)</li>
+</ul>
+</li>
+<li><b>option name [name] type [type] ...</b> - pomocou tohto príkazu engine odošle nastaviteľnú konfiguráciu po prijatí uci príkazu (napr. option name WhitePawn type combo default Classic var Classic var Red var Blue)</li>
+<li><b>uciok</b> - po odoslaní identifikácie, konfigurovateľných nastavení a mobilít sa odošle tento príkaz</li>
+<li><b>readyok</b> - tento príkaz je odoslaný ako odpoveď na 'isready' správu</li>
+<li><b>bestmove [bestmove]</b> - tento príkaz slúži ako odpoveď na 'go' správu. Po ukončení prehľadávania sa odošle najlepší možný ťah hráča. (napr. bestmove d2d4_Hd3)</li>
+</ul>
+<p>Zoznam dodatočných UCI príkazov:</p>
+<ul>
+<li><b>mobility [piece] [essence] [type] [start_x] [start_y] [direction_x] [direction_y] [limit]</b> - týmito príkazmi sa odošle zoznam mobilít konkrétnej figúrky s určitou esenciou (napr. mobility Pawn Classic Move 0 1 0 0 1).</li>
+<li><b>legalmoves [legalmove1] [legalmove2] ...</b> - týmto príkazom sa odošle zoznam legálnych pohybov hráča, ktorý je aktuálne na ťahu (napr. legalmoves a7a6 a7a5_Ha6 b7b6 b7b5_Hb6 ...)</li>
+<li><b>check</b> - po príkaze 'position' ak v novej pozícii je kráľ napadnutý, tak engine na to upozorní GUI pomocou tohto príkazu</li>
+<li><b>result [result]</b> - po príkaze 'legalmoves' a po príkaze 'go' ak legálne pohyby neexistujú tak engine odošle GUI výsledok hry týmto príkazom<ul>
+<li><b>result White</b> - hra bola ukončená výhrou bieleho hráča</li>
+<li><b>result Black</b> - hra bola ukončená výhrou čierneho hráča</li>
+<li><b>result Stalemate</b> - hra bola ukončená remízou</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md4"></a>
+GUI -&gt; Engine</h2>
+<p>Zoznam štandardných UCI príkazov:</p>
+<ul>
+<li><b>uci</b> - engine sa prepne do UCI režimu a na túto správu odpovie svojou identifikáciou, odoslaním konfigurovateľných nastavení a mobilít figúrok. Po odoslaní všetkých potrebných informácii enginu odošle 'uciok' správu.</li>
+<li><b>isready</b> - pred prvým prehľadávaním pozície je nutné poslať tento príkaz aby si Engine inicializoval hodnoty ako zobrist kľúče. Engine po dokončení inicializácie odpovie správou 'readyok'.</li>
+<li><b>setoption name [name] value [value]</b> - pomocou tohto príkazu sa zmení konfigurácia enginu. Aktuálne sa tento príkaz využíva pred 'ucinewgame' príkazom na nastavenie esencií figúrok (napr. setoption name WhitePawn value Red)</li>
+<li><b>ucinewgame</b> - pre spustenie novej hry sa použije tento príkaz. Engine spustí novú hru s esenciami, ktoré boli predtým nastavené pomocou 'setoption' príkazov.</li>
+<li><b>position [fen | startpos | curpos] moves ...</b> - týmto príkazom môžeme nastaviť aktuálnu pozíciu v hre (napr. position curpos moves e2e4). Štandardný protokol UCI nepodporuje pozíciu 'curpos'. Tento príkaz bol pre účely tejto implementácie modifikovaný. V aktuálnej verzii implementácia nepodporuje fen stringy.</li>
+<li><b>go</b> - týmto príkazom povieme enginu aby vyhľadal najlepší ťah v aktuálnej pozícii, ktorá bola nastavená príkazom 'position'. V aktuálnej verzii je podporovaný tento príkaz len s parametrom 'depth' (napr. go depth 2).</li>
+<li><b>quit</b> - engine sa po prijatí tejto správy vypne</li>
+</ul>
+<p>Zoznam dodatočných UCI príkazov:</p>
+<ul>
+<li><b>legalmoves</b> - týmto príkazom si GUI vypýta od enginu zoznam legálnych pohybov hráča, ktorý je aktuálne na ťahu. Engine na to odpovie vlastnou 'legalmoves' správou. </li>
+</ul>
+</div></div><!-- PageDoc -->
+<a href="doxygen_crawl.html"/>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generované programom&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

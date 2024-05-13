@@ -1,0 +1,364 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\babel@toc {slovak}{}\relax 
+\contentsline {chapter}{\numberline {1}Malakh}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}AI režimy}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}UCI príkazy}{1}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Engine -\/$>$ GUI}{1}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}GUI -\/$>$ Engine}{2}{subsection.1.2.2}%
+\contentsline {chapter}{\numberline {2}Register tried}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Zoznam tried}{3}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Register súborov}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Zoznam súborov}{5}{section.3.1}%
+\contentsline {chapter}{\numberline {4}Dokumentácia tried}{7}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Dokumentácia štruktúry Bit\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Board}{7}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Detailný popis}{7}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Dokumentácia k metódam}{7}{subsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.1}clearBit()}{7}{subsubsection.4.1.2.1}%
+\contentsline {subsubsection}{\numberline {4.1.2.2}getBit()}{8}{subsubsection.4.1.2.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.3}getKingAttack()}{8}{subsubsection.4.1.2.3}%
+\contentsline {subsubsection}{\numberline {4.1.2.4}getKingPattern()}{8}{subsubsection.4.1.2.4}%
+\contentsline {subsubsection}{\numberline {4.1.2.5}getMask()}{8}{subsubsection.4.1.2.5}%
+\contentsline {subsubsection}{\numberline {4.1.2.6}getTropism()}{9}{subsubsection.4.1.2.6}%
+\contentsline {subsubsection}{\numberline {4.1.2.7}getTropismPattern()}{9}{subsubsection.4.1.2.7}%
+\contentsline {subsubsection}{\numberline {4.1.2.8}printBits()}{9}{subsubsection.4.1.2.8}%
+\contentsline {subsubsection}{\numberline {4.1.2.9}setBit()}{10}{subsubsection.4.1.2.9}%
+\contentsline {subsection}{\numberline {4.1.3}Dokumentácia k dátovým členom}{10}{subsection.4.1.3}%
+\contentsline {subsubsection}{\numberline {4.1.3.1}value}{10}{subsubsection.4.1.3.1}%
+\contentsline {section}{\numberline {4.2}Dokumentácia triedy Board}{10}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Detailný popis}{11}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Dokumentácia k metódam}{11}{subsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.2.1}addPiece()}{11}{subsubsection.4.2.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2.2}clearBoard()}{12}{subsubsection.4.2.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.2.3}evalBoard()}{12}{subsubsection.4.2.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.2.4}getLegalMoves()}{12}{subsubsection.4.2.2.4}%
+\contentsline {subsubsection}{\numberline {4.2.2.5}getPiece()}{12}{subsubsection.4.2.2.5}%
+\contentsline {subsubsection}{\numberline {4.2.2.6}getResult()}{13}{subsubsection.4.2.2.6}%
+\contentsline {subsubsection}{\numberline {4.2.2.7}initBoard()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{13}{subsubsection.4.2.2.7}%
+\contentsline {subsubsection}{\numberline {4.2.2.8}initBoard()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{13}{subsubsection.4.2.2.8}%
+\contentsline {subsubsection}{\numberline {4.2.2.9}isQuiet()}{13}{subsubsection.4.2.2.9}%
+\contentsline {subsubsection}{\numberline {4.2.2.10}makeMove()\hspace {0.1cm}{\footnotesize \ttfamily [1/3]}}{14}{subsubsection.4.2.2.10}%
+\contentsline {subsubsection}{\numberline {4.2.2.11}makeMove()\hspace {0.1cm}{\footnotesize \ttfamily [2/3]}}{14}{subsubsection.4.2.2.11}%
+\contentsline {subsubsection}{\numberline {4.2.2.12}makeMove()\hspace {0.1cm}{\footnotesize \ttfamily [3/3]}}{14}{subsubsection.4.2.2.12}%
+\contentsline {subsubsection}{\numberline {4.2.2.13}printBoard()}{15}{subsubsection.4.2.2.13}%
+\contentsline {subsubsection}{\numberline {4.2.2.14}printMoves()}{15}{subsubsection.4.2.2.14}%
+\contentsline {subsubsection}{\numberline {4.2.2.15}refreshAggregations()}{15}{subsubsection.4.2.2.15}%
+\contentsline {subsubsection}{\numberline {4.2.2.16}removePiece()}{15}{subsubsection.4.2.2.16}%
+\contentsline {subsubsection}{\numberline {4.2.2.17}setEssenceConfig()}{15}{subsubsection.4.2.2.17}%
+\contentsline {subsubsection}{\numberline {4.2.2.18}setInputArrayColor()}{16}{subsubsection.4.2.2.18}%
+\contentsline {subsubsection}{\numberline {4.2.2.19}setInputArrayPiece()}{16}{subsubsection.4.2.2.19}%
+\contentsline {subsubsection}{\numberline {4.2.2.20}toString()}{16}{subsubsection.4.2.2.20}%
+\contentsline {subsection}{\numberline {4.2.3}Dokumentácia k dátovým členom}{16}{subsection.4.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.3.1}allPieces}{16}{subsubsection.4.2.3.1}%
+\contentsline {subsubsection}{\numberline {4.2.3.2}attacks}{17}{subsubsection.4.2.3.2}%
+\contentsline {subsubsection}{\numberline {4.2.3.3}colors}{17}{subsubsection.4.2.3.3}%
+\contentsline {subsubsection}{\numberline {4.2.3.4}curTurn}{17}{subsubsection.4.2.3.4}%
+\contentsline {subsubsection}{\numberline {4.2.3.5}essenceConfig}{17}{subsubsection.4.2.3.5}%
+\contentsline {subsubsection}{\numberline {4.2.3.6}essenceCounts}{17}{subsubsection.4.2.3.6}%
+\contentsline {subsubsection}{\numberline {4.2.3.7}eval}{17}{subsubsection.4.2.3.7}%
+\contentsline {subsubsection}{\numberline {4.2.3.8}fullmoveClock}{17}{subsubsection.4.2.3.8}%
+\contentsline {subsubsection}{\numberline {4.2.3.9}ghost}{17}{subsubsection.4.2.3.9}%
+\contentsline {subsubsection}{\numberline {4.2.3.10}halfmoveClock}{18}{subsubsection.4.2.3.10}%
+\contentsline {subsubsection}{\numberline {4.2.3.11}hash}{18}{subsubsection.4.2.3.11}%
+\contentsline {subsubsection}{\numberline {4.2.3.12}inputArray}{18}{subsubsection.4.2.3.12}%
+\contentsline {subsubsection}{\numberline {4.2.3.13}moves}{18}{subsubsection.4.2.3.13}%
+\contentsline {subsubsection}{\numberline {4.2.3.14}movesValidated}{18}{subsubsection.4.2.3.14}%
+\contentsline {subsubsection}{\numberline {4.2.3.15}notMoved}{18}{subsubsection.4.2.3.15}%
+\contentsline {subsubsection}{\numberline {4.2.3.16}pieceCounts}{18}{subsubsection.4.2.3.16}%
+\contentsline {subsubsection}{\numberline {4.2.3.17}pieces}{19}{subsubsection.4.2.3.17}%
+\contentsline {section}{\numberline {4.3}Dokumentácia štruktúry Board\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Hash}{19}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Detailný popis}{19}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Dokumentácia k metódam}{19}{subsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.1}switchGhost()}{19}{subsubsection.4.3.2.1}%
+\contentsline {subsubsection}{\numberline {4.3.2.2}switchNotMoved()}{20}{subsubsection.4.3.2.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.3}switchSquare()}{20}{subsubsection.4.3.2.3}%
+\contentsline {subsubsection}{\numberline {4.3.2.4}switchTurn()}{20}{subsubsection.4.3.2.4}%
+\contentsline {subsection}{\numberline {4.3.3}Dokumentácia k dátovým členom}{20}{subsection.4.3.3}%
+\contentsline {subsubsection}{\numberline {4.3.3.1}value}{20}{subsubsection.4.3.3.1}%
+\contentsline {section}{\numberline {4.4}Dokumentácia štruktúry Connection\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}String}{21}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Detailný popis}{21}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Dokumentácia k metódam}{21}{subsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.2.1}toString()}{21}{subsubsection.4.4.2.1}%
+\contentsline {subsection}{\numberline {4.4.3}Dokumentácia k dátovým členom}{21}{subsection.4.4.3}%
+\contentsline {subsubsection}{\numberline {4.4.3.1}hostaddr}{21}{subsubsection.4.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.4.3.2}password}{21}{subsubsection.4.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.4.3.3}port}{22}{subsubsection.4.4.3.3}%
+\contentsline {subsubsection}{\numberline {4.4.3.4}user}{22}{subsubsection.4.4.3.4}%
+\contentsline {section}{\numberline {4.5}Dokumentácia triedy Database\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Connection}{22}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Detailný popis}{22}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Dokumentácia konštruktoru a deštruktoru}{22}{subsection.4.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.2.1}DatabaseConnection()}{22}{subsubsection.4.5.2.1}%
+\contentsline {subsection}{\numberline {4.5.3}Dokumentácia k metódam}{22}{subsection.4.5.3}%
+\contentsline {subsubsection}{\numberline {4.5.3.1}addBoardResult()}{22}{subsubsection.4.5.3.1}%
+\contentsline {subsubsection}{\numberline {4.5.3.2}getIdEssenceConfig()}{23}{subsubsection.4.5.3.2}%
+\contentsline {subsubsection}{\numberline {4.5.3.3}updateScores()}{23}{subsubsection.4.5.3.3}%
+\contentsline {subsection}{\numberline {4.5.4}Dokumentácia k dátovým členom}{23}{subsection.4.5.4}%
+\contentsline {subsubsection}{\numberline {4.5.4.1}connection}{23}{subsubsection.4.5.4.1}%
+\contentsline {subsubsection}{\numberline {4.5.4.2}txn}{23}{subsubsection.4.5.4.2}%
+\contentsline {section}{\numberline {4.6}Dokumentácia triedy Database\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Manager}{24}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Detailný popis}{24}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Dokumentácia k metódam}{24}{subsection.4.6.2}%
+\contentsline {subsubsection}{\numberline {4.6.2.1}initConnectionString()}{24}{subsubsection.4.6.2.1}%
+\contentsline {subsubsection}{\numberline {4.6.2.2}loadEnvFromFile()}{24}{subsubsection.4.6.2.2}%
+\contentsline {subsection}{\numberline {4.6.3}Dokumentácia k dátovým členom}{24}{subsection.4.6.3}%
+\contentsline {subsubsection}{\numberline {4.6.3.1}connectionString}{24}{subsubsection.4.6.3.1}%
+\contentsline {section}{\numberline {4.7}Dokumentácia triedy Ensemble}{25}{section.4.7}%
+\contentsline {subsection}{\numberline {4.7.1}Detailný popis}{25}{subsection.4.7.1}%
+\contentsline {subsection}{\numberline {4.7.2}Dokumentácia konštruktoru a deštruktoru}{25}{subsection.4.7.2}%
+\contentsline {subsubsection}{\numberline {4.7.2.1}Ensemble()}{25}{subsubsection.4.7.2.1}%
+\contentsline {subsection}{\numberline {4.7.3}Dokumentácia k metódam}{25}{subsection.4.7.3}%
+\contentsline {subsubsection}{\numberline {4.7.3.1}forward()}{25}{subsubsection.4.7.3.1}%
+\contentsline {subsection}{\numberline {4.7.4}Dokumentácia k dátovým členom}{26}{subsection.4.7.4}%
+\contentsline {subsubsection}{\numberline {4.7.4.1}models}{26}{subsubsection.4.7.4.1}%
+\contentsline {section}{\numberline {4.8}Dokumentácia štruktúry Essence\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Args}{26}{section.4.8}%
+\contentsline {subsection}{\numberline {4.8.1}Detailný popis}{26}{subsection.4.8.1}%
+\contentsline {subsection}{\numberline {4.8.2}Dokumentácia k dátovým členom}{27}{subsection.4.8.2}%
+\contentsline {subsubsection}{\numberline {4.8.2.1}blackBishop}{27}{subsubsection.4.8.2.1}%
+\contentsline {subsubsection}{\numberline {4.8.2.2}blackKnight}{27}{subsubsection.4.8.2.2}%
+\contentsline {subsubsection}{\numberline {4.8.2.3}blackPawn}{27}{subsubsection.4.8.2.3}%
+\contentsline {subsubsection}{\numberline {4.8.2.4}blackRook}{27}{subsubsection.4.8.2.4}%
+\contentsline {subsubsection}{\numberline {4.8.2.5}whiteBishop}{27}{subsubsection.4.8.2.5}%
+\contentsline {subsubsection}{\numberline {4.8.2.6}whiteKnight}{27}{subsubsection.4.8.2.6}%
+\contentsline {subsubsection}{\numberline {4.8.2.7}whitePawn}{27}{subsubsection.4.8.2.7}%
+\contentsline {subsubsection}{\numberline {4.8.2.8}whiteRook}{28}{subsubsection.4.8.2.8}%
+\contentsline {section}{\numberline {4.9}Dokumentácia štruktúry Eval\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Args}{28}{section.4.9}%
+\contentsline {subsection}{\numberline {4.9.1}Detailný popis}{28}{subsection.4.9.1}%
+\contentsline {subsection}{\numberline {4.9.2}Dokumentácia k dátovým členom}{28}{subsection.4.9.2}%
+\contentsline {subsubsection}{\numberline {4.9.2.1}attCount}{28}{subsubsection.4.9.2.1}%
+\contentsline {subsubsection}{\numberline {4.9.2.2}attWeight}{28}{subsubsection.4.9.2.2}%
+\contentsline {subsubsection}{\numberline {4.9.2.3}curPhase}{28}{subsubsection.4.9.2.3}%
+\contentsline {subsubsection}{\numberline {4.9.2.4}eg\_pcsqEval}{29}{subsubsection.4.9.2.4}%
+\contentsline {subsubsection}{\numberline {4.9.2.5}matEval}{29}{subsubsection.4.9.2.5}%
+\contentsline {subsubsection}{\numberline {4.9.2.6}mg\_pcsqEval}{29}{subsubsection.4.9.2.6}%
+\contentsline {subsubsection}{\numberline {4.9.2.7}mobCount}{29}{subsubsection.4.9.2.7}%
+\contentsline {section}{\numberline {4.10}Dokumentácia triedy Evaluation}{29}{section.4.10}%
+\contentsline {subsection}{\numberline {4.10.1}Detailný popis}{30}{subsection.4.10.1}%
+\contentsline {subsection}{\numberline {4.10.2}Dokumentácia k metódam}{30}{subsection.4.10.2}%
+\contentsline {subsubsection}{\numberline {4.10.2.1}get\_eg\_pcsq()}{30}{subsubsection.4.10.2.1}%
+\contentsline {subsubsection}{\numberline {4.10.2.2}get\_mg\_pcsq()}{30}{subsubsection.4.10.2.2}%
+\contentsline {subsection}{\numberline {4.10.3}Dokumentácia k dátovým členom}{31}{subsection.4.10.3}%
+\contentsline {subsubsection}{\numberline {4.10.3.1}eg\_pcsq}{31}{subsubsection.4.10.3.1}%
+\contentsline {subsubsection}{\numberline {4.10.3.2}eg\_pieceMobWeights}{31}{subsubsection.4.10.3.2}%
+\contentsline {subsubsection}{\numberline {4.10.3.3}eg\_pieceTropismWeights}{31}{subsubsection.4.10.3.3}%
+\contentsline {subsubsection}{\numberline {4.10.3.4}mg\_pcsq}{31}{subsubsection.4.10.3.4}%
+\contentsline {subsubsection}{\numberline {4.10.3.5}mg\_pieceMobWeights}{31}{subsubsection.4.10.3.5}%
+\contentsline {subsubsection}{\numberline {4.10.3.6}mg\_pieceTropismWeights}{31}{subsubsection.4.10.3.6}%
+\contentsline {subsubsection}{\numberline {4.10.3.7}pieceAttWeights}{31}{subsubsection.4.10.3.7}%
+\contentsline {subsubsection}{\numberline {4.10.3.8}pieceMatValues}{32}{subsubsection.4.10.3.8}%
+\contentsline {subsubsection}{\numberline {4.10.3.9}pieceMobPenalties}{32}{subsubsection.4.10.3.9}%
+\contentsline {subsubsection}{\numberline {4.10.3.10}piecePhaseValues}{32}{subsubsection.4.10.3.10}%
+\contentsline {subsubsection}{\numberline {4.10.3.11}safetyTable}{32}{subsubsection.4.10.3.11}%
+\contentsline {subsubsection}{\numberline {4.10.3.12}startPhase}{32}{subsubsection.4.10.3.12}%
+\contentsline {section}{\numberline {4.11}Dokumentácia triedy Fairy\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Stockfish}{33}{section.4.11}%
+\contentsline {subsection}{\numberline {4.11.1}Detailný popis}{33}{subsection.4.11.1}%
+\contentsline {subsection}{\numberline {4.11.2}Dokumentácia k metódam}{33}{subsection.4.11.2}%
+\contentsline {subsubsection}{\numberline {4.11.2.1}exit()}{33}{subsubsection.4.11.2.1}%
+\contentsline {subsubsection}{\numberline {4.11.2.2}receiveResponse()}{33}{subsubsection.4.11.2.2}%
+\contentsline {subsubsection}{\numberline {4.11.2.3}sendCommand()}{33}{subsubsection.4.11.2.3}%
+\contentsline {subsubsection}{\numberline {4.11.2.4}setConfigFile()}{34}{subsubsection.4.11.2.4}%
+\contentsline {subsubsection}{\numberline {4.11.2.5}start()}{34}{subsubsection.4.11.2.5}%
+\contentsline {subsubsection}{\numberline {4.11.2.6}waitForResponse()}{34}{subsubsection.4.11.2.6}%
+\contentsline {section}{\numberline {4.12}Dokumentácia štruktúry Ghost}{35}{section.4.12}%
+\contentsline {subsection}{\numberline {4.12.1}Detailný popis}{35}{subsection.4.12.1}%
+\contentsline {subsection}{\numberline {4.12.2}Dokumentácia k dátovým členom}{35}{subsection.4.12.2}%
+\contentsline {subsubsection}{\numberline {4.12.2.1}parentX}{35}{subsubsection.4.12.2.1}%
+\contentsline {subsubsection}{\numberline {4.12.2.2}parentY}{35}{subsubsection.4.12.2.2}%
+\contentsline {subsubsection}{\numberline {4.12.2.3}x}{35}{subsubsection.4.12.2.3}%
+\contentsline {subsubsection}{\numberline {4.12.2.4}y}{36}{subsubsection.4.12.2.4}%
+\contentsline {section}{\numberline {4.13}Dokumentácia štruktúry Legal\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Move}{36}{section.4.13}%
+\contentsline {subsection}{\numberline {4.13.1}Detailný popis}{36}{subsection.4.13.1}%
+\contentsline {subsection}{\numberline {4.13.2}Dokumentácia konštruktoru a deštruktoru}{36}{subsection.4.13.2}%
+\contentsline {subsubsection}{\numberline {4.13.2.1}LegalMove()\hspace {0.1cm}{\footnotesize \ttfamily [1/3]}}{36}{subsubsection.4.13.2.1}%
+\contentsline {subsubsection}{\numberline {4.13.2.2}LegalMove()\hspace {0.1cm}{\footnotesize \ttfamily [2/3]}}{36}{subsubsection.4.13.2.2}%
+\contentsline {subsubsection}{\numberline {4.13.2.3}LegalMove()\hspace {0.1cm}{\footnotesize \ttfamily [3/3]}}{37}{subsubsection.4.13.2.3}%
+\contentsline {subsection}{\numberline {4.13.3}Dokumentácia k metódam}{37}{subsection.4.13.3}%
+\contentsline {subsubsection}{\numberline {4.13.3.1}toString()}{37}{subsubsection.4.13.3.1}%
+\contentsline {subsubsection}{\numberline {4.13.3.2}toStringWithFlags()}{37}{subsubsection.4.13.3.2}%
+\contentsline {subsection}{\numberline {4.13.4}Dokumentácia k dátovým členom}{38}{subsection.4.13.4}%
+\contentsline {subsubsection}{\numberline {4.13.4.1}castling}{38}{subsubsection.4.13.4.1}%
+\contentsline {subsubsection}{\numberline {4.13.4.2}mobility}{38}{subsubsection.4.13.4.2}%
+\contentsline {subsubsection}{\numberline {4.13.4.3}promotion}{38}{subsubsection.4.13.4.3}%
+\contentsline {subsubsection}{\numberline {4.13.4.4}x1}{38}{subsubsection.4.13.4.4}%
+\contentsline {subsubsection}{\numberline {4.13.4.5}x2}{38}{subsubsection.4.13.4.5}%
+\contentsline {subsubsection}{\numberline {4.13.4.6}y1}{38}{subsubsection.4.13.4.6}%
+\contentsline {subsubsection}{\numberline {4.13.4.7}y2}{38}{subsubsection.4.13.4.7}%
+\contentsline {section}{\numberline {4.14}Dokumentácia triedy Mobilities}{39}{section.4.14}%
+\contentsline {subsection}{\numberline {4.14.1}Detailný popis}{39}{subsection.4.14.1}%
+\contentsline {subsection}{\numberline {4.14.2}Dokumentácia k metódam}{39}{subsection.4.14.2}%
+\contentsline {subsubsection}{\numberline {4.14.2.1}printMobilities()}{39}{subsubsection.4.14.2.1}%
+\contentsline {subsection}{\numberline {4.14.3}Dokumentácia k dátovým členom}{39}{subsection.4.14.3}%
+\contentsline {subsubsection}{\numberline {4.14.3.1}mobilityConfig}{39}{subsubsection.4.14.3.1}%
+\contentsline {section}{\numberline {4.15}Dokumentácia štruktúry Mobility}{40}{section.4.15}%
+\contentsline {subsection}{\numberline {4.15.1}Detailný popis}{40}{subsection.4.15.1}%
+\contentsline {subsection}{\numberline {4.15.2}Dokumentácia k dátovým členom}{40}{subsection.4.15.2}%
+\contentsline {subsubsection}{\numberline {4.15.2.1}direction\_x}{40}{subsubsection.4.15.2.1}%
+\contentsline {subsubsection}{\numberline {4.15.2.2}direction\_y}{40}{subsubsection.4.15.2.2}%
+\contentsline {subsubsection}{\numberline {4.15.2.3}flags}{40}{subsubsection.4.15.2.3}%
+\contentsline {subsubsection}{\numberline {4.15.2.4}limit}{40}{subsubsection.4.15.2.4}%
+\contentsline {subsubsection}{\numberline {4.15.2.5}start\_x}{41}{subsubsection.4.15.2.5}%
+\contentsline {subsubsection}{\numberline {4.15.2.6}start\_y}{41}{subsubsection.4.15.2.6}%
+\contentsline {subsubsection}{\numberline {4.15.2.7}type}{41}{subsubsection.4.15.2.7}%
+\contentsline {section}{\numberline {4.16}Dokumentácia štruktúry Mobility\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Flags}{41}{section.4.16}%
+\contentsline {subsection}{\numberline {4.16.1}Detailný popis}{41}{subsection.4.16.1}%
+\contentsline {subsection}{\numberline {4.16.2}Dokumentácia k dátovým členom}{41}{subsection.4.16.2}%
+\contentsline {subsubsection}{\numberline {4.16.2.1}hasty}{41}{subsubsection.4.16.2.1}%
+\contentsline {subsubsection}{\numberline {4.16.2.2}initiative}{42}{subsubsection.4.16.2.2}%
+\contentsline {subsubsection}{\numberline {4.16.2.3}uninterruptible}{42}{subsubsection.4.16.2.3}%
+\contentsline {subsubsection}{\numberline {4.16.2.4}vigilant}{42}{subsubsection.4.16.2.4}%
+\contentsline {section}{\numberline {4.17}Dokumentácia triedy Move\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Generator}{42}{section.4.17}%
+\contentsline {subsection}{\numberline {4.17.1}Detailný popis}{42}{subsection.4.17.1}%
+\contentsline {subsection}{\numberline {4.17.2}Dokumentácia k metódam}{42}{subsection.4.17.2}%
+\contentsline {subsubsection}{\numberline {4.17.2.1}clearMoves()}{42}{subsubsection.4.17.2.1}%
+\contentsline {subsubsection}{\numberline {4.17.2.2}generateMoves()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{43}{subsubsection.4.17.2.2}%
+\contentsline {subsubsection}{\numberline {4.17.2.3}generateMoves()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{43}{subsubsection.4.17.2.3}%
+\contentsline {section}{\numberline {4.18}Dokumentácia štruktúry Performance\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Args}{43}{section.4.18}%
+\contentsline {subsection}{\numberline {4.18.1}Detailný popis}{44}{subsection.4.18.1}%
+\contentsline {subsection}{\numberline {4.18.2}Dokumentácia k metódam}{44}{subsection.4.18.2}%
+\contentsline {subsubsection}{\numberline {4.18.2.1}printPerformance()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{44}{subsubsection.4.18.2.1}%
+\contentsline {subsubsection}{\numberline {4.18.2.2}printPerformance()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{44}{subsubsection.4.18.2.2}%
+\contentsline {subsection}{\numberline {4.18.3}Dokumentácia k dátovým členom}{44}{subsection.4.18.3}%
+\contentsline {subsubsection}{\numberline {4.18.3.1}durationTotal}{44}{subsubsection.4.18.3.1}%
+\contentsline {subsubsection}{\numberline {4.18.3.2}mutex}{45}{subsubsection.4.18.3.2}%
+\contentsline {subsubsection}{\numberline {4.18.3.3}positionsCur}{45}{subsubsection.4.18.3.3}%
+\contentsline {subsubsection}{\numberline {4.18.3.4}positionsTotal}{45}{subsubsection.4.18.3.4}%
+\contentsline {subsubsection}{\numberline {4.18.3.5}start}{45}{subsubsection.4.18.3.5}%
+\contentsline {section}{\numberline {4.19}Dokumentácia štruktúry Piece}{45}{section.4.19}%
+\contentsline {subsection}{\numberline {4.19.1}Detailný popis}{46}{subsection.4.19.1}%
+\contentsline {subsection}{\numberline {4.19.2}Dokumentácia k metódam}{46}{subsection.4.19.2}%
+\contentsline {subsubsection}{\numberline {4.19.2.1}toChar()}{46}{subsubsection.4.19.2.1}%
+\contentsline {subsection}{\numberline {4.19.3}Dokumentácia k dátovým členom}{46}{subsection.4.19.3}%
+\contentsline {subsubsection}{\numberline {4.19.3.1}color}{46}{subsubsection.4.19.3.1}%
+\contentsline {subsubsection}{\numberline {4.19.3.2}essence}{46}{subsubsection.4.19.3.2}%
+\contentsline {subsubsection}{\numberline {4.19.3.3}type}{46}{subsubsection.4.19.3.3}%
+\contentsline {section}{\numberline {4.20}Dokumentácia triedy Random}{46}{section.4.20}%
+\contentsline {subsection}{\numberline {4.20.1}Detailný popis}{47}{subsection.4.20.1}%
+\contentsline {subsection}{\numberline {4.20.2}Dokumentácia k metódam}{47}{subsection.4.20.2}%
+\contentsline {subsubsection}{\numberline {4.20.2.1}coinFlip()}{47}{subsubsection.4.20.2.1}%
+\contentsline {subsubsection}{\numberline {4.20.2.2}generateRandomNumber()}{47}{subsubsection.4.20.2.2}%
+\contentsline {subsubsection}{\numberline {4.20.2.3}getRandomElement()}{48}{subsubsection.4.20.2.3}%
+\contentsline {subsubsection}{\numberline {4.20.2.4}initSeed()}{48}{subsubsection.4.20.2.4}%
+\contentsline {subsection}{\numberline {4.20.3}Dokumentácia k dátovým členom}{48}{subsection.4.20.3}%
+\contentsline {subsubsection}{\numberline {4.20.3.1}gen}{48}{subsubsection.4.20.3.1}%
+\contentsline {section}{\numberline {4.21}Dokumentácia štruktúry Search\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Args}{48}{section.4.21}%
+\contentsline {subsection}{\numberline {4.21.1}Detailný popis}{49}{subsection.4.21.1}%
+\contentsline {subsection}{\numberline {4.21.2}Dokumentácia k dátovým členom}{49}{subsection.4.21.2}%
+\contentsline {subsubsection}{\numberline {4.21.2.1}alpha}{49}{subsubsection.4.21.2.1}%
+\contentsline {subsubsection}{\numberline {4.21.2.2}beta}{49}{subsubsection.4.21.2.2}%
+\contentsline {subsubsection}{\numberline {4.21.2.3}curDepth}{49}{subsubsection.4.21.2.3}%
+\contentsline {subsubsection}{\numberline {4.21.2.4}maxDepth}{49}{subsubsection.4.21.2.4}%
+\contentsline {section}{\numberline {4.22}Dokumentácia triedy Search\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Manager}{49}{section.4.22}%
+\contentsline {subsection}{\numberline {4.22.1}Detailný popis}{50}{subsection.4.22.1}%
+\contentsline {subsection}{\numberline {4.22.2}Dokumentácia k metódam}{50}{subsection.4.22.2}%
+\contentsline {subsubsection}{\numberline {4.22.2.1}calculateBestMove()}{50}{subsubsection.4.22.2.1}%
+\contentsline {subsubsection}{\numberline {4.22.2.2}calculateBestMove\_threads()}{50}{subsubsection.4.22.2.2}%
+\contentsline {subsubsection}{\numberline {4.22.2.3}minimax()}{51}{subsubsection.4.22.2.3}%
+\contentsline {subsection}{\numberline {4.22.3}Dokumentácia k dátovým členom}{51}{subsection.4.22.3}%
+\contentsline {subsubsection}{\numberline {4.22.3.1}cache}{51}{subsubsection.4.22.3.1}%
+\contentsline {subsubsection}{\numberline {4.22.3.2}ensemble}{52}{subsubsection.4.22.3.2}%
+\contentsline {subsubsection}{\numberline {4.22.3.3}qLimit}{52}{subsubsection.4.22.3.3}%
+\contentsline {section}{\numberline {4.23}Dokumentácia triedy Simulation\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Manager}{52}{section.4.23}%
+\contentsline {subsection}{\numberline {4.23.1}Detailný popis}{52}{subsection.4.23.1}%
+\contentsline {subsection}{\numberline {4.23.2}Dokumentácia k metódam}{52}{subsection.4.23.2}%
+\contentsline {subsubsection}{\numberline {4.23.2.1}simulateGames()}{52}{subsubsection.4.23.2.1}%
+\contentsline {section}{\numberline {4.24}Dokumentácia štruktúry Transposition}{53}{section.4.24}%
+\contentsline {subsection}{\numberline {4.24.1}Detailný popis}{53}{subsection.4.24.1}%
+\contentsline {subsection}{\numberline {4.24.2}Dokumentácia k dátovým členom}{53}{subsection.4.24.2}%
+\contentsline {subsubsection}{\numberline {4.24.2.1}depth}{53}{subsubsection.4.24.2.1}%
+\contentsline {subsubsection}{\numberline {4.24.2.2}value}{53}{subsubsection.4.24.2.2}%
+\contentsline {section}{\numberline {4.25}Dokumentácia triedy Transposition\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Cache}{54}{section.4.25}%
+\contentsline {subsection}{\numberline {4.25.1}Detailný popis}{54}{subsection.4.25.1}%
+\contentsline {subsection}{\numberline {4.25.2}Dokumentácia konštruktoru a deštruktoru}{54}{subsection.4.25.2}%
+\contentsline {subsubsection}{\numberline {4.25.2.1}TranspositionCache()}{54}{subsubsection.4.25.2.1}%
+\contentsline {subsection}{\numberline {4.25.3}Dokumentácia k metódam}{54}{subsection.4.25.3}%
+\contentsline {subsubsection}{\numberline {4.25.3.1}get()}{54}{subsubsection.4.25.3.1}%
+\contentsline {subsubsection}{\numberline {4.25.3.2}put()}{55}{subsubsection.4.25.3.2}%
+\contentsline {subsection}{\numberline {4.25.4}Dokumentácia k dátovým členom}{55}{subsection.4.25.4}%
+\contentsline {subsubsection}{\numberline {4.25.4.1}cache}{55}{subsubsection.4.25.4.1}%
+\contentsline {subsubsection}{\numberline {4.25.4.2}capacity}{55}{subsubsection.4.25.4.2}%
+\contentsline {subsubsection}{\numberline {4.25.4.3}mutex}{55}{subsubsection.4.25.4.3}%
+\contentsline {subsubsection}{\numberline {4.25.4.4}order}{55}{subsubsection.4.25.4.4}%
+\contentsline {section}{\numberline {4.26}Dokumentácia triedy uci}{56}{section.4.26}%
+\contentsline {subsection}{\numberline {4.26.1}Detailný popis}{56}{subsection.4.26.1}%
+\contentsline {subsection}{\numberline {4.26.2}Dokumentácia k metódam}{56}{subsection.4.26.2}%
+\contentsline {subsubsection}{\numberline {4.26.2.1}parseCommand()}{56}{subsubsection.4.26.2.1}%
+\contentsline {subsubsection}{\numberline {4.26.2.2}run()}{56}{subsubsection.4.26.2.2}%
+\contentsline {subsection}{\numberline {4.26.3}Dokumentácia k dátovým členom}{56}{subsection.4.26.3}%
+\contentsline {subsubsection}{\numberline {4.26.3.1}board}{56}{subsubsection.4.26.3.1}%
+\contentsline {subsubsection}{\numberline {4.26.3.2}essenceConfig}{57}{subsubsection.4.26.3.2}%
+\contentsline {subsubsection}{\numberline {4.26.3.3}useEnsemble}{57}{subsubsection.4.26.3.3}%
+\contentsline {section}{\numberline {4.27}Dokumentácia triedy Zobrist\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Hashing}{57}{section.4.27}%
+\contentsline {subsection}{\numberline {4.27.1}Detailný popis}{57}{subsection.4.27.1}%
+\contentsline {subsection}{\numberline {4.27.2}Dokumentácia k metódam}{58}{subsection.4.27.2}%
+\contentsline {subsubsection}{\numberline {4.27.2.1}init()}{58}{subsubsection.4.27.2.1}%
+\contentsline {subsubsection}{\numberline {4.27.2.2}rand64()}{58}{subsubsection.4.27.2.2}%
+\contentsline {subsection}{\numberline {4.27.3}Dokumentácia k dátovým členom}{58}{subsection.4.27.3}%
+\contentsline {subsubsection}{\numberline {4.27.3.1}ghosts}{58}{subsubsection.4.27.3.1}%
+\contentsline {subsubsection}{\numberline {4.27.3.2}isInitalized}{58}{subsubsection.4.27.3.2}%
+\contentsline {subsubsection}{\numberline {4.27.3.3}notMoved}{58}{subsubsection.4.27.3.3}%
+\contentsline {subsubsection}{\numberline {4.27.3.4}squares}{58}{subsubsection.4.27.3.4}%
+\contentsline {subsubsection}{\numberline {4.27.3.5}turn}{58}{subsubsection.4.27.3.5}%
+\contentsline {chapter}{\numberline {5}Dokumentácia súborov}{59}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Dokumentácia súboru bitboard.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{59}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Detailný popis}{59}{subsection.5.1.1}%
+\contentsline {section}{\numberline {5.2}bitboard.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{59}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Dokumentácia súboru board.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{60}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Detailný popis}{60}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Dokumentácia enumeračných typov}{60}{subsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.2.1}GameResult}{60}{subsubsection.5.3.2.1}%
+\contentsline {section}{\numberline {5.4}board.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{61}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Dokumentácia súboru database.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{62}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Detailný popis}{62}{subsection.5.5.1}%
+\contentsline {section}{\numberline {5.6}database.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{63}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Dokumentácia súboru ensemble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{63}{section.5.7}%
+\contentsline {subsection}{\numberline {5.7.1}Detailný popis}{64}{subsection.5.7.1}%
+\contentsline {section}{\numberline {5.8}ensemble.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{64}{section.5.8}%
+\contentsline {section}{\numberline {5.9}Dokumentácia súboru evaluation.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{64}{section.5.9}%
+\contentsline {subsection}{\numberline {5.9.1}Detailný popis}{64}{subsection.5.9.1}%
+\contentsline {section}{\numberline {5.10}evaluation.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{65}{section.5.10}%
+\contentsline {section}{\numberline {5.11}Dokumentácia súboru fairy\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Stockfish.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{65}{section.5.11}%
+\contentsline {subsection}{\numberline {5.11.1}Detailný popis}{66}{subsection.5.11.1}%
+\contentsline {section}{\numberline {5.12}fairy\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Stockfish.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{66}{section.5.12}%
+\contentsline {section}{\numberline {5.13}Dokumentácia súboru hashing.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{66}{section.5.13}%
+\contentsline {subsection}{\numberline {5.13.1}Detailný popis}{67}{subsection.5.13.1}%
+\contentsline {section}{\numberline {5.14}hashing.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{67}{section.5.14}%
+\contentsline {section}{\numberline {5.15}Dokumentácia súboru mobility.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{67}{section.5.15}%
+\contentsline {subsection}{\numberline {5.15.1}Detailný popis}{68}{subsection.5.15.1}%
+\contentsline {subsection}{\numberline {5.15.2}Dokumentácia enumeračných typov}{68}{subsection.5.15.2}%
+\contentsline {subsubsection}{\numberline {5.15.2.1}Castling}{68}{subsubsection.5.15.2.1}%
+\contentsline {subsubsection}{\numberline {5.15.2.2}MovementType}{68}{subsubsection.5.15.2.2}%
+\contentsline {section}{\numberline {5.16}mobility.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{69}{section.5.16}%
+\contentsline {section}{\numberline {5.17}Dokumentácia súboru piece.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{70}{section.5.17}%
+\contentsline {subsection}{\numberline {5.17.1}Detailný popis}{70}{subsection.5.17.1}%
+\contentsline {subsection}{\numberline {5.17.2}Dokumentácia enumeračných typov}{70}{subsection.5.17.2}%
+\contentsline {subsubsection}{\numberline {5.17.2.1}PieceColor}{70}{subsubsection.5.17.2.1}%
+\contentsline {subsubsection}{\numberline {5.17.2.2}PieceEssence}{71}{subsubsection.5.17.2.2}%
+\contentsline {subsubsection}{\numberline {5.17.2.3}PieceType}{71}{subsubsection.5.17.2.3}%
+\contentsline {subsection}{\numberline {5.17.3}Dokumentácia funkcií}{71}{subsection.5.17.3}%
+\contentsline {subsubsection}{\numberline {5.17.3.1}colorToString()}{71}{subsubsection.5.17.3.1}%
+\contentsline {subsubsection}{\numberline {5.17.3.2}essenceToString()}{72}{subsubsection.5.17.3.2}%
+\contentsline {subsubsection}{\numberline {5.17.3.3}getPieceIndex()}{72}{subsubsection.5.17.3.3}%
+\contentsline {subsubsection}{\numberline {5.17.3.4}stringToColor()}{72}{subsubsection.5.17.3.4}%
+\contentsline {subsubsection}{\numberline {5.17.3.5}stringToEssence()}{73}{subsubsection.5.17.3.5}%
+\contentsline {subsubsection}{\numberline {5.17.3.6}stringToType()}{73}{subsubsection.5.17.3.6}%
+\contentsline {subsubsection}{\numberline {5.17.3.7}typeToString()}{73}{subsubsection.5.17.3.7}%
+\contentsline {subsection}{\numberline {5.17.4}Dokumentácia premenných}{74}{subsection.5.17.4}%
+\contentsline {subsubsection}{\numberline {5.17.4.1}colorChars}{74}{subsubsection.5.17.4.1}%
+\contentsline {subsubsection}{\numberline {5.17.4.2}essenceChars}{74}{subsubsection.5.17.4.2}%
+\contentsline {subsubsection}{\numberline {5.17.4.3}opponent}{74}{subsubsection.5.17.4.3}%
+\contentsline {subsubsection}{\numberline {5.17.4.4}typeChars}{74}{subsubsection.5.17.4.4}%
+\contentsline {section}{\numberline {5.18}piece.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{74}{section.5.18}%
+\contentsline {section}{\numberline {5.19}Dokumentácia súboru random.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{75}{section.5.19}%
+\contentsline {subsection}{\numberline {5.19.1}Detailný popis}{75}{subsection.5.19.1}%
+\contentsline {section}{\numberline {5.20}random.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{76}{section.5.20}%
+\contentsline {section}{\numberline {5.21}Dokumentácia súboru searching.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{76}{section.5.21}%
+\contentsline {subsection}{\numberline {5.21.1}Detailný popis}{76}{subsection.5.21.1}%
+\contentsline {section}{\numberline {5.22}searching.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{77}{section.5.22}%
+\contentsline {section}{\numberline {5.23}Dokumentácia súboru simulation.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{77}{section.5.23}%
+\contentsline {subsection}{\numberline {5.23.1}Detailný popis}{78}{subsection.5.23.1}%
+\contentsline {section}{\numberline {5.24}simulation.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{78}{section.5.24}%
+\contentsline {section}{\numberline {5.25}Dokumentácia súboru transpositions.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{78}{section.5.25}%
+\contentsline {subsection}{\numberline {5.25.1}Detailný popis}{78}{subsection.5.25.1}%
+\contentsline {section}{\numberline {5.26}transpositions.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{79}{section.5.26}%
+\contentsline {section}{\numberline {5.27}Dokumentácia súboru uci.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{79}{section.5.27}%
+\contentsline {subsection}{\numberline {5.27.1}Detailný popis}{79}{subsection.5.27.1}%
+\contentsline {section}{\numberline {5.28}uci.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{80}{section.5.28}%
+\contentsline {chapter}{Register}{81}{section*.72}%

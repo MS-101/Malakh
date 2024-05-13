@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sk">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Malakh: Zdrojový súbor board.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Malakh
+   </div>
+   <div id="projectbrief">Šachový engine na hru s neštandardnými šachovými pravidlami</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generované programom Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Hľadať');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Načítam...</div>
+<div class="SRStatus" id="Searching">Vyhľadávam...</div>
+<div class="SRStatus" id="NoMatches">Nič sa nenašlo</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">board.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="board_8h.html">Zobraziť dokumentáciu tohoto súboru.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">/*****************************************************************/</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="bitboard_8h.html">bitboard.h</a>&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="code" href="piece_8h.html">piece.h</a>&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="mobility_8h.html">mobility.h</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="evaluation_8h.html">evaluation.h</a>&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;<a class="code" href="hashing_8h.html">hashing.h</a>&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="};">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="board_8h.html#a41741953d704b743544ce6383c27c7c6">   22</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="board_8h.html#a41741953d704b743544ce6383c27c7c6">GameResult</a> {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="board_8h.html#a41741953d704b743544ce6383c27c7c6a11df02b765cc41122ae24bd7112495c6">   26</a></span>    <a class="code hl_enumvalue" href="board_8h.html#a41741953d704b743544ce6383c27c7c6a11df02b765cc41122ae24bd7112495c6">Unresolved</a>,</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="board_8h.html#a41741953d704b743544ce6383c27c7c6ade3cf4fd890a7c8b032eec3dbf521ac7">   30</a></span>    <a class="code hl_enumvalue" href="board_8h.html#a41741953d704b743544ce6383c27c7c6ade3cf4fd890a7c8b032eec3dbf521ac7">WhiteWin</a>,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="board_8h.html#a41741953d704b743544ce6383c27c7c6a86f4e97f140ceb0fb65db639bfdc5433">   34</a></span>    <a class="code hl_enumvalue" href="board_8h.html#a41741953d704b743544ce6383c27c7c6a86f4e97f140ceb0fb65db639bfdc5433">BlackWin</a>,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <a class="code hl_enumvalue" href="board_8h.html#a41741953d704b743544ce6383c27c7c6ad45a4d89cf75d521c4291dece44f132a">Stalemate</a></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="board_8h.html#a41741953d704b743544ce6383c27c7c6ad45a4d89cf75d521c4291dece44f132a">   39</a></span>};</div>
+</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="foldopen" id="foldopen00044" data-start="{" data-end="};">
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="struct_essence_args.html">   44</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_essence_args.html">EssenceArgs</a> {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="struct_essence_args.html#a31eb0eb12aa403929ab7f1fb91e02b59">   48</a></span>    <a class="code hl_enumeration" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a> <a class="code hl_variable" href="struct_essence_args.html#a31eb0eb12aa403929ab7f1fb91e02b59">whitePawn</a> = <a class="code hl_enumvalue" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e">Classic</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="struct_essence_args.html#a43b7ccc9805926e1741590b0b736f86c">   53</a></span>    <a class="code hl_enumeration" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a> <a class="code hl_variable" href="struct_essence_args.html#a43b7ccc9805926e1741590b0b736f86c">whiteRook</a> = <a class="code hl_enumvalue" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e">Classic</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="struct_essence_args.html#ad8c23c8a3873f7357da636d37a2bd9ac">   58</a></span>    <a class="code hl_enumeration" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a> <a class="code hl_variable" href="struct_essence_args.html#ad8c23c8a3873f7357da636d37a2bd9ac">whiteKnight</a> = <a class="code hl_enumvalue" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e">Classic</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="struct_essence_args.html#a6b19846fd12a66fe792cf9ed8c80a93f">   63</a></span>    <a class="code hl_enumeration" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a> <a class="code hl_variable" href="struct_essence_args.html#a6b19846fd12a66fe792cf9ed8c80a93f">whiteBishop</a> = <a class="code hl_enumvalue" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e">Classic</a>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="struct_essence_args.html#a496ff3f21184ddf2f338607d957b70a1">   68</a></span>    <a class="code hl_enumeration" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a> <a class="code hl_variable" href="struct_essence_args.html#a496ff3f21184ddf2f338607d957b70a1">blackPawn</a> = <a class="code hl_enumvalue" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e">Classic</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="struct_essence_args.html#aae2a076b0ea90c529c2d8c69a5d50c60">   73</a></span>    <a class="code hl_enumeration" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a> <a class="code hl_variable" href="struct_essence_args.html#aae2a076b0ea90c529c2d8c69a5d50c60">blackRook</a> = <a class="code hl_enumvalue" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e">Classic</a>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="struct_essence_args.html#a2367d19a910ecf489ea024faf9a4ab65">   78</a></span>    <a class="code hl_enumeration" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a> <a class="code hl_variable" href="struct_essence_args.html#a2367d19a910ecf489ea024faf9a4ab65">blackKnight</a> = <a class="code hl_enumvalue" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e">Classic</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="struct_essence_args.html#a8efdf56bb8553f32ecd91334c4145de9">   83</a></span>    <a class="code hl_enumeration" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a> <a class="code hl_variable" href="struct_essence_args.html#a8efdf56bb8553f32ecd91334c4145de9">blackBishop</a> = <a class="code hl_enumvalue" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e">Classic</a>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>};</div>
+</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="foldopen" id="foldopen00089" data-start="{" data-end="};">
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="class_board.html">   89</a></span><span class="keyword">class </span><a class="code hl_class" href="class_board.html">Board</a> {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="class_board.html#af11604d1376de5e1316fac0f2bdfbc31">   94</a></span>    <a class="code hl_enumeration" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a> <a class="code hl_variable" href="class_board.html#af11604d1376de5e1316fac0f2bdfbc31">essenceConfig</a>[2*6] = {};</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="class_board.html#ac5c6ac4324ddaca2c07af79786514599">   99</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="class_board.html#ac5c6ac4324ddaca2c07af79786514599">essenceCounts</a>[3];</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="class_board.html#a477b2c864704409b6de2adcccd3a7cc4">  104</a></span>    <a class="code hl_struct" href="struct_bit_board.html">BitBoard</a> <a class="code hl_variable" href="class_board.html#a477b2c864704409b6de2adcccd3a7cc4">pieces</a>[2*6];</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="class_board.html#a9eeccb5434e5b6f5b438b3ae4bb00c1a">  109</a></span>    <a class="code hl_struct" href="struct_bit_board.html">BitBoard</a> <a class="code hl_variable" href="class_board.html#a9eeccb5434e5b6f5b438b3ae4bb00c1a">colors</a>[2];</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="class_board.html#a4c9c72604abf50b3e737fbfe7c31ba6a">  114</a></span>    <a class="code hl_struct" href="struct_bit_board.html">BitBoard</a> <a class="code hl_variable" href="class_board.html#a4c9c72604abf50b3e737fbfe7c31ba6a">attacks</a>[2];</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="class_board.html#aa8e50329a1396f78c8d9de949a4c1a71">  119</a></span>    <a class="code hl_struct" href="struct_bit_board.html">BitBoard</a> <a class="code hl_variable" href="class_board.html#aa8e50329a1396f78c8d9de949a4c1a71">allPieces</a>;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="class_board.html#a46632db88a4dfbef041000a8cc25ffbe">  124</a></span>    <a class="code hl_struct" href="struct_bit_board.html">BitBoard</a> <a class="code hl_variable" href="class_board.html#a46632db88a4dfbef041000a8cc25ffbe">notMoved</a>;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="class_board.html#a6aae66b2955b7ed6ae7b85b683ca43b2">  129</a></span>    <a class="code hl_struct" href="struct_ghost.html">Ghost</a> <a class="code hl_variable" href="class_board.html#a6aae66b2955b7ed6ae7b85b683ca43b2">ghost</a>;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="class_board.html#accf5a5a0d1a0cb1c2eedd5573d58fe4c">  134</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="class_board.html#accf5a5a0d1a0cb1c2eedd5573d58fe4c">pieceCounts</a>[2*6] = {};</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="class_board.html#a0862f51a22afd6a742067d79feee5e68">  139</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="class_board.html#a0862f51a22afd6a742067d79feee5e68">inputArray</a>[2*8*8];</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="class_board.html#abd403f28e1bd81b3213fd9cee0e5bebe">  144</a></span>    std::vector&lt;LegalMove&gt; <a class="code hl_variable" href="class_board.html#abd403f28e1bd81b3213fd9cee0e5bebe">moves</a>[2];</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="class_board.html#aef3ed78cfd3b267dc41642ecf96b1583">  149</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="class_board.html#aef3ed78cfd3b267dc41642ecf96b1583">movesValidated</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="class_board.html#abfcf8d0d90b81f2038fd323f10bebd9a">  154</a></span>    <a class="code hl_enumeration" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a> <a class="code hl_variable" href="class_board.html#abfcf8d0d90b81f2038fd323f10bebd9a">curTurn</a> = <a class="code hl_enumvalue" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985ab548046646b36c12aa6ba841de500094">White</a>;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="class_board.html#add03c85c9815dcf2d0bc12a4ece29e4d">  159</a></span>    <a class="code hl_struct" href="struct_eval_args.html">EvalArgs</a> <a class="code hl_variable" href="class_board.html#add03c85c9815dcf2d0bc12a4ece29e4d">eval</a>{};</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="class_board.html#a288a41584c21590ff39910ce6855e311">  164</a></span>    <a class="code hl_struct" href="struct_board_hash.html">BoardHash</a> <a class="code hl_variable" href="class_board.html#a288a41584c21590ff39910ce6855e311">hash</a>{};</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="class_board.html#aac4d76570dc61ef5c08f1412c2d7cc41">  169</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="class_board.html#aac4d76570dc61ef5c08f1412c2d7cc41">halfmoveClock</a> = 0;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="class_board.html#a1dddeeab8704e09f948e047c15cf76d3">  174</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="class_board.html#a1dddeeab8704e09f948e047c15cf76d3">fullmoveClock</a> = 1;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_board.html#a4861064ac719acf27641cbd201ee4b9f">initBoard</a>(<a class="code hl_struct" href="struct_essence_args.html">EssenceArgs</a> essenceArgs);</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_board.html#a4861064ac719acf27641cbd201ee4b9f">initBoard</a>(<a class="code hl_struct" href="struct_essence_args.html">EssenceArgs</a> essenceArgs, <a class="code hl_struct" href="struct_bit_board.html">BitBoard</a> <a class="code hl_variable" href="class_board.html#a477b2c864704409b6de2adcccd3a7cc4">pieces</a>[12], <a class="code hl_enumeration" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a> <a class="code hl_variable" href="class_board.html#abfcf8d0d90b81f2038fd323f10bebd9a">curTurn</a>);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_board.html#aca49f093314a104381d05998bbf62f7f">printBoard</a>();</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_board.html#a5c6836ef97eee26a9a14286f25ab1a6a">printMoves</a>();</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_board.html#adf44ea325d72ee68a1f13dba584e35c4">evalBoard</a>(<a class="code hl_enumeration" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a> color);</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_board.html#a48a67b7c679ec646bd86708945cba929">isQuiet</a>();</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_board.html#a0ec5449d5dd18a9eb9186557f2f20aa2">makeMove</a>(<span class="keywordtype">char</span> x1, <span class="keywordtype">char</span> y1, <span class="keywordtype">char</span> x2, <span class="keywordtype">char</span> y2);</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_board.html#a0ec5449d5dd18a9eb9186557f2f20aa2">makeMove</a>(<span class="keywordtype">char</span> x1, <span class="keywordtype">char</span> y1, <span class="keywordtype">char</span> x2, <span class="keywordtype">char</span> y2, <a class="code hl_enumeration" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021">PieceType</a> promotion);</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_board.html#a0ec5449d5dd18a9eb9186557f2f20aa2">makeMove</a>(<a class="code hl_struct" href="struct_legal_move.html">LegalMove</a> move);</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    std::pair&lt;bool, Piece&gt; <a class="code hl_function" href="class_board.html#aeb083ebae3329806866834301c7c6e70">getPiece</a>(<span class="keywordtype">char</span> x, <span class="keywordtype">char</span> y);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    std::vector&lt;LegalMove&gt; <a class="code hl_function" href="class_board.html#a0c7dcac424cdb27bb3154848a4cffd46">getLegalMoves</a>();</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    std::string <a class="code hl_function" href="class_board.html#a2cf2b2f6adc453bc3b086c9f10c77e11">toString</a>();</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <a class="code hl_enumeration" href="board_8h.html#a41741953d704b743544ce6383c27c7c6">GameResult</a> <a class="code hl_function" href="class_board.html#a7233d5d3555b01d01e3bbe6bd7cd0ba0">getResult</a>();</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_board.html#aa1eb6406e0acc66a1c3d5a72f8d8154b">setEssenceConfig</a>(<a class="code hl_struct" href="struct_essence_args.html">EssenceArgs</a> essenceArgs);</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_board.html#a5f148daa03da25d40dff3fc613568d6f">clearBoard</a>();</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_board.html#af7818025d0683c18fb658db472583dd0">addPiece</a>(<a class="code hl_enumeration" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a> color, <a class="code hl_enumeration" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021">PieceType</a> type, <span class="keywordtype">char</span> x, <span class="keywordtype">char</span> y, <span class="keywordtype">bool</span> isNew);</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    std::pair&lt;bool, Piece&gt; <a class="code hl_function" href="class_board.html#aa66f030fd6e0510459eb8b8e8b8afbe7">removePiece</a>(<span class="keywordtype">char</span> x, <span class="keywordtype">char</span> y);</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_board.html#ab114cb4461c0027dd4463ac4689f88b6">refreshAggregations</a>();</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_board.html#a892932cfd734870c18a838576635d11b">setInputArrayPiece</a>(<span class="keywordtype">char</span> pieceIndex, <span class="keywordtype">char</span> x, <span class="keywordtype">char</span> y);</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span> </div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_board.html#a151c19df4b2a1e2a55fb284c8d6c1377">setInputArrayColor</a>(<a class="code hl_enumeration" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a> color);</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>};</div>
+</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
+<div class="foldopen" id="foldopen00335" data-start="{" data-end="};">
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno"><a class="line" href="class_move_generator.html">  335</a></span><span class="keyword">class </span><a class="code hl_class" href="class_move_generator.html">MoveGenerator</a> {</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_move_generator.html#a4fbc5c9a0a49af3879afb14b43877c9a">clearMoves</a>(<a class="code hl_class" href="class_board.html">Board</a>* board);</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span> </div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_move_generator.html#a94fbccafb764f801044a7a0eb6d26cb9">generateMoves</a>(<a class="code hl_class" href="class_board.html">Board</a>* board);</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span> </div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_move_generator.html#a94fbccafb764f801044a7a0eb6d26cb9">generateMoves</a>(<a class="code hl_class" href="class_board.html">Board</a>* board, <a class="code hl_struct" href="struct_piece.html">Piece</a> piece, <span class="keywordtype">char</span> x, <span class="keywordtype">char</span> y);</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>};</div>
+</div>
+<div class="ttc" id="abitboard_8h_html"><div class="ttname"><a href="bitboard_8h.html">bitboard.h</a></div><div class="ttdoc">Definícia bitboardovej reprezentácie šachovnice.</div></div>
+<div class="ttc" id="aboard_8h_html_a41741953d704b743544ce6383c27c7c6"><div class="ttname"><a href="board_8h.html#a41741953d704b743544ce6383c27c7c6">GameResult</a></div><div class="ttdeci">GameResult</div><div class="ttdef"><b>Definition</b> board.h:22</div></div>
+<div class="ttc" id="aboard_8h_html_a41741953d704b743544ce6383c27c7c6a11df02b765cc41122ae24bd7112495c6"><div class="ttname"><a href="board_8h.html#a41741953d704b743544ce6383c27c7c6a11df02b765cc41122ae24bd7112495c6">Unresolved</a></div><div class="ttdeci">@ Unresolved</div><div class="ttdef"><b>Definition</b> board.h:26</div></div>
+<div class="ttc" id="aboard_8h_html_a41741953d704b743544ce6383c27c7c6a86f4e97f140ceb0fb65db639bfdc5433"><div class="ttname"><a href="board_8h.html#a41741953d704b743544ce6383c27c7c6a86f4e97f140ceb0fb65db639bfdc5433">BlackWin</a></div><div class="ttdeci">@ BlackWin</div><div class="ttdef"><b>Definition</b> board.h:34</div></div>
+<div class="ttc" id="aboard_8h_html_a41741953d704b743544ce6383c27c7c6ad45a4d89cf75d521c4291dece44f132a"><div class="ttname"><a href="board_8h.html#a41741953d704b743544ce6383c27c7c6ad45a4d89cf75d521c4291dece44f132a">Stalemate</a></div><div class="ttdeci">@ Stalemate</div><div class="ttdef"><b>Definition</b> board.h:38</div></div>
+<div class="ttc" id="aboard_8h_html_a41741953d704b743544ce6383c27c7c6ade3cf4fd890a7c8b032eec3dbf521ac7"><div class="ttname"><a href="board_8h.html#a41741953d704b743544ce6383c27c7c6ade3cf4fd890a7c8b032eec3dbf521ac7">WhiteWin</a></div><div class="ttdeci">@ WhiteWin</div><div class="ttdef"><b>Definition</b> board.h:30</div></div>
+<div class="ttc" id="aclass_board_html"><div class="ttname"><a href="class_board.html">Board</a></div><div class="ttdef"><b>Definition</b> board.h:89</div></div>
+<div class="ttc" id="aclass_board_html_a0862f51a22afd6a742067d79feee5e68"><div class="ttname"><a href="class_board.html#a0862f51a22afd6a742067d79feee5e68">Board::inputArray</a></div><div class="ttdeci">int inputArray[2 *8 *8]</div><div class="ttdef"><b>Definition</b> board.h:139</div></div>
+<div class="ttc" id="aclass_board_html_a0c7dcac424cdb27bb3154848a4cffd46"><div class="ttname"><a href="class_board.html#a0c7dcac424cdb27bb3154848a4cffd46">Board::getLegalMoves</a></div><div class="ttdeci">std::vector&lt; LegalMove &gt; getLegalMoves()</div><div class="ttdef"><b>Definition</b> board.cpp:453</div></div>
+<div class="ttc" id="aclass_board_html_a0ec5449d5dd18a9eb9186557f2f20aa2"><div class="ttname"><a href="class_board.html#a0ec5449d5dd18a9eb9186557f2f20aa2">Board::makeMove</a></div><div class="ttdeci">bool makeMove(char x1, char y1, char x2, char y2)</div><div class="ttdef"><b>Definition</b> board.cpp:330</div></div>
+<div class="ttc" id="aclass_board_html_a151c19df4b2a1e2a55fb284c8d6c1377"><div class="ttname"><a href="class_board.html#a151c19df4b2a1e2a55fb284c8d6c1377">Board::setInputArrayColor</a></div><div class="ttdeci">void setInputArrayColor(PieceColor color)</div><div class="ttdef"><b>Definition</b> board.cpp:605</div></div>
+<div class="ttc" id="aclass_board_html_a1dddeeab8704e09f948e047c15cf76d3"><div class="ttname"><a href="class_board.html#a1dddeeab8704e09f948e047c15cf76d3">Board::fullmoveClock</a></div><div class="ttdeci">int fullmoveClock</div><div class="ttdef"><b>Definition</b> board.h:174</div></div>
+<div class="ttc" id="aclass_board_html_a288a41584c21590ff39910ce6855e311"><div class="ttname"><a href="class_board.html#a288a41584c21590ff39910ce6855e311">Board::hash</a></div><div class="ttdeci">BoardHash hash</div><div class="ttdef"><b>Definition</b> board.h:164</div></div>
+<div class="ttc" id="aclass_board_html_a2cf2b2f6adc453bc3b086c9f10c77e11"><div class="ttname"><a href="class_board.html#a2cf2b2f6adc453bc3b086c9f10c77e11">Board::toString</a></div><div class="ttdeci">std::string toString()</div><div class="ttdef"><b>Definition</b> board.cpp:472</div></div>
+<div class="ttc" id="aclass_board_html_a46632db88a4dfbef041000a8cc25ffbe"><div class="ttname"><a href="class_board.html#a46632db88a4dfbef041000a8cc25ffbe">Board::notMoved</a></div><div class="ttdeci">BitBoard notMoved</div><div class="ttdef"><b>Definition</b> board.h:124</div></div>
+<div class="ttc" id="aclass_board_html_a477b2c864704409b6de2adcccd3a7cc4"><div class="ttname"><a href="class_board.html#a477b2c864704409b6de2adcccd3a7cc4">Board::pieces</a></div><div class="ttdeci">BitBoard pieces[2 *6]</div><div class="ttdef"><b>Definition</b> board.h:104</div></div>
+<div class="ttc" id="aclass_board_html_a4861064ac719acf27641cbd201ee4b9f"><div class="ttname"><a href="class_board.html#a4861064ac719acf27641cbd201ee4b9f">Board::initBoard</a></div><div class="ttdeci">void initBoard(EssenceArgs essenceArgs)</div><div class="ttdef"><b>Definition</b> board.cpp:6</div></div>
+<div class="ttc" id="aclass_board_html_a48a67b7c679ec646bd86708945cba929"><div class="ttname"><a href="class_board.html#a48a67b7c679ec646bd86708945cba929">Board::isQuiet</a></div><div class="ttdeci">bool isQuiet()</div><div class="ttdef"><b>Definition</b> board.cpp:231</div></div>
+<div class="ttc" id="aclass_board_html_a4c9c72604abf50b3e737fbfe7c31ba6a"><div class="ttname"><a href="class_board.html#a4c9c72604abf50b3e737fbfe7c31ba6a">Board::attacks</a></div><div class="ttdeci">BitBoard attacks[2]</div><div class="ttdef"><b>Definition</b> board.h:114</div></div>
+<div class="ttc" id="aclass_board_html_a5c6836ef97eee26a9a14286f25ab1a6a"><div class="ttname"><a href="class_board.html#a5c6836ef97eee26a9a14286f25ab1a6a">Board::printMoves</a></div><div class="ttdeci">void printMoves()</div><div class="ttdef"><b>Definition</b> board.cpp:147</div></div>
+<div class="ttc" id="aclass_board_html_a5f148daa03da25d40dff3fc613568d6f"><div class="ttname"><a href="class_board.html#a5f148daa03da25d40dff3fc613568d6f">Board::clearBoard</a></div><div class="ttdeci">void clearBoard()</div><div class="ttdef"><b>Definition</b> board.cpp:104</div></div>
+<div class="ttc" id="aclass_board_html_a6aae66b2955b7ed6ae7b85b683ca43b2"><div class="ttname"><a href="class_board.html#a6aae66b2955b7ed6ae7b85b683ca43b2">Board::ghost</a></div><div class="ttdeci">Ghost ghost</div><div class="ttdef"><b>Definition</b> board.h:129</div></div>
+<div class="ttc" id="aclass_board_html_a7233d5d3555b01d01e3bbe6bd7cd0ba0"><div class="ttname"><a href="class_board.html#a7233d5d3555b01d01e3bbe6bd7cd0ba0">Board::getResult</a></div><div class="ttdeci">GameResult getResult()</div><div class="ttdef"><b>Definition</b> board.cpp:584</div></div>
+<div class="ttc" id="aclass_board_html_a892932cfd734870c18a838576635d11b"><div class="ttname"><a href="class_board.html#a892932cfd734870c18a838576635d11b">Board::setInputArrayPiece</a></div><div class="ttdeci">void setInputArrayPiece(char pieceIndex, char x, char y)</div><div class="ttdef"><b>Definition</b> board.cpp:600</div></div>
+<div class="ttc" id="aclass_board_html_a9eeccb5434e5b6f5b438b3ae4bb00c1a"><div class="ttname"><a href="class_board.html#a9eeccb5434e5b6f5b438b3ae4bb00c1a">Board::colors</a></div><div class="ttdeci">BitBoard colors[2]</div><div class="ttdef"><b>Definition</b> board.h:109</div></div>
+<div class="ttc" id="aclass_board_html_aa1eb6406e0acc66a1c3d5a72f8d8154b"><div class="ttname"><a href="class_board.html#aa1eb6406e0acc66a1c3d5a72f8d8154b">Board::setEssenceConfig</a></div><div class="ttdeci">void setEssenceConfig(EssenceArgs essenceArgs)</div><div class="ttdef"><b>Definition</b> board.cpp:77</div></div>
+<div class="ttc" id="aclass_board_html_aa66f030fd6e0510459eb8b8e8b8afbe7"><div class="ttname"><a href="class_board.html#aa66f030fd6e0510459eb8b8e8b8afbe7">Board::removePiece</a></div><div class="ttdeci">std::pair&lt; bool, Piece &gt; removePiece(char x, char y)</div><div class="ttdef"><b>Definition</b> board.cpp:256</div></div>
+<div class="ttc" id="aclass_board_html_aa8e50329a1396f78c8d9de949a4c1a71"><div class="ttname"><a href="class_board.html#aa8e50329a1396f78c8d9de949a4c1a71">Board::allPieces</a></div><div class="ttdeci">BitBoard allPieces</div><div class="ttdef"><b>Definition</b> board.h:119</div></div>
+<div class="ttc" id="aclass_board_html_aac4d76570dc61ef5c08f1412c2d7cc41"><div class="ttname"><a href="class_board.html#aac4d76570dc61ef5c08f1412c2d7cc41">Board::halfmoveClock</a></div><div class="ttdeci">int halfmoveClock</div><div class="ttdef"><b>Definition</b> board.h:169</div></div>
+<div class="ttc" id="aclass_board_html_ab114cb4461c0027dd4463ac4689f88b6"><div class="ttname"><a href="class_board.html#ab114cb4461c0027dd4463ac4689f88b6">Board::refreshAggregations</a></div><div class="ttdeci">void refreshAggregations()</div><div class="ttdef"><b>Definition</b> board.cpp:311</div></div>
+<div class="ttc" id="aclass_board_html_abd403f28e1bd81b3213fd9cee0e5bebe"><div class="ttname"><a href="class_board.html#abd403f28e1bd81b3213fd9cee0e5bebe">Board::moves</a></div><div class="ttdeci">std::vector&lt; LegalMove &gt; moves[2]</div><div class="ttdef"><b>Definition</b> board.h:144</div></div>
+<div class="ttc" id="aclass_board_html_abfcf8d0d90b81f2038fd323f10bebd9a"><div class="ttname"><a href="class_board.html#abfcf8d0d90b81f2038fd323f10bebd9a">Board::curTurn</a></div><div class="ttdeci">PieceColor curTurn</div><div class="ttdef"><b>Definition</b> board.h:154</div></div>
+<div class="ttc" id="aclass_board_html_ac5c6ac4324ddaca2c07af79786514599"><div class="ttname"><a href="class_board.html#ac5c6ac4324ddaca2c07af79786514599">Board::essenceCounts</a></div><div class="ttdeci">int essenceCounts[3]</div><div class="ttdef"><b>Definition</b> board.h:99</div></div>
+<div class="ttc" id="aclass_board_html_aca49f093314a104381d05998bbf62f7f"><div class="ttname"><a href="class_board.html#aca49f093314a104381d05998bbf62f7f">Board::printBoard</a></div><div class="ttdeci">void printBoard()</div><div class="ttdef"><b>Definition</b> board.cpp:118</div></div>
+<div class="ttc" id="aclass_board_html_accf5a5a0d1a0cb1c2eedd5573d58fe4c"><div class="ttname"><a href="class_board.html#accf5a5a0d1a0cb1c2eedd5573d58fe4c">Board::pieceCounts</a></div><div class="ttdeci">int pieceCounts[2 *6]</div><div class="ttdef"><b>Definition</b> board.h:134</div></div>
+<div class="ttc" id="aclass_board_html_add03c85c9815dcf2d0bc12a4ece29e4d"><div class="ttname"><a href="class_board.html#add03c85c9815dcf2d0bc12a4ece29e4d">Board::eval</a></div><div class="ttdeci">EvalArgs eval</div><div class="ttdef"><b>Definition</b> board.h:159</div></div>
+<div class="ttc" id="aclass_board_html_adf44ea325d72ee68a1f13dba584e35c4"><div class="ttname"><a href="class_board.html#adf44ea325d72ee68a1f13dba584e35c4">Board::evalBoard</a></div><div class="ttdeci">int evalBoard(PieceColor color)</div><div class="ttdef"><b>Definition</b> board.cpp:156</div></div>
+<div class="ttc" id="aclass_board_html_aeb083ebae3329806866834301c7c6e70"><div class="ttname"><a href="class_board.html#aeb083ebae3329806866834301c7c6e70">Board::getPiece</a></div><div class="ttdeci">std::pair&lt; bool, Piece &gt; getPiece(char x, char y)</div><div class="ttdef"><b>Definition</b> board.cpp:236</div></div>
+<div class="ttc" id="aclass_board_html_aef3ed78cfd3b267dc41642ecf96b1583"><div class="ttname"><a href="class_board.html#aef3ed78cfd3b267dc41642ecf96b1583">Board::movesValidated</a></div><div class="ttdeci">bool movesValidated</div><div class="ttdef"><b>Definition</b> board.h:149</div></div>
+<div class="ttc" id="aclass_board_html_af11604d1376de5e1316fac0f2bdfbc31"><div class="ttname"><a href="class_board.html#af11604d1376de5e1316fac0f2bdfbc31">Board::essenceConfig</a></div><div class="ttdeci">PieceEssence essenceConfig[2 *6]</div><div class="ttdef"><b>Definition</b> board.h:94</div></div>
+<div class="ttc" id="aclass_board_html_af7818025d0683c18fb658db472583dd0"><div class="ttname"><a href="class_board.html#af7818025d0683c18fb658db472583dd0">Board::addPiece</a></div><div class="ttdeci">void addPiece(PieceColor color, PieceType type, char x, char y, bool isNew)</div><div class="ttdef"><b>Definition</b> board.cpp:291</div></div>
+<div class="ttc" id="aclass_move_generator_html"><div class="ttname"><a href="class_move_generator.html">MoveGenerator</a></div><div class="ttdef"><b>Definition</b> board.h:335</div></div>
+<div class="ttc" id="aclass_move_generator_html_a4fbc5c9a0a49af3879afb14b43877c9a"><div class="ttname"><a href="class_move_generator.html#a4fbc5c9a0a49af3879afb14b43877c9a">MoveGenerator::clearMoves</a></div><div class="ttdeci">static void clearMoves(Board *board)</div><div class="ttdef"><b>Definition</b> moveGenerator.cpp:5</div></div>
+<div class="ttc" id="aclass_move_generator_html_a94fbccafb764f801044a7a0eb6d26cb9"><div class="ttname"><a href="class_move_generator.html#a94fbccafb764f801044a7a0eb6d26cb9">MoveGenerator::generateMoves</a></div><div class="ttdeci">static void generateMoves(Board *board)</div><div class="ttdef"><b>Definition</b> moveGenerator.cpp:21</div></div>
+<div class="ttc" id="aevaluation_8h_html"><div class="ttname"><a href="evaluation_8h.html">evaluation.h</a></div><div class="ttdoc">Evaluácia šachovnice.</div></div>
+<div class="ttc" id="ahashing_8h_html"><div class="ttname"><a href="hashing_8h.html">hashing.h</a></div><div class="ttdoc">Implementácia hashovanie šachovnice.</div></div>
+<div class="ttc" id="amobility_8h_html"><div class="ttname"><a href="mobility_8h.html">mobility.h</a></div><div class="ttdoc">Definícia mobilít figúrok.</div></div>
+<div class="ttc" id="apiece_8h_html"><div class="ttname"><a href="piece_8h.html">piece.h</a></div><div class="ttdoc">Definícia šachových figúrok.</div></div>
+<div class="ttc" id="apiece_8h_html_a12ed9719bbdf7bc596ff7a6f4bf3f021"><div class="ttname"><a href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021">PieceType</a></div><div class="ttdeci">PieceType</div><div class="ttdef"><b>Definition</b> piece.h:32</div></div>
+<div class="ttc" id="apiece_8h_html_ad0e2cebe1564362802ae0942b6d67703"><div class="ttname"><a href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a></div><div class="ttdeci">PieceEssence</div><div class="ttdef"><b>Definition</b> piece.h:62</div></div>
+<div class="ttc" id="apiece_8h_html_ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e"><div class="ttname"><a href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e">Classic</a></div><div class="ttdeci">@ Classic</div><div class="ttdef"><b>Definition</b> piece.h:66</div></div>
+<div class="ttc" id="apiece_8h_html_ad7595c48bb74c0dd2a7648712a2d4985"><div class="ttname"><a href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a></div><div class="ttdeci">PieceColor</div><div class="ttdef"><b>Definition</b> piece.h:18</div></div>
+<div class="ttc" id="apiece_8h_html_ad7595c48bb74c0dd2a7648712a2d4985ab548046646b36c12aa6ba841de500094"><div class="ttname"><a href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985ab548046646b36c12aa6ba841de500094">White</a></div><div class="ttdeci">@ White</div><div class="ttdef"><b>Definition</b> piece.h:22</div></div>
+<div class="ttc" id="astruct_bit_board_html"><div class="ttname"><a href="struct_bit_board.html">BitBoard</a></div><div class="ttdef"><b>Definition</b> bitboard.h:15</div></div>
+<div class="ttc" id="astruct_board_hash_html"><div class="ttname"><a href="struct_board_hash.html">BoardHash</a></div><div class="ttdef"><b>Definition</b> hashing.h:60</div></div>
+<div class="ttc" id="astruct_essence_args_html"><div class="ttname"><a href="struct_essence_args.html">EssenceArgs</a></div><div class="ttdef"><b>Definition</b> board.h:44</div></div>
+<div class="ttc" id="astruct_essence_args_html_a2367d19a910ecf489ea024faf9a4ab65"><div class="ttname"><a href="struct_essence_args.html#a2367d19a910ecf489ea024faf9a4ab65">EssenceArgs::blackKnight</a></div><div class="ttdeci">PieceEssence blackKnight</div><div class="ttdef"><b>Definition</b> board.h:78</div></div>
+<div class="ttc" id="astruct_essence_args_html_a31eb0eb12aa403929ab7f1fb91e02b59"><div class="ttname"><a href="struct_essence_args.html#a31eb0eb12aa403929ab7f1fb91e02b59">EssenceArgs::whitePawn</a></div><div class="ttdeci">PieceEssence whitePawn</div><div class="ttdef"><b>Definition</b> board.h:48</div></div>
+<div class="ttc" id="astruct_essence_args_html_a43b7ccc9805926e1741590b0b736f86c"><div class="ttname"><a href="struct_essence_args.html#a43b7ccc9805926e1741590b0b736f86c">EssenceArgs::whiteRook</a></div><div class="ttdeci">PieceEssence whiteRook</div><div class="ttdef"><b>Definition</b> board.h:53</div></div>
+<div class="ttc" id="astruct_essence_args_html_a496ff3f21184ddf2f338607d957b70a1"><div class="ttname"><a href="struct_essence_args.html#a496ff3f21184ddf2f338607d957b70a1">EssenceArgs::blackPawn</a></div><div class="ttdeci">PieceEssence blackPawn</div><div class="ttdef"><b>Definition</b> board.h:68</div></div>
+<div class="ttc" id="astruct_essence_args_html_a6b19846fd12a66fe792cf9ed8c80a93f"><div class="ttname"><a href="struct_essence_args.html#a6b19846fd12a66fe792cf9ed8c80a93f">EssenceArgs::whiteBishop</a></div><div class="ttdeci">PieceEssence whiteBishop</div><div class="ttdef"><b>Definition</b> board.h:63</div></div>
+<div class="ttc" id="astruct_essence_args_html_a8efdf56bb8553f32ecd91334c4145de9"><div class="ttname"><a href="struct_essence_args.html#a8efdf56bb8553f32ecd91334c4145de9">EssenceArgs::blackBishop</a></div><div class="ttdeci">PieceEssence blackBishop</div><div class="ttdef"><b>Definition</b> board.h:83</div></div>
+<div class="ttc" id="astruct_essence_args_html_aae2a076b0ea90c529c2d8c69a5d50c60"><div class="ttname"><a href="struct_essence_args.html#aae2a076b0ea90c529c2d8c69a5d50c60">EssenceArgs::blackRook</a></div><div class="ttdeci">PieceEssence blackRook</div><div class="ttdef"><b>Definition</b> board.h:73</div></div>
+<div class="ttc" id="astruct_essence_args_html_ad8c23c8a3873f7357da636d37a2bd9ac"><div class="ttname"><a href="struct_essence_args.html#ad8c23c8a3873f7357da636d37a2bd9ac">EssenceArgs::whiteKnight</a></div><div class="ttdeci">PieceEssence whiteKnight</div><div class="ttdef"><b>Definition</b> board.h:58</div></div>
+<div class="ttc" id="astruct_eval_args_html"><div class="ttname"><a href="struct_eval_args.html">EvalArgs</a></div><div class="ttdef"><b>Definition</b> evaluation.h:17</div></div>
+<div class="ttc" id="astruct_ghost_html"><div class="ttname"><a href="struct_ghost.html">Ghost</a></div><div class="ttdef"><b>Definition</b> piece.h:107</div></div>
+<div class="ttc" id="astruct_legal_move_html"><div class="ttname"><a href="struct_legal_move.html">LegalMove</a></div><div class="ttdef"><b>Definition</b> mobility.h:121</div></div>
+<div class="ttc" id="astruct_piece_html"><div class="ttname"><a href="struct_piece.html">Piece</a></div><div class="ttdef"><b>Definition</b> piece.h:80</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generované programom&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

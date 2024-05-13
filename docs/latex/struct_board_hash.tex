@@ -1,0 +1,94 @@
+\doxysection{Dokumentácia štruktúry Board\+Hash}
+\hypertarget{struct_board_hash}{}\label{struct_board_hash}\index{BoardHash@{BoardHash}}
+
+
+{\ttfamily \#include $<$hashing.\+h$>$}
+
+\doxysubsubsection*{Verejné metódy}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{struct_board_hash_a7fb34604874df3d269b0c1131bbe7b78}{switch\+Square}} (\mbox{\hyperlink{struct_piece}{Piece}} piece, char x, char y)
+\item 
+void \mbox{\hyperlink{struct_board_hash_a13ec16d355f246d203f21161d39a2189}{switch\+Not\+Moved}} (char x, char y)
+\item 
+void \mbox{\hyperlink{struct_board_hash_a9b0cf153acbdd9c0cfeab04b225e2df8}{switch\+Ghost}} (\mbox{\hyperlink{struct_ghost}{Ghost}} ghost)
+\item 
+void \mbox{\hyperlink{struct_board_hash_a1201d61143b132bd480b40e603ec445d}{switch\+Turn}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Verejné atribúty}
+\begin{DoxyCompactItemize}
+\item 
+unsigned long long \mbox{\hyperlink{struct_board_hash_ad7b2a937d79127733fa1166480ff0eb0}{value}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailný popis}
+Štruktúra reprezentujúca hash šachovnice. 
+
+\doxysubsection{Dokumentácia k metódam}
+\Hypertarget{struct_board_hash_a9b0cf153acbdd9c0cfeab04b225e2df8}\label{struct_board_hash_a9b0cf153acbdd9c0cfeab04b225e2df8} 
+\index{BoardHash@{BoardHash}!switchGhost@{switchGhost}}
+\index{switchGhost@{switchGhost}!BoardHash@{BoardHash}}
+\doxysubsubsection{\texorpdfstring{switchGhost()}{switchGhost()}}
+{\footnotesize\ttfamily void Board\+Hash\+::switch\+Ghost (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ghost}{Ghost}}}]{ghost }\end{DoxyParamCaption})}
+
+Touto funkciou upravíme hash šachovnice po pridaní alebo odstránení špeciálnej figúrky (vytvórená \textquotesingle{}hasty\textquotesingle{} pohybom).
+
+
+\begin{DoxyParams}{Parametre}
+{\em ghost} & Špeciálna figúrka. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_board_hash_a13ec16d355f246d203f21161d39a2189}\label{struct_board_hash_a13ec16d355f246d203f21161d39a2189} 
+\index{BoardHash@{BoardHash}!switchNotMoved@{switchNotMoved}}
+\index{switchNotMoved@{switchNotMoved}!BoardHash@{BoardHash}}
+\doxysubsubsection{\texorpdfstring{switchNotMoved()}{switchNotMoved()}}
+{\footnotesize\ttfamily void Board\+Hash\+::switch\+Not\+Moved (\begin{DoxyParamCaption}\item[{char}]{x,  }\item[{char}]{y }\end{DoxyParamCaption})}
+
+Touto funkciou upravíme hash šachovnice po pridaní alebo odstránení nepohnutej figúrky.
+
+
+\begin{DoxyParams}{Parametre}
+{\em x} & Koordinát X zmeneného políčka. \\
+\hline
+{\em y} & Koordinát Y zmeneného políčka. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_board_hash_a7fb34604874df3d269b0c1131bbe7b78}\label{struct_board_hash_a7fb34604874df3d269b0c1131bbe7b78} 
+\index{BoardHash@{BoardHash}!switchSquare@{switchSquare}}
+\index{switchSquare@{switchSquare}!BoardHash@{BoardHash}}
+\doxysubsubsection{\texorpdfstring{switchSquare()}{switchSquare()}}
+{\footnotesize\ttfamily void Board\+Hash\+::switch\+Square (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_piece}{Piece}}}]{piece,  }\item[{char}]{x,  }\item[{char}]{y }\end{DoxyParamCaption})}
+
+Touto funkciou upravíme hash šachovnice po premiestnení figúrky z alebo do danej pozície.
+
+
+\begin{DoxyParams}{Parametre}
+{\em piece} & Presunutá figúrka. \\
+\hline
+{\em x} & Koordinát X zmeneného políčka. \\
+\hline
+{\em y} & Koordinát Y zmeneného políčka. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_board_hash_a1201d61143b132bd480b40e603ec445d}\label{struct_board_hash_a1201d61143b132bd480b40e603ec445d} 
+\index{BoardHash@{BoardHash}!switchTurn@{switchTurn}}
+\index{switchTurn@{switchTurn}!BoardHash@{BoardHash}}
+\doxysubsubsection{\texorpdfstring{switchTurn()}{switchTurn()}}
+{\footnotesize\ttfamily void Board\+Hash\+::switch\+Turn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Touto funkciou upravíme hash šachovnice po zmenený aktívneho hráča. 
+
+\doxysubsection{Dokumentácia k dátovým členom}
+\Hypertarget{struct_board_hash_ad7b2a937d79127733fa1166480ff0eb0}\label{struct_board_hash_ad7b2a937d79127733fa1166480ff0eb0} 
+\index{BoardHash@{BoardHash}!value@{value}}
+\index{value@{value}!BoardHash@{BoardHash}}
+\doxysubsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily unsigned long long Board\+Hash\+::value}
+
+64-\/bitové číslo reprezentujúce identikikátor šachovnice. 
+
+Dokumentácia pre túto štruktúru (struct) bola generovaná z nasledujúcich súborov\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hashing_8h}{hashing.\+h}}\item 
+hashing.\+cpp\end{DoxyCompactItemize}

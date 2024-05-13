@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sk">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Malakh: Dokumentácia triedy DatabaseConnection</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Malakh
+   </div>
+   <div id="projectbrief">Šachový engine na hru s neštandardnými šachovými pravidlami</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generované programom Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Hľadať');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Načítam...</div>
+<div class="SRStatus" id="Searching">Vyhľadávam...</div>
+<div class="SRStatus" id="NoMatches">Nič sa nenašlo</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Verejné metódy</a> &#124;
+<a href="#pri-attribs">Privátne atribúty</a> &#124;
+<a href="class_database_connection-members.html">Zoznam všetkých členov</a>  </div>
+  <div class="headertitle"><div class="title">Dokumentácia triedy DatabaseConnection</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="database_8h_source.html">database.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Verejné metódy</h2></td></tr>
+<tr class="memitem:a7f50e17550775f1803dea4084f1987f1" id="r_a7f50e17550775f1803dea4084f1987f1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f50e17550775f1803dea4084f1987f1">DatabaseConnection</a> ()</td></tr>
+<tr class="separator:a7f50e17550775f1803dea4084f1987f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08acfd6e7dd28f2cd16c8a8d19053720" id="r_a08acfd6e7dd28f2cd16c8a8d19053720"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08acfd6e7dd28f2cd16c8a8d19053720">getIdEssenceConfig</a> (<a class="el" href="struct_essence_args.html">EssenceArgs</a> essenceArgs)</td></tr>
+<tr class="separator:a08acfd6e7dd28f2cd16c8a8d19053720"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9af604d3a2d4bbf4e808798bb013c92f" id="r_a9af604d3a2d4bbf4e808798bb013c92f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9af604d3a2d4bbf4e808798bb013c92f">updateScores</a> ()</td></tr>
+<tr class="separator:a9af604d3a2d4bbf4e808798bb013c92f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69bbeadebc247189adf943eec9c2c60a" id="r_a69bbeadebc247189adf943eec9c2c60a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69bbeadebc247189adf943eec9c2c60a">addBoardResult</a> (<a class="el" href="class_board.html">Board</a> board, int idEssenceConfig, <a class="el" href="board_8h.html#a41741953d704b743544ce6383c27c7c6">GameResult</a> gameResult)</td></tr>
+<tr class="separator:a69bbeadebc247189adf943eec9c2c60a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Privátne atribúty</h2></td></tr>
+<tr class="memitem:a6929cd3ca2b048cab5db9fb50178f346" id="r_a6929cd3ca2b048cab5db9fb50178f346"><td class="memItemLeft" align="right" valign="top">pqxx::connection&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6929cd3ca2b048cab5db9fb50178f346">connection</a></td></tr>
+<tr class="separator:a6929cd3ca2b048cab5db9fb50178f346"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa515e8c8e6b7e737caa658b8f63e6fca" id="r_aa515e8c8e6b7e737caa658b8f63e6fca"><td class="memItemLeft" align="right" valign="top">pqxx::work&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa515e8c8e6b7e737caa658b8f63e6fca">txn</a></td></tr>
+<tr class="separator:aa515e8c8e6b7e737caa658b8f63e6fca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailný popis</h2>
+<div class="textblock"><p>Konkrétne pripojenie na databáze. </p>
+</div><h2 class="groupheader">Dokumentácia konštruktoru a deštruktoru</h2>
+<a id="a7f50e17550775f1803dea4084f1987f1" name="a7f50e17550775f1803dea4084f1987f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f50e17550775f1803dea4084f1987f1">&#9670;&#160;</a></span>DatabaseConnection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DatabaseConnection::DatabaseConnection </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Konštruktor vytvorí spojenie pomocou konekčného stringu z triedy <a class="el" href="class_database_manager.html">DatabaseManager</a>. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentácia k metódam</h2>
+<a id="a69bbeadebc247189adf943eec9c2c60a" name="a69bbeadebc247189adf943eec9c2c60a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69bbeadebc247189adf943eec9c2c60a">&#9670;&#160;</a></span>addBoardResult()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DatabaseConnection::addBoardResult </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_board.html">Board</a></td>          <td class="paramname"><span class="paramname"><em>board</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>idEssenceConfig</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="board_8h.html#a41741953d704b743544ce6383c27c7c6">GameResult</a></td>          <td class="paramname"><span class="paramname"><em>gameResult</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Do databázy uložíme výsledok hry pre danú šachovú pozíciu. Ak táto pozícia ešte v databáze neexistuje, tak vložíme nový záznam. Ak táto pozícia sa už v databáze nachádza, tak len inkrementujeme počítadlo výsledku.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">board</td><td>Uložená šachovnica. </td></tr>
+    <tr><td class="paramname">idEssenceConfig</td><td>ID konfigurácie esencií. </td></tr>
+    <tr><td class="paramname">gameResult</td><td>Výsledok hry. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a08acfd6e7dd28f2cd16c8a8d19053720" name="a08acfd6e7dd28f2cd16c8a8d19053720"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08acfd6e7dd28f2cd16c8a8d19053720">&#9670;&#160;</a></span>getIdEssenceConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DatabaseConnection::getIdEssenceConfig </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_essence_args.html">EssenceArgs</a></td>          <td class="paramname"><span class="paramname"><em>essenceArgs</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pre danú konfiguráciu esencií zistíme jej ID.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">essenceArgs</td><td>Konfigurácia esencií. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>ID konfigurácie esencií. </dd></dl>
+
+</div>
+</div>
+<a id="a9af604d3a2d4bbf4e808798bb013c92f" name="a9af604d3a2d4bbf4e808798bb013c92f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9af604d3a2d4bbf4e808798bb013c92f">&#9670;&#160;</a></span>updateScores()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DatabaseConnection::updateScores </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pomocou tejto metódy môžeme upraviť skóre šachových pozícii uložených v databáze pri zmene evaluačnej funkcie. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentácia k dátovým členom</h2>
+<a id="a6929cd3ca2b048cab5db9fb50178f346" name="a6929cd3ca2b048cab5db9fb50178f346"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6929cd3ca2b048cab5db9fb50178f346">&#9670;&#160;</a></span>connection</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">pqxx::connection DatabaseConnection::connection</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Pripojenie do databázy. </p>
+
+</div>
+</div>
+<a id="aa515e8c8e6b7e737caa658b8f63e6fca" name="aa515e8c8e6b7e737caa658b8f63e6fca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa515e8c8e6b7e737caa658b8f63e6fca">&#9670;&#160;</a></span>txn</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">pqxx::work DatabaseConnection::txn</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Tranzakcia v databáze. </p>
+
+</div>
+</div>
+<hr/>Dokumentácia pre túto triedu bola generovaná z nasledujúcich súborov:<ul>
+<li><a class="el" href="database_8h_source.html">database.h</a></li>
+<li><b>database.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generované programom&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

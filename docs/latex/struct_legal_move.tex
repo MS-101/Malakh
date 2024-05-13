@@ -1,0 +1,163 @@
+\doxysection{Dokumentácia štruktúry Legal\+Move}
+\hypertarget{struct_legal_move}{}\label{struct_legal_move}\index{LegalMove@{LegalMove}}
+
+
+{\ttfamily \#include $<$mobility.\+h$>$}
+
+\doxysubsubsection*{Verejné metódy}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_legal_move_af2ff87469d95b5afcfd9dae9ddf97d94}{Legal\+Move}} ()
+\item 
+\mbox{\hyperlink{struct_legal_move_a2bd29da4198513900dbd53854146e575}{Legal\+Move}} (int \mbox{\hyperlink{struct_legal_move_a38e50667cde7c5cde45e450d14c9b4aa}{x1}}, int \mbox{\hyperlink{struct_legal_move_a7c21d722a9098be3724d428028d4ce90}{y1}}, int \mbox{\hyperlink{struct_legal_move_ae3e3d5097205783a2434d565c4bd6556}{x2}}, int \mbox{\hyperlink{struct_legal_move_a44c61fdc8cfe098fde2cff515e39633c}{y2}}, \mbox{\hyperlink{struct_mobility}{Mobility}} \mbox{\hyperlink{struct_legal_move_a855bc8d741ef6ec1327b164020534162}{mobility}})
+\item 
+\mbox{\hyperlink{struct_legal_move_a4bcf12bacd82b5c483349a69de275fc4}{Legal\+Move}} (std\+::string value)
+\item 
+std\+::string \mbox{\hyperlink{struct_legal_move_aea24a744710fa9a11002b5fc4716e563}{to\+String}} ()
+\item 
+std\+::string \mbox{\hyperlink{struct_legal_move_ac889fcbab687dd4682dc978d540f4e21}{to\+String\+With\+Flags}} (\mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}} color)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Verejné atribúty}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{struct_legal_move_a38e50667cde7c5cde45e450d14c9b4aa}{x1}} = 0
+\item 
+int \mbox{\hyperlink{struct_legal_move_a7c21d722a9098be3724d428028d4ce90}{y1}} = 0
+\item 
+int \mbox{\hyperlink{struct_legal_move_ae3e3d5097205783a2434d565c4bd6556}{x2}} = 0
+\item 
+int \mbox{\hyperlink{struct_legal_move_a44c61fdc8cfe098fde2cff515e39633c}{y2}} = 0
+\item 
+\mbox{\hyperlink{struct_mobility}{Mobility}} \mbox{\hyperlink{struct_legal_move_a855bc8d741ef6ec1327b164020534162}{mobility}}
+\item 
+\mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}} \mbox{\hyperlink{struct_legal_move_aca1aadbb5ca9c61e931c50cec6b9c96e}{promotion}} = \mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021ab306a6be286e11bcaf3695829cf657ee}{Pawn}}
+\item 
+\mbox{\hyperlink{mobility_8h_ac663d85beab039663f297c3992360793}{Castling}} \mbox{\hyperlink{struct_legal_move_adb86e512e2cc0dc905ec2c0ad6ba41a9}{castling}} = \mbox{\hyperlink{mobility_8h_ac663d85beab039663f297c3992360793ab7e4e0120a041dbe6528b050c04269e0}{none}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailný popis}
+Štruktúra reprezentujúca legálny pohyb. 
+
+\doxysubsection{Dokumentácia konštruktoru a deštruktoru}
+\Hypertarget{struct_legal_move_af2ff87469d95b5afcfd9dae9ddf97d94}\label{struct_legal_move_af2ff87469d95b5afcfd9dae9ddf97d94} 
+\index{LegalMove@{LegalMove}!LegalMove@{LegalMove}}
+\index{LegalMove@{LegalMove}!LegalMove@{LegalMove}}
+\doxysubsubsection{\texorpdfstring{LegalMove()}{LegalMove()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Legal\+Move\+::\+Legal\+Move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Predvolený konštruktor. \Hypertarget{struct_legal_move_a2bd29da4198513900dbd53854146e575}\label{struct_legal_move_a2bd29da4198513900dbd53854146e575} 
+\index{LegalMove@{LegalMove}!LegalMove@{LegalMove}}
+\index{LegalMove@{LegalMove}!LegalMove@{LegalMove}}
+\doxysubsubsection{\texorpdfstring{LegalMove()}{LegalMove()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Legal\+Move\+::\+Legal\+Move (\begin{DoxyParamCaption}\item[{int}]{x1,  }\item[{int}]{y1,  }\item[{int}]{x2,  }\item[{int}]{y2,  }\item[{\mbox{\hyperlink{struct_mobility}{Mobility}}}]{mobility }\end{DoxyParamCaption})}
+
+Konštruktor pre dané hodnoty.
+
+
+\begin{DoxyParams}{Parametre}
+{\em x1} & Koordinát X zdrojovej pozície. \\
+\hline
+{\em y1} & Koordinát Y zdrojovej pozície. \\
+\hline
+{\em x2} & Koordinát X cieľovej pozície. \\
+\hline
+{\em y2} & Koordinát Y cieľovej pozície. \\
+\hline
+{\em mobility} & Pravidlá pohybu. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_legal_move_a4bcf12bacd82b5c483349a69de275fc4}\label{struct_legal_move_a4bcf12bacd82b5c483349a69de275fc4} 
+\index{LegalMove@{LegalMove}!LegalMove@{LegalMove}}
+\index{LegalMove@{LegalMove}!LegalMove@{LegalMove}}
+\doxysubsubsection{\texorpdfstring{LegalMove()}{LegalMove()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Legal\+Move\+::\+Legal\+Move (\begin{DoxyParamCaption}\item[{std\+::string}]{value }\end{DoxyParamCaption})}
+
+Konštuktor pre algebraickú notáciu.
+
+
+\begin{DoxyParams}{Parametre}
+{\em value} & Algebraická notácia pohybu. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Dokumentácia k metódam}
+\Hypertarget{struct_legal_move_aea24a744710fa9a11002b5fc4716e563}\label{struct_legal_move_aea24a744710fa9a11002b5fc4716e563} 
+\index{LegalMove@{LegalMove}!toString@{toString}}
+\index{toString@{toString}!LegalMove@{LegalMove}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily std\+::string Legal\+Move\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Konverzia pohybu do algebraickej notácie.
+
+\begin{DoxyReturn}{Návratová hodnota}
+Algebraická notácia pohybu. 
+\end{DoxyReturn}
+\Hypertarget{struct_legal_move_ac889fcbab687dd4682dc978d540f4e21}\label{struct_legal_move_ac889fcbab687dd4682dc978d540f4e21} 
+\index{LegalMove@{LegalMove}!toStringWithFlags@{toStringWithFlags}}
+\index{toStringWithFlags@{toStringWithFlags}!LegalMove@{LegalMove}}
+\doxysubsubsection{\texorpdfstring{toStringWithFlags()}{toStringWithFlags()}}
+{\footnotesize\ttfamily std\+::string Legal\+Move\+::to\+String\+With\+Flags (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}}}]{color }\end{DoxyParamCaption})}
+
+Konverzia pohybu do algebraickej notácie s flagmi pohybu.
+
+
+\begin{DoxyParams}{Parametre}
+{\em color} & Vlastník figúrky. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Algebraická notácia pohybu. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Dokumentácia k dátovým členom}
+\Hypertarget{struct_legal_move_adb86e512e2cc0dc905ec2c0ad6ba41a9}\label{struct_legal_move_adb86e512e2cc0dc905ec2c0ad6ba41a9} 
+\index{LegalMove@{LegalMove}!castling@{castling}}
+\index{castling@{castling}!LegalMove@{LegalMove}}
+\doxysubsubsection{\texorpdfstring{castling}{castling}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mobility_8h_ac663d85beab039663f297c3992360793}{Castling}} Legal\+Move\+::castling = \mbox{\hyperlink{mobility_8h_ac663d85beab039663f297c3992360793ab7e4e0120a041dbe6528b050c04269e0}{none}}}
+
+Typ rošády. \Hypertarget{struct_legal_move_a855bc8d741ef6ec1327b164020534162}\label{struct_legal_move_a855bc8d741ef6ec1327b164020534162} 
+\index{LegalMove@{LegalMove}!mobility@{mobility}}
+\index{mobility@{mobility}!LegalMove@{LegalMove}}
+\doxysubsubsection{\texorpdfstring{mobility}{mobility}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_mobility}{Mobility}} Legal\+Move\+::mobility}
+
+Pravidlá pohybu. \Hypertarget{struct_legal_move_aca1aadbb5ca9c61e931c50cec6b9c96e}\label{struct_legal_move_aca1aadbb5ca9c61e931c50cec6b9c96e} 
+\index{LegalMove@{LegalMove}!promotion@{promotion}}
+\index{promotion@{promotion}!LegalMove@{LegalMove}}
+\doxysubsubsection{\texorpdfstring{promotion}{promotion}}
+{\footnotesize\ttfamily \mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}} Legal\+Move\+::promotion = \mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021ab306a6be286e11bcaf3695829cf657ee}{Pawn}}}
+
+Typ figúrky po vykonaní promócie. \Hypertarget{struct_legal_move_a38e50667cde7c5cde45e450d14c9b4aa}\label{struct_legal_move_a38e50667cde7c5cde45e450d14c9b4aa} 
+\index{LegalMove@{LegalMove}!x1@{x1}}
+\index{x1@{x1}!LegalMove@{LegalMove}}
+\doxysubsubsection{\texorpdfstring{x1}{x1}}
+{\footnotesize\ttfamily int Legal\+Move\+::x1 = 0}
+
+Koordinát X zdrojovej pozície. \Hypertarget{struct_legal_move_ae3e3d5097205783a2434d565c4bd6556}\label{struct_legal_move_ae3e3d5097205783a2434d565c4bd6556} 
+\index{LegalMove@{LegalMove}!x2@{x2}}
+\index{x2@{x2}!LegalMove@{LegalMove}}
+\doxysubsubsection{\texorpdfstring{x2}{x2}}
+{\footnotesize\ttfamily int Legal\+Move\+::x2 = 0}
+
+Koordinát X cieľovej pozície. \Hypertarget{struct_legal_move_a7c21d722a9098be3724d428028d4ce90}\label{struct_legal_move_a7c21d722a9098be3724d428028d4ce90} 
+\index{LegalMove@{LegalMove}!y1@{y1}}
+\index{y1@{y1}!LegalMove@{LegalMove}}
+\doxysubsubsection{\texorpdfstring{y1}{y1}}
+{\footnotesize\ttfamily int Legal\+Move\+::y1 = 0}
+
+Koordinát Y zdrojovej pozície. \Hypertarget{struct_legal_move_a44c61fdc8cfe098fde2cff515e39633c}\label{struct_legal_move_a44c61fdc8cfe098fde2cff515e39633c} 
+\index{LegalMove@{LegalMove}!y2@{y2}}
+\index{y2@{y2}!LegalMove@{LegalMove}}
+\doxysubsubsection{\texorpdfstring{y2}{y2}}
+{\footnotesize\ttfamily int Legal\+Move\+::y2 = 0}
+
+Koordinát Y cieľovej pozície. 
+
+Dokumentácia pre túto štruktúru (struct) bola generovaná z nasledujúcich súborov\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{mobility_8h}{mobility.\+h}}\item 
+mobility.\+cpp\end{DoxyCompactItemize}

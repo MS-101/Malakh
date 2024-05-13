@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sk">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Malakh: Zdrojový súbor piece.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Malakh
+   </div>
+   <div id="projectbrief">Šachový engine na hru s neštandardnými šachovými pravidlami</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generované programom Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Hľadať');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Načítam...</div>
+<div class="SRStatus" id="Searching">Vyhľadávam...</div>
+<div class="SRStatus" id="NoMatches">Nič sa nenašlo</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">piece.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="piece_8h.html">Zobraziť dokumentáciu tohoto súboru.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">/*****************************************************************/</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#define NOMINMAX</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">   18</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985ab548046646b36c12aa6ba841de500094">   22</a></span>    <a class="code hl_enumvalue" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985ab548046646b36c12aa6ba841de500094">White</a>,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <a class="code hl_enumvalue" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985ac1e9bce8242f443c54c7405223d616cd">Black</a></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985ac1e9bce8242f443c54c7405223d616cd">   27</a></span>};</div>
+</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="};">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021">   32</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021">PieceType</a> {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021ab306a6be286e11bcaf3695829cf657ee">   36</a></span>    <a class="code hl_enumvalue" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021ab306a6be286e11bcaf3695829cf657ee">Pawn</a>,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021a123c6e01d8a2e323abf42370c26cd047">   40</a></span>    <a class="code hl_enumvalue" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021a123c6e01d8a2e323abf42370c26cd047">Rook</a>,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021acde4898e8fcebdba44f8963e9b12799d">   44</a></span>    <a class="code hl_enumvalue" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021acde4898e8fcebdba44f8963e9b12799d">Knight</a>,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021a7270f86db491d8aed7a3187829a82e13">   48</a></span>    <a class="code hl_enumvalue" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021a7270f86db491d8aed7a3187829a82e13">Bishop</a>,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021a011d63789e83d8beb2a90652bb03cd31">   52</a></span>    <a class="code hl_enumvalue" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021a011d63789e83d8beb2a90652bb03cd31">Queen</a>,</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <a class="code hl_enumvalue" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021a27fc6acdd76c4d0f3b47933e02ec65cf">King</a></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021a27fc6acdd76c4d0f3b47933e02ec65cf">   57</a></span>};</div>
+</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="foldopen" id="foldopen00062" data-start="{" data-end="};">
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703">   62</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a> {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e">   66</a></span>    <a class="code hl_enumvalue" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e">Classic</a>,</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703ad3163c1fcda01965b692ec2c3122b743">   70</a></span>    <a class="code hl_enumvalue" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703ad3163c1fcda01965b692ec2c3122b743">Red</a>,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <a class="code hl_enumvalue" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703af5e09dd1da4088464f264b7a3118bff8">Blue</a></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703af5e09dd1da4088464f264b7a3118bff8">   75</a></span>};</div>
+</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="foldopen" id="foldopen00080" data-start="{" data-end="};">
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="struct_piece.html">   80</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_piece.html">Piece</a> {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="struct_piece.html#a8dfe0501fe95a1a7618cf5ad3b9fda69">   84</a></span>    <a class="code hl_enumeration" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a> <a class="code hl_variable" href="struct_piece.html#a8dfe0501fe95a1a7618cf5ad3b9fda69">color</a> = <a class="code hl_enumvalue" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985ab548046646b36c12aa6ba841de500094">White</a>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="struct_piece.html#ab8f29312ab7939c96ff03f1fb8957d1c">   89</a></span>    <a class="code hl_enumeration" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021">PieceType</a> <a class="code hl_variable" href="struct_piece.html#ab8f29312ab7939c96ff03f1fb8957d1c">type</a> = <a class="code hl_enumvalue" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021ab306a6be286e11bcaf3695829cf657ee">Pawn</a>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="struct_piece.html#a51b0675695cf3738a01919ffcf49aba3">   94</a></span>    <a class="code hl_enumeration" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a> <a class="code hl_variable" href="struct_piece.html#a51b0675695cf3738a01919ffcf49aba3">essence</a> = <a class="code hl_enumvalue" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e">Classic</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordtype">char</span> <a class="code hl_function" href="struct_piece.html#a43d2e80b54fa19418455890d97725cfc">toChar</a>();</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>};</div>
+</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="foldopen" id="foldopen00107" data-start="{" data-end="};">
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="struct_ghost.html">  107</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_ghost.html">Ghost</a> {</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="struct_ghost.html#a59aae29ce4a373752045c9cae964200e">  111</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_ghost.html#a59aae29ce4a373752045c9cae964200e">x</a> = -1;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="struct_ghost.html#a80b5c9a7531ca80b31e9308f0a083c5e">  116</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_ghost.html#a80b5c9a7531ca80b31e9308f0a083c5e">y</a> = -1;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="struct_ghost.html#aed45df1a172011725090e3d794244166">  121</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_ghost.html#aed45df1a172011725090e3d794244166">parentX</a> = -1;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="struct_ghost.html#ac842ff7f11ec66c24e8b0f9436b7a9ff">  126</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_ghost.html#ac842ff7f11ec66c24e8b0f9436b7a9ff">parentY</a> = -1;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>};</div>
+</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="keyword">extern</span> <a class="code hl_enumeration" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a> <a class="code hl_variable" href="piece_8h.html#a30d454d1d2c8f529c93c7fccec714a67">opponent</a>[];</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="keyword">extern</span> <span class="keywordtype">char</span> <a class="code hl_variable" href="piece_8h.html#a3659e621cc28bdd541c3a9d65b309c90">colorChars</a>[];</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="keyword">extern</span> <span class="keywordtype">char</span> <a class="code hl_variable" href="piece_8h.html#aafa8ea50d6335445c35439867fdfb42a">essenceChars</a>[];</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="keyword">extern</span> <span class="keywordtype">char</span> <a class="code hl_variable" href="piece_8h.html#a6c7116f039e491da0ae2d61fbc8123b4">typeChars</a>[];</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="keywordtype">char</span> <a class="code hl_function" href="piece_8h.html#a77511f5b1d1b9512eca6df4a85cc9259">getPieceIndex</a>(<span class="keywordtype">char</span> color, <span class="keywordtype">char</span> type);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><a class="code hl_enumeration" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a> <a class="code hl_function" href="piece_8h.html#a9125c9dab2ada6e60db34033a63ee7b7">stringToColor</a>(std::string value);</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><a class="code hl_enumeration" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021">PieceType</a> <a class="code hl_function" href="piece_8h.html#af5a0090ef83b1b00d7d8a9ff61f1edf0">stringToType</a>(std::string value);</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><a class="code hl_enumeration" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a> <a class="code hl_function" href="piece_8h.html#a965914de6012941f8216f3ff3f7dfb84">stringToEssence</a>(std::string value);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>std::string <a class="code hl_function" href="piece_8h.html#aa83c6cdc7aff34aa249524d5be3bca0b">colorToString</a>(<a class="code hl_enumeration" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a> value);</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>std::string <a class="code hl_function" href="piece_8h.html#a974fb23971911acde2526785837ab4b9">typeToString</a>(<a class="code hl_enumeration" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021">PieceType</a> value);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>std::string <a class="code hl_function" href="piece_8h.html#a0dd61b17b0bd4fe24f313f844fad3ae3">essenceToString</a>(<a class="code hl_enumeration" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a> value);</div>
+<div class="ttc" id="apiece_8h_html_a0dd61b17b0bd4fe24f313f844fad3ae3"><div class="ttname"><a href="piece_8h.html#a0dd61b17b0bd4fe24f313f844fad3ae3">essenceToString</a></div><div class="ttdeci">std::string essenceToString(PieceEssence value)</div><div class="ttdef"><b>Definition</b> piece.cpp:84</div></div>
+<div class="ttc" id="apiece_8h_html_a12ed9719bbdf7bc596ff7a6f4bf3f021"><div class="ttname"><a href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021">PieceType</a></div><div class="ttdeci">PieceType</div><div class="ttdef"><b>Definition</b> piece.h:32</div></div>
+<div class="ttc" id="apiece_8h_html_a12ed9719bbdf7bc596ff7a6f4bf3f021a011d63789e83d8beb2a90652bb03cd31"><div class="ttname"><a href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021a011d63789e83d8beb2a90652bb03cd31">Queen</a></div><div class="ttdeci">@ Queen</div><div class="ttdef"><b>Definition</b> piece.h:52</div></div>
+<div class="ttc" id="apiece_8h_html_a12ed9719bbdf7bc596ff7a6f4bf3f021a123c6e01d8a2e323abf42370c26cd047"><div class="ttname"><a href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021a123c6e01d8a2e323abf42370c26cd047">Rook</a></div><div class="ttdeci">@ Rook</div><div class="ttdef"><b>Definition</b> piece.h:40</div></div>
+<div class="ttc" id="apiece_8h_html_a12ed9719bbdf7bc596ff7a6f4bf3f021a27fc6acdd76c4d0f3b47933e02ec65cf"><div class="ttname"><a href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021a27fc6acdd76c4d0f3b47933e02ec65cf">King</a></div><div class="ttdeci">@ King</div><div class="ttdef"><b>Definition</b> piece.h:56</div></div>
+<div class="ttc" id="apiece_8h_html_a12ed9719bbdf7bc596ff7a6f4bf3f021a7270f86db491d8aed7a3187829a82e13"><div class="ttname"><a href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021a7270f86db491d8aed7a3187829a82e13">Bishop</a></div><div class="ttdeci">@ Bishop</div><div class="ttdef"><b>Definition</b> piece.h:48</div></div>
+<div class="ttc" id="apiece_8h_html_a12ed9719bbdf7bc596ff7a6f4bf3f021ab306a6be286e11bcaf3695829cf657ee"><div class="ttname"><a href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021ab306a6be286e11bcaf3695829cf657ee">Pawn</a></div><div class="ttdeci">@ Pawn</div><div class="ttdef"><b>Definition</b> piece.h:36</div></div>
+<div class="ttc" id="apiece_8h_html_a12ed9719bbdf7bc596ff7a6f4bf3f021acde4898e8fcebdba44f8963e9b12799d"><div class="ttname"><a href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021acde4898e8fcebdba44f8963e9b12799d">Knight</a></div><div class="ttdeci">@ Knight</div><div class="ttdef"><b>Definition</b> piece.h:44</div></div>
+<div class="ttc" id="apiece_8h_html_a30d454d1d2c8f529c93c7fccec714a67"><div class="ttname"><a href="piece_8h.html#a30d454d1d2c8f529c93c7fccec714a67">opponent</a></div><div class="ttdeci">PieceColor opponent[]</div><div class="ttdef"><b>Definition</b> piece.cpp:4</div></div>
+<div class="ttc" id="apiece_8h_html_a3659e621cc28bdd541c3a9d65b309c90"><div class="ttname"><a href="piece_8h.html#a3659e621cc28bdd541c3a9d65b309c90">colorChars</a></div><div class="ttdeci">char colorChars[]</div><div class="ttdef"><b>Definition</b> piece.cpp:5</div></div>
+<div class="ttc" id="apiece_8h_html_a6c7116f039e491da0ae2d61fbc8123b4"><div class="ttname"><a href="piece_8h.html#a6c7116f039e491da0ae2d61fbc8123b4">typeChars</a></div><div class="ttdeci">char typeChars[]</div><div class="ttdef"><b>Definition</b> piece.cpp:7</div></div>
+<div class="ttc" id="apiece_8h_html_a77511f5b1d1b9512eca6df4a85cc9259"><div class="ttname"><a href="piece_8h.html#a77511f5b1d1b9512eca6df4a85cc9259">getPieceIndex</a></div><div class="ttdeci">char getPieceIndex(char color, char type)</div><div class="ttdef"><b>Definition</b> piece.cpp:9</div></div>
+<div class="ttc" id="apiece_8h_html_a9125c9dab2ada6e60db34033a63ee7b7"><div class="ttname"><a href="piece_8h.html#a9125c9dab2ada6e60db34033a63ee7b7">stringToColor</a></div><div class="ttdeci">PieceColor stringToColor(std::string value)</div><div class="ttdef"><b>Definition</b> piece.cpp:14</div></div>
+<div class="ttc" id="apiece_8h_html_a965914de6012941f8216f3ff3f7dfb84"><div class="ttname"><a href="piece_8h.html#a965914de6012941f8216f3ff3f7dfb84">stringToEssence</a></div><div class="ttdeci">PieceEssence stringToEssence(std::string value)</div><div class="ttdef"><b>Definition</b> piece.cpp:38</div></div>
+<div class="ttc" id="apiece_8h_html_a974fb23971911acde2526785837ab4b9"><div class="ttname"><a href="piece_8h.html#a974fb23971911acde2526785837ab4b9">typeToString</a></div><div class="ttdeci">std::string typeToString(PieceType value)</div><div class="ttdef"><b>Definition</b> piece.cpp:60</div></div>
+<div class="ttc" id="apiece_8h_html_aa83c6cdc7aff34aa249524d5be3bca0b"><div class="ttname"><a href="piece_8h.html#aa83c6cdc7aff34aa249524d5be3bca0b">colorToString</a></div><div class="ttdeci">std::string colorToString(PieceColor value)</div><div class="ttdef"><b>Definition</b> piece.cpp:48</div></div>
+<div class="ttc" id="apiece_8h_html_aafa8ea50d6335445c35439867fdfb42a"><div class="ttname"><a href="piece_8h.html#aafa8ea50d6335445c35439867fdfb42a">essenceChars</a></div><div class="ttdeci">char essenceChars[]</div><div class="ttdef"><b>Definition</b> piece.cpp:6</div></div>
+<div class="ttc" id="apiece_8h_html_ad0e2cebe1564362802ae0942b6d67703"><div class="ttname"><a href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a></div><div class="ttdeci">PieceEssence</div><div class="ttdef"><b>Definition</b> piece.h:62</div></div>
+<div class="ttc" id="apiece_8h_html_ad0e2cebe1564362802ae0942b6d67703ad3163c1fcda01965b692ec2c3122b743"><div class="ttname"><a href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703ad3163c1fcda01965b692ec2c3122b743">Red</a></div><div class="ttdeci">@ Red</div><div class="ttdef"><b>Definition</b> piece.h:70</div></div>
+<div class="ttc" id="apiece_8h_html_ad0e2cebe1564362802ae0942b6d67703af5e09dd1da4088464f264b7a3118bff8"><div class="ttname"><a href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703af5e09dd1da4088464f264b7a3118bff8">Blue</a></div><div class="ttdeci">@ Blue</div><div class="ttdef"><b>Definition</b> piece.h:74</div></div>
+<div class="ttc" id="apiece_8h_html_ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e"><div class="ttname"><a href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e">Classic</a></div><div class="ttdeci">@ Classic</div><div class="ttdef"><b>Definition</b> piece.h:66</div></div>
+<div class="ttc" id="apiece_8h_html_ad7595c48bb74c0dd2a7648712a2d4985"><div class="ttname"><a href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a></div><div class="ttdeci">PieceColor</div><div class="ttdef"><b>Definition</b> piece.h:18</div></div>
+<div class="ttc" id="apiece_8h_html_ad7595c48bb74c0dd2a7648712a2d4985ab548046646b36c12aa6ba841de500094"><div class="ttname"><a href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985ab548046646b36c12aa6ba841de500094">White</a></div><div class="ttdeci">@ White</div><div class="ttdef"><b>Definition</b> piece.h:22</div></div>
+<div class="ttc" id="apiece_8h_html_ad7595c48bb74c0dd2a7648712a2d4985ac1e9bce8242f443c54c7405223d616cd"><div class="ttname"><a href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985ac1e9bce8242f443c54c7405223d616cd">Black</a></div><div class="ttdeci">@ Black</div><div class="ttdef"><b>Definition</b> piece.h:26</div></div>
+<div class="ttc" id="apiece_8h_html_af5a0090ef83b1b00d7d8a9ff61f1edf0"><div class="ttname"><a href="piece_8h.html#af5a0090ef83b1b00d7d8a9ff61f1edf0">stringToType</a></div><div class="ttdeci">PieceType stringToType(std::string value)</div><div class="ttdef"><b>Definition</b> piece.cpp:22</div></div>
+<div class="ttc" id="astruct_ghost_html"><div class="ttname"><a href="struct_ghost.html">Ghost</a></div><div class="ttdef"><b>Definition</b> piece.h:107</div></div>
+<div class="ttc" id="astruct_ghost_html_a59aae29ce4a373752045c9cae964200e"><div class="ttname"><a href="struct_ghost.html#a59aae29ce4a373752045c9cae964200e">Ghost::x</a></div><div class="ttdeci">int x</div><div class="ttdef"><b>Definition</b> piece.h:111</div></div>
+<div class="ttc" id="astruct_ghost_html_a80b5c9a7531ca80b31e9308f0a083c5e"><div class="ttname"><a href="struct_ghost.html#a80b5c9a7531ca80b31e9308f0a083c5e">Ghost::y</a></div><div class="ttdeci">int y</div><div class="ttdef"><b>Definition</b> piece.h:116</div></div>
+<div class="ttc" id="astruct_ghost_html_ac842ff7f11ec66c24e8b0f9436b7a9ff"><div class="ttname"><a href="struct_ghost.html#ac842ff7f11ec66c24e8b0f9436b7a9ff">Ghost::parentY</a></div><div class="ttdeci">int parentY</div><div class="ttdef"><b>Definition</b> piece.h:126</div></div>
+<div class="ttc" id="astruct_ghost_html_aed45df1a172011725090e3d794244166"><div class="ttname"><a href="struct_ghost.html#aed45df1a172011725090e3d794244166">Ghost::parentX</a></div><div class="ttdeci">int parentX</div><div class="ttdef"><b>Definition</b> piece.h:121</div></div>
+<div class="ttc" id="astruct_piece_html"><div class="ttname"><a href="struct_piece.html">Piece</a></div><div class="ttdef"><b>Definition</b> piece.h:80</div></div>
+<div class="ttc" id="astruct_piece_html_a43d2e80b54fa19418455890d97725cfc"><div class="ttname"><a href="struct_piece.html#a43d2e80b54fa19418455890d97725cfc">Piece::toChar</a></div><div class="ttdeci">char toChar()</div><div class="ttdef"><b>Definition</b> piece.cpp:99</div></div>
+<div class="ttc" id="astruct_piece_html_a51b0675695cf3738a01919ffcf49aba3"><div class="ttname"><a href="struct_piece.html#a51b0675695cf3738a01919ffcf49aba3">Piece::essence</a></div><div class="ttdeci">PieceEssence essence</div><div class="ttdef"><b>Definition</b> piece.h:94</div></div>
+<div class="ttc" id="astruct_piece_html_a8dfe0501fe95a1a7618cf5ad3b9fda69"><div class="ttname"><a href="struct_piece.html#a8dfe0501fe95a1a7618cf5ad3b9fda69">Piece::color</a></div><div class="ttdeci">PieceColor color</div><div class="ttdef"><b>Definition</b> piece.h:84</div></div>
+<div class="ttc" id="astruct_piece_html_ab8f29312ab7939c96ff03f1fb8957d1c"><div class="ttname"><a href="struct_piece.html#ab8f29312ab7939c96ff03f1fb8957d1c">Piece::type</a></div><div class="ttdeci">PieceType type</div><div class="ttdef"><b>Definition</b> piece.h:89</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generované programom&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

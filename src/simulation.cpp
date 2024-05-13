@@ -74,6 +74,8 @@ void SimulationManager::simulateGames(int gameCounter, EssenceArgs essenceArgs, 
 				auto result = SearchManager::calculateBestMove_threads(board, malakhDepth, 4, useEnsemble, false);
 				if (result.first)
 					bestMove = result.second;
+				else
+					break;
 			}
 			else
 			{

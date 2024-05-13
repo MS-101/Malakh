@@ -1,0 +1,94 @@
+\doxysection{Dokumentácia triedy Zobrist\+Hashing}
+\hypertarget{class_zobrist_hashing}{}\label{class_zobrist_hashing}\index{ZobristHashing@{ZobristHashing}}
+
+
+{\ttfamily \#include $<$hashing.\+h$>$}
+
+\doxysubsubsection*{Statické verejné metódy}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_zobrist_hashing_ae01d3424e3410cdf6ab57c49b9434841}{init}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Statické verejné atribúty}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned long long \mbox{\hyperlink{class_zobrist_hashing_aad2247cfc6b057702a7f423d000ce951}{squares}} \mbox{[}64 \texorpdfstring{$\ast$}{*}2 \texorpdfstring{$\ast$}{*}6\mbox{]}
+\item 
+static unsigned long long \mbox{\hyperlink{class_zobrist_hashing_ab8bc646b666dc3453e54cd40c9aa8430}{not\+Moved}} \mbox{[}64\mbox{]}
+\item 
+static unsigned long long \mbox{\hyperlink{class_zobrist_hashing_aeb10761f74d28b3b28838c5c640a236b}{ghosts}} \mbox{[}64 \texorpdfstring{$\ast$}{*}64\mbox{]}
+\item 
+static unsigned long long \mbox{\hyperlink{class_zobrist_hashing_a069448b084d399bdfe612a6208a0ca42}{turn}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Statické privátne metódy}
+\begin{DoxyCompactItemize}
+\item 
+static unsigned long long \mbox{\hyperlink{class_zobrist_hashing_a98ee3b247c159141fc28b358afdcebe5}{rand64}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Statické privátne atribúty}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_zobrist_hashing_a75255ddfb07caee03d41e133773c002c}{is\+Initalized}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailný popis}
+Trieda zodpovedná za implementáciu zobristovho hashovania. 
+
+\doxysubsection{Dokumentácia k metódam}
+\Hypertarget{class_zobrist_hashing_ae01d3424e3410cdf6ab57c49b9434841}\label{class_zobrist_hashing_ae01d3424e3410cdf6ab57c49b9434841} 
+\index{ZobristHashing@{ZobristHashing}!init@{init}}
+\index{init@{init}!ZobristHashing@{ZobristHashing}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void Zobrist\+Hashing\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Pomocou tejto funkcie inicializujeme hodnoty zobristovho hashovania. \Hypertarget{class_zobrist_hashing_a98ee3b247c159141fc28b358afdcebe5}\label{class_zobrist_hashing_a98ee3b247c159141fc28b358afdcebe5} 
+\index{ZobristHashing@{ZobristHashing}!rand64@{rand64}}
+\index{rand64@{rand64}!ZobristHashing@{ZobristHashing}}
+\doxysubsubsection{\texorpdfstring{rand64()}{rand64()}}
+{\footnotesize\ttfamily unsigned long long Zobrist\+Hashing\+::rand64 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Generácia pseudonáhodného čísla.
+
+\begin{DoxyReturn}{Návratová hodnota}
+64-\/bitové číslo 
+\end{DoxyReturn}
+
+
+\doxysubsection{Dokumentácia k dátovým členom}
+\Hypertarget{class_zobrist_hashing_aeb10761f74d28b3b28838c5c640a236b}\label{class_zobrist_hashing_aeb10761f74d28b3b28838c5c640a236b} 
+\index{ZobristHashing@{ZobristHashing}!ghosts@{ghosts}}
+\index{ghosts@{ghosts}!ZobristHashing@{ZobristHashing}}
+\doxysubsubsection{\texorpdfstring{ghosts}{ghosts}}
+{\footnotesize\ttfamily unsigned long long Zobrist\+Hashing\+::ghosts\hspace{0.3cm}{\ttfamily [static]}}
+
+Hodnoty reprezentujúce špeciálnu figúrku na danej pozícii. \Hypertarget{class_zobrist_hashing_a75255ddfb07caee03d41e133773c002c}\label{class_zobrist_hashing_a75255ddfb07caee03d41e133773c002c} 
+\index{ZobristHashing@{ZobristHashing}!isInitalized@{isInitalized}}
+\index{isInitalized@{isInitalized}!ZobristHashing@{ZobristHashing}}
+\doxysubsubsection{\texorpdfstring{isInitalized}{isInitalized}}
+{\footnotesize\ttfamily bool Zobrist\+Hashing\+::is\+Initalized = false\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Bit pomocou ktorého vieme či sme vykonali inicializáciu. \Hypertarget{class_zobrist_hashing_ab8bc646b666dc3453e54cd40c9aa8430}\label{class_zobrist_hashing_ab8bc646b666dc3453e54cd40c9aa8430} 
+\index{ZobristHashing@{ZobristHashing}!notMoved@{notMoved}}
+\index{notMoved@{notMoved}!ZobristHashing@{ZobristHashing}}
+\doxysubsubsection{\texorpdfstring{notMoved}{notMoved}}
+{\footnotesize\ttfamily unsigned long long Zobrist\+Hashing\+::not\+Moved\hspace{0.3cm}{\ttfamily [static]}}
+
+Hodnoty reprezentujúce nepohnuté figúrky na danej pozícii. \Hypertarget{class_zobrist_hashing_aad2247cfc6b057702a7f423d000ce951}\label{class_zobrist_hashing_aad2247cfc6b057702a7f423d000ce951} 
+\index{ZobristHashing@{ZobristHashing}!squares@{squares}}
+\index{squares@{squares}!ZobristHashing@{ZobristHashing}}
+\doxysubsubsection{\texorpdfstring{squares}{squares}}
+{\footnotesize\ttfamily unsigned long long Zobrist\+Hashing\+::squares\hspace{0.3cm}{\ttfamily [static]}}
+
+Hodnoty reprezentujúce konkrétne figúrky na danej pozícii. \Hypertarget{class_zobrist_hashing_a069448b084d399bdfe612a6208a0ca42}\label{class_zobrist_hashing_a069448b084d399bdfe612a6208a0ca42} 
+\index{ZobristHashing@{ZobristHashing}!turn@{turn}}
+\index{turn@{turn}!ZobristHashing@{ZobristHashing}}
+\doxysubsubsection{\texorpdfstring{turn}{turn}}
+{\footnotesize\ttfamily unsigned long long Zobrist\+Hashing\+::turn\hspace{0.3cm}{\ttfamily [static]}}
+
+Hodnota reprezentujúca hráča na rade. 
+
+Dokumentácia pre túto triedu bola generovaná z nasledujúcich súborov\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hashing_8h}{hashing.\+h}}\item 
+hashing.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sk">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Malakh: Zdrojový súbor database.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Malakh
+   </div>
+   <div id="projectbrief">Šachový engine na hru s neštandardnými šachovými pravidlami</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generované programom Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Hľadať');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Načítam...</div>
+<div class="SRStatus" id="Searching">Vyhľadávam...</div>
+<div class="SRStatus" id="NoMatches">Nič sa nenašlo</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">database.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="database_8h.html">Zobraziť dokumentáciu tohoto súboru.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">/*****************************************************************/</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#define NOMINMAX</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="code" href="board_8h.html">board.h</a>&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;pqxx/pqxx&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;pqxx/transaction.hxx&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="};">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="struct_connection_string.html">   22</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_connection_string.html">ConnectionString</a> {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="comment">/*</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">    * Meno databázy</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">    */</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    std::string dbname;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="struct_connection_string.html#a02e5d870d852e114125ffd70e97b9497">   31</a></span>    std::string <a class="code hl_variable" href="struct_connection_string.html#a02e5d870d852e114125ffd70e97b9497">user</a>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="struct_connection_string.html#aece44d93579f86afa2ef25e384a6a4be">   36</a></span>    std::string <a class="code hl_variable" href="struct_connection_string.html#aece44d93579f86afa2ef25e384a6a4be">password</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="struct_connection_string.html#abb517c720bfe910c7da34a1a61c3d2dd">   41</a></span>    std::string <a class="code hl_variable" href="struct_connection_string.html#abb517c720bfe910c7da34a1a61c3d2dd">hostaddr</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="struct_connection_string.html#a064bab2f88232e11e48d96f81b240693">   46</a></span>    std::string <a class="code hl_variable" href="struct_connection_string.html#a064bab2f88232e11e48d96f81b240693">port</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    std::string <a class="code hl_function" href="struct_connection_string.html#ab97eff72b49b5bd6b201486c2eab39fe">toString</a>();</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>};</div>
+</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="};">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="class_database_manager.html">   59</a></span><span class="keyword">class </span><a class="code hl_class" href="class_database_manager.html">DatabaseManager</a> {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="class_database_manager.html#a980a4b32c9d47a11d5f0fc27bad664fc">   64</a></span>    <span class="keyword">static</span> <a class="code hl_struct" href="struct_connection_string.html">ConnectionString</a> <a class="code hl_variable" href="class_database_manager.html#a980a4b32c9d47a11d5f0fc27bad664fc">connectionString</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_database_manager.html#a9cd2b1af058394873d3b9a7a59000d4d">initConnectionString</a>();</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_database_manager.html#a11349196fd9767c1d8ec22dd57c3e5f7">loadEnvFromFile</a>(std::string filePath);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>};</div>
+</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="foldopen" id="foldopen00082" data-start="{" data-end="};">
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="class_database_connection.html">   82</a></span><span class="keyword">class </span><a class="code hl_class" href="class_database_connection.html">DatabaseConnection</a> {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <a class="code hl_function" href="class_database_connection.html#a7f50e17550775f1803dea4084f1987f1">DatabaseConnection</a>();</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_database_connection.html#a08acfd6e7dd28f2cd16c8a8d19053720">getIdEssenceConfig</a>(<a class="code hl_struct" href="struct_essence_args.html">EssenceArgs</a> essenceArgs);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_database_connection.html#a9af604d3a2d4bbf4e808798bb013c92f">updateScores</a>();</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_database_connection.html#a69bbeadebc247189adf943eec9c2c60a">addBoardResult</a>(<a class="code hl_class" href="class_board.html">Board</a> board, <span class="keywordtype">int</span> idEssenceConfig, <a class="code hl_enumeration" href="board_8h.html#a41741953d704b743544ce6383c27c7c6">GameResult</a> gameResult);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="class_database_connection.html#a6929cd3ca2b048cab5db9fb50178f346">  116</a></span>    pqxx::connection <a class="code hl_variable" href="class_database_connection.html#a6929cd3ca2b048cab5db9fb50178f346">connection</a>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="class_database_connection.html#aa515e8c8e6b7e737caa658b8f63e6fca">  121</a></span>    pqxx::work <a class="code hl_variable" href="class_database_connection.html#aa515e8c8e6b7e737caa658b8f63e6fca">txn</a>;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>};</div>
+</div>
+<div class="ttc" id="aboard_8h_html"><div class="ttname"><a href="board_8h.html">board.h</a></div><div class="ttdoc">Definícia šachovnice a generácia pohybov.</div></div>
+<div class="ttc" id="aboard_8h_html_a41741953d704b743544ce6383c27c7c6"><div class="ttname"><a href="board_8h.html#a41741953d704b743544ce6383c27c7c6">GameResult</a></div><div class="ttdeci">GameResult</div><div class="ttdef"><b>Definition</b> board.h:22</div></div>
+<div class="ttc" id="aclass_board_html"><div class="ttname"><a href="class_board.html">Board</a></div><div class="ttdef"><b>Definition</b> board.h:89</div></div>
+<div class="ttc" id="aclass_database_connection_html"><div class="ttname"><a href="class_database_connection.html">DatabaseConnection</a></div><div class="ttdef"><b>Definition</b> database.h:82</div></div>
+<div class="ttc" id="aclass_database_connection_html_a08acfd6e7dd28f2cd16c8a8d19053720"><div class="ttname"><a href="class_database_connection.html#a08acfd6e7dd28f2cd16c8a8d19053720">DatabaseConnection::getIdEssenceConfig</a></div><div class="ttdeci">int getIdEssenceConfig(EssenceArgs essenceArgs)</div><div class="ttdef"><b>Definition</b> database.cpp:52</div></div>
+<div class="ttc" id="aclass_database_connection_html_a6929cd3ca2b048cab5db9fb50178f346"><div class="ttname"><a href="class_database_connection.html#a6929cd3ca2b048cab5db9fb50178f346">DatabaseConnection::connection</a></div><div class="ttdeci">pqxx::connection connection</div><div class="ttdef"><b>Definition</b> database.h:116</div></div>
+<div class="ttc" id="aclass_database_connection_html_a69bbeadebc247189adf943eec9c2c60a"><div class="ttname"><a href="class_database_connection.html#a69bbeadebc247189adf943eec9c2c60a">DatabaseConnection::addBoardResult</a></div><div class="ttdeci">void addBoardResult(Board board, int idEssenceConfig, GameResult gameResult)</div><div class="ttdef"><b>Definition</b> database.cpp:164</div></div>
+<div class="ttc" id="aclass_database_connection_html_a7f50e17550775f1803dea4084f1987f1"><div class="ttname"><a href="class_database_connection.html#a7f50e17550775f1803dea4084f1987f1">DatabaseConnection::DatabaseConnection</a></div><div class="ttdeci">DatabaseConnection()</div><div class="ttdef"><b>Definition</b> database.cpp:48</div></div>
+<div class="ttc" id="aclass_database_connection_html_a9af604d3a2d4bbf4e808798bb013c92f"><div class="ttname"><a href="class_database_connection.html#a9af604d3a2d4bbf4e808798bb013c92f">DatabaseConnection::updateScores</a></div><div class="ttdeci">void updateScores()</div><div class="ttdef"><b>Definition</b> database.cpp:87</div></div>
+<div class="ttc" id="aclass_database_connection_html_aa515e8c8e6b7e737caa658b8f63e6fca"><div class="ttname"><a href="class_database_connection.html#aa515e8c8e6b7e737caa658b8f63e6fca">DatabaseConnection::txn</a></div><div class="ttdeci">pqxx::work txn</div><div class="ttdef"><b>Definition</b> database.h:121</div></div>
+<div class="ttc" id="aclass_database_manager_html"><div class="ttname"><a href="class_database_manager.html">DatabaseManager</a></div><div class="ttdef"><b>Definition</b> database.h:59</div></div>
+<div class="ttc" id="aclass_database_manager_html_a11349196fd9767c1d8ec22dd57c3e5f7"><div class="ttname"><a href="class_database_manager.html#a11349196fd9767c1d8ec22dd57c3e5f7">DatabaseManager::loadEnvFromFile</a></div><div class="ttdeci">static void loadEnvFromFile(std::string filePath)</div><div class="ttdef"><b>Definition</b> database.cpp:30</div></div>
+<div class="ttc" id="aclass_database_manager_html_a980a4b32c9d47a11d5f0fc27bad664fc"><div class="ttname"><a href="class_database_manager.html#a980a4b32c9d47a11d5f0fc27bad664fc">DatabaseManager::connectionString</a></div><div class="ttdeci">static ConnectionString connectionString</div><div class="ttdef"><b>Definition</b> database.h:64</div></div>
+<div class="ttc" id="aclass_database_manager_html_a9cd2b1af058394873d3b9a7a59000d4d"><div class="ttname"><a href="class_database_manager.html#a9cd2b1af058394873d3b9a7a59000d4d">DatabaseManager::initConnectionString</a></div><div class="ttdeci">static void initConnectionString()</div><div class="ttdef"><b>Definition</b> database.cpp:19</div></div>
+<div class="ttc" id="astruct_connection_string_html"><div class="ttname"><a href="struct_connection_string.html">ConnectionString</a></div><div class="ttdef"><b>Definition</b> database.h:22</div></div>
+<div class="ttc" id="astruct_connection_string_html_a02e5d870d852e114125ffd70e97b9497"><div class="ttname"><a href="struct_connection_string.html#a02e5d870d852e114125ffd70e97b9497">ConnectionString::user</a></div><div class="ttdeci">std::string user</div><div class="ttdef"><b>Definition</b> database.h:31</div></div>
+<div class="ttc" id="astruct_connection_string_html_a064bab2f88232e11e48d96f81b240693"><div class="ttname"><a href="struct_connection_string.html#a064bab2f88232e11e48d96f81b240693">ConnectionString::port</a></div><div class="ttdeci">std::string port</div><div class="ttdef"><b>Definition</b> database.h:46</div></div>
+<div class="ttc" id="astruct_connection_string_html_ab97eff72b49b5bd6b201486c2eab39fe"><div class="ttname"><a href="struct_connection_string.html#ab97eff72b49b5bd6b201486c2eab39fe">ConnectionString::toString</a></div><div class="ttdeci">std::string toString()</div><div class="ttdef"><b>Definition</b> database.cpp:6</div></div>
+<div class="ttc" id="astruct_connection_string_html_abb517c720bfe910c7da34a1a61c3d2dd"><div class="ttname"><a href="struct_connection_string.html#abb517c720bfe910c7da34a1a61c3d2dd">ConnectionString::hostaddr</a></div><div class="ttdeci">std::string hostaddr</div><div class="ttdef"><b>Definition</b> database.h:41</div></div>
+<div class="ttc" id="astruct_connection_string_html_aece44d93579f86afa2ef25e384a6a4be"><div class="ttname"><a href="struct_connection_string.html#aece44d93579f86afa2ef25e384a6a4be">ConnectionString::password</a></div><div class="ttdeci">std::string password</div><div class="ttdef"><b>Definition</b> database.h:36</div></div>
+<div class="ttc" id="astruct_essence_args_html"><div class="ttname"><a href="struct_essence_args.html">EssenceArgs</a></div><div class="ttdef"><b>Definition</b> board.h:44</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generované programom&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

@@ -1,0 +1,58 @@
+\doxysection{evaluation.\+h}
+\hypertarget{evaluation_8h_source}{}\label{evaluation_8h_source}\index{evaluation.h@{evaluation.h}}
+\mbox{\hyperlink{evaluation_8h}{Zobraziť dokumentáciu tohoto súboru.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{/*****************************************************************/}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{piece_8h}{piece.h}}>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_eval_args}{EvalArgs}}\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eval_args_a1c3067e6347262fc81cd0ef3fd1ef670}{matEval}}[2];}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eval_args_a882a727cbf8494142c1cd90785d4b506}{curPhase}}\ =\ 0;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eval_args_a67b7f7b5ee2a6e989197bf44d93b8e40}{mg\_pcsqEval}}[2];}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eval_args_a6df46bbce4c540be470d80b292863306}{eg\_pcsqEval}}[2];}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eval_args_a837a35a5f654dd893b29a9a97a8138fe}{mobCount}}[2*6];}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eval_args_a615a312ba2fd8a25528a6ec0fedb924f}{attCount}}[2];}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_eval_args_aca2bbefcd722ad4d24d784174d772368}{attWeight}}[2];}
+\DoxyCodeLine{00052\ \};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_evaluation}{Evaluation}}\ \{}
+\DoxyCodeLine{00058\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_evaluation_a6aa7d616fc2b49f329b01063e881cb66}{pieceMatValues}}[6];}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_evaluation_ad5a6ccfa57985fbf880486704caec0b8}{piecePhaseValues}}[6];}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_evaluation_a5eb12259aceb675c2fe74f160e0a7a02}{startPhase}};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_evaluation_ae1f71fda88833568f4eb53a3ab1e6bb9}{mg\_pcsq}}[6][64];}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_evaluation_ae62d31b66b0cd67125013a25704076b9}{eg\_pcsq}}[6][64];}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_evaluation_a59b64a0b5e6051bb06a48e7d98edd515}{mg\_pieceMobWeights}}[6];}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_evaluation_a21152667219484de625317b0f6380c03}{eg\_pieceMobWeights}}[6];}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_evaluation_aa86565b52f0abec64393ce59fd2415c2}{pieceMobPenalties}}[6];}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_evaluation_ae1a9370ace40aff5adab8f95274d14db}{mg\_pieceTropismWeights}}[5];}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_evaluation_a949782c8008aa76348668a6ce425f46a}{eg\_pieceTropismWeights}}[5];}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_evaluation_a78e24c294ac6c9804278adeccf3b3d10}{pieceAttWeights}}[5];}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_evaluation_a5ca930217cff9ef151c86678c13486dd}{safetyTable}}[100];}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_evaluation_ac903227202d832140fd7ad2cb0d1b3da}{get\_mg\_pcsq}}(\mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{PieceColor}}\ color,\ \mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{PieceType}}\ type,\ \textcolor{keywordtype}{char}\ x,\ \textcolor{keywordtype}{char}\ y);}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_evaluation_aa75edd45cda5ec81aa641ed02f12ff2f}{get\_eg\_pcsq}}(\mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{PieceColor}}\ color,\ \mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{PieceType}}\ type,\ \textcolor{keywordtype}{char}\ x,\ \textcolor{keywordtype}{char}\ y);}
+\DoxyCodeLine{00140\ \};}
+
+\end{DoxyCode}

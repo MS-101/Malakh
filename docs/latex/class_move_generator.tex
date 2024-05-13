@@ -1,0 +1,72 @@
+\doxysection{Dokumentácia triedy Move\+Generator}
+\hypertarget{class_move_generator}{}\label{class_move_generator}\index{MoveGenerator@{MoveGenerator}}
+
+
+{\ttfamily \#include $<$board.\+h$>$}
+
+\doxysubsubsection*{Statické verejné metódy}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_move_generator_a4fbc5c9a0a49af3879afb14b43877c9a}{clear\+Moves}} (\mbox{\hyperlink{class_board}{Board}} \texorpdfstring{$\ast$}{*}board)
+\item 
+static void \mbox{\hyperlink{class_move_generator_a94fbccafb764f801044a7a0eb6d26cb9}{generate\+Moves}} (\mbox{\hyperlink{class_board}{Board}} \texorpdfstring{$\ast$}{*}board)
+\item 
+static void \mbox{\hyperlink{class_move_generator_aafc4a06d2e5ee8b5e707ca83b52b6116}{generate\+Moves}} (\mbox{\hyperlink{class_board}{Board}} \texorpdfstring{$\ast$}{*}board, \mbox{\hyperlink{struct_piece}{Piece}} piece, char x, char y)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailný popis}
+Pomocná trieda na generáciu pohybov šachovnice 
+
+\doxysubsection{Dokumentácia k metódam}
+\Hypertarget{class_move_generator_a4fbc5c9a0a49af3879afb14b43877c9a}\label{class_move_generator_a4fbc5c9a0a49af3879afb14b43877c9a} 
+\index{MoveGenerator@{MoveGenerator}!clearMoves@{clearMoves}}
+\index{clearMoves@{clearMoves}!MoveGenerator@{MoveGenerator}}
+\doxysubsubsection{\texorpdfstring{clearMoves()}{clearMoves()}}
+{\footnotesize\ttfamily void Move\+Generator\+::clear\+Moves (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_board}{Board}} \texorpdfstring{$\ast$}{*}}]{board }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Táto funkcia odstráni všetký vygenerované pohyby a resetuje všetky relevantné evaluačné argumenty.
+
+
+\begin{DoxyParams}{Parametre}
+{\em board} & Šachovnica kde odstraňujeme vygenerované pohyby. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_move_generator_a94fbccafb764f801044a7a0eb6d26cb9}\label{class_move_generator_a94fbccafb764f801044a7a0eb6d26cb9} 
+\index{MoveGenerator@{MoveGenerator}!generateMoves@{generateMoves}}
+\index{generateMoves@{generateMoves}!MoveGenerator@{MoveGenerator}}
+\doxysubsubsection{\texorpdfstring{generateMoves()}{generateMoves()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Move\+Generator\+::generate\+Moves (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_board}{Board}} \texorpdfstring{$\ast$}{*}}]{board }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Táto funkcia vygeneruje všetky pseudolegálne pohyby.
+
+
+\begin{DoxyParams}{Parametre}
+{\em board} & Šachovnica kde generujeme pohyby. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_move_generator_aafc4a06d2e5ee8b5e707ca83b52b6116}\label{class_move_generator_aafc4a06d2e5ee8b5e707ca83b52b6116} 
+\index{MoveGenerator@{MoveGenerator}!generateMoves@{generateMoves}}
+\index{generateMoves@{generateMoves}!MoveGenerator@{MoveGenerator}}
+\doxysubsubsection{\texorpdfstring{generateMoves()}{generateMoves()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Move\+Generator\+::generate\+Moves (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_board}{Board}} \texorpdfstring{$\ast$}{*}}]{board,  }\item[{\mbox{\hyperlink{struct_piece}{Piece}}}]{piece,  }\item[{char}]{x,  }\item[{char}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Táto funkcia vygeneruje všetky pseudolegálne pohyby pre figúrku na konkrétnej pozícii.
+
+
+\begin{DoxyParams}{Parametre}
+{\em board} & Šachovnica kde generujeme pohyby. \\
+\hline
+{\em piece} & Figúrka ktorej generujeme pohyby. \\
+\hline
+{\em x} & Koordinát X kde sa nachádza naša figúrka. \\
+\hline
+{\em y} & Koordinát Y kde sa nachádza naša figúrka. \\
+\hline
+\end{DoxyParams}
+
+
+Dokumentácia pre túto triedu bola generovaná z nasledujúcich súborov\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{board_8h}{board.\+h}}\item 
+move\+Generator.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,76 @@
+\doxysection{Dokumentácia štruktúry Eval\+Args}
+\hypertarget{struct_eval_args}{}\label{struct_eval_args}\index{EvalArgs@{EvalArgs}}
+
+
+{\ttfamily \#include $<$evaluation.\+h$>$}
+
+\doxysubsubsection*{Verejné atribúty}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{struct_eval_args_a1c3067e6347262fc81cd0ef3fd1ef670}{mat\+Eval}} \mbox{[}2\mbox{]}
+\item 
+int \mbox{\hyperlink{struct_eval_args_a882a727cbf8494142c1cd90785d4b506}{cur\+Phase}} = 0
+\item 
+int \mbox{\hyperlink{struct_eval_args_a67b7f7b5ee2a6e989197bf44d93b8e40}{mg\+\_\+pcsq\+Eval}} \mbox{[}2\mbox{]}
+\item 
+int \mbox{\hyperlink{struct_eval_args_a6df46bbce4c540be470d80b292863306}{eg\+\_\+pcsq\+Eval}} \mbox{[}2\mbox{]}
+\item 
+int \mbox{\hyperlink{struct_eval_args_a837a35a5f654dd893b29a9a97a8138fe}{mob\+Count}} \mbox{[}2 \texorpdfstring{$\ast$}{*}6\mbox{]}
+\item 
+int \mbox{\hyperlink{struct_eval_args_a615a312ba2fd8a25528a6ec0fedb924f}{att\+Count}} \mbox{[}2\mbox{]}
+\item 
+int \mbox{\hyperlink{struct_eval_args_aca2bbefcd722ad4d24d784174d772368}{att\+Weight}} \mbox{[}2\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailný popis}
+Evaluačné argumenty na výpočet evaluácie šachovnice. 
+
+\doxysubsection{Dokumentácia k dátovým členom}
+\Hypertarget{struct_eval_args_a615a312ba2fd8a25528a6ec0fedb924f}\label{struct_eval_args_a615a312ba2fd8a25528a6ec0fedb924f} 
+\index{EvalArgs@{EvalArgs}!attCount@{attCount}}
+\index{attCount@{attCount}!EvalArgs@{EvalArgs}}
+\doxysubsubsection{\texorpdfstring{attCount}{attCount}}
+{\footnotesize\ttfamily int Eval\+Args\+::att\+Count\mbox{[}2\mbox{]}}
+
+Počítadlá útokov na kráľa. \Hypertarget{struct_eval_args_aca2bbefcd722ad4d24d784174d772368}\label{struct_eval_args_aca2bbefcd722ad4d24d784174d772368} 
+\index{EvalArgs@{EvalArgs}!attWeight@{attWeight}}
+\index{attWeight@{attWeight}!EvalArgs@{EvalArgs}}
+\doxysubsubsection{\texorpdfstring{attWeight}{attWeight}}
+{\footnotesize\ttfamily int Eval\+Args\+::att\+Weight\mbox{[}2\mbox{]}}
+
+Hodnoty útokov na kráľa. \Hypertarget{struct_eval_args_a882a727cbf8494142c1cd90785d4b506}\label{struct_eval_args_a882a727cbf8494142c1cd90785d4b506} 
+\index{EvalArgs@{EvalArgs}!curPhase@{curPhase}}
+\index{curPhase@{curPhase}!EvalArgs@{EvalArgs}}
+\doxysubsubsection{\texorpdfstring{curPhase}{curPhase}}
+{\footnotesize\ttfamily int Eval\+Args\+::cur\+Phase = 0}
+
+Aktuálna fáza hry. S ubúdajúcim materiálom sa táto hodnota znižuje. \Hypertarget{struct_eval_args_a6df46bbce4c540be470d80b292863306}\label{struct_eval_args_a6df46bbce4c540be470d80b292863306} 
+\index{EvalArgs@{EvalArgs}!eg\_pcsqEval@{eg\_pcsqEval}}
+\index{eg\_pcsqEval@{eg\_pcsqEval}!EvalArgs@{EvalArgs}}
+\doxysubsubsection{\texorpdfstring{eg\_pcsqEval}{eg\_pcsqEval}}
+{\footnotesize\ttfamily int Eval\+Args\+::eg\+\_\+pcsq\+Eval\mbox{[}2\mbox{]}}
+
+Hodnoty piece-\/square tabuliek pre koncovú fázu hry. \Hypertarget{struct_eval_args_a1c3067e6347262fc81cd0ef3fd1ef670}\label{struct_eval_args_a1c3067e6347262fc81cd0ef3fd1ef670} 
+\index{EvalArgs@{EvalArgs}!matEval@{matEval}}
+\index{matEval@{matEval}!EvalArgs@{EvalArgs}}
+\doxysubsubsection{\texorpdfstring{matEval}{matEval}}
+{\footnotesize\ttfamily int Eval\+Args\+::mat\+Eval\mbox{[}2\mbox{]}}
+
+Materiálová evaluácia. \Hypertarget{struct_eval_args_a67b7f7b5ee2a6e989197bf44d93b8e40}\label{struct_eval_args_a67b7f7b5ee2a6e989197bf44d93b8e40} 
+\index{EvalArgs@{EvalArgs}!mg\_pcsqEval@{mg\_pcsqEval}}
+\index{mg\_pcsqEval@{mg\_pcsqEval}!EvalArgs@{EvalArgs}}
+\doxysubsubsection{\texorpdfstring{mg\_pcsqEval}{mg\_pcsqEval}}
+{\footnotesize\ttfamily int Eval\+Args\+::mg\+\_\+pcsq\+Eval\mbox{[}2\mbox{]}}
+
+Hodnoty piece-\/square tabuliek pre strednú fázu hry. \Hypertarget{struct_eval_args_a837a35a5f654dd893b29a9a97a8138fe}\label{struct_eval_args_a837a35a5f654dd893b29a9a97a8138fe} 
+\index{EvalArgs@{EvalArgs}!mobCount@{mobCount}}
+\index{mobCount@{mobCount}!EvalArgs@{EvalArgs}}
+\doxysubsubsection{\texorpdfstring{mobCount}{mobCount}}
+{\footnotesize\ttfamily int Eval\+Args\+::mob\+Count\mbox{[}2 \texorpdfstring{$\ast$}{*}6\mbox{]}}
+
+Počítadla mobilít pre jednotlivé typy figúrok. 
+
+Dokumentácia pre túto štruktúru (struct) bola generovaná z nasledujúceho súboru\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{evaluation_8h}{evaluation.\+h}}\end{DoxyCompactItemize}

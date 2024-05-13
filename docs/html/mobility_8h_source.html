@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sk">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Malakh: Zdrojový súbor mobility.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Malakh
+   </div>
+   <div id="projectbrief">Šachový engine na hru s neštandardnými šachovými pravidlami</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generované programom Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Hľadať');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Načítam...</div>
+<div class="SRStatus" id="Searching">Vyhľadávam...</div>
+<div class="SRStatus" id="NoMatches">Nič sa nenašlo</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">mobility.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="mobility_8h.html">Zobraziť dokumentáciu tohoto súboru.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">/*****************************************************************/</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="piece_8h.html">piece.h</a>&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="mobility_8h.html#a8a93b61bc797a7d1907f42796a252493">   19</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="mobility_8h.html#a8a93b61bc797a7d1907f42796a252493">MovementType</a> {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="mobility_8h.html#a8a93b61bc797a7d1907f42796a252493ac3e0a98cb8e17fd822ecd3166b1a3119">   23</a></span>    <a class="code hl_enumvalue" href="mobility_8h.html#a8a93b61bc797a7d1907f42796a252493ac3e0a98cb8e17fd822ecd3166b1a3119">Move</a>,</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="mobility_8h.html#a8a93b61bc797a7d1907f42796a252493a1aff1cf22b895d9b024189f5166d5495">   27</a></span>    <a class="code hl_enumvalue" href="mobility_8h.html#a8a93b61bc797a7d1907f42796a252493a1aff1cf22b895d9b024189f5166d5495">Attack</a>,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <a class="code hl_enumvalue" href="mobility_8h.html#a8a93b61bc797a7d1907f42796a252493a0d2ed211bbc3de1460ae3df87fdfbd0e">AttackMove</a></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="mobility_8h.html#a8a93b61bc797a7d1907f42796a252493a0d2ed211bbc3de1460ae3df87fdfbd0e">   32</a></span>};</div>
+</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="foldopen" id="foldopen00037" data-start="{" data-end="};">
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="mobility_8h.html#ac663d85beab039663f297c3992360793">   37</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="mobility_8h.html#ac663d85beab039663f297c3992360793">Castling</a> {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="mobility_8h.html#ac663d85beab039663f297c3992360793ab7e4e0120a041dbe6528b050c04269e0">   41</a></span>    <a class="code hl_enumvalue" href="mobility_8h.html#ac663d85beab039663f297c3992360793ab7e4e0120a041dbe6528b050c04269e0">none</a>,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="mobility_8h.html#ac663d85beab039663f297c3992360793a23324b66768bf7f8ace97cce12b2b14f">   45</a></span>    <a class="code hl_enumvalue" href="mobility_8h.html#ac663d85beab039663f297c3992360793a23324b66768bf7f8ace97cce12b2b14f">kingSide</a>,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_enumvalue" href="mobility_8h.html#ac663d85beab039663f297c3992360793a689753e7cba01fa423f6e89a07e2bf82">queenSide</a></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="mobility_8h.html#ac663d85beab039663f297c3992360793a689753e7cba01fa423f6e89a07e2bf82">   50</a></span>};</div>
+</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="foldopen" id="foldopen00055" data-start="{" data-end="};">
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="struct_mobility_flags.html">   55</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_mobility_flags.html">MobilityFlags</a> {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="struct_mobility_flags.html#af742bd8e29915761e5a5c7dabd91c303">   59</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_mobility_flags.html#af742bd8e29915761e5a5c7dabd91c303">initiative</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="struct_mobility_flags.html#a74c7fa0f1e410ae85946040d3068ce60">   64</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_mobility_flags.html#a74c7fa0f1e410ae85946040d3068ce60">hasty</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="struct_mobility_flags.html#a471ed0fc402ec450ab811d1ae39a9f30">   69</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_mobility_flags.html#a471ed0fc402ec450ab811d1ae39a9f30">uninterruptible</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="struct_mobility_flags.html#ab4cc5021075419b5b57635a62e9c14cd">   74</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_mobility_flags.html#ab4cc5021075419b5b57635a62e9c14cd">vigilant</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>};</div>
+</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="foldopen" id="foldopen00081" data-start="{" data-end="};">
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="struct_mobility.html">   81</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_mobility.html">Mobility</a> {</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="struct_mobility.html#a22534d71540d11cd760a026dfd20241c">   85</a></span>    <a class="code hl_enumeration" href="mobility_8h.html#a8a93b61bc797a7d1907f42796a252493">MovementType</a> <a class="code hl_variable" href="struct_mobility.html#a22534d71540d11cd760a026dfd20241c">type</a> = <a class="code hl_enumvalue" href="mobility_8h.html#a8a93b61bc797a7d1907f42796a252493ac3e0a98cb8e17fd822ecd3166b1a3119">Move</a>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="foldopen" id="foldopen00090" data-start="{" data-end="};">
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="class_mobilities.html#a9a15ac5b8d02d229d1dfa467246c2526">   90</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_mobility.html#abde22d91fe1dc2e293b717fa8c1e3fe9">start_x</a> = 0;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="struct_mobility.html#ac165b1ae5d7f647febc0f13f07d37e93">   95</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_mobility.html#ac165b1ae5d7f647febc0f13f07d37e93">start_y</a> = 0;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="struct_mobility.html#acea2b8c8010fbb295d92649a93db5910">  100</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_mobility.html#acea2b8c8010fbb295d92649a93db5910">direction_x</a> = 0;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="struct_mobility.html#a38e5014337b13a5e9ffdec8cfb8fd5f8">  105</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_mobility.html#a38e5014337b13a5e9ffdec8cfb8fd5f8">direction_y</a> = 0;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="struct_mobility.html#af0ab836ff1a115e1a184fa6e488968b3">  110</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_mobility.html#af0ab836ff1a115e1a184fa6e488968b3">limit</a> = 0;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="struct_mobility.html#aa9940f57658b64f5b1ad3dad01ec564b">  115</a></span>    <a class="code hl_struct" href="struct_mobility_flags.html">MobilityFlags</a> <a class="code hl_variable" href="struct_mobility.html#aa9940f57658b64f5b1ad3dad01ec564b">flags</a>{};</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>};</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="foldopen" id="foldopen00121" data-start="{" data-end="};">
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="struct_legal_move.html">  121</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_legal_move.html">LegalMove</a> {</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <a class="code hl_function" href="struct_legal_move.html#af2ff87469d95b5afcfd9dae9ddf97d94">LegalMove</a>();</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <a class="code hl_function" href="struct_legal_move.html#af2ff87469d95b5afcfd9dae9ddf97d94">LegalMove</a>(<span class="keywordtype">int</span> <a class="code hl_variable" href="struct_legal_move.html#a38e50667cde7c5cde45e450d14c9b4aa">x1</a>, <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_legal_move.html#a7c21d722a9098be3724d428028d4ce90">y1</a>, <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_legal_move.html#ae3e3d5097205783a2434d565c4bd6556">x2</a>, <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_legal_move.html#a44c61fdc8cfe098fde2cff515e39633c">y2</a>, <a class="code hl_struct" href="struct_mobility.html">Mobility</a> <a class="code hl_variable" href="struct_legal_move.html#a855bc8d741ef6ec1327b164020534162">mobility</a>);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <a class="code hl_function" href="struct_legal_move.html#af2ff87469d95b5afcfd9dae9ddf97d94">LegalMove</a>(std::string value);</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="struct_legal_move.html#a38e50667cde7c5cde45e450d14c9b4aa">  148</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_legal_move.html#a38e50667cde7c5cde45e450d14c9b4aa">x1</a> = 0;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="struct_legal_move.html#a7c21d722a9098be3724d428028d4ce90">  153</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_legal_move.html#a7c21d722a9098be3724d428028d4ce90">y1</a> = 0;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="struct_legal_move.html#ae3e3d5097205783a2434d565c4bd6556">  158</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_legal_move.html#ae3e3d5097205783a2434d565c4bd6556">x2</a> = 0;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="struct_legal_move.html#a44c61fdc8cfe098fde2cff515e39633c">  163</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_legal_move.html#a44c61fdc8cfe098fde2cff515e39633c">y2</a> = 0;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="struct_legal_move.html#a855bc8d741ef6ec1327b164020534162">  168</a></span>    <a class="code hl_struct" href="struct_mobility.html">Mobility</a> <a class="code hl_variable" href="struct_legal_move.html#a855bc8d741ef6ec1327b164020534162">mobility</a>;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="struct_legal_move.html#aca1aadbb5ca9c61e931c50cec6b9c96e">  173</a></span>    <a class="code hl_enumeration" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021">PieceType</a> <a class="code hl_variable" href="struct_legal_move.html#aca1aadbb5ca9c61e931c50cec6b9c96e">promotion</a> = <a class="code hl_enumvalue" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021ab306a6be286e11bcaf3695829cf657ee">Pawn</a>;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno"><a class="line" href="struct_legal_move.html#adb86e512e2cc0dc905ec2c0ad6ba41a9">  178</a></span>    <a class="code hl_enumeration" href="mobility_8h.html#ac663d85beab039663f297c3992360793">Castling</a> <a class="code hl_variable" href="struct_legal_move.html#adb86e512e2cc0dc905ec2c0ad6ba41a9">castling</a> = <a class="code hl_enumvalue" href="mobility_8h.html#ac663d85beab039663f297c3992360793ab7e4e0120a041dbe6528b050c04269e0">none</a>;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    std::string <a class="code hl_function" href="struct_legal_move.html#aea24a744710fa9a11002b5fc4716e563">toString</a>();</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    std::string <a class="code hl_function" href="struct_legal_move.html#ac889fcbab687dd4682dc978d540f4e21">toStringWithFlags</a>(<a class="code hl_enumeration" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a> color);</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>};</div>
+</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="foldopen" id="foldopen00199" data-start="{" data-end="};">
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="class_mobilities.html">  199</a></span><span class="keyword">class </span><a class="code hl_class" href="class_mobilities.html">Mobilities</a> {</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="keyword">static</span> std::vector&lt;Mobility&gt; <a class="code hl_variable" href="class_mobilities.html#a9a15ac5b8d02d229d1dfa467246c2526">mobilityConfig</a>[6][3];</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_mobilities.html#aeb0b4df5178b44ab1f7e003fa82bc529">printMobilities</a>(<a class="code hl_enumeration" href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021">PieceType</a> type, <a class="code hl_enumeration" href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a> essence);</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>};</div>
+</div>
+</div>
+</div>
+<div class="ttc" id="aclass_mobilities_html"><div class="ttname"><a href="class_mobilities.html">Mobilities</a></div><div class="ttdef"><b>Definition</b> mobility.h:199</div></div>
+<div class="ttc" id="aclass_mobilities_html_a9a15ac5b8d02d229d1dfa467246c2526"><div class="ttname"><a href="class_mobilities.html#a9a15ac5b8d02d229d1dfa467246c2526">Mobilities::mobilityConfig</a></div><div class="ttdeci">static std::vector&lt; Mobility &gt; mobilityConfig[6][3]</div><div class="ttdef"><b>Definition</b> mobility.h:90</div></div>
+<div class="ttc" id="aclass_mobilities_html_aeb0b4df5178b44ab1f7e003fa82bc529"><div class="ttname"><a href="class_mobilities.html#aeb0b4df5178b44ab1f7e003fa82bc529">Mobilities::printMobilities</a></div><div class="ttdeci">static void printMobilities(PieceType type, PieceEssence essence)</div><div class="ttdef"><b>Definition</b> mobility.cpp:253</div></div>
+<div class="ttc" id="amobility_8h_html_a8a93b61bc797a7d1907f42796a252493"><div class="ttname"><a href="mobility_8h.html#a8a93b61bc797a7d1907f42796a252493">MovementType</a></div><div class="ttdeci">MovementType</div><div class="ttdef"><b>Definition</b> mobility.h:19</div></div>
+<div class="ttc" id="amobility_8h_html_a8a93b61bc797a7d1907f42796a252493a0d2ed211bbc3de1460ae3df87fdfbd0e"><div class="ttname"><a href="mobility_8h.html#a8a93b61bc797a7d1907f42796a252493a0d2ed211bbc3de1460ae3df87fdfbd0e">AttackMove</a></div><div class="ttdeci">@ AttackMove</div><div class="ttdef"><b>Definition</b> mobility.h:31</div></div>
+<div class="ttc" id="amobility_8h_html_a8a93b61bc797a7d1907f42796a252493a1aff1cf22b895d9b024189f5166d5495"><div class="ttname"><a href="mobility_8h.html#a8a93b61bc797a7d1907f42796a252493a1aff1cf22b895d9b024189f5166d5495">Attack</a></div><div class="ttdeci">@ Attack</div><div class="ttdef"><b>Definition</b> mobility.h:27</div></div>
+<div class="ttc" id="amobility_8h_html_a8a93b61bc797a7d1907f42796a252493ac3e0a98cb8e17fd822ecd3166b1a3119"><div class="ttname"><a href="mobility_8h.html#a8a93b61bc797a7d1907f42796a252493ac3e0a98cb8e17fd822ecd3166b1a3119">Move</a></div><div class="ttdeci">@ Move</div><div class="ttdef"><b>Definition</b> mobility.h:23</div></div>
+<div class="ttc" id="amobility_8h_html_ac663d85beab039663f297c3992360793"><div class="ttname"><a href="mobility_8h.html#ac663d85beab039663f297c3992360793">Castling</a></div><div class="ttdeci">Castling</div><div class="ttdef"><b>Definition</b> mobility.h:37</div></div>
+<div class="ttc" id="amobility_8h_html_ac663d85beab039663f297c3992360793a23324b66768bf7f8ace97cce12b2b14f"><div class="ttname"><a href="mobility_8h.html#ac663d85beab039663f297c3992360793a23324b66768bf7f8ace97cce12b2b14f">kingSide</a></div><div class="ttdeci">@ kingSide</div><div class="ttdef"><b>Definition</b> mobility.h:45</div></div>
+<div class="ttc" id="amobility_8h_html_ac663d85beab039663f297c3992360793a689753e7cba01fa423f6e89a07e2bf82"><div class="ttname"><a href="mobility_8h.html#ac663d85beab039663f297c3992360793a689753e7cba01fa423f6e89a07e2bf82">queenSide</a></div><div class="ttdeci">@ queenSide</div><div class="ttdef"><b>Definition</b> mobility.h:49</div></div>
+<div class="ttc" id="amobility_8h_html_ac663d85beab039663f297c3992360793ab7e4e0120a041dbe6528b050c04269e0"><div class="ttname"><a href="mobility_8h.html#ac663d85beab039663f297c3992360793ab7e4e0120a041dbe6528b050c04269e0">none</a></div><div class="ttdeci">@ none</div><div class="ttdef"><b>Definition</b> mobility.h:41</div></div>
+<div class="ttc" id="apiece_8h_html"><div class="ttname"><a href="piece_8h.html">piece.h</a></div><div class="ttdoc">Definícia šachových figúrok.</div></div>
+<div class="ttc" id="apiece_8h_html_a12ed9719bbdf7bc596ff7a6f4bf3f021"><div class="ttname"><a href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021">PieceType</a></div><div class="ttdeci">PieceType</div><div class="ttdef"><b>Definition</b> piece.h:32</div></div>
+<div class="ttc" id="apiece_8h_html_a12ed9719bbdf7bc596ff7a6f4bf3f021ab306a6be286e11bcaf3695829cf657ee"><div class="ttname"><a href="piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021ab306a6be286e11bcaf3695829cf657ee">Pawn</a></div><div class="ttdeci">@ Pawn</div><div class="ttdef"><b>Definition</b> piece.h:36</div></div>
+<div class="ttc" id="apiece_8h_html_ad0e2cebe1564362802ae0942b6d67703"><div class="ttname"><a href="piece_8h.html#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a></div><div class="ttdeci">PieceEssence</div><div class="ttdef"><b>Definition</b> piece.h:62</div></div>
+<div class="ttc" id="apiece_8h_html_ad7595c48bb74c0dd2a7648712a2d4985"><div class="ttname"><a href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a></div><div class="ttdeci">PieceColor</div><div class="ttdef"><b>Definition</b> piece.h:18</div></div>
+<div class="ttc" id="astruct_legal_move_html"><div class="ttname"><a href="struct_legal_move.html">LegalMove</a></div><div class="ttdef"><b>Definition</b> mobility.h:121</div></div>
+<div class="ttc" id="astruct_legal_move_html_a38e50667cde7c5cde45e450d14c9b4aa"><div class="ttname"><a href="struct_legal_move.html#a38e50667cde7c5cde45e450d14c9b4aa">LegalMove::x1</a></div><div class="ttdeci">int x1</div><div class="ttdef"><b>Definition</b> mobility.h:148</div></div>
+<div class="ttc" id="astruct_legal_move_html_a44c61fdc8cfe098fde2cff515e39633c"><div class="ttname"><a href="struct_legal_move.html#a44c61fdc8cfe098fde2cff515e39633c">LegalMove::y2</a></div><div class="ttdeci">int y2</div><div class="ttdef"><b>Definition</b> mobility.h:163</div></div>
+<div class="ttc" id="astruct_legal_move_html_a7c21d722a9098be3724d428028d4ce90"><div class="ttname"><a href="struct_legal_move.html#a7c21d722a9098be3724d428028d4ce90">LegalMove::y1</a></div><div class="ttdeci">int y1</div><div class="ttdef"><b>Definition</b> mobility.h:153</div></div>
+<div class="ttc" id="astruct_legal_move_html_a855bc8d741ef6ec1327b164020534162"><div class="ttname"><a href="struct_legal_move.html#a855bc8d741ef6ec1327b164020534162">LegalMove::mobility</a></div><div class="ttdeci">Mobility mobility</div><div class="ttdef"><b>Definition</b> mobility.h:168</div></div>
+<div class="ttc" id="astruct_legal_move_html_ac889fcbab687dd4682dc978d540f4e21"><div class="ttname"><a href="struct_legal_move.html#ac889fcbab687dd4682dc978d540f4e21">LegalMove::toStringWithFlags</a></div><div class="ttdeci">std::string toStringWithFlags(PieceColor color)</div><div class="ttdef"><b>Definition</b> mobility.cpp:62</div></div>
+<div class="ttc" id="astruct_legal_move_html_aca1aadbb5ca9c61e931c50cec6b9c96e"><div class="ttname"><a href="struct_legal_move.html#aca1aadbb5ca9c61e931c50cec6b9c96e">LegalMove::promotion</a></div><div class="ttdeci">PieceType promotion</div><div class="ttdef"><b>Definition</b> mobility.h:173</div></div>
+<div class="ttc" id="astruct_legal_move_html_adb86e512e2cc0dc905ec2c0ad6ba41a9"><div class="ttname"><a href="struct_legal_move.html#adb86e512e2cc0dc905ec2c0ad6ba41a9">LegalMove::castling</a></div><div class="ttdeci">Castling castling</div><div class="ttdef"><b>Definition</b> mobility.h:178</div></div>
+<div class="ttc" id="astruct_legal_move_html_ae3e3d5097205783a2434d565c4bd6556"><div class="ttname"><a href="struct_legal_move.html#ae3e3d5097205783a2434d565c4bd6556">LegalMove::x2</a></div><div class="ttdeci">int x2</div><div class="ttdef"><b>Definition</b> mobility.h:158</div></div>
+<div class="ttc" id="astruct_legal_move_html_aea24a744710fa9a11002b5fc4716e563"><div class="ttname"><a href="struct_legal_move.html#aea24a744710fa9a11002b5fc4716e563">LegalMove::toString</a></div><div class="ttdeci">std::string toString()</div><div class="ttdef"><b>Definition</b> mobility.cpp:24</div></div>
+<div class="ttc" id="astruct_legal_move_html_af2ff87469d95b5afcfd9dae9ddf97d94"><div class="ttname"><a href="struct_legal_move.html#af2ff87469d95b5afcfd9dae9ddf97d94">LegalMove::LegalMove</a></div><div class="ttdeci">LegalMove()</div><div class="ttdef"><b>Definition</b> mobility.cpp:5</div></div>
+<div class="ttc" id="astruct_mobility_flags_html"><div class="ttname"><a href="struct_mobility_flags.html">MobilityFlags</a></div><div class="ttdef"><b>Definition</b> mobility.h:55</div></div>
+<div class="ttc" id="astruct_mobility_flags_html_a471ed0fc402ec450ab811d1ae39a9f30"><div class="ttname"><a href="struct_mobility_flags.html#a471ed0fc402ec450ab811d1ae39a9f30">MobilityFlags::uninterruptible</a></div><div class="ttdeci">bool uninterruptible</div><div class="ttdef"><b>Definition</b> mobility.h:69</div></div>
+<div class="ttc" id="astruct_mobility_flags_html_a74c7fa0f1e410ae85946040d3068ce60"><div class="ttname"><a href="struct_mobility_flags.html#a74c7fa0f1e410ae85946040d3068ce60">MobilityFlags::hasty</a></div><div class="ttdeci">bool hasty</div><div class="ttdef"><b>Definition</b> mobility.h:64</div></div>
+<div class="ttc" id="astruct_mobility_flags_html_ab4cc5021075419b5b57635a62e9c14cd"><div class="ttname"><a href="struct_mobility_flags.html#ab4cc5021075419b5b57635a62e9c14cd">MobilityFlags::vigilant</a></div><div class="ttdeci">bool vigilant</div><div class="ttdef"><b>Definition</b> mobility.h:74</div></div>
+<div class="ttc" id="astruct_mobility_flags_html_af742bd8e29915761e5a5c7dabd91c303"><div class="ttname"><a href="struct_mobility_flags.html#af742bd8e29915761e5a5c7dabd91c303">MobilityFlags::initiative</a></div><div class="ttdeci">bool initiative</div><div class="ttdef"><b>Definition</b> mobility.h:59</div></div>
+<div class="ttc" id="astruct_mobility_html"><div class="ttname"><a href="struct_mobility.html">Mobility</a></div><div class="ttdef"><b>Definition</b> mobility.h:81</div></div>
+<div class="ttc" id="astruct_mobility_html_a22534d71540d11cd760a026dfd20241c"><div class="ttname"><a href="struct_mobility.html#a22534d71540d11cd760a026dfd20241c">Mobility::type</a></div><div class="ttdeci">MovementType type</div><div class="ttdef"><b>Definition</b> mobility.h:85</div></div>
+<div class="ttc" id="astruct_mobility_html_a38e5014337b13a5e9ffdec8cfb8fd5f8"><div class="ttname"><a href="struct_mobility.html#a38e5014337b13a5e9ffdec8cfb8fd5f8">Mobility::direction_y</a></div><div class="ttdeci">int direction_y</div><div class="ttdef"><b>Definition</b> mobility.h:105</div></div>
+<div class="ttc" id="astruct_mobility_html_aa9940f57658b64f5b1ad3dad01ec564b"><div class="ttname"><a href="struct_mobility.html#aa9940f57658b64f5b1ad3dad01ec564b">Mobility::flags</a></div><div class="ttdeci">MobilityFlags flags</div><div class="ttdef"><b>Definition</b> mobility.h:115</div></div>
+<div class="ttc" id="astruct_mobility_html_abde22d91fe1dc2e293b717fa8c1e3fe9"><div class="ttname"><a href="struct_mobility.html#abde22d91fe1dc2e293b717fa8c1e3fe9">Mobility::start_x</a></div><div class="ttdeci">int start_x</div><div class="ttdef"><b>Definition</b> mobility.h:90</div></div>
+<div class="ttc" id="astruct_mobility_html_ac165b1ae5d7f647febc0f13f07d37e93"><div class="ttname"><a href="struct_mobility.html#ac165b1ae5d7f647febc0f13f07d37e93">Mobility::start_y</a></div><div class="ttdeci">int start_y</div><div class="ttdef"><b>Definition</b> mobility.h:95</div></div>
+<div class="ttc" id="astruct_mobility_html_acea2b8c8010fbb295d92649a93db5910"><div class="ttname"><a href="struct_mobility.html#acea2b8c8010fbb295d92649a93db5910">Mobility::direction_x</a></div><div class="ttdeci">int direction_x</div><div class="ttdef"><b>Definition</b> mobility.h:100</div></div>
+<div class="ttc" id="astruct_mobility_html_af0ab836ff1a115e1a184fa6e488968b3"><div class="ttname"><a href="struct_mobility.html#af0ab836ff1a115e1a184fa6e488968b3">Mobility::limit</a></div><div class="ttdeci">int limit</div><div class="ttdef"><b>Definition</b> mobility.h:110</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generované programom&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

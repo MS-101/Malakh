@@ -1,0 +1,61 @@
+\chapter{Malakh}
+\hypertarget{index}{}\label{index}\index{Malakh@{Malakh}}
+\label{index_md__c_1_2_users_2marti_2_desktop_2_skola_2_d_p_2_implementacia_2_malakh_2_r_e_a_d_m_e}%
+\Hypertarget{index_md__c_1_2_users_2marti_2_desktop_2_skola_2_d_p_2_implementacia_2_malakh_2_r_e_a_d_m_e}%
+ Tento projekt je šachový engine, ktorý je schopný hrať s neštandardnými šachovými pravidlami. Tento engine sa dá ovládať pomocou UCI príkazov.\hypertarget{index_autotoc_md1}{}\doxysection{\texorpdfstring{AI režimy}{AI režimy}}\label{index_autotoc_md1}
+Tento engine má implementované nasledujúce AI režimy\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{basic}} -\/ využíva staticku evaluačnú funkciu na evaluáciu šachovej pozície
+\item {\bfseries{ensemble}} -\/ využíva súborové učenie na evaluáciu šachovej pozície. Modely súborového učenia boli vytrénované v skripte \href{https://github.com/MS-101/Malakh-Trainer}{\texttt{ Malakh Trainer}}.
+\end{DoxyItemize}\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{UCI príkazy}{UCI príkazy}}\label{index_autotoc_md2}
+\hypertarget{index_autotoc_md3}{}\doxysubsection{\texorpdfstring{Engine -\/\texorpdfstring{$>$}{>} GUI}{Engine -\/\texorpdfstring{$>$}{>} GUI}}\label{index_autotoc_md3}
+Zoznam štandardných UCI príkazov\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{id}} -\/ pomocou tohto príkazu sa engine identifikuje po prijatí uci príkazu
+\begin{DoxyItemize}
+\item {\bfseries{id name \mbox{[}name\mbox{]}}} -\/ engine odošle enginu svoje meno (id name Malakh)
+\item {\bfseries{id author \mbox{[}author\mbox{]}}} -\/ engine odošle enginu svojho autora (id author Martin Svab)
+\end{DoxyItemize}
+\item {\bfseries{option name \mbox{[}name\mbox{]} type \mbox{[}type\mbox{]} ...}} -\/ pomocou tohto príkazu engine odošle nastaviteľnú konfiguráciu po prijatí uci príkazu (napr. option name White\+Pawn type combo default Classic var Classic var Red var Blue)
+\item {\bfseries{uciok}} -\/ po odoslaní identifikácie, konfigurovateľných nastavení a mobilít sa odošle tento príkaz
+\item {\bfseries{readyok}} -\/ tento príkaz je odoslaný ako odpoveď na \textquotesingle{}isready\textquotesingle{} správu
+\item {\bfseries{bestmove \mbox{[}bestmove\mbox{]}}} -\/ tento príkaz slúži ako odpoveď na \textquotesingle{}go\textquotesingle{} správu. Po ukončení prehľadávania sa odošle najlepší možný ťah hráča. (napr. bestmove d2d4\+\_\+\+Hd3)
+\end{DoxyItemize}
+
+Zoznam dodatočných UCI príkazov\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{mobility \mbox{[}piece\mbox{]} \mbox{[}essence\mbox{]} \mbox{[}type\mbox{]} \mbox{[}start\+\_\+x\mbox{]} \mbox{[}start\+\_\+y\mbox{]} \mbox{[}direction\+\_\+x\mbox{]} \mbox{[}direction\+\_\+y\mbox{]} \mbox{[}limit\mbox{]}}} -\/ týmito príkazmi sa odošle zoznam mobilít konkrétnej figúrky s určitou esenciou (napr. mobility Pawn Classic Move 0 1 0 0 1).
+\item {\bfseries{legalmoves \mbox{[}legalmove1\mbox{]} \mbox{[}legalmove2\mbox{]} ...}} -\/ týmto príkazom sa odošle zoznam legálnych pohybov hráča, ktorý je aktuálne na ťahu (napr. legalmoves a7a6 a7a5\+\_\+\+Ha6 b7b6 b7b5\+\_\+\+Hb6 ...)
+\item {\bfseries{check}} -\/ po príkaze \textquotesingle{}position\textquotesingle{} ak v novej pozícii je kráľ napadnutý, tak engine na to upozorní GUI pomocou tohto príkazu
+\item {\bfseries{result \mbox{[}result\mbox{]}}} -\/ po príkaze \textquotesingle{}legalmoves\textquotesingle{} a po príkaze \textquotesingle{}go\textquotesingle{} ak legálne pohyby neexistujú tak engine odošle GUI výsledok hry týmto príkazom
+\begin{DoxyItemize}
+\item {\bfseries{result White}} -\/ hra bola ukončená výhrou bieleho hráča
+\item {\bfseries{result Black}} -\/ hra bola ukončená výhrou čierneho hráča
+\item {\bfseries{result Stalemate}} -\/ hra bola ukončená remízou
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{index_autotoc_md4}{}\doxysubsection{\texorpdfstring{GUI -\/\texorpdfstring{$>$}{>} Engine}{GUI -\/\texorpdfstring{$>$}{>} Engine}}\label{index_autotoc_md4}
+Zoznam štandardných UCI príkazov\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{uci}} -\/ engine sa prepne do UCI režimu a na túto správu odpovie svojou identifikáciou, odoslaním konfigurovateľných nastavení a mobilít figúrok. Po odoslaní všetkých potrebných informácii enginu odošle \textquotesingle{}uciok\textquotesingle{} správu.
+\item {\bfseries{isready}} -\/ pred prvým prehľadávaním pozície je nutné poslať tento príkaz aby si Engine inicializoval hodnoty ako zobrist kľúče. Engine po dokončení inicializácie odpovie správou \textquotesingle{}readyok\textquotesingle{}.
+\item {\bfseries{setoption name \mbox{[}name\mbox{]} value \mbox{[}value\mbox{]}}} -\/ pomocou tohto príkazu sa zmení konfigurácia enginu. Aktuálne sa tento príkaz využíva pred \textquotesingle{}ucinewgame\textquotesingle{} príkazom na nastavenie esencií figúrok (napr. setoption name White\+Pawn value Red)
+\item {\bfseries{ucinewgame}} -\/ pre spustenie novej hry sa použije tento príkaz. Engine spustí novú hru s esenciami, ktoré boli predtým nastavené pomocou \textquotesingle{}setoption\textquotesingle{} príkazov.
+\item {\bfseries{position \mbox{[}fen \texorpdfstring{$\vert$}{|} startpos \texorpdfstring{$\vert$}{|} curpos\mbox{]} moves ...}} -\/ týmto príkazom môžeme nastaviť aktuálnu pozíciu v hre (napr. position curpos moves e2e4). Štandardný protokol UCI nepodporuje pozíciu \textquotesingle{}curpos\textquotesingle{}. Tento príkaz bol pre účely tejto implementácie modifikovaný. V aktuálnej verzii implementácia nepodporuje fen stringy.
+\item {\bfseries{go}} -\/ týmto príkazom povieme enginu aby vyhľadal najlepší ťah v aktuálnej pozícii, ktorá bola nastavená príkazom \textquotesingle{}position\textquotesingle{}. V aktuálnej verzii je podporovaný tento príkaz len s parametrom \textquotesingle{}depth\textquotesingle{} (napr. go depth 2).
+\item {\bfseries{quit}} -\/ engine sa po prijatí tejto správy vypne
+\end{DoxyItemize}
+
+Zoznam dodatočných UCI príkazov\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{legalmoves}} -\/ týmto príkazom si GUI vypýta od enginu zoznam legálnych pohybov hráča, ktorý je aktuálne na ťahu. Engine na to odpovie vlastnou \textquotesingle{}legalmoves\textquotesingle{} správou. 
+\end{DoxyItemize}

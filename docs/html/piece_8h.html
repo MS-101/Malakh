@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sk">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Malakh: Dokumentácia súboru piece.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Malakh
+   </div>
+   <div id="projectbrief">Šachový engine na hru s neštandardnými šachovými pravidlami</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generované programom Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Hľadať');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Načítam...</div>
+<div class="SRStatus" id="Searching">Vyhľadávam...</div>
+<div class="SRStatus" id="NoMatches">Nič sa nenašlo</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Triedy</a> &#124;
+<a href="#define-members">Definícia makier</a> &#124;
+<a href="#enum-members">Enumerácie</a> &#124;
+<a href="#func-members">Funkcie</a> &#124;
+<a href="#var-members">Premenné</a>  </div>
+  <div class="headertitle"><div class="title">Dokumentácia súboru piece.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Definícia šachových figúrok.  
+<a href="#details">...</a></p>
+<div class="textblock"><code>#include &lt;string&gt;</code><br />
+</div>
+<p><a href="piece_8h_source.html">Zobraziť zdrojový text tohoto súboru.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Triedy</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_piece.html">Piece</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_ghost.html">Ghost</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerácie</h2></td></tr>
+<tr class="memitem:ad7595c48bb74c0dd2a7648712a2d4985" id="r_ad7595c48bb74c0dd2a7648712a2d4985"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a> { <a class="el" href="#ad7595c48bb74c0dd2a7648712a2d4985ab548046646b36c12aa6ba841de500094">White</a>
+, <a class="el" href="#ad7595c48bb74c0dd2a7648712a2d4985ac1e9bce8242f443c54c7405223d616cd">Black</a>
+ }</td></tr>
+<tr class="separator:ad7595c48bb74c0dd2a7648712a2d4985"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12ed9719bbdf7bc596ff7a6f4bf3f021" id="r_a12ed9719bbdf7bc596ff7a6f4bf3f021"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a12ed9719bbdf7bc596ff7a6f4bf3f021">PieceType</a> { <br />
+&#160;&#160;<a class="el" href="#a12ed9719bbdf7bc596ff7a6f4bf3f021ab306a6be286e11bcaf3695829cf657ee">Pawn</a>
+, <a class="el" href="#a12ed9719bbdf7bc596ff7a6f4bf3f021a123c6e01d8a2e323abf42370c26cd047">Rook</a>
+, <a class="el" href="#a12ed9719bbdf7bc596ff7a6f4bf3f021acde4898e8fcebdba44f8963e9b12799d">Knight</a>
+, <a class="el" href="#a12ed9719bbdf7bc596ff7a6f4bf3f021a7270f86db491d8aed7a3187829a82e13">Bishop</a>
+, <br />
+&#160;&#160;<a class="el" href="#a12ed9719bbdf7bc596ff7a6f4bf3f021a011d63789e83d8beb2a90652bb03cd31">Queen</a>
+, <a class="el" href="#a12ed9719bbdf7bc596ff7a6f4bf3f021a27fc6acdd76c4d0f3b47933e02ec65cf">King</a>
+<br />
+ }</td></tr>
+<tr class="separator:a12ed9719bbdf7bc596ff7a6f4bf3f021"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0e2cebe1564362802ae0942b6d67703" id="r_ad0e2cebe1564362802ae0942b6d67703"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a> { <a class="el" href="#ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e">Classic</a>
+, <a class="el" href="#ad0e2cebe1564362802ae0942b6d67703ad3163c1fcda01965b692ec2c3122b743">Red</a>
+, <a class="el" href="#ad0e2cebe1564362802ae0942b6d67703af5e09dd1da4088464f264b7a3118bff8">Blue</a>
+ }</td></tr>
+<tr class="separator:ad0e2cebe1564362802ae0942b6d67703"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funkcie</h2></td></tr>
+<tr class="memitem:a77511f5b1d1b9512eca6df4a85cc9259" id="r_a77511f5b1d1b9512eca6df4a85cc9259"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77511f5b1d1b9512eca6df4a85cc9259">getPieceIndex</a> (char color, char type)</td></tr>
+<tr class="separator:a77511f5b1d1b9512eca6df4a85cc9259"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9125c9dab2ada6e60db34033a63ee7b7" id="r_a9125c9dab2ada6e60db34033a63ee7b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9125c9dab2ada6e60db34033a63ee7b7">stringToColor</a> (std::string value)</td></tr>
+<tr class="separator:a9125c9dab2ada6e60db34033a63ee7b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5a0090ef83b1b00d7d8a9ff61f1edf0" id="r_af5a0090ef83b1b00d7d8a9ff61f1edf0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a12ed9719bbdf7bc596ff7a6f4bf3f021">PieceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af5a0090ef83b1b00d7d8a9ff61f1edf0">stringToType</a> (std::string value)</td></tr>
+<tr class="separator:af5a0090ef83b1b00d7d8a9ff61f1edf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a965914de6012941f8216f3ff3f7dfb84" id="r_a965914de6012941f8216f3ff3f7dfb84"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a965914de6012941f8216f3ff3f7dfb84">stringToEssence</a> (std::string value)</td></tr>
+<tr class="separator:a965914de6012941f8216f3ff3f7dfb84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa83c6cdc7aff34aa249524d5be3bca0b" id="r_aa83c6cdc7aff34aa249524d5be3bca0b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa83c6cdc7aff34aa249524d5be3bca0b">colorToString</a> (<a class="el" href="#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a> value)</td></tr>
+<tr class="separator:aa83c6cdc7aff34aa249524d5be3bca0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a974fb23971911acde2526785837ab4b9" id="r_a974fb23971911acde2526785837ab4b9"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a974fb23971911acde2526785837ab4b9">typeToString</a> (<a class="el" href="#a12ed9719bbdf7bc596ff7a6f4bf3f021">PieceType</a> value)</td></tr>
+<tr class="separator:a974fb23971911acde2526785837ab4b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dd61b17b0bd4fe24f313f844fad3ae3" id="r_a0dd61b17b0bd4fe24f313f844fad3ae3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0dd61b17b0bd4fe24f313f844fad3ae3">essenceToString</a> (<a class="el" href="#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a> value)</td></tr>
+<tr class="separator:a0dd61b17b0bd4fe24f313f844fad3ae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Premenné</h2></td></tr>
+<tr class="memitem:a30d454d1d2c8f529c93c7fccec714a67" id="r_a30d454d1d2c8f529c93c7fccec714a67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30d454d1d2c8f529c93c7fccec714a67">opponent</a> []</td></tr>
+<tr class="separator:a30d454d1d2c8f529c93c7fccec714a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3659e621cc28bdd541c3a9d65b309c90" id="r_a3659e621cc28bdd541c3a9d65b309c90"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3659e621cc28bdd541c3a9d65b309c90">colorChars</a> []</td></tr>
+<tr class="separator:a3659e621cc28bdd541c3a9d65b309c90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafa8ea50d6335445c35439867fdfb42a" id="r_aafa8ea50d6335445c35439867fdfb42a"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aafa8ea50d6335445c35439867fdfb42a">essenceChars</a> []</td></tr>
+<tr class="separator:aafa8ea50d6335445c35439867fdfb42a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c7116f039e491da0ae2d61fbc8123b4" id="r_a6c7116f039e491da0ae2d61fbc8123b4"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c7116f039e491da0ae2d61fbc8123b4">typeChars</a> []</td></tr>
+<tr class="separator:a6c7116f039e491da0ae2d61fbc8123b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailný popis</h2>
+<div class="textblock"><p>Definícia šachových figúrok. </p>
+<dl class="section author"><dt>Autor</dt><dd>Martin Šváb </dd></dl>
+<dl class="section date"><dt>Dátum</dt><dd>Máj 2024 </dd></dl>
+</div><h2 class="groupheader">Dokumentácia enumeračných typov</h2>
+<a id="ad7595c48bb74c0dd2a7648712a2d4985" name="ad7595c48bb74c0dd2a7648712a2d4985"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7595c48bb74c0dd2a7648712a2d4985">&#9670;&#160;</a></span>PieceColor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Vlastník figúrky. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Hodnoty enumerácií</th></tr><tr><td class="fieldname"><a id="ad7595c48bb74c0dd2a7648712a2d4985ab548046646b36c12aa6ba841de500094" name="ad7595c48bb74c0dd2a7648712a2d4985ab548046646b36c12aa6ba841de500094"></a>White&#160;</td><td class="fielddoc"><p>Biely hráč. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad7595c48bb74c0dd2a7648712a2d4985ac1e9bce8242f443c54c7405223d616cd" name="ad7595c48bb74c0dd2a7648712a2d4985ac1e9bce8242f443c54c7405223d616cd"></a>Black&#160;</td><td class="fielddoc"><p>Čierny hráč. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ad0e2cebe1564362802ae0942b6d67703" name="ad0e2cebe1564362802ae0942b6d67703"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0e2cebe1564362802ae0942b6d67703">&#9670;&#160;</a></span>PieceEssence</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Esencia figúrky. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Hodnoty enumerácií</th></tr><tr><td class="fieldname"><a id="ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e" name="ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e"></a>Classic&#160;</td><td class="fielddoc"><p>Klasická esencia. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad0e2cebe1564362802ae0942b6d67703ad3163c1fcda01965b692ec2c3122b743" name="ad0e2cebe1564362802ae0942b6d67703ad3163c1fcda01965b692ec2c3122b743"></a>Red&#160;</td><td class="fielddoc"><p>Červená esencia. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad0e2cebe1564362802ae0942b6d67703af5e09dd1da4088464f264b7a3118bff8" name="ad0e2cebe1564362802ae0942b6d67703af5e09dd1da4088464f264b7a3118bff8"></a>Blue&#160;</td><td class="fielddoc"><p>Modrá esencia. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a12ed9719bbdf7bc596ff7a6f4bf3f021" name="a12ed9719bbdf7bc596ff7a6f4bf3f021"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12ed9719bbdf7bc596ff7a6f4bf3f021">&#9670;&#160;</a></span>PieceType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a12ed9719bbdf7bc596ff7a6f4bf3f021">PieceType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Typ figúrky. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Hodnoty enumerácií</th></tr><tr><td class="fieldname"><a id="a12ed9719bbdf7bc596ff7a6f4bf3f021ab306a6be286e11bcaf3695829cf657ee" name="a12ed9719bbdf7bc596ff7a6f4bf3f021ab306a6be286e11bcaf3695829cf657ee"></a>Pawn&#160;</td><td class="fielddoc"><p>Pešiak. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a12ed9719bbdf7bc596ff7a6f4bf3f021a123c6e01d8a2e323abf42370c26cd047" name="a12ed9719bbdf7bc596ff7a6f4bf3f021a123c6e01d8a2e323abf42370c26cd047"></a>Rook&#160;</td><td class="fielddoc"><p>Veža. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a12ed9719bbdf7bc596ff7a6f4bf3f021acde4898e8fcebdba44f8963e9b12799d" name="a12ed9719bbdf7bc596ff7a6f4bf3f021acde4898e8fcebdba44f8963e9b12799d"></a>Knight&#160;</td><td class="fielddoc"><p>Rytier. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a12ed9719bbdf7bc596ff7a6f4bf3f021a7270f86db491d8aed7a3187829a82e13" name="a12ed9719bbdf7bc596ff7a6f4bf3f021a7270f86db491d8aed7a3187829a82e13"></a>Bishop&#160;</td><td class="fielddoc"><p>Strelec. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a12ed9719bbdf7bc596ff7a6f4bf3f021a011d63789e83d8beb2a90652bb03cd31" name="a12ed9719bbdf7bc596ff7a6f4bf3f021a011d63789e83d8beb2a90652bb03cd31"></a>Queen&#160;</td><td class="fielddoc"><p>Kráľovná. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a12ed9719bbdf7bc596ff7a6f4bf3f021a27fc6acdd76c4d0f3b47933e02ec65cf" name="a12ed9719bbdf7bc596ff7a6f4bf3f021a27fc6acdd76c4d0f3b47933e02ec65cf"></a>King&#160;</td><td class="fielddoc"><p>Kráľ. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentácia funkcií</h2>
+<a id="aa83c6cdc7aff34aa249524d5be3bca0b" name="aa83c6cdc7aff34aa249524d5be3bca0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa83c6cdc7aff34aa249524d5be3bca0b">&#9670;&#160;</a></span>colorToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string colorToString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a></td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Konverzia farby figúrky na slovo.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>Farba šachovej figúrky. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>Slovo reprezentujúce farbu figúrky. </dd></dl>
+
+</div>
+</div>
+<a id="a0dd61b17b0bd4fe24f313f844fad3ae3" name="a0dd61b17b0bd4fe24f313f844fad3ae3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dd61b17b0bd4fe24f313f844fad3ae3">&#9670;&#160;</a></span>essenceToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string essenceToString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a></td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Konverzia esencie figúrky na slovo.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>Esencia šachovej figúrky. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>Slovo reprezentujúce esenciu figúrky. </dd></dl>
+
+</div>
+</div>
+<a id="a77511f5b1d1b9512eca6df4a85cc9259" name="a77511f5b1d1b9512eca6df4a85cc9259"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77511f5b1d1b9512eca6df4a85cc9259">&#9670;&#160;</a></span>getPieceIndex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char getPieceIndex </td>
+          <td>(</td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>color</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>type</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Táto funkcia vráti id figúrky.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">color</td><td>Farba šachovej figúrky. </td></tr>
+    <tr><td class="paramname">type</td><td>Typ šachovej figúrky. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>Identifikátor šachovej figúrky </dd></dl>
+
+</div>
+</div>
+<a id="a9125c9dab2ada6e60db34033a63ee7b7" name="a9125c9dab2ada6e60db34033a63ee7b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9125c9dab2ada6e60db34033a63ee7b7">&#9670;&#160;</a></span>stringToColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a> stringToColor </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Konverzia stringu na farbu figúrky.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>Slovo reprezentujúce farbu figúrky. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>Farba šachovej figúrky. </dd></dl>
+
+</div>
+</div>
+<a id="a965914de6012941f8216f3ff3f7dfb84" name="a965914de6012941f8216f3ff3f7dfb84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a965914de6012941f8216f3ff3f7dfb84">&#9670;&#160;</a></span>stringToEssence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ad0e2cebe1564362802ae0942b6d67703">PieceEssence</a> stringToEssence </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Konverzia stringu na esenciu figúrky.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>Slovo reprezentujúce esenciu figúrky. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>Esencia šachovej figúrky. </dd></dl>
+
+</div>
+</div>
+<a id="af5a0090ef83b1b00d7d8a9ff61f1edf0" name="af5a0090ef83b1b00d7d8a9ff61f1edf0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5a0090ef83b1b00d7d8a9ff61f1edf0">&#9670;&#160;</a></span>stringToType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a12ed9719bbdf7bc596ff7a6f4bf3f021">PieceType</a> stringToType </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Konverzia stringu na typ figúrky.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>Slovo reprezentujúce typ figúrky. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>Typ šachovej figúrky. </dd></dl>
+
+</div>
+</div>
+<a id="a974fb23971911acde2526785837ab4b9" name="a974fb23971911acde2526785837ab4b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a974fb23971911acde2526785837ab4b9">&#9670;&#160;</a></span>typeToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string typeToString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a12ed9719bbdf7bc596ff7a6f4bf3f021">PieceType</a></td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Konverzia typu figúrky na slovo.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>Typ šachovej figúrky. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>Slovo reprezentujúce typ figúrky. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentácia premenných</h2>
+<a id="a3659e621cc28bdd541c3a9d65b309c90" name="a3659e621cc28bdd541c3a9d65b309c90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3659e621cc28bdd541c3a9d65b309c90">&#9670;&#160;</a></span>colorChars</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char colorChars[]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Zoznam znakov reprezentujúci farbu figúrky. </p>
+
+</div>
+</div>
+<a id="aafa8ea50d6335445c35439867fdfb42a" name="aafa8ea50d6335445c35439867fdfb42a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafa8ea50d6335445c35439867fdfb42a">&#9670;&#160;</a></span>essenceChars</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char essenceChars[]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Zoznam znakov reprezentujúci esenciu figúrky. </p>
+
+</div>
+</div>
+<a id="a30d454d1d2c8f529c93c7fccec714a67" name="a30d454d1d2c8f529c93c7fccec714a67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30d454d1d2c8f529c93c7fccec714a67">&#9670;&#160;</a></span>opponent</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a> opponent[]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Zoznam, ktorý umožňuje konverziu na protivníkovu farbu figúrky. </p>
+
+</div>
+</div>
+<a id="a6c7116f039e491da0ae2d61fbc8123b4" name="a6c7116f039e491da0ae2d61fbc8123b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c7116f039e491da0ae2d61fbc8123b4">&#9670;&#160;</a></span>typeChars</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char typeChars[]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Zoznam znakov reprezentujúci typ figúrky. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generované programom&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

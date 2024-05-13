@@ -1,0 +1,48 @@
+\doxysection{Dokumentácia triedy Simulation\+Manager}
+\hypertarget{class_simulation_manager}{}\label{class_simulation_manager}\index{SimulationManager@{SimulationManager}}
+
+
+{\ttfamily \#include $<$simulation.\+h$>$}
+
+\doxysubsubsection*{Statické verejné metódy}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_simulation_manager_ae35d13d34174b2bf318baf9a74d3f3b6}{simulate\+Games}} (int game\+Counter, \mbox{\hyperlink{struct_essence_args}{Essence\+Args}} essence\+Args, int malakh\+Depth, int fairy\+Stockfish\+Depth, bool use\+Ensemble, bool use\+DB, std\+::string output\+Filename)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailný popis}
+Trieda zodpovedná za simuláciu hier medzi enginom Malakh a \doxylink{class_fairy_stockfish}{Fairy\+Stockfish}. 
+
+\doxysubsection{Dokumentácia k metódam}
+\Hypertarget{class_simulation_manager_ae35d13d34174b2bf318baf9a74d3f3b6}\label{class_simulation_manager_ae35d13d34174b2bf318baf9a74d3f3b6} 
+\index{SimulationManager@{SimulationManager}!simulateGames@{simulateGames}}
+\index{simulateGames@{simulateGames}!SimulationManager@{SimulationManager}}
+\doxysubsubsection{\texorpdfstring{simulateGames()}{simulateGames()}}
+{\footnotesize\ttfamily void Simulation\+Manager\+::simulate\+Games (\begin{DoxyParamCaption}\item[{int}]{game\+Counter,  }\item[{\mbox{\hyperlink{struct_essence_args}{Essence\+Args}}}]{essence\+Args,  }\item[{int}]{malakh\+Depth,  }\item[{int}]{fairy\+Stockfish\+Depth,  }\item[{bool}]{use\+Ensemble,  }\item[{bool}]{use\+DB,  }\item[{std\+::string}]{output\+Filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Pomocou tejto metódy spustíme simuláciu hier medzi enginami Malakh a \doxylink{class_fairy_stockfish}{Fairy\+Stockfish}.
+
+
+\begin{DoxyParams}{Parametre}
+{\em game\+Counter} & Počet hier, ktoré majú byť odohrané. \\
+\hline
+{\em essence\+Args} & Nastavenie esencií. \\
+\hline
+{\em malakh\+Depth} & Hĺbka prehľadávania enginu Malakh. \\
+\hline
+{\em fairy\+Stockfish\+Depth} & Hĺbka prehľadávanie enginu \doxylink{class_fairy_stockfish}{Fairy\+Stockfish}. \\
+\hline
+{\em use\+Ensemble} & Hodnota pomocou ktorej môžeme nastaviť \textquotesingle{}basic\textquotesingle{} (false) alebo \textquotesingle{}ensemble\textquotesingle{} (true) AI režim pre engine Malakh. \\
+\hline
+{\em use\+DB} & Hodnota pomocou ktorej môžeme vypnúť alebo zapnúť ukladanie podrobných výsledkov simulácie do databázy. \\
+\hline
+{\em output\+Filename} & Výstupný súbor do ktorého zapíšeme výsledky simulácie. \\
+\hline
+\end{DoxyParams}
+
+
+Dokumentácia pre túto triedu bola generovaná z nasledujúcich súborov\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{simulation_8h}{simulation.\+h}}\item 
+simulation.\+cpp\end{DoxyCompactItemize}

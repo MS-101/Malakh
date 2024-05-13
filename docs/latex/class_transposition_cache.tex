@@ -1,0 +1,112 @@
+\doxysection{Dokumentácia triedy Transposition\+Cache}
+\hypertarget{class_transposition_cache}{}\label{class_transposition_cache}\index{TranspositionCache@{TranspositionCache}}
+
+
+{\ttfamily \#include $<$transpositions.\+h$>$}
+
+\doxysubsubsection*{Verejné metódy}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_transposition_cache_aa03551ed534cb29fdf51d6fe1243ec65}{Transposition\+Cache}} (int \mbox{\hyperlink{class_transposition_cache_ac598df0ac2b60e85d866473540d39136}{capacity}})
+\item 
+\mbox{\hyperlink{struct_transposition}{Transposition}} \mbox{\hyperlink{class_transposition_cache_a5dec3183dbb4ca40a8f0c55e1db577df}{get}} (unsigned long long key)
+\item 
+void \mbox{\hyperlink{class_transposition_cache_ac4cf9795e807843763b769b90273ac2f}{put}} (unsigned long long key, \mbox{\hyperlink{struct_transposition}{Transposition}} value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Privátne atribúty}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unordered\+\_\+map$<$ unsigned long long, \mbox{\hyperlink{struct_transposition}{Transposition}} $>$ \mbox{\hyperlink{class_transposition_cache_af527742a73cba577d3821b6c43ce17b8}{cache}}
+\item 
+std\+::list$<$ unsigned long long $>$ \mbox{\hyperlink{class_transposition_cache_a73bcf5ea6ceb0f0860c22cf72185fdc3}{order}}
+\item 
+int \mbox{\hyperlink{class_transposition_cache_ac598df0ac2b60e85d866473540d39136}{capacity}}
+\item 
+std\+::mutex \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_transposition_cache_a53744c04e7a924ff6af2900f3f20300d}{mutex}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailný popis}
+Trieda reprezentujúca LRU cache v ktorej ukladáma transpozície. 
+
+\doxysubsection{Dokumentácia konštruktoru a deštruktoru}
+\Hypertarget{class_transposition_cache_aa03551ed534cb29fdf51d6fe1243ec65}\label{class_transposition_cache_aa03551ed534cb29fdf51d6fe1243ec65} 
+\index{TranspositionCache@{TranspositionCache}!TranspositionCache@{TranspositionCache}}
+\index{TranspositionCache@{TranspositionCache}!TranspositionCache@{TranspositionCache}}
+\doxysubsubsection{\texorpdfstring{TranspositionCache()}{TranspositionCache()}}
+{\footnotesize\ttfamily Transposition\+Cache\+::\+Transposition\+Cache (\begin{DoxyParamCaption}\item[{int}]{capacity }\end{DoxyParamCaption})}
+
+Konštruktor inicializuje cache danej veľkosti.
+
+
+\begin{DoxyParams}{Parametre}
+{\em capacity} & Kapacita našej cache. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Dokumentácia k metódam}
+\Hypertarget{class_transposition_cache_a5dec3183dbb4ca40a8f0c55e1db577df}\label{class_transposition_cache_a5dec3183dbb4ca40a8f0c55e1db577df} 
+\index{TranspositionCache@{TranspositionCache}!get@{get}}
+\index{get@{get}!TranspositionCache@{TranspositionCache}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_transposition}{Transposition}} Transposition\+Cache\+::get (\begin{DoxyParamCaption}\item[{unsigned long long}]{key }\end{DoxyParamCaption})}
+
+Pomocou tejto metódy z cache vyberieme transpozíciu. Ak ju nájdeme, tak ju presunieme na vrch nášho zoznamu.
+
+
+\begin{DoxyParams}{Parametre}
+{\em key} & Hash hľadanej transpozície. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Nájdená transpozícia. Ak žiadna nebola nájdená tak hĺbka prehľadávania vrátenej transpozície je -\/1. 
+\end{DoxyReturn}
+\Hypertarget{class_transposition_cache_ac4cf9795e807843763b769b90273ac2f}\label{class_transposition_cache_ac4cf9795e807843763b769b90273ac2f} 
+\index{TranspositionCache@{TranspositionCache}!put@{put}}
+\index{put@{put}!TranspositionCache@{TranspositionCache}}
+\doxysubsubsection{\texorpdfstring{put()}{put()}}
+{\footnotesize\ttfamily void Transposition\+Cache\+::put (\begin{DoxyParamCaption}\item[{unsigned long long}]{key,  }\item[{\mbox{\hyperlink{struct_transposition}{Transposition}}}]{value }\end{DoxyParamCaption})}
+
+Pomocou tejto metódy do cache vložíme novú transpozíciu. Ak je naše cache plné, tak z cache odstránime transpozícia podľa LRU princípu.
+
+
+\begin{DoxyParams}{Parametre}
+{\em key} & Hash novej transpozície. \\
+\hline
+{\em value} & Hodnota novej transpozície. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Dokumentácia k dátovým členom}
+\Hypertarget{class_transposition_cache_af527742a73cba577d3821b6c43ce17b8}\label{class_transposition_cache_af527742a73cba577d3821b6c43ce17b8} 
+\index{TranspositionCache@{TranspositionCache}!cache@{cache}}
+\index{cache@{cache}!TranspositionCache@{TranspositionCache}}
+\doxysubsubsection{\texorpdfstring{cache}{cache}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$unsigned long long, \mbox{\hyperlink{struct_transposition}{Transposition}}$>$ Transposition\+Cache\+::cache\hspace{0.3cm}{\ttfamily [private]}}
+
+Hashmapa v ktorej ukladáme všetky transpozície. Kľúčom tejto mapy je hash šachovej pozície. \Hypertarget{class_transposition_cache_ac598df0ac2b60e85d866473540d39136}\label{class_transposition_cache_ac598df0ac2b60e85d866473540d39136} 
+\index{TranspositionCache@{TranspositionCache}!capacity@{capacity}}
+\index{capacity@{capacity}!TranspositionCache@{TranspositionCache}}
+\doxysubsubsection{\texorpdfstring{capacity}{capacity}}
+{\footnotesize\ttfamily int Transposition\+Cache\+::capacity\hspace{0.3cm}{\ttfamily [private]}}
+
+Maximálna kapacita našej cache. \Hypertarget{class_transposition_cache_a53744c04e7a924ff6af2900f3f20300d}\label{class_transposition_cache_a53744c04e7a924ff6af2900f3f20300d} 
+\index{TranspositionCache@{TranspositionCache}!mutex@{mutex}}
+\index{mutex@{mutex}!TranspositionCache@{TranspositionCache}}
+\doxysubsubsection{\texorpdfstring{mutex}{mutex}}
+{\footnotesize\ttfamily std\+::mutex\texorpdfstring{$\ast$}{*} Transposition\+Cache\+::mutex\hspace{0.3cm}{\ttfamily [private]}}
+
+Mutex pre úpravu cache v paralelnom vyhľadávaní. \Hypertarget{class_transposition_cache_a73bcf5ea6ceb0f0860c22cf72185fdc3}\label{class_transposition_cache_a73bcf5ea6ceb0f0860c22cf72185fdc3} 
+\index{TranspositionCache@{TranspositionCache}!order@{order}}
+\index{order@{order}!TranspositionCache@{TranspositionCache}}
+\doxysubsubsection{\texorpdfstring{order}{order}}
+{\footnotesize\ttfamily std\+::list$<$unsigned long long$>$ Transposition\+Cache\+::order\hspace{0.3cm}{\ttfamily [private]}}
+
+Zoznam reprezentuje poradie transpozícii na základe LRU princípu. 
+
+Dokumentácia pre túto triedu bola generovaná z nasledujúcich súborov\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{transpositions_8h}{transpositions.\+h}}\item 
+transpositions.\+cpp\end{DoxyCompactItemize}

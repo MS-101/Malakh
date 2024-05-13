@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sk">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Malakh: Zdrojový súbor bitboard.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Malakh
+   </div>
+   <div id="projectbrief">Šachový engine na hru s neštandardnými šachovými pravidlami</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generované programom Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Hľadať');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Načítam...</div>
+<div class="SRStatus" id="Searching">Vyhľadávam...</div>
+<div class="SRStatus" id="NoMatches">Nič sa nenašlo</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">bitboard.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="bitboard_8h.html">Zobraziť dokumentáciu tohoto súboru.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">/*****************************************************************/</span></div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="struct_bit_board.html">   15</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_bit_board.html">BitBoard</a> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="struct_bit_board.html#a767bb5d3915b9c5b3a617db322df970b">   20</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="struct_bit_board.html#a767bb5d3915b9c5b3a617db322df970b">value</a> = 0;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code hl_function" href="struct_bit_board.html#ae823ec29f0df9fb70c3c1cc2c03dc050">getBit</a>(<span class="keywordtype">char</span> x, <span class="keywordtype">char</span> y);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="struct_bit_board.html#a8a3535649a3ac128917031c1758096af">setBit</a>(<span class="keywordtype">char</span> x, <span class="keywordtype">char</span> y);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="struct_bit_board.html#a2256a342032360b50ecf9c8d4d81ff67">clearBit</a>(<span class="keywordtype">char</span> x, <span class="keywordtype">char</span> y);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="struct_bit_board.html#aca9f1bc6cdae319f7ba5549de49d877e">printBits</a>();</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="struct_bit_board.html#a752b6dd867835fbfdc35d5fb9da81b8e">getKingAttack</a>(<span class="keywordtype">char</span> x, <span class="keywordtype">char</span> y);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">char</span> <a class="code hl_function" href="struct_bit_board.html#ac0ae17e0216bf40c841483a11755297d">getTropism</a>(<span class="keywordtype">char</span> x, <span class="keywordtype">char</span> y);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code hl_function" href="struct_bit_board.html#a703d78299861e928c15a55985d043138">getMask</a>(<span class="keywordtype">char</span> x, <span class="keywordtype">char</span> y);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code hl_function" href="struct_bit_board.html#ab9d96cb94972f035f40d3dde0ef12d56">getKingPattern</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="struct_bit_board.html#a767bb5d3915b9c5b3a617db322df970b">value</a>);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code hl_function" href="struct_bit_board.html#ade0270b8024ebbd6d299a7b0cd1a5395">getTropismPattern</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="struct_bit_board.html#a767bb5d3915b9c5b3a617db322df970b">value</a>);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>};</div>
+</div>
+<div class="ttc" id="astruct_bit_board_html"><div class="ttname"><a href="struct_bit_board.html">BitBoard</a></div><div class="ttdef"><b>Definition</b> bitboard.h:15</div></div>
+<div class="ttc" id="astruct_bit_board_html_a2256a342032360b50ecf9c8d4d81ff67"><div class="ttname"><a href="struct_bit_board.html#a2256a342032360b50ecf9c8d4d81ff67">BitBoard::clearBit</a></div><div class="ttdeci">void clearBit(char x, char y)</div><div class="ttdef"><b>Definition</b> bitboard.cpp:15</div></div>
+<div class="ttc" id="astruct_bit_board_html_a703d78299861e928c15a55985d043138"><div class="ttname"><a href="struct_bit_board.html#a703d78299861e928c15a55985d043138">BitBoard::getMask</a></div><div class="ttdeci">unsigned long long getMask(char x, char y)</div><div class="ttdef"><b>Definition</b> bitboard.cpp:30</div></div>
+<div class="ttc" id="astruct_bit_board_html_a752b6dd867835fbfdc35d5fb9da81b8e"><div class="ttname"><a href="struct_bit_board.html#a752b6dd867835fbfdc35d5fb9da81b8e">BitBoard::getKingAttack</a></div><div class="ttdeci">bool getKingAttack(char x, char y)</div><div class="ttdef"><b>Definition</b> bitboard.cpp:51</div></div>
+<div class="ttc" id="astruct_bit_board_html_a767bb5d3915b9c5b3a617db322df970b"><div class="ttname"><a href="struct_bit_board.html#a767bb5d3915b9c5b3a617db322df970b">BitBoard::value</a></div><div class="ttdeci">unsigned long long value</div><div class="ttdef"><b>Definition</b> bitboard.h:20</div></div>
+<div class="ttc" id="astruct_bit_board_html_a8a3535649a3ac128917031c1758096af"><div class="ttname"><a href="struct_bit_board.html#a8a3535649a3ac128917031c1758096af">BitBoard::setBit</a></div><div class="ttdeci">void setBit(char x, char y)</div><div class="ttdef"><b>Definition</b> bitboard.cpp:10</div></div>
+<div class="ttc" id="astruct_bit_board_html_ab9d96cb94972f035f40d3dde0ef12d56"><div class="ttname"><a href="struct_bit_board.html#ab9d96cb94972f035f40d3dde0ef12d56">BitBoard::getKingPattern</a></div><div class="ttdeci">unsigned long long getKingPattern(unsigned long long value)</div><div class="ttdef"><b>Definition</b> bitboard.cpp:35</div></div>
+<div class="ttc" id="astruct_bit_board_html_ac0ae17e0216bf40c841483a11755297d"><div class="ttname"><a href="struct_bit_board.html#ac0ae17e0216bf40c841483a11755297d">BitBoard::getTropism</a></div><div class="ttdeci">char getTropism(char x, char y)</div><div class="ttdef"><b>Definition</b> bitboard.cpp:68</div></div>
+<div class="ttc" id="astruct_bit_board_html_aca9f1bc6cdae319f7ba5549de49d877e"><div class="ttname"><a href="struct_bit_board.html#aca9f1bc6cdae319f7ba5549de49d877e">BitBoard::printBits</a></div><div class="ttdeci">void printBits()</div><div class="ttdef"><b>Definition</b> bitboard.cpp:20</div></div>
+<div class="ttc" id="astruct_bit_board_html_ade0270b8024ebbd6d299a7b0cd1a5395"><div class="ttname"><a href="struct_bit_board.html#ade0270b8024ebbd6d299a7b0cd1a5395">BitBoard::getTropismPattern</a></div><div class="ttdeci">unsigned long long getTropismPattern(unsigned long long value)</div><div class="ttdef"><b>Definition</b> bitboard.cpp:56</div></div>
+<div class="ttc" id="astruct_bit_board_html_ae823ec29f0df9fb70c3c1cc2c03dc050"><div class="ttname"><a href="struct_bit_board.html#ae823ec29f0df9fb70c3c1cc2c03dc050">BitBoard::getBit</a></div><div class="ttdeci">unsigned long long getBit(char x, char y)</div><div class="ttdef"><b>Definition</b> bitboard.cpp:5</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generované programom&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

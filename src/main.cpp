@@ -67,7 +67,7 @@ void startUCI()
 
 void startSimulation()
 {
-    int gameCount = 10;
+    int gameCount = 50;
     int malakhDepth = 3;
     int fairyStockfishDepth = 6;
     bool useEnsemble = true;

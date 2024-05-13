@@ -1,0 +1,193 @@
+\doxysection{Dokumentácia triedy Evaluation}
+\hypertarget{class_evaluation}{}\label{class_evaluation}\index{Evaluation@{Evaluation}}
+
+
+{\ttfamily \#include $<$evaluation.\+h$>$}
+
+\doxysubsubsection*{Statické verejné metódy}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{class_evaluation_ac903227202d832140fd7ad2cb0d1b3da}{get\+\_\+mg\+\_\+pcsq}} (\mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}} color, \mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}} type, char x, char y)
+\item 
+static int \mbox{\hyperlink{class_evaluation_aa75edd45cda5ec81aa641ed02f12ff2f}{get\+\_\+eg\+\_\+pcsq}} (\mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}} color, \mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}} type, char x, char y)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Statické verejné atribúty}
+\begin{DoxyCompactItemize}
+\item 
+static const int \mbox{\hyperlink{class_evaluation_a6aa7d616fc2b49f329b01063e881cb66}{piece\+Mat\+Values}} \mbox{[}6\mbox{]} = \{ 100, 500, 320, 330, 900, 0 \}
+\item 
+static const int \mbox{\hyperlink{class_evaluation_ad5a6ccfa57985fbf880486704caec0b8}{piece\+Phase\+Values}} \mbox{[}6\mbox{]} = \{ 0, 2, 1, 1, 4, 0 \}
+\item 
+static const int \mbox{\hyperlink{class_evaluation_a5eb12259aceb675c2fe74f160e0a7a02}{start\+Phase}}
+\item 
+static const int \mbox{\hyperlink{class_evaluation_ae1f71fda88833568f4eb53a3ab1e6bb9}{mg\+\_\+pcsq}} \mbox{[}6\mbox{]}\mbox{[}64\mbox{]}
+\item 
+static const int \mbox{\hyperlink{class_evaluation_ae62d31b66b0cd67125013a25704076b9}{eg\+\_\+pcsq}} \mbox{[}6\mbox{]}\mbox{[}64\mbox{]}
+\item 
+static const int \mbox{\hyperlink{class_evaluation_a59b64a0b5e6051bb06a48e7d98edd515}{mg\+\_\+piece\+Mob\+Weights}} \mbox{[}6\mbox{]} = \{ 2, 2, 2, 2, 2, 1 \}
+\item 
+static const int \mbox{\hyperlink{class_evaluation_a21152667219484de625317b0f6380c03}{eg\+\_\+piece\+Mob\+Weights}} \mbox{[}6\mbox{]} = \{ 4, 4, 4, 4, 4, 1 \}
+\item 
+static const int \mbox{\hyperlink{class_evaluation_aa86565b52f0abec64393ce59fd2415c2}{piece\+Mob\+Penalties}} \mbox{[}6\mbox{]} = \{ 0, 7, 0, 0, 14, 0 \}
+\item 
+static const int \mbox{\hyperlink{class_evaluation_ae1a9370ace40aff5adab8f95274d14db}{mg\+\_\+piece\+Tropism\+Weights}} \mbox{[}5\mbox{]} = \{ 1, 2, 3, 2, 2 \}
+\item 
+static const int \mbox{\hyperlink{class_evaluation_a949782c8008aa76348668a6ce425f46a}{eg\+\_\+piece\+Tropism\+Weights}} \mbox{[}5\mbox{]} = \{ 1, 1, 3, 1, 4 \}
+\item 
+static const int \mbox{\hyperlink{class_evaluation_a78e24c294ac6c9804278adeccf3b3d10}{piece\+Att\+Weights}} \mbox{[}5\mbox{]} = \{ 1, 3, 1, 3, 5 \}
+\item 
+static const int \mbox{\hyperlink{class_evaluation_a5ca930217cff9ef151c86678c13486dd}{safety\+Table}} \mbox{[}100\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailný popis}
+Trieda zodpovedná za konfigurácia evaluácie šachových pozícií. 
+
+\doxysubsection{Dokumentácia k metódam}
+\Hypertarget{class_evaluation_aa75edd45cda5ec81aa641ed02f12ff2f}\label{class_evaluation_aa75edd45cda5ec81aa641ed02f12ff2f} 
+\index{Evaluation@{Evaluation}!get\_eg\_pcsq@{get\_eg\_pcsq}}
+\index{get\_eg\_pcsq@{get\_eg\_pcsq}!Evaluation@{Evaluation}}
+\doxysubsubsection{\texorpdfstring{get\_eg\_pcsq()}{get\_eg\_pcsq()}}
+{\footnotesize\ttfamily int Evaluation\+::get\+\_\+eg\+\_\+pcsq (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}}}]{color,  }\item[{\mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}}}]{type,  }\item[{char}]{x,  }\item[{char}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Výpočet piece-\/square hodnoty danej figúrky na určitej pozícii v koncovej fáze hry.
+
+
+\begin{DoxyParams}{Parametre}
+{\em color} & Vlastník danej figúrky. \\
+\hline
+{\em type} & Typ danej figúrky. \\
+\hline
+{\em x} & Koordinát X danej pozície. \\
+\hline
+{\em y} & Koordinát Y danej pozície. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Požadovaná hodnota z piece-\/square tabuľky. 
+\end{DoxyReturn}
+\Hypertarget{class_evaluation_ac903227202d832140fd7ad2cb0d1b3da}\label{class_evaluation_ac903227202d832140fd7ad2cb0d1b3da} 
+\index{Evaluation@{Evaluation}!get\_mg\_pcsq@{get\_mg\_pcsq}}
+\index{get\_mg\_pcsq@{get\_mg\_pcsq}!Evaluation@{Evaluation}}
+\doxysubsubsection{\texorpdfstring{get\_mg\_pcsq()}{get\_mg\_pcsq()}}
+{\footnotesize\ttfamily int Evaluation\+::get\+\_\+mg\+\_\+pcsq (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}}}]{color,  }\item[{\mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}}}]{type,  }\item[{char}]{x,  }\item[{char}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Výpočet piece-\/square hodnoty danej figúrky na určitej pozícii v strednej fáze hry.
+
+
+\begin{DoxyParams}{Parametre}
+{\em color} & Vlastník danej figúrky. \\
+\hline
+{\em type} & Typ danej figúrky. \\
+\hline
+{\em x} & Koordinát X danej pozície. \\
+\hline
+{\em y} & Koordinát Y danej pozície. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Požadovaná hodnota z piece-\/square tabuľky. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Dokumentácia k dátovým členom}
+\Hypertarget{class_evaluation_ae62d31b66b0cd67125013a25704076b9}\label{class_evaluation_ae62d31b66b0cd67125013a25704076b9} 
+\index{Evaluation@{Evaluation}!eg\_pcsq@{eg\_pcsq}}
+\index{eg\_pcsq@{eg\_pcsq}!Evaluation@{Evaluation}}
+\doxysubsubsection{\texorpdfstring{eg\_pcsq}{eg\_pcsq}}
+{\footnotesize\ttfamily const int Evaluation\+::eg\+\_\+pcsq\hspace{0.3cm}{\ttfamily [static]}}
+
+Piece-\/square tabuľky koncovej fázy hry. \Hypertarget{class_evaluation_a21152667219484de625317b0f6380c03}\label{class_evaluation_a21152667219484de625317b0f6380c03} 
+\index{Evaluation@{Evaluation}!eg\_pieceMobWeights@{eg\_pieceMobWeights}}
+\index{eg\_pieceMobWeights@{eg\_pieceMobWeights}!Evaluation@{Evaluation}}
+\doxysubsubsection{\texorpdfstring{eg\_pieceMobWeights}{eg\_pieceMobWeights}}
+{\footnotesize\ttfamily const int Evaluation\+::eg\+\_\+piece\+Mob\+Weights = \{ 4, 4, 4, 4, 4, 1 \}\hspace{0.3cm}{\ttfamily [static]}}
+
+Váhy mobilít koncovej fázy hry. \Hypertarget{class_evaluation_a949782c8008aa76348668a6ce425f46a}\label{class_evaluation_a949782c8008aa76348668a6ce425f46a} 
+\index{Evaluation@{Evaluation}!eg\_pieceTropismWeights@{eg\_pieceTropismWeights}}
+\index{eg\_pieceTropismWeights@{eg\_pieceTropismWeights}!Evaluation@{Evaluation}}
+\doxysubsubsection{\texorpdfstring{eg\_pieceTropismWeights}{eg\_pieceTropismWeights}}
+{\footnotesize\ttfamily const int Evaluation\+::eg\+\_\+piece\+Tropism\+Weights = \{ 1, 1, 3, 1, 4 \}\hspace{0.3cm}{\ttfamily [static]}}
+
+Váhy tropizmu koncovej fázy hry. \Hypertarget{class_evaluation_ae1f71fda88833568f4eb53a3ab1e6bb9}\label{class_evaluation_ae1f71fda88833568f4eb53a3ab1e6bb9} 
+\index{Evaluation@{Evaluation}!mg\_pcsq@{mg\_pcsq}}
+\index{mg\_pcsq@{mg\_pcsq}!Evaluation@{Evaluation}}
+\doxysubsubsection{\texorpdfstring{mg\_pcsq}{mg\_pcsq}}
+{\footnotesize\ttfamily const int Evaluation\+::mg\+\_\+pcsq\hspace{0.3cm}{\ttfamily [static]}}
+
+Piece-\/square tabuľky strednej fázy hry. \Hypertarget{class_evaluation_a59b64a0b5e6051bb06a48e7d98edd515}\label{class_evaluation_a59b64a0b5e6051bb06a48e7d98edd515} 
+\index{Evaluation@{Evaluation}!mg\_pieceMobWeights@{mg\_pieceMobWeights}}
+\index{mg\_pieceMobWeights@{mg\_pieceMobWeights}!Evaluation@{Evaluation}}
+\doxysubsubsection{\texorpdfstring{mg\_pieceMobWeights}{mg\_pieceMobWeights}}
+{\footnotesize\ttfamily const int Evaluation\+::mg\+\_\+piece\+Mob\+Weights = \{ 2, 2, 2, 2, 2, 1 \}\hspace{0.3cm}{\ttfamily [static]}}
+
+Váhy mobilít strednej fázy hry. \Hypertarget{class_evaluation_ae1a9370ace40aff5adab8f95274d14db}\label{class_evaluation_ae1a9370ace40aff5adab8f95274d14db} 
+\index{Evaluation@{Evaluation}!mg\_pieceTropismWeights@{mg\_pieceTropismWeights}}
+\index{mg\_pieceTropismWeights@{mg\_pieceTropismWeights}!Evaluation@{Evaluation}}
+\doxysubsubsection{\texorpdfstring{mg\_pieceTropismWeights}{mg\_pieceTropismWeights}}
+{\footnotesize\ttfamily const int Evaluation\+::mg\+\_\+piece\+Tropism\+Weights = \{ 1, 2, 3, 2, 2 \}\hspace{0.3cm}{\ttfamily [static]}}
+
+Váhy tropizmu strednej fázy hry. \Hypertarget{class_evaluation_a78e24c294ac6c9804278adeccf3b3d10}\label{class_evaluation_a78e24c294ac6c9804278adeccf3b3d10} 
+\index{Evaluation@{Evaluation}!pieceAttWeights@{pieceAttWeights}}
+\index{pieceAttWeights@{pieceAttWeights}!Evaluation@{Evaluation}}
+\doxysubsubsection{\texorpdfstring{pieceAttWeights}{pieceAttWeights}}
+{\footnotesize\ttfamily const int Evaluation\+::piece\+Att\+Weights = \{ 1, 3, 1, 3, 5 \}\hspace{0.3cm}{\ttfamily [static]}}
+
+Váhy útokov figúrok. \Hypertarget{class_evaluation_a6aa7d616fc2b49f329b01063e881cb66}\label{class_evaluation_a6aa7d616fc2b49f329b01063e881cb66} 
+\index{Evaluation@{Evaluation}!pieceMatValues@{pieceMatValues}}
+\index{pieceMatValues@{pieceMatValues}!Evaluation@{Evaluation}}
+\doxysubsubsection{\texorpdfstring{pieceMatValues}{pieceMatValues}}
+{\footnotesize\ttfamily const int Evaluation\+::piece\+Mat\+Values = \{ 100, 500, 320, 330, 900, 0 \}\hspace{0.3cm}{\ttfamily [static]}}
+
+Materiálové hodnoty figúrok. \Hypertarget{class_evaluation_aa86565b52f0abec64393ce59fd2415c2}\label{class_evaluation_aa86565b52f0abec64393ce59fd2415c2} 
+\index{Evaluation@{Evaluation}!pieceMobPenalties@{pieceMobPenalties}}
+\index{pieceMobPenalties@{pieceMobPenalties}!Evaluation@{Evaluation}}
+\doxysubsubsection{\texorpdfstring{pieceMobPenalties}{pieceMobPenalties}}
+{\footnotesize\ttfamily const int Evaluation\+::piece\+Mob\+Penalties = \{ 0, 7, 0, 0, 14, 0 \}\hspace{0.3cm}{\ttfamily [static]}}
+
+Penalty mobilít figúrok. \Hypertarget{class_evaluation_ad5a6ccfa57985fbf880486704caec0b8}\label{class_evaluation_ad5a6ccfa57985fbf880486704caec0b8} 
+\index{Evaluation@{Evaluation}!piecePhaseValues@{piecePhaseValues}}
+\index{piecePhaseValues@{piecePhaseValues}!Evaluation@{Evaluation}}
+\doxysubsubsection{\texorpdfstring{piecePhaseValues}{piecePhaseValues}}
+{\footnotesize\ttfamily const int Evaluation\+::piece\+Phase\+Values = \{ 0, 2, 1, 1, 4, 0 \}\hspace{0.3cm}{\ttfamily [static]}}
+
+Fázové hodnoty figúrok. \Hypertarget{class_evaluation_a5ca930217cff9ef151c86678c13486dd}\label{class_evaluation_a5ca930217cff9ef151c86678c13486dd} 
+\index{Evaluation@{Evaluation}!safetyTable@{safetyTable}}
+\index{safetyTable@{safetyTable}!Evaluation@{Evaluation}}
+\doxysubsubsection{\texorpdfstring{safetyTable}{safetyTable}}
+{\footnotesize\ttfamily const int Evaluation\+::safety\+Table\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Inicializátor\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ 0,\ \ \ 0,\ \ \ 1,\ \ \ 2,\ \ \ 3,\ \ \ 5,\ \ \ 7,\ \ \ 9,\ \ 12,\ \ 15,}
+\DoxyCodeLine{\ \ \ \ 18,\ \ 22,\ \ 26,\ \ 30,\ \ 35,\ \ 39,\ \ 44,\ \ 50,\ \ 56,\ \ 62,}
+\DoxyCodeLine{\ \ \ \ 68,\ \ 75,\ \ 82,\ \ 85,\ \ 89,\ \ 97,\ 105,\ 113,\ 122,\ 131,}
+\DoxyCodeLine{\ \ \ \ 140,\ 150,\ 169,\ 180,\ 191,\ 202,\ 213,\ 225,\ 237,\ 248,}
+\DoxyCodeLine{\ \ \ \ 260,\ 272,\ 283,\ 295,\ 307,\ 319,\ 330,\ 342,\ 354,\ 366,}
+\DoxyCodeLine{\ \ \ \ 377,\ 389,\ 401,\ 412,\ 424,\ 436,\ 448,\ 459,\ 471,\ 483,}
+\DoxyCodeLine{\ \ \ \ 494,\ 500,\ 500,\ 500,\ 500,\ 500,\ 500,\ 500,\ 500,\ 500,}
+\DoxyCodeLine{\ \ \ \ 500,\ 500,\ 500,\ 500,\ 500,\ 500,\ 500,\ 500,\ 500,\ 500,}
+\DoxyCodeLine{\ \ \ \ 500,\ 500,\ 500,\ 500,\ 500,\ 500,\ 500,\ 500,\ 500,\ 500,}
+\DoxyCodeLine{\ \ \ \ 500,\ 500,\ 500,\ 500,\ 500,\ 500,\ 500,\ 500,\ 500,\ 500}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+Bezpečnostná tabuľka potrebná na výpočet bezpečnosti kráľa. \Hypertarget{class_evaluation_a5eb12259aceb675c2fe74f160e0a7a02}\label{class_evaluation_a5eb12259aceb675c2fe74f160e0a7a02} 
+\index{Evaluation@{Evaluation}!startPhase@{startPhase}}
+\index{startPhase@{startPhase}!Evaluation@{Evaluation}}
+\doxysubsubsection{\texorpdfstring{startPhase}{startPhase}}
+{\footnotesize\ttfamily const int Evaluation\+::start\+Phase\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Inicializátor\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ 16\ *\ \mbox{\hyperlink{class_evaluation_ad5a6ccfa57985fbf880486704caec0b8}{Evaluation::piecePhaseValues}}[\mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021ab306a6be286e11bcaf3695829cf657ee}{Pawn}}]\ +\ 4\ *\ \mbox{\hyperlink{class_evaluation_ad5a6ccfa57985fbf880486704caec0b8}{Evaluation::piecePhaseValues}}[\mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021acde4898e8fcebdba44f8963e9b12799d}{Knight}}]}
+\DoxyCodeLine{+\ 4\ *\ \mbox{\hyperlink{class_evaluation_ad5a6ccfa57985fbf880486704caec0b8}{Evaluation::piecePhaseValues}}[\mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021a7270f86db491d8aed7a3187829a82e13}{Bishop}}]\ +\ 4\ *\ \mbox{\hyperlink{class_evaluation_ad5a6ccfa57985fbf880486704caec0b8}{Evaluation::piecePhaseValues}}[\mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021a123c6e01d8a2e323abf42370c26cd047}{Rook}}]\ +\ 2\ *\ \mbox{\hyperlink{class_evaluation_ad5a6ccfa57985fbf880486704caec0b8}{Evaluation::piecePhaseValues}}[\mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021a011d63789e83d8beb2a90652bb03cd31}{Queen}}]}
+
+\end{DoxyCode}
+Počiatočná fáza hry. 
+
+Dokumentácia pre túto triedu bola generovaná z nasledujúcich súborov\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{evaluation_8h}{evaluation.\+h}}\item 
+evaluation.\+cpp\end{DoxyCompactItemize}

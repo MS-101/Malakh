@@ -1,0 +1,358 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sk">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Malakh: Dokumentácia triedy SearchManager</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Malakh
+   </div>
+   <div id="projectbrief">Šachový engine na hru s neštandardnými šachovými pravidlami</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generované programom Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Hľadať');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Načítam...</div>
+<div class="SRStatus" id="Searching">Vyhľadávam...</div>
+<div class="SRStatus" id="NoMatches">Nič sa nenašlo</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-static-methods">Statické verejné metódy</a> &#124;
+<a href="#pub-static-attribs">Statické verejné atribúty</a> &#124;
+<a href="#pri-static-attribs">Statické privátne atribúty</a> &#124;
+<a href="class_search_manager-members.html">Zoznam všetkých členov</a>  </div>
+  <div class="headertitle"><div class="title">Dokumentácia triedy SearchManager</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="searching_8h_source.html">searching.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Statické verejné metódy</h2></td></tr>
+<tr class="memitem:a116a698e019f52e242f9b27630f8e8bf" id="r_a116a698e019f52e242f9b27630f8e8bf"><td class="memItemLeft" align="right" valign="top">static std::pair&lt; bool, <a class="el" href="struct_legal_move.html">LegalMove</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a116a698e019f52e242f9b27630f8e8bf">calculateBestMove</a> (<a class="el" href="class_board.html">Board</a> board, int depth, bool useEnsemble, bool debug)</td></tr>
+<tr class="separator:a116a698e019f52e242f9b27630f8e8bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2757f480978bc355bf3341358696f86" id="r_ab2757f480978bc355bf3341358696f86"><td class="memItemLeft" align="right" valign="top">static std::pair&lt; bool, <a class="el" href="struct_legal_move.html">LegalMove</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2757f480978bc355bf3341358696f86">calculateBestMove_threads</a> (<a class="el" href="class_board.html">Board</a> board, int depth, int threadCount, bool useEnsemble, bool debug)</td></tr>
+<tr class="separator:ab2757f480978bc355bf3341358696f86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a716990ca512d5d1785521365d2d7aa76" id="r_a716990ca512d5d1785521365d2d7aa76"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a716990ca512d5d1785521365d2d7aa76">minimax</a> (<a class="el" href="class_board.html">Board</a> board, <a class="el" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a> playerColor, <a class="el" href="struct_search_args.html">SearchArgs</a> searchArgs, <a class="el" href="struct_performance_args.html">PerformanceArgs</a> *performanceArgs, bool useEnsemble, bool debug)</td></tr>
+<tr class="separator:a716990ca512d5d1785521365d2d7aa76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Statické verejné atribúty</h2></td></tr>
+<tr class="memitem:a72513eda202572889dfb1d42469ac1b3" id="r_a72513eda202572889dfb1d42469ac1b3"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_transposition_cache.html">TranspositionCache</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72513eda202572889dfb1d42469ac1b3">cache</a> = <a class="el" href="class_transposition_cache.html">TranspositionCache</a>(4096)</td></tr>
+<tr class="separator:a72513eda202572889dfb1d42469ac1b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71a687724619752868ee2e8395eb8b16" id="r_a71a687724619752868ee2e8395eb8b16"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_ensemble.html">Ensemble</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a71a687724619752868ee2e8395eb8b16">ensemble</a> = <a class="el" href="class_ensemble.html">Ensemble</a>()</td></tr>
+<tr class="separator:a71a687724619752868ee2e8395eb8b16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+Statické privátne atribúty</h2></td></tr>
+<tr class="memitem:ace5562a64849495c152abbde8d5f6d2d" id="r_ace5562a64849495c152abbde8d5f6d2d"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace5562a64849495c152abbde8d5f6d2d">qLimit</a> = 0</td></tr>
+<tr class="separator:ace5562a64849495c152abbde8d5f6d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailný popis</h2>
+<div class="textblock"><p>Trieda zodpovedná za prehľadávanie pozícií na šachovnici. </p>
+</div><h2 class="groupheader">Dokumentácia k metódam</h2>
+<a id="a116a698e019f52e242f9b27630f8e8bf" name="a116a698e019f52e242f9b27630f8e8bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a116a698e019f52e242f9b27630f8e8bf">&#9670;&#160;</a></span>calculateBestMove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; bool, <a class="el" href="struct_legal_move.html">LegalMove</a> &gt; SearchManager::calculateBestMove </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_board.html">Board</a></td>          <td class="paramname"><span class="paramname"><em>board</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>depth</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>useEnsemble</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>debug</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Sériový výpočet najlepšieho pohybu.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">board</td><td>Šachovnica kde hľadáme najlepší pohyb. </td></tr>
+    <tr><td class="paramname">depth</td><td>Hĺbka do ktorej vykonávame prehľadávanie. </td></tr>
+    <tr><td class="paramname">useEnsemble</td><td>Bit ktorým môžeme nastaviť či chceme namiesto štandardnej evaluačnej funkcie použiť súborové učenie. </td></tr>
+    <tr><td class="paramname">debug</td><td>Bit ktorým môžeme nastaviť či chceme vypisovať debug správy. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>Vráti pár bitu, ktorý reprezentuje či sme našli legálny pohyb a najlepšieho možného pohybu. </dd></dl>
+
+</div>
+</div>
+<a id="ab2757f480978bc355bf3341358696f86" name="ab2757f480978bc355bf3341358696f86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2757f480978bc355bf3341358696f86">&#9670;&#160;</a></span>calculateBestMove_threads()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; bool, <a class="el" href="struct_legal_move.html">LegalMove</a> &gt; SearchManager::calculateBestMove_threads </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_board.html">Board</a></td>          <td class="paramname"><span class="paramname"><em>board</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>depth</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>threadCount</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>useEnsemble</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>debug</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Paralelný výpočet najlepšieho pohybu.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">board</td><td>Šachovnica kde hľadáme najlepší pohyb. </td></tr>
+    <tr><td class="paramname">depth</td><td>Hĺbka do ktorej vykonávame prehľadávanie. </td></tr>
+    <tr><td class="paramname">threadCount</td><td>Počet paralelných vlákien, ktoré hľadajú najlepší pohyb. </td></tr>
+    <tr><td class="paramname">useEnsemble</td><td>Bit ktorým môžeme nastaviť či chceme namiesto štandardnej evaluačnej funkcie použiť súborové učenie. </td></tr>
+    <tr><td class="paramname">debug</td><td>Bit ktorým môžeme nastaviť či chceme vypisovať debug správy. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>Vráti pár bitu, ktorý reprezentuje či sme našli legálny pohyb a najlepšieho možného pohybu. </dd></dl>
+
+</div>
+</div>
+<a id="a716990ca512d5d1785521365d2d7aa76" name="a716990ca512d5d1785521365d2d7aa76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a716990ca512d5d1785521365d2d7aa76">&#9670;&#160;</a></span>minimax()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SearchManager::minimax </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_board.html">Board</a></td>          <td class="paramname"><span class="paramname"><em>board</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="piece_8h.html#ad7595c48bb74c0dd2a7648712a2d4985">PieceColor</a></td>          <td class="paramname"><span class="paramname"><em>playerColor</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_search_args.html">SearchArgs</a></td>          <td class="paramname"><span class="paramname"><em>searchArgs</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_performance_args.html">PerformanceArgs</a> *</td>          <td class="paramname"><span class="paramname"><em>performanceArgs</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>useEnsemble</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>debug</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Rekurzívny algoritmus, ktorý vypočíta hodnotu najlepšieho možného pohybu.</p>
+<dl class="params"><dt>Parametre</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">board</td><td>Šachovnica kde hľadáme najlepší pohyb. </td></tr>
+    <tr><td class="paramname">playerColor</td><td>Farba maximalizujúceho hráča. </td></tr>
+    <tr><td class="paramname">searchArgs</td><td>Argumenty prehľadávania. </td></tr>
+    <tr><td class="paramname">performanceArgs</td><td>Výkonnostné argumenty. </td></tr>
+    <tr><td class="paramname">useEnsemble</td><td>Bit ktorým môžeme nastaviť či chceme namiesto štandardnej evaluačnej funkcie použiť súborové učenie. </td></tr>
+    <tr><td class="paramname">debug</td><td>Bit ktorým môžeme nastaviť či chceme vypisovať debug správy. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Návratová hodnota</dt><dd>Hodnota najlepšieho pohybu. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentácia k dátovým členom</h2>
+<a id="a72513eda202572889dfb1d42469ac1b3" name="a72513eda202572889dfb1d42469ac1b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72513eda202572889dfb1d42469ac1b3">&#9670;&#160;</a></span>cache</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_transposition_cache.html">TranspositionCache</a> SearchManager::cache = <a class="el" href="class_transposition_cache.html">TranspositionCache</a>(4096)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Cache s transpozíciami. </p>
+
+</div>
+</div>
+<a id="a71a687724619752868ee2e8395eb8b16" name="a71a687724619752868ee2e8395eb8b16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71a687724619752868ee2e8395eb8b16">&#9670;&#160;</a></span>ensemble</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_ensemble.html">Ensemble</a> SearchManager::ensemble = <a class="el" href="class_ensemble.html">Ensemble</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Súbor modelov, ktorý sa používa v 'ensemble' AI na evaluáciu. </p>
+
+</div>
+</div>
+<a id="ace5562a64849495c152abbde8d5f6d2d" name="ace5562a64849495c152abbde8d5f6d2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace5562a64849495c152abbde8d5f6d2d">&#9670;&#160;</a></span>qLimit</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int SearchManager::qLimit = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Limit Q-searchu (zabraňuje horizont efekt). </p>
+
+</div>
+</div>
+<hr/>Dokumentácia pre túto triedu bola generovaná z nasledujúcich súborov:<ul>
+<li><a class="el" href="searching_8h_source.html">searching.h</a></li>
+<li><b>searching.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generované programom&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

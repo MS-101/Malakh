@@ -1,0 +1,40 @@
+\doxysection{hashing.\+h}
+\hypertarget{hashing_8h_source}{}\label{hashing_8h_source}\index{hashing.h@{hashing.h}}
+\mbox{\hyperlink{hashing_8h}{Zobraziť dokumentáciu tohoto súboru.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{/*****************************************************************/}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{piece_8h}{piece.h}}>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_zobrist_hashing}{ZobristHashing}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_zobrist_hashing_aad2247cfc6b057702a7f423d000ce951}{squares}}[64*2*6];}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_zobrist_hashing_ab8bc646b666dc3453e54cd40c9aa8430}{notMoved}}[64];}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_zobrist_hashing_aeb10761f74d28b3b28838c5c640a236b}{ghosts}}[64*64];}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_zobrist_hashing_a069448b084d399bdfe612a6208a0ca42}{turn}};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_zobrist_hashing_ae01d3424e3410cdf6ab57c49b9434841}{init}}();}
+\DoxyCodeLine{00043\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_zobrist_hashing_a75255ddfb07caee03d41e133773c002c}{isInitalized}};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_zobrist_hashing_a98ee3b247c159141fc28b358afdcebe5}{rand64}}();}
+\DoxyCodeLine{00055\ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_board_hash}{BoardHash}}\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{struct_board_hash_ad7b2a937d79127733fa1166480ff0eb0}{value}};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_board_hash_a7fb34604874df3d269b0c1131bbe7b78}{switchSquare}}(\mbox{\hyperlink{struct_piece}{Piece}}\ piece,\ \textcolor{keywordtype}{char}\ x,\ \textcolor{keywordtype}{char}\ y);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_board_hash_a13ec16d355f246d203f21161d39a2189}{switchNotMoved}}(\textcolor{keywordtype}{char}\ x,\ \textcolor{keywordtype}{char}\ y);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_board_hash_a9b0cf153acbdd9c0cfeab04b225e2df8}{switchGhost}}(\mbox{\hyperlink{struct_ghost}{Ghost}}\ ghost);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_board_hash_a1201d61143b132bd480b40e603ec445d}{switchTurn}}();}
+\DoxyCodeLine{00094\ \};}
+
+\end{DoxyCode}

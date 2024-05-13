@@ -1,0 +1,292 @@
+\doxysection{Dokumentácia súboru piece.\+h}
+\hypertarget{piece_8h}{}\label{piece_8h}\index{piece.h@{piece.h}}
+
+
+Definícia šachových figúrok.  
+
+
+{\ttfamily \#include $<$string$>$}\newline
+\doxysubsubsection*{Triedy}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_piece}{Piece}}
+\item 
+struct \mbox{\hyperlink{struct_ghost}{Ghost}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerácie}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}} \{ \mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985ab548046646b36c12aa6ba841de500094}{White}}
+, \mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985ac1e9bce8242f443c54c7405223d616cd}{Black}}
+ \}
+\item 
+enum \mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}} \{ \newline
+\mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021ab306a6be286e11bcaf3695829cf657ee}{Pawn}}
+, \mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021a123c6e01d8a2e323abf42370c26cd047}{Rook}}
+, \mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021acde4898e8fcebdba44f8963e9b12799d}{Knight}}
+, \mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021a7270f86db491d8aed7a3187829a82e13}{Bishop}}
+, \newline
+\mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021a011d63789e83d8beb2a90652bb03cd31}{Queen}}
+, \mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021a27fc6acdd76c4d0f3b47933e02ec65cf}{King}}
+ \}
+\item 
+enum \mbox{\hyperlink{piece_8h_ad0e2cebe1564362802ae0942b6d67703}{Piece\+Essence}} \{ \mbox{\hyperlink{piece_8h_ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e}{Classic}}
+, \mbox{\hyperlink{piece_8h_ad0e2cebe1564362802ae0942b6d67703ad3163c1fcda01965b692ec2c3122b743}{Red}}
+, \mbox{\hyperlink{piece_8h_ad0e2cebe1564362802ae0942b6d67703af5e09dd1da4088464f264b7a3118bff8}{Blue}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Funkcie}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{piece_8h_a77511f5b1d1b9512eca6df4a85cc9259}{get\+Piece\+Index}} (char color, char type)
+\item 
+\mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}} \mbox{\hyperlink{piece_8h_a9125c9dab2ada6e60db34033a63ee7b7}{string\+To\+Color}} (std\+::string value)
+\item 
+\mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}} \mbox{\hyperlink{piece_8h_af5a0090ef83b1b00d7d8a9ff61f1edf0}{string\+To\+Type}} (std\+::string value)
+\item 
+\mbox{\hyperlink{piece_8h_ad0e2cebe1564362802ae0942b6d67703}{Piece\+Essence}} \mbox{\hyperlink{piece_8h_a965914de6012941f8216f3ff3f7dfb84}{string\+To\+Essence}} (std\+::string value)
+\item 
+std\+::string \mbox{\hyperlink{piece_8h_aa83c6cdc7aff34aa249524d5be3bca0b}{color\+To\+String}} (\mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}} value)
+\item 
+std\+::string \mbox{\hyperlink{piece_8h_a974fb23971911acde2526785837ab4b9}{type\+To\+String}} (\mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}} value)
+\item 
+std\+::string \mbox{\hyperlink{piece_8h_a0dd61b17b0bd4fe24f313f844fad3ae3}{essence\+To\+String}} (\mbox{\hyperlink{piece_8h_ad0e2cebe1564362802ae0942b6d67703}{Piece\+Essence}} value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Premenné}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}} \mbox{\hyperlink{piece_8h_a30d454d1d2c8f529c93c7fccec714a67}{opponent}} \mbox{[}$\,$\mbox{]}
+\item 
+char \mbox{\hyperlink{piece_8h_a3659e621cc28bdd541c3a9d65b309c90}{color\+Chars}} \mbox{[}$\,$\mbox{]}
+\item 
+char \mbox{\hyperlink{piece_8h_aafa8ea50d6335445c35439867fdfb42a}{essence\+Chars}} \mbox{[}$\,$\mbox{]}
+\item 
+char \mbox{\hyperlink{piece_8h_a6c7116f039e491da0ae2d61fbc8123b4}{type\+Chars}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailný popis}
+Definícia šachových figúrok. 
+
+\begin{DoxyAuthor}{Autor}
+Martin Šváb 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Dátum}
+Máj 2024 
+\end{DoxyDate}
+
+
+\doxysubsection{Dokumentácia enumeračných typov}
+\Hypertarget{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}\label{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985} 
+\index{piece.h@{piece.h}!PieceColor@{PieceColor}}
+\index{PieceColor@{PieceColor}!piece.h@{piece.h}}
+\doxysubsubsection{\texorpdfstring{PieceColor}{PieceColor}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}}}
+
+Vlastník figúrky. \begin{DoxyEnumFields}{Hodnoty enumerácií}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{White@{White}!piece.h@{piece.h}}\index{piece.h@{piece.h}!White@{White}}}\Hypertarget{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985ab548046646b36c12aa6ba841de500094}\label{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985ab548046646b36c12aa6ba841de500094} 
+White&Biely hráč. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Black@{Black}!piece.h@{piece.h}}\index{piece.h@{piece.h}!Black@{Black}}}\Hypertarget{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985ac1e9bce8242f443c54c7405223d616cd}\label{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985ac1e9bce8242f443c54c7405223d616cd} 
+Black&Čierny hráč. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{piece_8h_ad0e2cebe1564362802ae0942b6d67703}\label{piece_8h_ad0e2cebe1564362802ae0942b6d67703} 
+\index{piece.h@{piece.h}!PieceEssence@{PieceEssence}}
+\index{PieceEssence@{PieceEssence}!piece.h@{piece.h}}
+\doxysubsubsection{\texorpdfstring{PieceEssence}{PieceEssence}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{piece_8h_ad0e2cebe1564362802ae0942b6d67703}{Piece\+Essence}}}
+
+Esencia figúrky. \begin{DoxyEnumFields}{Hodnoty enumerácií}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Classic@{Classic}!piece.h@{piece.h}}\index{piece.h@{piece.h}!Classic@{Classic}}}\Hypertarget{piece_8h_ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e}\label{piece_8h_ad0e2cebe1564362802ae0942b6d67703afc791e3fb627f1aec1b7e7c8527d984e} 
+Classic&Klasická esencia. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Red@{Red}!piece.h@{piece.h}}\index{piece.h@{piece.h}!Red@{Red}}}\Hypertarget{piece_8h_ad0e2cebe1564362802ae0942b6d67703ad3163c1fcda01965b692ec2c3122b743}\label{piece_8h_ad0e2cebe1564362802ae0942b6d67703ad3163c1fcda01965b692ec2c3122b743} 
+Red&Červená esencia. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Blue@{Blue}!piece.h@{piece.h}}\index{piece.h@{piece.h}!Blue@{Blue}}}\Hypertarget{piece_8h_ad0e2cebe1564362802ae0942b6d67703af5e09dd1da4088464f264b7a3118bff8}\label{piece_8h_ad0e2cebe1564362802ae0942b6d67703af5e09dd1da4088464f264b7a3118bff8} 
+Blue&Modrá esencia. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}\label{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021} 
+\index{piece.h@{piece.h}!PieceType@{PieceType}}
+\index{PieceType@{PieceType}!piece.h@{piece.h}}
+\doxysubsubsection{\texorpdfstring{PieceType}{PieceType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}}}
+
+Typ figúrky. \begin{DoxyEnumFields}{Hodnoty enumerácií}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Pawn@{Pawn}!piece.h@{piece.h}}\index{piece.h@{piece.h}!Pawn@{Pawn}}}\Hypertarget{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021ab306a6be286e11bcaf3695829cf657ee}\label{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021ab306a6be286e11bcaf3695829cf657ee} 
+Pawn&Pešiak. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Rook@{Rook}!piece.h@{piece.h}}\index{piece.h@{piece.h}!Rook@{Rook}}}\Hypertarget{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021a123c6e01d8a2e323abf42370c26cd047}\label{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021a123c6e01d8a2e323abf42370c26cd047} 
+Rook&Veža. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Knight@{Knight}!piece.h@{piece.h}}\index{piece.h@{piece.h}!Knight@{Knight}}}\Hypertarget{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021acde4898e8fcebdba44f8963e9b12799d}\label{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021acde4898e8fcebdba44f8963e9b12799d} 
+Knight&Rytier. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Bishop@{Bishop}!piece.h@{piece.h}}\index{piece.h@{piece.h}!Bishop@{Bishop}}}\Hypertarget{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021a7270f86db491d8aed7a3187829a82e13}\label{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021a7270f86db491d8aed7a3187829a82e13} 
+Bishop&Strelec. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Queen@{Queen}!piece.h@{piece.h}}\index{piece.h@{piece.h}!Queen@{Queen}}}\Hypertarget{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021a011d63789e83d8beb2a90652bb03cd31}\label{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021a011d63789e83d8beb2a90652bb03cd31} 
+Queen&Kráľovná. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{King@{King}!piece.h@{piece.h}}\index{piece.h@{piece.h}!King@{King}}}\Hypertarget{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021a27fc6acdd76c4d0f3b47933e02ec65cf}\label{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021a27fc6acdd76c4d0f3b47933e02ec65cf} 
+King&Kráľ. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Dokumentácia funkcií}
+\Hypertarget{piece_8h_aa83c6cdc7aff34aa249524d5be3bca0b}\label{piece_8h_aa83c6cdc7aff34aa249524d5be3bca0b} 
+\index{piece.h@{piece.h}!colorToString@{colorToString}}
+\index{colorToString@{colorToString}!piece.h@{piece.h}}
+\doxysubsubsection{\texorpdfstring{colorToString()}{colorToString()}}
+{\footnotesize\ttfamily std\+::string color\+To\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}}}]{value }\end{DoxyParamCaption})}
+
+Konverzia farby figúrky na slovo.
+
+
+\begin{DoxyParams}{Parametre}
+{\em value} & Farba šachovej figúrky. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Slovo reprezentujúce farbu figúrky. 
+\end{DoxyReturn}
+\Hypertarget{piece_8h_a0dd61b17b0bd4fe24f313f844fad3ae3}\label{piece_8h_a0dd61b17b0bd4fe24f313f844fad3ae3} 
+\index{piece.h@{piece.h}!essenceToString@{essenceToString}}
+\index{essenceToString@{essenceToString}!piece.h@{piece.h}}
+\doxysubsubsection{\texorpdfstring{essenceToString()}{essenceToString()}}
+{\footnotesize\ttfamily std\+::string essence\+To\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{piece_8h_ad0e2cebe1564362802ae0942b6d67703}{Piece\+Essence}}}]{value }\end{DoxyParamCaption})}
+
+Konverzia esencie figúrky na slovo.
+
+
+\begin{DoxyParams}{Parametre}
+{\em value} & Esencia šachovej figúrky. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Slovo reprezentujúce esenciu figúrky. 
+\end{DoxyReturn}
+\Hypertarget{piece_8h_a77511f5b1d1b9512eca6df4a85cc9259}\label{piece_8h_a77511f5b1d1b9512eca6df4a85cc9259} 
+\index{piece.h@{piece.h}!getPieceIndex@{getPieceIndex}}
+\index{getPieceIndex@{getPieceIndex}!piece.h@{piece.h}}
+\doxysubsubsection{\texorpdfstring{getPieceIndex()}{getPieceIndex()}}
+{\footnotesize\ttfamily char get\+Piece\+Index (\begin{DoxyParamCaption}\item[{char}]{color,  }\item[{char}]{type }\end{DoxyParamCaption})}
+
+Táto funkcia vráti id figúrky.
+
+
+\begin{DoxyParams}{Parametre}
+{\em color} & Farba šachovej figúrky. \\
+\hline
+{\em type} & Typ šachovej figúrky. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Identifikátor šachovej figúrky 
+\end{DoxyReturn}
+\Hypertarget{piece_8h_a9125c9dab2ada6e60db34033a63ee7b7}\label{piece_8h_a9125c9dab2ada6e60db34033a63ee7b7} 
+\index{piece.h@{piece.h}!stringToColor@{stringToColor}}
+\index{stringToColor@{stringToColor}!piece.h@{piece.h}}
+\doxysubsubsection{\texorpdfstring{stringToColor()}{stringToColor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}} string\+To\+Color (\begin{DoxyParamCaption}\item[{std\+::string}]{value }\end{DoxyParamCaption})}
+
+Konverzia stringu na farbu figúrky.
+
+
+\begin{DoxyParams}{Parametre}
+{\em value} & Slovo reprezentujúce farbu figúrky. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Farba šachovej figúrky. 
+\end{DoxyReturn}
+\Hypertarget{piece_8h_a965914de6012941f8216f3ff3f7dfb84}\label{piece_8h_a965914de6012941f8216f3ff3f7dfb84} 
+\index{piece.h@{piece.h}!stringToEssence@{stringToEssence}}
+\index{stringToEssence@{stringToEssence}!piece.h@{piece.h}}
+\doxysubsubsection{\texorpdfstring{stringToEssence()}{stringToEssence()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{piece_8h_ad0e2cebe1564362802ae0942b6d67703}{Piece\+Essence}} string\+To\+Essence (\begin{DoxyParamCaption}\item[{std\+::string}]{value }\end{DoxyParamCaption})}
+
+Konverzia stringu na esenciu figúrky.
+
+
+\begin{DoxyParams}{Parametre}
+{\em value} & Slovo reprezentujúce esenciu figúrky. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Esencia šachovej figúrky. 
+\end{DoxyReturn}
+\Hypertarget{piece_8h_af5a0090ef83b1b00d7d8a9ff61f1edf0}\label{piece_8h_af5a0090ef83b1b00d7d8a9ff61f1edf0} 
+\index{piece.h@{piece.h}!stringToType@{stringToType}}
+\index{stringToType@{stringToType}!piece.h@{piece.h}}
+\doxysubsubsection{\texorpdfstring{stringToType()}{stringToType()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}} string\+To\+Type (\begin{DoxyParamCaption}\item[{std\+::string}]{value }\end{DoxyParamCaption})}
+
+Konverzia stringu na typ figúrky.
+
+
+\begin{DoxyParams}{Parametre}
+{\em value} & Slovo reprezentujúce typ figúrky. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Typ šachovej figúrky. 
+\end{DoxyReturn}
+\Hypertarget{piece_8h_a974fb23971911acde2526785837ab4b9}\label{piece_8h_a974fb23971911acde2526785837ab4b9} 
+\index{piece.h@{piece.h}!typeToString@{typeToString}}
+\index{typeToString@{typeToString}!piece.h@{piece.h}}
+\doxysubsubsection{\texorpdfstring{typeToString()}{typeToString()}}
+{\footnotesize\ttfamily std\+::string type\+To\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}}}]{value }\end{DoxyParamCaption})}
+
+Konverzia typu figúrky na slovo.
+
+
+\begin{DoxyParams}{Parametre}
+{\em value} & Typ šachovej figúrky. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Slovo reprezentujúce typ figúrky. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Dokumentácia premenných}
+\Hypertarget{piece_8h_a3659e621cc28bdd541c3a9d65b309c90}\label{piece_8h_a3659e621cc28bdd541c3a9d65b309c90} 
+\index{piece.h@{piece.h}!colorChars@{colorChars}}
+\index{colorChars@{colorChars}!piece.h@{piece.h}}
+\doxysubsubsection{\texorpdfstring{colorChars}{colorChars}}
+{\footnotesize\ttfamily char color\+Chars\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+Zoznam znakov reprezentujúci farbu figúrky. \Hypertarget{piece_8h_aafa8ea50d6335445c35439867fdfb42a}\label{piece_8h_aafa8ea50d6335445c35439867fdfb42a} 
+\index{piece.h@{piece.h}!essenceChars@{essenceChars}}
+\index{essenceChars@{essenceChars}!piece.h@{piece.h}}
+\doxysubsubsection{\texorpdfstring{essenceChars}{essenceChars}}
+{\footnotesize\ttfamily char essence\+Chars\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+Zoznam znakov reprezentujúci esenciu figúrky. \Hypertarget{piece_8h_a30d454d1d2c8f529c93c7fccec714a67}\label{piece_8h_a30d454d1d2c8f529c93c7fccec714a67} 
+\index{piece.h@{piece.h}!opponent@{opponent}}
+\index{opponent@{opponent}!piece.h@{piece.h}}
+\doxysubsubsection{\texorpdfstring{opponent}{opponent}}
+{\footnotesize\ttfamily \mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}} opponent\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+Zoznam, ktorý umožňuje konverziu na protivníkovu farbu figúrky. \Hypertarget{piece_8h_a6c7116f039e491da0ae2d61fbc8123b4}\label{piece_8h_a6c7116f039e491da0ae2d61fbc8123b4} 
+\index{piece.h@{piece.h}!typeChars@{typeChars}}
+\index{typeChars@{typeChars}!piece.h@{piece.h}}
+\doxysubsubsection{\texorpdfstring{typeChars}{typeChars}}
+{\footnotesize\ttfamily char type\+Chars\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+Zoznam znakov reprezentujúci typ figúrky. 

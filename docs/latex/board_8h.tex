@@ -1,0 +1,69 @@
+\doxysection{Dokumentácia súboru board.\+h}
+\hypertarget{board_8h}{}\label{board_8h}\index{board.h@{board.h}}
+
+
+Definícia šachovnice a generácia pohybov.  
+
+
+{\ttfamily \#include $<$bitboard.\+h$>$}\newline
+{\ttfamily \#include $<$piece.\+h$>$}\newline
+{\ttfamily \#include $<$mobility.\+h$>$}\newline
+{\ttfamily \#include $<$evaluation.\+h$>$}\newline
+{\ttfamily \#include $<$hashing.\+h$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+\doxysubsubsection*{Triedy}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_essence_args}{Essence\+Args}}
+\item 
+class \mbox{\hyperlink{class_board}{Board}}
+\item 
+class \mbox{\hyperlink{class_move_generator}{Move\+Generator}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerácie}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{board_8h_a41741953d704b743544ce6383c27c7c6}{Game\+Result}} \{ \mbox{\hyperlink{board_8h_a41741953d704b743544ce6383c27c7c6a11df02b765cc41122ae24bd7112495c6}{Unresolved}}
+, \mbox{\hyperlink{board_8h_a41741953d704b743544ce6383c27c7c6ade3cf4fd890a7c8b032eec3dbf521ac7}{White\+Win}}
+, \mbox{\hyperlink{board_8h_a41741953d704b743544ce6383c27c7c6a86f4e97f140ceb0fb65db639bfdc5433}{Black\+Win}}
+, \mbox{\hyperlink{board_8h_a41741953d704b743544ce6383c27c7c6ad45a4d89cf75d521c4291dece44f132a}{Stalemate}}
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailný popis}
+Definícia šachovnice a generácia pohybov. 
+
+\begin{DoxyAuthor}{Autor}
+Martin Šváb 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Dátum}
+Máj 2024 
+\end{DoxyDate}
+
+
+\doxysubsection{Dokumentácia enumeračných typov}
+\Hypertarget{board_8h_a41741953d704b743544ce6383c27c7c6}\label{board_8h_a41741953d704b743544ce6383c27c7c6} 
+\index{board.h@{board.h}!GameResult@{GameResult}}
+\index{GameResult@{GameResult}!board.h@{board.h}}
+\doxysubsubsection{\texorpdfstring{GameResult}{GameResult}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{board_8h_a41741953d704b743544ce6383c27c7c6}{Game\+Result}}}
+
+Enumerátor reprezentujúci výsledok hry. \begin{DoxyEnumFields}{Hodnoty enumerácií}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Unresolved@{Unresolved}!board.h@{board.h}}\index{board.h@{board.h}!Unresolved@{Unresolved}}}\Hypertarget{board_8h_a41741953d704b743544ce6383c27c7c6a11df02b765cc41122ae24bd7112495c6}\label{board_8h_a41741953d704b743544ce6383c27c7c6a11df02b765cc41122ae24bd7112495c6} 
+Unresolved&Hra ešte nebola ukončená. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WhiteWin@{WhiteWin}!board.h@{board.h}}\index{board.h@{board.h}!WhiteWin@{WhiteWin}}}\Hypertarget{board_8h_a41741953d704b743544ce6383c27c7c6ade3cf4fd890a7c8b032eec3dbf521ac7}\label{board_8h_a41741953d704b743544ce6383c27c7c6ade3cf4fd890a7c8b032eec3dbf521ac7} 
+White\+Win&Hra bola terminovaná výhrou bieleho hráča. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BlackWin@{BlackWin}!board.h@{board.h}}\index{board.h@{board.h}!BlackWin@{BlackWin}}}\Hypertarget{board_8h_a41741953d704b743544ce6383c27c7c6a86f4e97f140ceb0fb65db639bfdc5433}\label{board_8h_a41741953d704b743544ce6383c27c7c6a86f4e97f140ceb0fb65db639bfdc5433} 
+Black\+Win&Hra bola terminovaná výhrou čierneho hráča. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Stalemate@{Stalemate}!board.h@{board.h}}\index{board.h@{board.h}!Stalemate@{Stalemate}}}\Hypertarget{board_8h_a41741953d704b743544ce6383c27c7c6ad45a4d89cf75d521c4291dece44f132a}\label{board_8h_a41741953d704b743544ce6383c27c7c6ad45a4d89cf75d521c4291dece44f132a} 
+Stalemate&Hra bola terminovaná remízou. \\
+\hline
+
+\end{DoxyEnumFields}

@@ -283,7 +283,7 @@ std::pair<bool, Piece> Board::removePiece(char x, char y)
 		}
 	}
 
-	setInputArray(0, x, y);
+	setInputArrayPiece(0, x, y);
 
 	return std::make_pair(false, Piece{});
 }
@@ -305,7 +305,7 @@ void Board::addPiece(PieceColor color, PieceType type, char x, char y, bool isNe
 		hash.switchNotMoved(x, y);
 	}
 
-	setInputArray(getPieceIndex(color, type) + 1, x, y);
+	setInputArrayPiece(getPieceIndex(color, type) + 1, x, y);
 }
 
 void Board::refreshAggregations()
@@ -445,9 +445,7 @@ bool Board::makeMove(LegalMove move)
 
 	curTurn = opponent[curTurn];
 	hash.switchTurn();
-	for (int i = 8 * 8; i < 2 * 8 * 8; i++) {
-		inputArray[i] = curTurn;
-	}
+	setInputArrayColor(curTurn);
 
 	return legal;
 }
@@ -599,7 +597,14 @@ GameResult Board::getResult()
 	}
 }
 
-void Board::setInputArray(char pieceIndex, char x, char y)
+void Board::setInputArrayPiece(char pieceIndex, char x, char y)
 {
 	inputArray[y*8 + x] = pieceIndex;
+}
+
+void Board::setInputArrayColor(PieceColor color)
+{
+	for (int i = 8 * 8; i < 2 * 8 * 8; i++) {
+		inputArray[i] = color;
+	}
 }

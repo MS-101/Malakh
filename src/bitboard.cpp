@@ -1,4 +1,4 @@
-#include <bitboard.h>
+﻿#include <bitboard.h>
 #include <iostream>
 
 
@@ -80,5 +80,3 @@ char BitBoard::getTropism(char x, char y)
 
     return tropism;
 }
-
-

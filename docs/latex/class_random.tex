@@ -1,0 +1,95 @@
+\doxysection{Dokumentácia triedy Random}
+\hypertarget{class_random}{}\label{class_random}\index{Random@{Random}}
+
+
+{\ttfamily \#include $<$random.\+h$>$}
+
+\doxysubsubsection*{Statické verejné metódy}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_random_a105d98732f9e4d2a6f060d015876a04e}{init\+Seed}} ()
+\item 
+static bool \mbox{\hyperlink{class_random_abe0b220529ca9c9ccc9bd7b5305f1464}{coin\+Flip}} ()
+\item 
+static int \mbox{\hyperlink{class_random_a5884ca7b101d758c27e56d9103313a04}{generate\+Random\+Number}} (int lower\+Bound, int upper\+Bound)
+\item 
+{\footnotesize template$<$typename T $>$ }\\static T \mbox{\hyperlink{class_random_adf9249f79e8a1c88cf24c72933657ad0}{get\+Random\+Element}} (const std\+::vector$<$ T $>$ \&vec)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Statické privátne atribúty}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::mt19937 \mbox{\hyperlink{class_random_a38a7a46405d481770095f86ff792a0f8}{gen}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailný popis}
+Trieda zodpovedná za generáciu náhodných čísiel. 
+
+\doxysubsection{Dokumentácia k metódam}
+\Hypertarget{class_random_abe0b220529ca9c9ccc9bd7b5305f1464}\label{class_random_abe0b220529ca9c9ccc9bd7b5305f1464} 
+\index{Random@{Random}!coinFlip@{coinFlip}}
+\index{coinFlip@{coinFlip}!Random@{Random}}
+\doxysubsubsection{\texorpdfstring{coinFlip()}{coinFlip()}}
+{\footnotesize\ttfamily bool Random\+::coin\+Flip (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generácia náhodného čísla od 0 po 1.
+
+\begin{DoxyReturn}{Návratová hodnota}
+Náhodne vygenerované číslo. 
+\end{DoxyReturn}
+\Hypertarget{class_random_a5884ca7b101d758c27e56d9103313a04}\label{class_random_a5884ca7b101d758c27e56d9103313a04} 
+\index{Random@{Random}!generateRandomNumber@{generateRandomNumber}}
+\index{generateRandomNumber@{generateRandomNumber}!Random@{Random}}
+\doxysubsubsection{\texorpdfstring{generateRandomNumber()}{generateRandomNumber()}}
+{\footnotesize\ttfamily int Random\+::generate\+Random\+Number (\begin{DoxyParamCaption}\item[{int}]{lower\+Bound,  }\item[{int}]{upper\+Bound }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Generácia náhodného čísla v danom rozsahu.
+
+
+\begin{DoxyParams}{Parametre}
+{\em lower\+Bound} & Spodná hranica náhodného čísla \\
+\hline
+{\em upper\+Bound} & Vrchná hranica náhodného čísla \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Náhodne vygenerované číslo 
+\end{DoxyReturn}
+\Hypertarget{class_random_adf9249f79e8a1c88cf24c72933657ad0}\label{class_random_adf9249f79e8a1c88cf24c72933657ad0} 
+\index{Random@{Random}!getRandomElement@{getRandomElement}}
+\index{getRandomElement@{getRandomElement}!Random@{Random}}
+\doxysubsubsection{\texorpdfstring{getRandomElement()}{getRandomElement()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T Random\+::get\+Random\+Element (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Výber náhodného elemetu z vektora T.
+
+
+\begin{DoxyParams}{Parametre}
+{\em vec} & Zoznam prvkov T. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Náhodne vybraný prvok T. 
+\end{DoxyReturn}
+\Hypertarget{class_random_a105d98732f9e4d2a6f060d015876a04e}\label{class_random_a105d98732f9e4d2a6f060d015876a04e} 
+\index{Random@{Random}!initSeed@{initSeed}}
+\index{initSeed@{initSeed}!Random@{Random}}
+\doxysubsubsection{\texorpdfstring{initSeed()}{initSeed()}}
+{\footnotesize\ttfamily void Random\+::init\+Seed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Inicializácia náhodného seedu. 
+
+\doxysubsection{Dokumentácia k dátovým členom}
+\Hypertarget{class_random_a38a7a46405d481770095f86ff792a0f8}\label{class_random_a38a7a46405d481770095f86ff792a0f8} 
+\index{Random@{Random}!gen@{gen}}
+\index{gen@{gen}!Random@{Random}}
+\doxysubsubsection{\texorpdfstring{gen}{gen}}
+{\footnotesize\ttfamily std\+::mt19937 Random\+::gen\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Generátor náhodných čísiel. 
+
+Dokumentácia pre túto triedu bola generovaná z nasledujúcich súborov\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{random_8h}{random.\+h}}\item 
+random.\+cpp\end{DoxyCompactItemize}

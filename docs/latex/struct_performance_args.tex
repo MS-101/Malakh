@@ -1,0 +1,95 @@
+\doxysection{Dokumentácia štruktúry Performance\+Args}
+\hypertarget{struct_performance_args}{}\label{struct_performance_args}\index{PerformanceArgs@{PerformanceArgs}}
+
+
+{\ttfamily \#include $<$searching.\+h$>$}
+
+\doxysubsubsection*{Verejné metódy}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{struct_performance_args_aec6dd5f8544b05e7434224619017d605}{print\+Performance}} ()
+\item 
+void \mbox{\hyperlink{struct_performance_args_af3e94905d2d6577f183b012a7415a1b0}{print\+Performance}} (std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::time\+\_\+point stop, long long duration\+Cur)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Verejné atribúty}
+\begin{DoxyCompactItemize}
+\item 
+std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::time\+\_\+point \mbox{\hyperlink{struct_performance_args_a5b9605631f1ac5fee649aa091f3ae259}{start}} = std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::now()
+\item 
+int \mbox{\hyperlink{struct_performance_args_af4f93e13872b88dac7a62f9e9facbdff}{positions\+Cur}} = 0
+\item 
+int \mbox{\hyperlink{struct_performance_args_a1ec65aa42223739c714d1384b71bfa0e}{positions\+Total}} = 0
+\item 
+long long \mbox{\hyperlink{struct_performance_args_aa85c18905689fedad6fa3347431bd665}{duration\+Total}} = 0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Statické verejné atribúty}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::mutex \mbox{\hyperlink{struct_performance_args_a4cd6abce17ce3f351740a48b907a1faa}{mutex}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailný popis}
+Výkonnostné argumenty prehľadávacej funkcie. 
+
+\doxysubsection{Dokumentácia k metódam}
+\Hypertarget{struct_performance_args_aec6dd5f8544b05e7434224619017d605}\label{struct_performance_args_aec6dd5f8544b05e7434224619017d605} 
+\index{PerformanceArgs@{PerformanceArgs}!printPerformance@{printPerformance}}
+\index{printPerformance@{printPerformance}!PerformanceArgs@{PerformanceArgs}}
+\doxysubsubsection{\texorpdfstring{printPerformance()}{printPerformance()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Performance\+Args\+::print\+Performance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Vypíše aktuálny výkon prehľadávacej funkcie. \Hypertarget{struct_performance_args_af3e94905d2d6577f183b012a7415a1b0}\label{struct_performance_args_af3e94905d2d6577f183b012a7415a1b0} 
+\index{PerformanceArgs@{PerformanceArgs}!printPerformance@{printPerformance}}
+\index{printPerformance@{printPerformance}!PerformanceArgs@{PerformanceArgs}}
+\doxysubsubsection{\texorpdfstring{printPerformance()}{printPerformance()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Performance\+Args\+::print\+Performance (\begin{DoxyParamCaption}\item[{std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::time\+\_\+point}]{stop,  }\item[{long long}]{duration\+Cur }\end{DoxyParamCaption})}
+
+Vypíše aktuálny výkon prehľadávacej funkcie.
+
+
+\begin{DoxyParams}{Parametre}
+{\em stop} & Konečná časová značka. \\
+\hline
+{\em duration\+Cur} & Čas výpočtu. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Dokumentácia k dátovým členom}
+\Hypertarget{struct_performance_args_aa85c18905689fedad6fa3347431bd665}\label{struct_performance_args_aa85c18905689fedad6fa3347431bd665} 
+\index{PerformanceArgs@{PerformanceArgs}!durationTotal@{durationTotal}}
+\index{durationTotal@{durationTotal}!PerformanceArgs@{PerformanceArgs}}
+\doxysubsubsection{\texorpdfstring{durationTotal}{durationTotal}}
+{\footnotesize\ttfamily long long Performance\+Args\+::duration\+Total = 0}
+
+Celkový čas strávený prehľadávaním pozícií. \Hypertarget{struct_performance_args_a4cd6abce17ce3f351740a48b907a1faa}\label{struct_performance_args_a4cd6abce17ce3f351740a48b907a1faa} 
+\index{PerformanceArgs@{PerformanceArgs}!mutex@{mutex}}
+\index{mutex@{mutex}!PerformanceArgs@{PerformanceArgs}}
+\doxysubsubsection{\texorpdfstring{mutex}{mutex}}
+{\footnotesize\ttfamily std\+::mutex Performance\+Args\+::mutex\hspace{0.3cm}{\ttfamily [static]}}
+
+Mutex na uzamknutie výkonnostných argumentov. \Hypertarget{struct_performance_args_af4f93e13872b88dac7a62f9e9facbdff}\label{struct_performance_args_af4f93e13872b88dac7a62f9e9facbdff} 
+\index{PerformanceArgs@{PerformanceArgs}!positionsCur@{positionsCur}}
+\index{positionsCur@{positionsCur}!PerformanceArgs@{PerformanceArgs}}
+\doxysubsubsection{\texorpdfstring{positionsCur}{positionsCur}}
+{\footnotesize\ttfamily int Performance\+Args\+::positions\+Cur = 0}
+
+Počet pozícií, ktoré boli aktuálne prehľadané. \Hypertarget{struct_performance_args_a1ec65aa42223739c714d1384b71bfa0e}\label{struct_performance_args_a1ec65aa42223739c714d1384b71bfa0e} 
+\index{PerformanceArgs@{PerformanceArgs}!positionsTotal@{positionsTotal}}
+\index{positionsTotal@{positionsTotal}!PerformanceArgs@{PerformanceArgs}}
+\doxysubsubsection{\texorpdfstring{positionsTotal}{positionsTotal}}
+{\footnotesize\ttfamily int Performance\+Args\+::positions\+Total = 0}
+
+Počet všetkých pozícii, ktoré boli prehľadané. \Hypertarget{struct_performance_args_a5b9605631f1ac5fee649aa091f3ae259}\label{struct_performance_args_a5b9605631f1ac5fee649aa091f3ae259} 
+\index{PerformanceArgs@{PerformanceArgs}!start@{start}}
+\index{start@{start}!PerformanceArgs@{PerformanceArgs}}
+\doxysubsubsection{\texorpdfstring{start}{start}}
+{\footnotesize\ttfamily std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::time\+\_\+point Performance\+Args\+::start = std\+::chrono\+::high\+\_\+resolution\+\_\+clock\+::now()}
+
+Počiatočná časová značka. 
+
+Dokumentácia pre túto štruktúru (struct) bola generovaná z nasledujúcich súborov\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{searching_8h}{searching.\+h}}\item 
+searching.\+cpp\end{DoxyCompactItemize}

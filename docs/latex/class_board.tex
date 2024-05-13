@@ -1,0 +1,482 @@
+\doxysection{Dokumentácia triedy Board}
+\hypertarget{class_board}{}\label{class_board}\index{Board@{Board}}
+
+
+{\ttfamily \#include $<$board.\+h$>$}
+
+\doxysubsubsection*{Verejné metódy}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_board_a4861064ac719acf27641cbd201ee4b9f}{init\+Board}} (\mbox{\hyperlink{struct_essence_args}{Essence\+Args}} essence\+Args)
+\item 
+void \mbox{\hyperlink{class_board_a95bbf8e3de4e5a577713326c67a07311}{init\+Board}} (\mbox{\hyperlink{struct_essence_args}{Essence\+Args}} essence\+Args, \mbox{\hyperlink{struct_bit_board}{Bit\+Board}} \mbox{\hyperlink{class_board_a477b2c864704409b6de2adcccd3a7cc4}{pieces}}\mbox{[}12\mbox{]}, \mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}} \mbox{\hyperlink{class_board_abfcf8d0d90b81f2038fd323f10bebd9a}{cur\+Turn}})
+\item 
+void \mbox{\hyperlink{class_board_aca49f093314a104381d05998bbf62f7f}{print\+Board}} ()
+\item 
+void \mbox{\hyperlink{class_board_a5c6836ef97eee26a9a14286f25ab1a6a}{print\+Moves}} ()
+\item 
+int \mbox{\hyperlink{class_board_adf44ea325d72ee68a1f13dba584e35c4}{eval\+Board}} (\mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}} color)
+\item 
+bool \mbox{\hyperlink{class_board_a48a67b7c679ec646bd86708945cba929}{is\+Quiet}} ()
+\item 
+bool \mbox{\hyperlink{class_board_a0ec5449d5dd18a9eb9186557f2f20aa2}{make\+Move}} (char x1, char y1, char x2, char y2)
+\item 
+bool \mbox{\hyperlink{class_board_ab7083844c5bd35e350d5c311d42adce8}{make\+Move}} (char x1, char y1, char x2, char y2, \mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}} promotion)
+\item 
+bool \mbox{\hyperlink{class_board_ad5a9d63233b2bfd5405be615dd637f65}{make\+Move}} (\mbox{\hyperlink{struct_legal_move}{Legal\+Move}} move)
+\item 
+std\+::pair$<$ bool, \mbox{\hyperlink{struct_piece}{Piece}} $>$ \mbox{\hyperlink{class_board_aeb083ebae3329806866834301c7c6e70}{get\+Piece}} (char x, char y)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_legal_move}{Legal\+Move}} $>$ \mbox{\hyperlink{class_board_a0c7dcac424cdb27bb3154848a4cffd46}{get\+Legal\+Moves}} ()
+\item 
+std\+::string \mbox{\hyperlink{class_board_a2cf2b2f6adc453bc3b086c9f10c77e11}{to\+String}} ()
+\item 
+\mbox{\hyperlink{board_8h_a41741953d704b743544ce6383c27c7c6}{Game\+Result}} \mbox{\hyperlink{class_board_a7233d5d3555b01d01e3bbe6bd7cd0ba0}{get\+Result}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Verejné atribúty}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{piece_8h_ad0e2cebe1564362802ae0942b6d67703}{Piece\+Essence}} \mbox{\hyperlink{class_board_af11604d1376de5e1316fac0f2bdfbc31}{essence\+Config}} \mbox{[}2 \texorpdfstring{$\ast$}{*}6\mbox{]} = \{\}
+\item 
+int \mbox{\hyperlink{class_board_ac5c6ac4324ddaca2c07af79786514599}{essence\+Counts}} \mbox{[}3\mbox{]}
+\item 
+\mbox{\hyperlink{struct_bit_board}{Bit\+Board}} \mbox{\hyperlink{class_board_a477b2c864704409b6de2adcccd3a7cc4}{pieces}} \mbox{[}2 \texorpdfstring{$\ast$}{*}6\mbox{]}
+\item 
+\mbox{\hyperlink{struct_bit_board}{Bit\+Board}} \mbox{\hyperlink{class_board_a9eeccb5434e5b6f5b438b3ae4bb00c1a}{colors}} \mbox{[}2\mbox{]}
+\item 
+\mbox{\hyperlink{struct_bit_board}{Bit\+Board}} \mbox{\hyperlink{class_board_a4c9c72604abf50b3e737fbfe7c31ba6a}{attacks}} \mbox{[}2\mbox{]}
+\item 
+\mbox{\hyperlink{struct_bit_board}{Bit\+Board}} \mbox{\hyperlink{class_board_aa8e50329a1396f78c8d9de949a4c1a71}{all\+Pieces}}
+\item 
+\mbox{\hyperlink{struct_bit_board}{Bit\+Board}} \mbox{\hyperlink{class_board_a46632db88a4dfbef041000a8cc25ffbe}{not\+Moved}}
+\item 
+\mbox{\hyperlink{struct_ghost}{Ghost}} \mbox{\hyperlink{class_board_a6aae66b2955b7ed6ae7b85b683ca43b2}{ghost}}
+\item 
+int \mbox{\hyperlink{class_board_accf5a5a0d1a0cb1c2eedd5573d58fe4c}{piece\+Counts}} \mbox{[}2 \texorpdfstring{$\ast$}{*}6\mbox{]} = \{\}
+\item 
+int \mbox{\hyperlink{class_board_a0862f51a22afd6a742067d79feee5e68}{input\+Array}} \mbox{[}2 \texorpdfstring{$\ast$}{*}8 \texorpdfstring{$\ast$}{*}8\mbox{]}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_legal_move}{Legal\+Move}} $>$ \mbox{\hyperlink{class_board_abd403f28e1bd81b3213fd9cee0e5bebe}{moves}} \mbox{[}2\mbox{]}
+\item 
+bool \mbox{\hyperlink{class_board_aef3ed78cfd3b267dc41642ecf96b1583}{moves\+Validated}} = false
+\item 
+\mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}} \mbox{\hyperlink{class_board_abfcf8d0d90b81f2038fd323f10bebd9a}{cur\+Turn}} = \mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985ab548046646b36c12aa6ba841de500094}{White}}
+\item 
+\mbox{\hyperlink{struct_eval_args}{Eval\+Args}} \mbox{\hyperlink{class_board_add03c85c9815dcf2d0bc12a4ece29e4d}{eval}} \{\}
+\item 
+\mbox{\hyperlink{struct_board_hash}{Board\+Hash}} \mbox{\hyperlink{class_board_a288a41584c21590ff39910ce6855e311}{hash}} \{\}
+\item 
+int \mbox{\hyperlink{class_board_aac4d76570dc61ef5c08f1412c2d7cc41}{halfmove\+Clock}} = 0
+\item 
+int \mbox{\hyperlink{class_board_a1dddeeab8704e09f948e047c15cf76d3}{fullmove\+Clock}} = 1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Privátne metódy}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_board_aa1eb6406e0acc66a1c3d5a72f8d8154b}{set\+Essence\+Config}} (\mbox{\hyperlink{struct_essence_args}{Essence\+Args}} essence\+Args)
+\item 
+void \mbox{\hyperlink{class_board_a5f148daa03da25d40dff3fc613568d6f}{clear\+Board}} ()
+\item 
+void \mbox{\hyperlink{class_board_af7818025d0683c18fb658db472583dd0}{add\+Piece}} (\mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}} color, \mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}} type, char x, char y, bool is\+New)
+\item 
+std\+::pair$<$ bool, \mbox{\hyperlink{struct_piece}{Piece}} $>$ \mbox{\hyperlink{class_board_aa66f030fd6e0510459eb8b8e8b8afbe7}{remove\+Piece}} (char x, char y)
+\item 
+void \mbox{\hyperlink{class_board_ab114cb4461c0027dd4463ac4689f88b6}{refresh\+Aggregations}} ()
+\item 
+void \mbox{\hyperlink{class_board_a892932cfd734870c18a838576635d11b}{set\+Input\+Array\+Piece}} (char piece\+Index, char x, char y)
+\item 
+void \mbox{\hyperlink{class_board_a151c19df4b2a1e2a55fb284c8d6c1377}{set\+Input\+Array\+Color}} (\mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}} color)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailný popis}
+Táto štruktúra reprezentuje šachovnicu so všetkými relevantnými informáciami. 
+
+\doxysubsection{Dokumentácia k metódam}
+\Hypertarget{class_board_af7818025d0683c18fb658db472583dd0}\label{class_board_af7818025d0683c18fb658db472583dd0} 
+\index{Board@{Board}!addPiece@{addPiece}}
+\index{addPiece@{addPiece}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{addPiece()}{addPiece()}}
+{\footnotesize\ttfamily void Board\+::add\+Piece (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}}}]{color,  }\item[{\mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}}}]{type,  }\item[{char}]{x,  }\item[{char}]{y,  }\item[{bool}]{is\+New }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Pridá figúrku na šachovnicu a aktualizuje relevantné evaluačné argumenty.
+
+
+\begin{DoxyParams}{Parametre}
+{\em color} & Vlastník novej figúrky. \\
+\hline
+{\em type} & Typ novej figúrky. \\
+\hline
+{\em x} & Koordinát X novej figúrky. \\
+\hline
+{\em y} & Koordinát Y novej figúrky. \\
+\hline
+{\em is\+New} & Ak je figúrka nová, tak sa nastaví aj not\+Moved bitboard. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_board_a5f148daa03da25d40dff3fc613568d6f}\label{class_board_a5f148daa03da25d40dff3fc613568d6f} 
+\index{Board@{Board}!clearBoard@{clearBoard}}
+\index{clearBoard@{clearBoard}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{clearBoard()}{clearBoard()}}
+{\footnotesize\ttfamily void Board\+::clear\+Board (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Odstráni všetky figúrky zo šachovnice a resetuje evaluačné argumenty. \Hypertarget{class_board_adf44ea325d72ee68a1f13dba584e35c4}\label{class_board_adf44ea325d72ee68a1f13dba584e35c4} 
+\index{Board@{Board}!evalBoard@{evalBoard}}
+\index{evalBoard@{evalBoard}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{evalBoard()}{evalBoard()}}
+{\footnotesize\ttfamily int Board\+::eval\+Board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}}}]{color }\end{DoxyParamCaption})}
+
+Táto funkcia vypočíta číselnú hodnotu aktuálnej pozície podľa daného hráča.
+
+
+\begin{DoxyParams}{Parametre}
+{\em color} & Hráč pre ktorého je vypočítaná hodnota pozície. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Hodnota pozície. 
+\end{DoxyReturn}
+\Hypertarget{class_board_a0c7dcac424cdb27bb3154848a4cffd46}\label{class_board_a0c7dcac424cdb27bb3154848a4cffd46} 
+\index{Board@{Board}!getLegalMoves@{getLegalMoves}}
+\index{getLegalMoves@{getLegalMoves}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{getLegalMoves()}{getLegalMoves()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{struct_legal_move}{Legal\+Move}} $>$ Board\+::get\+Legal\+Moves (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Vráti legálne pohyby aktuálneho hráča. Vykoná validáciu pohybov ak ešte nebola vykonaná.
+
+\begin{DoxyReturn}{Návratová hodnota}
+Zoznam legálnych pohybov hráča, ktorý je na rade. 
+\end{DoxyReturn}
+\Hypertarget{class_board_aeb083ebae3329806866834301c7c6e70}\label{class_board_aeb083ebae3329806866834301c7c6e70} 
+\index{Board@{Board}!getPiece@{getPiece}}
+\index{getPiece@{getPiece}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{getPiece()}{getPiece()}}
+{\footnotesize\ttfamily std\+::pair$<$ bool, \mbox{\hyperlink{struct_piece}{Piece}} $>$ Board\+::get\+Piece (\begin{DoxyParamCaption}\item[{char}]{x,  }\item[{char}]{y }\end{DoxyParamCaption})}
+
+Nájde sa figúrka na konkrétnej pozícii na šachovnici.
+
+
+\begin{DoxyParams}{Parametre}
+{\em x} & Koordinát X danej pozície. \\
+\hline
+{\em y} & Koordinát Y danej pozície. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Vráti pár bitu reprezentujúci úšpešné/neúspešné nájdenie figúrky a nájdenú figúrku. 
+\end{DoxyReturn}
+\Hypertarget{class_board_a7233d5d3555b01d01e3bbe6bd7cd0ba0}\label{class_board_a7233d5d3555b01d01e3bbe6bd7cd0ba0} 
+\index{Board@{Board}!getResult@{getResult}}
+\index{getResult@{getResult}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{getResult()}{getResult()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{board_8h_a41741953d704b743544ce6383c27c7c6}{Game\+Result}} Board\+::get\+Result (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Vráti aktuálny výsledok hry.
+
+\begin{DoxyReturn}{Návratová hodnota}
+Enumerátor reprezentujúci aktuálny výsledok hry. 
+\end{DoxyReturn}
+\Hypertarget{class_board_a4861064ac719acf27641cbd201ee4b9f}\label{class_board_a4861064ac719acf27641cbd201ee4b9f} 
+\index{Board@{Board}!initBoard@{initBoard}}
+\index{initBoard@{initBoard}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{initBoard()}{initBoard()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Board\+::init\+Board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_essence_args}{Essence\+Args}}}]{essence\+Args }\end{DoxyParamCaption})}
+
+Inicializácia počiatočného stavu šachovnice.
+
+
+\begin{DoxyParams}{Parametre}
+{\em essence\+Args} & Herná konfigurácia esencií. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_board_a95bbf8e3de4e5a577713326c67a07311}\label{class_board_a95bbf8e3de4e5a577713326c67a07311} 
+\index{Board@{Board}!initBoard@{initBoard}}
+\index{initBoard@{initBoard}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{initBoard()}{initBoard()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Board\+::init\+Board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_essence_args}{Essence\+Args}}}]{essence\+Args,  }\item[{\mbox{\hyperlink{struct_bit_board}{Bit\+Board}}}]{pieces\mbox{[}12\mbox{]},  }\item[{\mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}}}]{cur\+Turn }\end{DoxyParamCaption})}
+
+Inicializáccia šachovnice podľa argumentov.
+
+
+\begin{DoxyParams}{Parametre}
+{\em essence\+Args} & Herná konfigurácia esencií. \\
+\hline
+{\em pieces} & Bitboardy reprezentujúce konkrétny typ figúrok. \\
+\hline
+{\em cur\+Turn} & Aktuálny hráč na rade. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_board_a48a67b7c679ec646bd86708945cba929}\label{class_board_a48a67b7c679ec646bd86708945cba929} 
+\index{Board@{Board}!isQuiet@{isQuiet}}
+\index{isQuiet@{isQuiet}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{isQuiet()}{isQuiet()}}
+{\footnotesize\ttfamily bool Board\+::is\+Quiet (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Overenie či je daná pozícia považovaná za tichú.
+
+\begin{DoxyReturn}{Návratová hodnota}
+Vráti 1 ak je pozícia tichá, 0 ak pozícia nie je tichá. 
+\end{DoxyReturn}
+\Hypertarget{class_board_a0ec5449d5dd18a9eb9186557f2f20aa2}\label{class_board_a0ec5449d5dd18a9eb9186557f2f20aa2} 
+\index{Board@{Board}!makeMove@{makeMove}}
+\index{makeMove@{makeMove}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{makeMove()}{makeMove()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily bool Board\+::make\+Move (\begin{DoxyParamCaption}\item[{char}]{x1,  }\item[{char}]{y1,  }\item[{char}]{x2,  }\item[{char}]{y2 }\end{DoxyParamCaption})}
+
+Vykoná sa pohyb figúrky bez nastavenej promócie pešiaka (len ak je pohyb legálny).
+
+
+\begin{DoxyParams}{Parametre}
+{\em x1} & Koordinát X zdrojovej pozície. \\
+\hline
+{\em y1} & Koordinát Y zdrojovej pozície. \\
+\hline
+{\em x2} & Koordinát X cieľovej pozície. \\
+\hline
+{\em y2} & Koordinát Y cieľovej pozície. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Bit reprezentujúci či bol pohyb úspešne vykonaný. 
+\end{DoxyReturn}
+\Hypertarget{class_board_ab7083844c5bd35e350d5c311d42adce8}\label{class_board_ab7083844c5bd35e350d5c311d42adce8} 
+\index{Board@{Board}!makeMove@{makeMove}}
+\index{makeMove@{makeMove}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{makeMove()}{makeMove()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily bool Board\+::make\+Move (\begin{DoxyParamCaption}\item[{char}]{x1,  }\item[{char}]{y1,  }\item[{char}]{x2,  }\item[{char}]{y2,  }\item[{\mbox{\hyperlink{piece_8h_a12ed9719bbdf7bc596ff7a6f4bf3f021}{Piece\+Type}}}]{promotion }\end{DoxyParamCaption})}
+
+Vykoná sa pohyb figúrky s nastevenou promóciou pešiaka (len ak je pohyb legálny).
+
+
+\begin{DoxyParams}{Parametre}
+{\em x1} & Koordinát X zdrojovej pozície. \\
+\hline
+{\em y1} & Koordinát Y zdrojovej pozície. \\
+\hline
+{\em x2} & Koordinát X cieľovej pozície. \\
+\hline
+{\em y2} & Koordinát Y cieľovej pozície. \\
+\hline
+{\em promotion} & Typ figúrky na ktorý sa presunutý pešiak zmení. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Bit reprezentujúci či bol pohyb úspešne vykonaný. 
+\end{DoxyReturn}
+\Hypertarget{class_board_ad5a9d63233b2bfd5405be615dd637f65}\label{class_board_ad5a9d63233b2bfd5405be615dd637f65} 
+\index{Board@{Board}!makeMove@{makeMove}}
+\index{makeMove@{makeMove}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{makeMove()}{makeMove()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily bool Board\+::make\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_legal_move}{Legal\+Move}}}]{move }\end{DoxyParamCaption})}
+
+Vykoná sa konkrétny pseudolegálny pohyb figúrky.
+
+
+\begin{DoxyParams}{Parametre}
+{\em move} & Vykonávaný pseudolegálny pohyb. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Vráti 1 ak je vykonaný pohyb legálny, vráti 0 ak je vykonaný pohyb pseudolegálny. 
+\end{DoxyReturn}
+\Hypertarget{class_board_aca49f093314a104381d05998bbf62f7f}\label{class_board_aca49f093314a104381d05998bbf62f7f} 
+\index{Board@{Board}!printBoard@{printBoard}}
+\index{printBoard@{printBoard}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{printBoard()}{printBoard()}}
+{\footnotesize\ttfamily void Board\+::print\+Board (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Táto funkcia vypíše umiestnenie figúrok na šachovnicí. \Hypertarget{class_board_a5c6836ef97eee26a9a14286f25ab1a6a}\label{class_board_a5c6836ef97eee26a9a14286f25ab1a6a} 
+\index{Board@{Board}!printMoves@{printMoves}}
+\index{printMoves@{printMoves}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{printMoves()}{printMoves()}}
+{\footnotesize\ttfamily void Board\+::print\+Moves (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Táto funkcia vypíše dostupné pohyby figúrok. \Hypertarget{class_board_ab114cb4461c0027dd4463ac4689f88b6}\label{class_board_ab114cb4461c0027dd4463ac4689f88b6} 
+\index{Board@{Board}!refreshAggregations@{refreshAggregations}}
+\index{refreshAggregations@{refreshAggregations}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{refreshAggregations()}{refreshAggregations()}}
+{\footnotesize\ttfamily void Board\+::refresh\+Aggregations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Aktualizuje agregácie bitboardov -\/ colors, all\+Pieces. \Hypertarget{class_board_aa66f030fd6e0510459eb8b8e8b8afbe7}\label{class_board_aa66f030fd6e0510459eb8b8e8b8afbe7} 
+\index{Board@{Board}!removePiece@{removePiece}}
+\index{removePiece@{removePiece}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{removePiece()}{removePiece()}}
+{\footnotesize\ttfamily std\+::pair$<$ bool, \mbox{\hyperlink{struct_piece}{Piece}} $>$ Board\+::remove\+Piece (\begin{DoxyParamCaption}\item[{char}]{x,  }\item[{char}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Odstráni zo šachovnice figúrku a aktualizuje relevantné evaluačné argumenty.
+
+
+\begin{DoxyParams}{Parametre}
+{\em x} & Koordinát X odstránenej figúrky. \\
+\hline
+{\em y} & Koordinát Y odstránenej figúrky. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Vráti pár bitu, ktorý reprezentuje úspešné/neúspešné odstránenie figúrky a odstránenú figúrku. 
+\end{DoxyReturn}
+\Hypertarget{class_board_aa1eb6406e0acc66a1c3d5a72f8d8154b}\label{class_board_aa1eb6406e0acc66a1c3d5a72f8d8154b} 
+\index{Board@{Board}!setEssenceConfig@{setEssenceConfig}}
+\index{setEssenceConfig@{setEssenceConfig}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{setEssenceConfig()}{setEssenceConfig()}}
+{\footnotesize\ttfamily void Board\+::set\+Essence\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_essence_args}{Essence\+Args}}}]{essence\+Args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Nastaví konfigurácia esencií na šachovnici.
+
+
+\begin{DoxyParams}{Parametre}
+{\em essence\+Args} & Nová konfigurácia esencií. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_board_a151c19df4b2a1e2a55fb284c8d6c1377}\label{class_board_a151c19df4b2a1e2a55fb284c8d6c1377} 
+\index{Board@{Board}!setInputArrayColor@{setInputArrayColor}}
+\index{setInputArrayColor@{setInputArrayColor}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{setInputArrayColor()}{setInputArrayColor()}}
+{\footnotesize\ttfamily void Board\+::set\+Input\+Array\+Color (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}}}]{color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Nastaví farbu hráča na druhom kanáli vstupnej matice pre CNN.
+
+
+\begin{DoxyParams}{Parametre}
+{\em color} & Farba hráča na rade \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_board_a892932cfd734870c18a838576635d11b}\label{class_board_a892932cfd734870c18a838576635d11b} 
+\index{Board@{Board}!setInputArrayPiece@{setInputArrayPiece}}
+\index{setInputArrayPiece@{setInputArrayPiece}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{setInputArrayPiece()}{setInputArrayPiece()}}
+{\footnotesize\ttfamily void Board\+::set\+Input\+Array\+Piece (\begin{DoxyParamCaption}\item[{char}]{piece\+Index,  }\item[{char}]{x,  }\item[{char}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Nastaví figúrku na prvom kanáli vstupnej matice pre CNN.
+
+
+\begin{DoxyParams}{Parametre}
+{\em piece\+Index} & Identifikátor figúrky na danej pozícii. \\
+\hline
+{\em x} & Koordinát X danej pozície. \\
+\hline
+{\em y} & Koordinát Y danej pozície. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_board_a2cf2b2f6adc453bc3b086c9f10c77e11}\label{class_board_a2cf2b2f6adc453bc3b086c9f10c77e11} 
+\index{Board@{Board}!toString@{toString}}
+\index{toString@{toString}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily std\+::string Board\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Zapíše našu šachovnicu do FEN stringu.
+
+\begin{DoxyReturn}{Návratová hodnota}
+FEN string reprezentujúci našu šachovnicu. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Dokumentácia k dátovým členom}
+\Hypertarget{class_board_aa8e50329a1396f78c8d9de949a4c1a71}\label{class_board_aa8e50329a1396f78c8d9de949a4c1a71} 
+\index{Board@{Board}!allPieces@{allPieces}}
+\index{allPieces@{allPieces}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{allPieces}{allPieces}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_bit_board}{Bit\+Board}} Board\+::all\+Pieces}
+
+Bitboard reprezentujúci všetky figúrky na šacchovnici. \Hypertarget{class_board_a4c9c72604abf50b3e737fbfe7c31ba6a}\label{class_board_a4c9c72604abf50b3e737fbfe7c31ba6a} 
+\index{Board@{Board}!attacks@{attacks}}
+\index{attacks@{attacks}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{attacks}{attacks}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_bit_board}{Bit\+Board}} Board\+::attacks\mbox{[}2\mbox{]}}
+
+Bitboardy reprezentujúce napadnuté políčka konkrétneho hráča. \Hypertarget{class_board_a9eeccb5434e5b6f5b438b3ae4bb00c1a}\label{class_board_a9eeccb5434e5b6f5b438b3ae4bb00c1a} 
+\index{Board@{Board}!colors@{colors}}
+\index{colors@{colors}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{colors}{colors}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_bit_board}{Bit\+Board}} Board\+::colors\mbox{[}2\mbox{]}}
+
+Bitboardy reprezentujúce všetky figúrky konkrétneho hráča. \Hypertarget{class_board_abfcf8d0d90b81f2038fd323f10bebd9a}\label{class_board_abfcf8d0d90b81f2038fd323f10bebd9a} 
+\index{Board@{Board}!curTurn@{curTurn}}
+\index{curTurn@{curTurn}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{curTurn}{curTurn}}
+{\footnotesize\ttfamily \mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{Piece\+Color}} Board\+::cur\+Turn = \mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985ab548046646b36c12aa6ba841de500094}{White}}}
+
+Aktuálny hráč na rade. \Hypertarget{class_board_af11604d1376de5e1316fac0f2bdfbc31}\label{class_board_af11604d1376de5e1316fac0f2bdfbc31} 
+\index{Board@{Board}!essenceConfig@{essenceConfig}}
+\index{essenceConfig@{essenceConfig}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{essenceConfig}{essenceConfig}}
+{\footnotesize\ttfamily \mbox{\hyperlink{piece_8h_ad0e2cebe1564362802ae0942b6d67703}{Piece\+Essence}} Board\+::essence\+Config\mbox{[}2 \texorpdfstring{$\ast$}{*}6\mbox{]} = \{\}}
+
+Konfigurácia esencií fúgurok. \Hypertarget{class_board_ac5c6ac4324ddaca2c07af79786514599}\label{class_board_ac5c6ac4324ddaca2c07af79786514599} 
+\index{Board@{Board}!essenceCounts@{essenceCounts}}
+\index{essenceCounts@{essenceCounts}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{essenceCounts}{essenceCounts}}
+{\footnotesize\ttfamily int Board\+::essence\+Counts\mbox{[}3\mbox{]}}
+
+Počítadlo herných esencií. \Hypertarget{class_board_add03c85c9815dcf2d0bc12a4ece29e4d}\label{class_board_add03c85c9815dcf2d0bc12a4ece29e4d} 
+\index{Board@{Board}!eval@{eval}}
+\index{eval@{eval}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{eval}{eval}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_eval_args}{Eval\+Args}} Board\+::eval \{\}}
+
+Priebežne aktualizované argumenty evaluačnej funkcie. \Hypertarget{class_board_a1dddeeab8704e09f948e047c15cf76d3}\label{class_board_a1dddeeab8704e09f948e047c15cf76d3} 
+\index{Board@{Board}!fullmoveClock@{fullmoveClock}}
+\index{fullmoveClock@{fullmoveClock}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{fullmoveClock}{fullmoveClock}}
+{\footnotesize\ttfamily int Board\+::fullmove\+Clock = 1}
+
+Počítadlo všetkých plných pohybov. Inkrementované po každom pohybe čierneho hráča. \Hypertarget{class_board_a6aae66b2955b7ed6ae7b85b683ca43b2}\label{class_board_a6aae66b2955b7ed6ae7b85b683ca43b2} 
+\index{Board@{Board}!ghost@{ghost}}
+\index{ghost@{ghost}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{ghost}{ghost}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_ghost}{Ghost}} Board\+::ghost}
+
+Figúrka zanechaná po vykonaní špeciálneho pohybu pešiaka na začiatku hry. \Hypertarget{class_board_aac4d76570dc61ef5c08f1412c2d7cc41}\label{class_board_aac4d76570dc61ef5c08f1412c2d7cc41} 
+\index{Board@{Board}!halfmoveClock@{halfmoveClock}}
+\index{halfmoveClock@{halfmoveClock}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{halfmoveClock}{halfmoveClock}}
+{\footnotesize\ttfamily int Board\+::halfmove\+Clock = 0}
+
+Počítadlo polovičných pohybov. Toto počítadlo sa resetuje po pohybu pešiaka alebo obsadení figúrky. \Hypertarget{class_board_a288a41584c21590ff39910ce6855e311}\label{class_board_a288a41584c21590ff39910ce6855e311} 
+\index{Board@{Board}!hash@{hash}}
+\index{hash@{hash}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{hash}{hash}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_board_hash}{Board\+Hash}} Board\+::hash \{\}}
+
+Hash šachovej pozície pomocou ktorého vieme identifikovať šachovnicu. \Hypertarget{class_board_a0862f51a22afd6a742067d79feee5e68}\label{class_board_a0862f51a22afd6a742067d79feee5e68} 
+\index{Board@{Board}!inputArray@{inputArray}}
+\index{inputArray@{inputArray}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{inputArray}{inputArray}}
+{\footnotesize\ttfamily int Board\+::input\+Array\mbox{[}2 \texorpdfstring{$\ast$}{*}8 \texorpdfstring{$\ast$}{*}8\mbox{]}}
+
+Reprezentácia šachovnice pre vstup do modelu CNN. \Hypertarget{class_board_abd403f28e1bd81b3213fd9cee0e5bebe}\label{class_board_abd403f28e1bd81b3213fd9cee0e5bebe} 
+\index{Board@{Board}!moves@{moves}}
+\index{moves@{moves}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{moves}{moves}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{struct_legal_move}{Legal\+Move}}$>$ Board\+::moves\mbox{[}2\mbox{]}}
+
+Zoznamy dostupných pohybov pre konkrétneho hráča. \Hypertarget{class_board_aef3ed78cfd3b267dc41642ecf96b1583}\label{class_board_aef3ed78cfd3b267dc41642ecf96b1583} 
+\index{Board@{Board}!movesValidated@{movesValidated}}
+\index{movesValidated@{movesValidated}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{movesValidated}{movesValidated}}
+{\footnotesize\ttfamily bool Board\+::moves\+Validated = false}
+
+Bit pomocou ktorého si pamätáme či sme zvalidovali vygenerované pseudolegálne pohyby. \Hypertarget{class_board_a46632db88a4dfbef041000a8cc25ffbe}\label{class_board_a46632db88a4dfbef041000a8cc25ffbe} 
+\index{Board@{Board}!notMoved@{notMoved}}
+\index{notMoved@{notMoved}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{notMoved}{notMoved}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_bit_board}{Bit\+Board}} Board\+::not\+Moved}
+
+Bitboard reprezentujúci figúrky, ktoré sa ešte nepohli (pre En Passant a rošádu). \Hypertarget{class_board_accf5a5a0d1a0cb1c2eedd5573d58fe4c}\label{class_board_accf5a5a0d1a0cb1c2eedd5573d58fe4c} 
+\index{Board@{Board}!pieceCounts@{pieceCounts}}
+\index{pieceCounts@{pieceCounts}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{pieceCounts}{pieceCounts}}
+{\footnotesize\ttfamily int Board\+::piece\+Counts\mbox{[}2 \texorpdfstring{$\ast$}{*}6\mbox{]} = \{\}}
+
+Počítadla figúrok. \Hypertarget{class_board_a477b2c864704409b6de2adcccd3a7cc4}\label{class_board_a477b2c864704409b6de2adcccd3a7cc4} 
+\index{Board@{Board}!pieces@{pieces}}
+\index{pieces@{pieces}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{pieces}{pieces}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_bit_board}{Bit\+Board}} Board\+::pieces\mbox{[}2 \texorpdfstring{$\ast$}{*}6\mbox{]}}
+
+Bitboardy reprezentujúce konkrétny typ figúrok. 
+
+Dokumentácia pre túto triedu bola generovaná z nasledujúcich súborov\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{board_8h}{board.\+h}}\item 
+board.\+cpp\end{DoxyCompactItemize}

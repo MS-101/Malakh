@@ -1,0 +1,55 @@
+\doxysection{searching.\+h}
+\hypertarget{searching_8h_source}{}\label{searching_8h_source}\index{searching.h@{searching.h}}
+\mbox{\hyperlink{searching_8h}{Zobraziť dokumentáciu tohoto súboru.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{/*****************************************************************/}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{board_8h}{board.h}}>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{transpositions_8h}{transpositions.h}}>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{ensemble_8h}{ensemble.h}}>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_search_args}{SearchArgs}}\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_search_args_a90bd0fd284363f3e2617e6516ad2e6b3}{curDepth}}\ =\ 0;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_search_args_ad370e67c88485dca85b6f81e12f1a942}{maxDepth}}\ =\ 0;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_search_args_a7a8282b0f9a7cbc7313fb5bf460767b1}{alpha}}\ =\ INT\_MIN;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_search_args_a376337144100cdcb3cf72b3b0750199a}{beta}}\ =\ INT\_MAX;}
+\DoxyCodeLine{00040\ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_performance_args}{PerformanceArgs}}\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ std::chrono::high\_resolution\_clock::time\_point\ \mbox{\hyperlink{struct_performance_args_a5b9605631f1ac5fee649aa091f3ae259}{start}}\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_performance_args_af4f93e13872b88dac7a62f9e9facbdff}{positionsCur}}\ =\ 0;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_performance_args_a1ec65aa42223739c714d1384b71bfa0e}{positionsTotal}}\ =\ 0;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{struct_performance_args_aa85c18905689fedad6fa3347431bd665}{durationTotal}}\ =\ 0;}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{static}\ std::mutex\ \mbox{\hyperlink{struct_performance_args_a4cd6abce17ce3f351740a48b907a1faa}{mutex}};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_performance_args_aec6dd5f8544b05e7434224619017d605}{printPerformance}}();}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_performance_args_aec6dd5f8544b05e7434224619017d605}{printPerformance}}(std::chrono::high\_resolution\_clock::time\_point\ stop,\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ durationCur);}
+\DoxyCodeLine{00083\ \};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_search_manager}{SearchManager}}\ \{}
+\DoxyCodeLine{00089\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_transposition_cache}{TranspositionCache}}\ \mbox{\hyperlink{class_search_manager_a72513eda202572889dfb1d42469ac1b3}{cache}};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_ensemble}{Ensemble}}\ \mbox{\hyperlink{class_search_manager_a71a687724619752868ee2e8395eb8b16}{ensemble}};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{static}\ std::pair<bool,\ LegalMove>\ \mbox{\hyperlink{class_search_manager_a116a698e019f52e242f9b27630f8e8bf}{calculateBestMove}}(\mbox{\hyperlink{class_board}{Board}}\ board,\ \textcolor{keywordtype}{int}\ depth,\ \textcolor{keywordtype}{bool}\ useEnsemble,\ \textcolor{keywordtype}{bool}\ debug);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{static}\ std::pair<bool,\ LegalMove>\ \mbox{\hyperlink{class_search_manager_ab2757f480978bc355bf3341358696f86}{calculateBestMove\_threads}}(\mbox{\hyperlink{class_board}{Board}}\ board,\ \textcolor{keywordtype}{int}\ depth,\ \textcolor{keywordtype}{int}\ threadCount,\ \textcolor{keywordtype}{bool}\ useEnsemble,\ \textcolor{keywordtype}{bool}\ debug);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_search_manager_a716990ca512d5d1785521365d2d7aa76}{minimax}}(\mbox{\hyperlink{class_board}{Board}}\ board,\ \mbox{\hyperlink{piece_8h_ad7595c48bb74c0dd2a7648712a2d4985}{PieceColor}}\ playerColor,\ \mbox{\hyperlink{struct_search_args}{SearchArgs}}\ searchArgs,\ \mbox{\hyperlink{struct_performance_args}{PerformanceArgs}}*\ performanceArgs,\ \textcolor{keywordtype}{bool}\ useEnsemble,\ \textcolor{keywordtype}{bool}\ debug);}
+\DoxyCodeLine{00135\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_search_manager_ace5562a64849495c152abbde8d5f6d2d}{qLimit}}\ =\ 0;}
+\DoxyCodeLine{00140\ \};}
+
+\end{DoxyCode}

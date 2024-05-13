@@ -1,0 +1,88 @@
+\doxysection{Dokumentácia súboru mobility.\+h}
+\hypertarget{mobility_8h}{}\label{mobility_8h}\index{mobility.h@{mobility.h}}
+
+
+Definícia mobilít figúrok.  
+
+
+{\ttfamily \#include $<$piece.\+h$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+\doxysubsubsection*{Triedy}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_mobility_flags}{Mobility\+Flags}}
+\item 
+struct \mbox{\hyperlink{struct_mobility}{Mobility}}
+\item 
+struct \mbox{\hyperlink{struct_legal_move}{Legal\+Move}}
+\item 
+class \mbox{\hyperlink{class_mobilities}{Mobilities}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerácie}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{mobility_8h_a8a93b61bc797a7d1907f42796a252493}{Movement\+Type}} \{ \mbox{\hyperlink{mobility_8h_a8a93b61bc797a7d1907f42796a252493ac3e0a98cb8e17fd822ecd3166b1a3119}{Move}}
+, \mbox{\hyperlink{mobility_8h_a8a93b61bc797a7d1907f42796a252493a1aff1cf22b895d9b024189f5166d5495}{Attack}}
+, \mbox{\hyperlink{mobility_8h_a8a93b61bc797a7d1907f42796a252493a0d2ed211bbc3de1460ae3df87fdfbd0e}{Attack\+Move}}
+ \}
+\item 
+enum \mbox{\hyperlink{mobility_8h_ac663d85beab039663f297c3992360793}{Castling}} \{ \mbox{\hyperlink{mobility_8h_ac663d85beab039663f297c3992360793ab7e4e0120a041dbe6528b050c04269e0}{none}}
+, \mbox{\hyperlink{mobility_8h_ac663d85beab039663f297c3992360793a23324b66768bf7f8ace97cce12b2b14f}{king\+Side}}
+, \mbox{\hyperlink{mobility_8h_ac663d85beab039663f297c3992360793a689753e7cba01fa423f6e89a07e2bf82}{queen\+Side}}
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailný popis}
+Definícia mobilít figúrok. 
+
+\begin{DoxyAuthor}{Autor}
+Martin Šváb 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Dátum}
+Máj 2024 
+\end{DoxyDate}
+
+
+\doxysubsection{Dokumentácia enumeračných typov}
+\Hypertarget{mobility_8h_ac663d85beab039663f297c3992360793}\label{mobility_8h_ac663d85beab039663f297c3992360793} 
+\index{mobility.h@{mobility.h}!Castling@{Castling}}
+\index{Castling@{Castling}!mobility.h@{mobility.h}}
+\doxysubsubsection{\texorpdfstring{Castling}{Castling}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{mobility_8h_ac663d85beab039663f297c3992360793}{Castling}}}
+
+Enumerátor reprezentujúci typ rošády. \begin{DoxyEnumFields}{Hodnoty enumerácií}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{none@{none}!mobility.h@{mobility.h}}\index{mobility.h@{mobility.h}!none@{none}}}\Hypertarget{mobility_8h_ac663d85beab039663f297c3992360793ab7e4e0120a041dbe6528b050c04269e0}\label{mobility_8h_ac663d85beab039663f297c3992360793ab7e4e0120a041dbe6528b050c04269e0} 
+none&Pohyb nie je rošáda. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{kingSide@{kingSide}!mobility.h@{mobility.h}}\index{mobility.h@{mobility.h}!kingSide@{kingSide}}}\Hypertarget{mobility_8h_ac663d85beab039663f297c3992360793a23324b66768bf7f8ace97cce12b2b14f}\label{mobility_8h_ac663d85beab039663f297c3992360793a23324b66768bf7f8ace97cce12b2b14f} 
+king\+Side&Pohyb je rošáda z kráľovej strany. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{queenSide@{queenSide}!mobility.h@{mobility.h}}\index{mobility.h@{mobility.h}!queenSide@{queenSide}}}\Hypertarget{mobility_8h_ac663d85beab039663f297c3992360793a689753e7cba01fa423f6e89a07e2bf82}\label{mobility_8h_ac663d85beab039663f297c3992360793a689753e7cba01fa423f6e89a07e2bf82} 
+queen\+Side&Pohyb je rošáda z kráľovninej strany. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{mobility_8h_a8a93b61bc797a7d1907f42796a252493}\label{mobility_8h_a8a93b61bc797a7d1907f42796a252493} 
+\index{mobility.h@{mobility.h}!MovementType@{MovementType}}
+\index{MovementType@{MovementType}!mobility.h@{mobility.h}}
+\doxysubsubsection{\texorpdfstring{MovementType}{MovementType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{mobility_8h_a8a93b61bc797a7d1907f42796a252493}{Movement\+Type}}}
+
+Enumerátor reprezentujúci typ mobility. \begin{DoxyEnumFields}{Hodnoty enumerácií}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Move@{Move}!mobility.h@{mobility.h}}\index{mobility.h@{mobility.h}!Move@{Move}}}\Hypertarget{mobility_8h_a8a93b61bc797a7d1907f42796a252493ac3e0a98cb8e17fd822ecd3166b1a3119}\label{mobility_8h_a8a93b61bc797a7d1907f42796a252493ac3e0a98cb8e17fd822ecd3166b1a3119} 
+Move&Tento pohyb umožňuje len presunúť sa na prázdnu pozíciu. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Attack@{Attack}!mobility.h@{mobility.h}}\index{mobility.h@{mobility.h}!Attack@{Attack}}}\Hypertarget{mobility_8h_a8a93b61bc797a7d1907f42796a252493a1aff1cf22b895d9b024189f5166d5495}\label{mobility_8h_a8a93b61bc797a7d1907f42796a252493a1aff1cf22b895d9b024189f5166d5495} 
+Attack&Tento pohyb umožňuje len napadnúť protivníkovu figúrku. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AttackMove@{AttackMove}!mobility.h@{mobility.h}}\index{mobility.h@{mobility.h}!AttackMove@{AttackMove}}}\Hypertarget{mobility_8h_a8a93b61bc797a7d1907f42796a252493a0d2ed211bbc3de1460ae3df87fdfbd0e}\label{mobility_8h_a8a93b61bc797a7d1907f42796a252493a0d2ed211bbc3de1460ae3df87fdfbd0e} 
+Attack\+Move&Tento pohyb umožňuje presunúť sa na prádznu pozíciu a napadnúť protivníkovu figúrku. \\
+\hline
+
+\end{DoxyEnumFields}

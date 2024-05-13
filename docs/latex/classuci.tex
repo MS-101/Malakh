@@ -1,0 +1,77 @@
+\doxysection{Dokumentácia triedy uci}
+\hypertarget{classuci}{}\label{classuci}\index{uci@{uci}}
+
+
+{\ttfamily \#include $<$uci.\+h$>$}
+
+\doxysubsubsection*{Verejné metódy}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classuci_aa35f176a0a70d40525449cffd7c1c29a}{run}} ()
+\item 
+bool \mbox{\hyperlink{classuci_a6e36f735e3bc1a3d3c65bf0c17831e9c}{parse\+Command}} (std\+::string command)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Privátne atribúty}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_essence_args}{Essence\+Args}} \mbox{\hyperlink{classuci_aa7f578d7a43bf6bc5e4429de2b80609b}{essence\+Config}}
+\item 
+\mbox{\hyperlink{class_board}{Board}} \mbox{\hyperlink{classuci_ae83b623f7ed7409bf925da7f6704cda7}{board}}
+\item 
+bool \mbox{\hyperlink{classuci_aab875b11876b561096f3bc43e48ac094}{use\+Ensemble}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailný popis}
+Trieda zodpovedná za UCI režim aplikácie. 
+
+\doxysubsection{Dokumentácia k metódam}
+\Hypertarget{classuci_a6e36f735e3bc1a3d3c65bf0c17831e9c}\label{classuci_a6e36f735e3bc1a3d3c65bf0c17831e9c} 
+\index{uci@{uci}!parseCommand@{parseCommand}}
+\index{parseCommand@{parseCommand}!uci@{uci}}
+\doxysubsubsection{\texorpdfstring{parseCommand()}{parseCommand()}}
+{\footnotesize\ttfamily bool uci\+::parse\+Command (\begin{DoxyParamCaption}\item[{std\+::string}]{command }\end{DoxyParamCaption})}
+
+Táto metóda spracuváva UCI príkazy.
+
+
+\begin{DoxyParams}{Parametre}
+{\em command} & Prijatý príkaz \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Ak prijatý príkaz terminuje aplikáciu tak 1, v opačnom prípade 0. 
+\end{DoxyReturn}
+\Hypertarget{classuci_aa35f176a0a70d40525449cffd7c1c29a}\label{classuci_aa35f176a0a70d40525449cffd7c1c29a} 
+\index{uci@{uci}!run@{run}}
+\index{run@{run}!uci@{uci}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void uci\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Touto metódou spustíme UCI režim kde aplikácia čaká na UCI príkazy. 
+
+\doxysubsection{Dokumentácia k dátovým členom}
+\Hypertarget{classuci_ae83b623f7ed7409bf925da7f6704cda7}\label{classuci_ae83b623f7ed7409bf925da7f6704cda7} 
+\index{uci@{uci}!board@{board}}
+\index{board@{board}!uci@{uci}}
+\doxysubsubsection{\texorpdfstring{board}{board}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_board}{Board}} uci\+::board\hspace{0.3cm}{\ttfamily [private]}}
+
+Stav šachovnice aktuálnej hry. \Hypertarget{classuci_aa7f578d7a43bf6bc5e4429de2b80609b}\label{classuci_aa7f578d7a43bf6bc5e4429de2b80609b} 
+\index{uci@{uci}!essenceConfig@{essenceConfig}}
+\index{essenceConfig@{essenceConfig}!uci@{uci}}
+\doxysubsubsection{\texorpdfstring{essenceConfig}{essenceConfig}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_essence_args}{Essence\+Args}} uci\+::essence\+Config\hspace{0.3cm}{\ttfamily [private]}}
+
+Konfigurácia esencií aktuálnej hry. \Hypertarget{classuci_aab875b11876b561096f3bc43e48ac094}\label{classuci_aab875b11876b561096f3bc43e48ac094} 
+\index{uci@{uci}!useEnsemble@{useEnsemble}}
+\index{useEnsemble@{useEnsemble}!uci@{uci}}
+\doxysubsubsection{\texorpdfstring{useEnsemble}{useEnsemble}}
+{\footnotesize\ttfamily bool uci\+::use\+Ensemble = false\hspace{0.3cm}{\ttfamily [private]}}
+
+Nastavenie AI režimu. Ak je hodnota false, tak používame \textquotesingle{}basic\textquotesingle{} režim. Ak je hodnota true, tak používame \textquotesingle{}ensemble\textquotesingle{} režim. 
+
+Dokumentácia pre túto triedu bola generovaná z nasledujúcich súborov\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{uci_8h}{uci.\+h}}\item 
+uci.\+cpp\end{DoxyCompactItemize}

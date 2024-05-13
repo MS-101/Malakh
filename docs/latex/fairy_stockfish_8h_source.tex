@@ -1,0 +1,36 @@
+\doxysection{fairy\+Stockfish.\+h}
+\hypertarget{fairy_stockfish_8h_source}{}\label{fairy_stockfish_8h_source}\index{fairyStockfish.h@{fairyStockfish.h}}
+\mbox{\hyperlink{fairy_stockfish_8h}{Zobraziť dokumentáciu tohoto súboru.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{/*****************************************************************/}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ NOMINMAX}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <Windows.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{board_8h}{board.h}}>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_fairy_stockfish}{FairyStockfish}}\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_fairy_stockfish_a45a9bf355397e60851107787c17355e2}{start}}(\mbox{\hyperlink{struct_essence_args}{EssenceArgs}}\ essenceArgs);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_fairy_stockfish_a60e1e164f412495c78f0f428db4c7fee}{exit}}();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_fairy_stockfish_a4ccf60c9929d963d1345b5d94c3ece1b}{sendCommand}}(std::string\ command);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_fairy_stockfish_addeb872dab23b22cd1882f48c4b9aaad}{setConfigFile}}(\mbox{\hyperlink{struct_essence_args}{EssenceArgs}}\ essenceArgs);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00057\ \ \ \ \ std::string\ \mbox{\hyperlink{class_fairy_stockfish_ab108d3d4bf81104174fa1cfe3857d41e}{waitForResponse}}(std::string\ target);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00064\ \ \ \ \ std::string\ \mbox{\hyperlink{class_fairy_stockfish_ac16761fb5efeba18ea091f35fbec3aea}{receiveResponse}}();}
+\DoxyCodeLine{00065\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00066\ \ \ \ \ PROCESS\_INFORMATION\ piProcInfo\{\};}
+\DoxyCodeLine{00067\ \ \ \ \ HANDLE\ handleStdinRead\ =\ NULL;}
+\DoxyCodeLine{00068\ \ \ \ \ HANDLE\ handleStdinWrite\ =\ NULL;}
+\DoxyCodeLine{00069\ \ \ \ \ HANDLE\ handleStdoutRead\ =\ NULL;}
+\DoxyCodeLine{00070\ \ \ \ \ HANDLE\ handleStdoutWrite\ =\ NULL;}
+\DoxyCodeLine{00071\ \};}
+
+\end{DoxyCode}

@@ -135,6 +135,8 @@ int SearchManager::minimax(Board board, PieceColor playerColor, SearchArgs searc
 		int value;
 		if (useEnsemble) {
 			int ensembleScore = std::round(ensemble.forward(board.inputArray, board.essenceCounts));
+			if (playerColor == Black)
+				ensembleScore *= -1;
 		} else {
 			value = board.evalBoard(playerColor);
 		}

@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sk">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Malakh: Zdrojový súbor transpositions.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Malakh
+   </div>
+   <div id="projectbrief">Šachový engine na hru s neštandardnými šachovými pravidlami</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generované programom Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Hľadať');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Načítam...</div>
+<div class="SRStatus" id="Searching">Vyhľadávam...</div>
+<div class="SRStatus" id="NoMatches">Nič sa nenašlo</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">transpositions.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="transpositions_8h.html">Zobraziť dokumentáciu tohoto súboru.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*****************************************************************/</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;mutex&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="struct_transposition.html">   18</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_transposition.html">Transposition</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="struct_transposition.html#aa0782a30af5ff30812adaaa293f246e7">   22</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_transposition.html#aa0782a30af5ff30812adaaa293f246e7">value</a> = 0;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="struct_transposition.html#aea99a0598f0b6472061f35000c7f76fe">   27</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_transposition.html#aea99a0598f0b6472061f35000c7f76fe">depth</a> = -1;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>};</div>
+</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="foldopen" id="foldopen00033" data-start="{" data-end="};">
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="class_transposition_cache.html">   33</a></span><span class="keyword">class </span><a class="code hl_class" href="class_transposition_cache.html">TranspositionCache</a> {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <a class="code hl_function" href="class_transposition_cache.html#aa03551ed534cb29fdf51d6fe1243ec65">TranspositionCache</a>(<span class="keywordtype">int</span> <a class="code hl_variable" href="class_transposition_cache.html#ac598df0ac2b60e85d866473540d39136">capacity</a>);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_struct" href="struct_transposition.html">Transposition</a> <a class="code hl_function" href="class_transposition_cache.html#a5dec3183dbb4ca40a8f0c55e1db577df">get</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> key);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_transposition_cache.html#ac4cf9795e807843763b769b90273ac2f">put</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> key, <a class="code hl_struct" href="struct_transposition.html">Transposition</a> value);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="class_transposition_cache.html#af527742a73cba577d3821b6c43ce17b8">   61</a></span>    std::unordered_map&lt;unsigned long long, Transposition&gt; <a class="code hl_variable" href="class_transposition_cache.html#af527742a73cba577d3821b6c43ce17b8">cache</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="class_transposition_cache.html#a73bcf5ea6ceb0f0860c22cf72185fdc3">   66</a></span>    std::list&lt;unsigned long long&gt; <a class="code hl_variable" href="class_transposition_cache.html#a73bcf5ea6ceb0f0860c22cf72185fdc3">order</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="class_transposition_cache.html#ac598df0ac2b60e85d866473540d39136">   71</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="class_transposition_cache.html#ac598df0ac2b60e85d866473540d39136">capacity</a>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="class_transposition_cache.html#a53744c04e7a924ff6af2900f3f20300d">   76</a></span>    std::mutex* <a class="code hl_variable" href="class_transposition_cache.html#a53744c04e7a924ff6af2900f3f20300d">mutex</a>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>};</div>
+</div>
+<div class="ttc" id="aclass_transposition_cache_html"><div class="ttname"><a href="class_transposition_cache.html">TranspositionCache</a></div><div class="ttdef"><b>Definition</b> transpositions.h:33</div></div>
+<div class="ttc" id="aclass_transposition_cache_html_a53744c04e7a924ff6af2900f3f20300d"><div class="ttname"><a href="class_transposition_cache.html#a53744c04e7a924ff6af2900f3f20300d">TranspositionCache::mutex</a></div><div class="ttdeci">std::mutex * mutex</div><div class="ttdef"><b>Definition</b> transpositions.h:76</div></div>
+<div class="ttc" id="aclass_transposition_cache_html_a5dec3183dbb4ca40a8f0c55e1db577df"><div class="ttname"><a href="class_transposition_cache.html#a5dec3183dbb4ca40a8f0c55e1db577df">TranspositionCache::get</a></div><div class="ttdeci">Transposition get(unsigned long long key)</div><div class="ttdef"><b>Definition</b> transpositions.cpp:11</div></div>
+<div class="ttc" id="aclass_transposition_cache_html_a73bcf5ea6ceb0f0860c22cf72185fdc3"><div class="ttname"><a href="class_transposition_cache.html#a73bcf5ea6ceb0f0860c22cf72185fdc3">TranspositionCache::order</a></div><div class="ttdeci">std::list&lt; unsigned long long &gt; order</div><div class="ttdef"><b>Definition</b> transpositions.h:66</div></div>
+<div class="ttc" id="aclass_transposition_cache_html_aa03551ed534cb29fdf51d6fe1243ec65"><div class="ttname"><a href="class_transposition_cache.html#aa03551ed534cb29fdf51d6fe1243ec65">TranspositionCache::TranspositionCache</a></div><div class="ttdeci">TranspositionCache(int capacity)</div><div class="ttdef"><b>Definition</b> transpositions.cpp:4</div></div>
+<div class="ttc" id="aclass_transposition_cache_html_ac4cf9795e807843763b769b90273ac2f"><div class="ttname"><a href="class_transposition_cache.html#ac4cf9795e807843763b769b90273ac2f">TranspositionCache::put</a></div><div class="ttdeci">void put(unsigned long long key, Transposition value)</div><div class="ttdef"><b>Definition</b> transpositions.cpp:25</div></div>
+<div class="ttc" id="aclass_transposition_cache_html_ac598df0ac2b60e85d866473540d39136"><div class="ttname"><a href="class_transposition_cache.html#ac598df0ac2b60e85d866473540d39136">TranspositionCache::capacity</a></div><div class="ttdeci">int capacity</div><div class="ttdef"><b>Definition</b> transpositions.h:71</div></div>
+<div class="ttc" id="aclass_transposition_cache_html_af527742a73cba577d3821b6c43ce17b8"><div class="ttname"><a href="class_transposition_cache.html#af527742a73cba577d3821b6c43ce17b8">TranspositionCache::cache</a></div><div class="ttdeci">std::unordered_map&lt; unsigned long long, Transposition &gt; cache</div><div class="ttdef"><b>Definition</b> transpositions.h:61</div></div>
+<div class="ttc" id="astruct_transposition_html"><div class="ttname"><a href="struct_transposition.html">Transposition</a></div><div class="ttdef"><b>Definition</b> transpositions.h:18</div></div>
+<div class="ttc" id="astruct_transposition_html_aa0782a30af5ff30812adaaa293f246e7"><div class="ttname"><a href="struct_transposition.html#aa0782a30af5ff30812adaaa293f246e7">Transposition::value</a></div><div class="ttdeci">int value</div><div class="ttdef"><b>Definition</b> transpositions.h:22</div></div>
+<div class="ttc" id="astruct_transposition_html_aea99a0598f0b6472061f35000c7f76fe"><div class="ttname"><a href="struct_transposition.html#aea99a0598f0b6472061f35000c7f76fe">Transposition::depth</a></div><div class="ttdeci">int depth</div><div class="ttdef"><b>Definition</b> transpositions.h:27</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generované programom&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

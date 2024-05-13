@@ -1,0 +1,66 @@
+\doxysection{Dokumentácia triedy Ensemble}
+\hypertarget{class_ensemble}{}\label{class_ensemble}\index{Ensemble@{Ensemble}}
+
+
+{\ttfamily \#include $<$ensemble.\+h$>$}
+
+\doxysubsubsection*{Verejné metódy}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ensemble_a1917ce42d3d8cbf633b0ec702a8c9390}{Ensemble}} ()
+\item 
+double \mbox{\hyperlink{class_ensemble_a76fab3c081eabba5c1d4fbf5d0259cb9}{forward}} (int \texorpdfstring{$\ast$}{*}input\+Array, int \texorpdfstring{$\ast$}{*}essence\+Counts)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Privátne atribúty}
+\begin{DoxyCompactItemize}
+\item 
+torch\+::jit\+::script\+::\+Module \mbox{\hyperlink{class_ensemble_a46ee7dd600eb0d9bf2da9f11e05d9e7e}{models}} \mbox{[}3\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailný popis}
+Trieda zodpovedná za súborové učenie. 
+
+\doxysubsection{Dokumentácia konštruktoru a deštruktoru}
+\Hypertarget{class_ensemble_a1917ce42d3d8cbf633b0ec702a8c9390}\label{class_ensemble_a1917ce42d3d8cbf633b0ec702a8c9390} 
+\index{Ensemble@{Ensemble}!Ensemble@{Ensemble}}
+\index{Ensemble@{Ensemble}!Ensemble@{Ensemble}}
+\doxysubsubsection{\texorpdfstring{Ensemble()}{Ensemble()}}
+{\footnotesize\ttfamily Ensemble\+::\+Ensemble (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Konštruktor súborového učenia načíta modely. 
+
+\doxysubsection{Dokumentácia k metódam}
+\Hypertarget{class_ensemble_a76fab3c081eabba5c1d4fbf5d0259cb9}\label{class_ensemble_a76fab3c081eabba5c1d4fbf5d0259cb9} 
+\index{Ensemble@{Ensemble}!forward@{forward}}
+\index{forward@{forward}!Ensemble@{Ensemble}}
+\doxysubsubsection{\texorpdfstring{forward()}{forward()}}
+{\footnotesize\ttfamily double Ensemble\+::forward (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\ast$}{*}}]{input\+Array,  }\item[{int \texorpdfstring{$\ast$}{*}}]{essence\+Counts }\end{DoxyParamCaption})}
+
+Pomocou tejto metódy vykonáme predikciu skóre šachovej pozície pomocou vstupnej matice 8x8x2.
+
+
+\begin{DoxyParams}{Parametre}
+{\em input\+Array} & Vstupná matica šachovnica 8x8x2. Prvý kanál reprezentuje šachové figúrky. Druhý kanál reprezentuje hráča na rade. \\
+\hline
+{\em essence\+Counts} & Počty esencií v hernej konfigurácii. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Návratová hodnota}
+Predikcia evaluácie šachovej pozície. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Dokumentácia k dátovým členom}
+\Hypertarget{class_ensemble_a46ee7dd600eb0d9bf2da9f11e05d9e7e}\label{class_ensemble_a46ee7dd600eb0d9bf2da9f11e05d9e7e} 
+\index{Ensemble@{Ensemble}!models@{models}}
+\index{models@{models}!Ensemble@{Ensemble}}
+\doxysubsubsection{\texorpdfstring{models}{models}}
+{\footnotesize\ttfamily torch\+::jit\+::script\+::\+Module Ensemble\+::models\mbox{[}3\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+Modely, ktoré tvoria naše súborové učenie. 
+
+Dokumentácia pre túto triedu bola generovaná z nasledujúcich súborov\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ensemble_8h}{ensemble.\+h}}\item 
+ensemble.\+cpp\end{DoxyCompactItemize}

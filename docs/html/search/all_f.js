@@ -1,0 +1,6 @@
+var searchData=
+[
+  ['qlimit_0',['qLimit',['../class_search_manager.html#ace5562a64849495c152abbde8d5f6d2d',1,'SearchManager']]],
+  ['queen_1',['Queen',['../piece_8h.html#a12ed9719bbdf7bc596ff7a6f4bf3f021a011d63789e83d8beb2a90652bb03cd31',1,'piece.h']]],
+  ['queenside_2',['queenSide',['../mobility_8h.html#ac663d85beab039663f297c3992360793a689753e7cba01fa423f6e89a07e2bf82',1,'mobility.h']]]
+];

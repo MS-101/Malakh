@@ -1,0 +1,187 @@
+\doxysection{Dokumentácia štruktúry Bit\+Board}
+\hypertarget{struct_bit_board}{}\label{struct_bit_board}\index{BitBoard@{BitBoard}}
+
+
+{\ttfamily \#include $<$bitboard.\+h$>$}
+
+\doxysubsubsection*{Verejné metódy}
+\begin{DoxyCompactItemize}
+\item 
+unsigned long long \mbox{\hyperlink{struct_bit_board_ae823ec29f0df9fb70c3c1cc2c03dc050}{get\+Bit}} (char x, char y)
+\item 
+void \mbox{\hyperlink{struct_bit_board_a8a3535649a3ac128917031c1758096af}{set\+Bit}} (char x, char y)
+\item 
+void \mbox{\hyperlink{struct_bit_board_a2256a342032360b50ecf9c8d4d81ff67}{clear\+Bit}} (char x, char y)
+\item 
+void \mbox{\hyperlink{struct_bit_board_aca9f1bc6cdae319f7ba5549de49d877e}{print\+Bits}} ()
+\item 
+bool \mbox{\hyperlink{struct_bit_board_a752b6dd867835fbfdc35d5fb9da81b8e}{get\+King\+Attack}} (char x, char y)
+\item 
+char \mbox{\hyperlink{struct_bit_board_ac0ae17e0216bf40c841483a11755297d}{get\+Tropism}} (char x, char y)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Verejné atribúty}
+\begin{DoxyCompactItemize}
+\item 
+unsigned long long \mbox{\hyperlink{struct_bit_board_a767bb5d3915b9c5b3a617db322df970b}{value}} = 0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Privátne metódy}
+\begin{DoxyCompactItemize}
+\item 
+unsigned long long \mbox{\hyperlink{struct_bit_board_a703d78299861e928c15a55985d043138}{get\+Mask}} (char x, char y)
+\item 
+unsigned long long \mbox{\hyperlink{struct_bit_board_ab9d96cb94972f035f40d3dde0ef12d56}{get\+King\+Pattern}} (unsigned long long \mbox{\hyperlink{struct_bit_board_a767bb5d3915b9c5b3a617db322df970b}{value}})
+\item 
+unsigned long long \mbox{\hyperlink{struct_bit_board_ade0270b8024ebbd6d299a7b0cd1a5395}{get\+Tropism\+Pattern}} (unsigned long long \mbox{\hyperlink{struct_bit_board_a767bb5d3915b9c5b3a617db322df970b}{value}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailný popis}
+Táto štruktúra reprezentuje určitú vlastnosť šachovnice pomocou 64-\/bitového čísla. Každý bit reprezentuje určitú pozíciu na šachovnici. 
+
+\doxysubsection{Dokumentácia k metódam}
+\Hypertarget{struct_bit_board_a2256a342032360b50ecf9c8d4d81ff67}\label{struct_bit_board_a2256a342032360b50ecf9c8d4d81ff67} 
+\index{BitBoard@{BitBoard}!clearBit@{clearBit}}
+\index{clearBit@{clearBit}!BitBoard@{BitBoard}}
+\doxysubsubsection{\texorpdfstring{clearBit()}{clearBit()}}
+{\footnotesize\ttfamily void Bit\+Board\+::clear\+Bit (\begin{DoxyParamCaption}\item[{char}]{x,  }\item[{char}]{y }\end{DoxyParamCaption})}
+
+Pre požadovanú pozíciu na šachovnici táto funkcia nastaví jej bit na hodnotu 0.
+
+
+\begin{DoxyParams}{Parametre}
+{\em x} & Koordinát X požadovanej pozície. \\
+\hline
+{\em y} & Koordinát y požadovanej pozície. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_bit_board_ae823ec29f0df9fb70c3c1cc2c03dc050}\label{struct_bit_board_ae823ec29f0df9fb70c3c1cc2c03dc050} 
+\index{BitBoard@{BitBoard}!getBit@{getBit}}
+\index{getBit@{getBit}!BitBoard@{BitBoard}}
+\doxysubsubsection{\texorpdfstring{getBit()}{getBit()}}
+{\footnotesize\ttfamily unsigned long long Bit\+Board\+::get\+Bit (\begin{DoxyParamCaption}\item[{char}]{x,  }\item[{char}]{y }\end{DoxyParamCaption})}
+
+Pre požadovanú pozíciu na šachovnici táto funkcia vráti jej bit.
+
+
+\begin{DoxyParams}{Parametre}
+{\em x} & Koordinát X požadovanej pozície. \\
+\hline
+{\em y} & Koordinát y požadovanej pozície. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_bit_board_a752b6dd867835fbfdc35d5fb9da81b8e}\label{struct_bit_board_a752b6dd867835fbfdc35d5fb9da81b8e} 
+\index{BitBoard@{BitBoard}!getKingAttack@{getKingAttack}}
+\index{getKingAttack@{getKingAttack}!BitBoard@{BitBoard}}
+\doxysubsubsection{\texorpdfstring{getKingAttack()}{getKingAttack()}}
+{\footnotesize\ttfamily bool Bit\+Board\+::get\+King\+Attack (\begin{DoxyParamCaption}\item[{char}]{x,  }\item[{char}]{y }\end{DoxyParamCaption})}
+
+Táto funkcia zistí či požadovaná pozícia je v blízkosti bitu 1.
+
+
+\begin{DoxyParams}{Parametre}
+{\em x} & Koordinát X požadovanej pozície. \\
+\hline
+{\em y} & Koordinát y požadovanej pozície. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_bit_board_ab9d96cb94972f035f40d3dde0ef12d56}\label{struct_bit_board_ab9d96cb94972f035f40d3dde0ef12d56} 
+\index{BitBoard@{BitBoard}!getKingPattern@{getKingPattern}}
+\index{getKingPattern@{getKingPattern}!BitBoard@{BitBoard}}
+\doxysubsubsection{\texorpdfstring{getKingPattern()}{getKingPattern()}}
+{\footnotesize\ttfamily unsigned long long Bit\+Board\+::get\+King\+Pattern (\begin{DoxyParamCaption}\item[{unsigned long long}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Táto funkcia vytvorí masku s paternou kráľa -\/ všetky bity 1 sú rozšírené o ich štvorcové okolie.
+
+
+\begin{DoxyParams}{Parametre}
+{\em value} & Hodnota bitboardu z ktorého generujeme paternu. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_bit_board_a703d78299861e928c15a55985d043138}\label{struct_bit_board_a703d78299861e928c15a55985d043138} 
+\index{BitBoard@{BitBoard}!getMask@{getMask}}
+\index{getMask@{getMask}!BitBoard@{BitBoard}}
+\doxysubsubsection{\texorpdfstring{getMask()}{getMask()}}
+{\footnotesize\ttfamily unsigned long long Bit\+Board\+::get\+Mask (\begin{DoxyParamCaption}\item[{char}]{x,  }\item[{char}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Táto funkcia vytvorí masku potrebnú na získanie bitu pre požadovanú pozíciu na šachovnici.
+
+
+\begin{DoxyParams}{Parametre}
+{\em x} & Koordinát X požadovanej pozície. \\
+\hline
+{\em y} & Koordinát y požadovanej pozície. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_bit_board_ac0ae17e0216bf40c841483a11755297d}\label{struct_bit_board_ac0ae17e0216bf40c841483a11755297d} 
+\index{BitBoard@{BitBoard}!getTropism@{getTropism}}
+\index{getTropism@{getTropism}!BitBoard@{BitBoard}}
+\doxysubsubsection{\texorpdfstring{getTropism()}{getTropism()}}
+{\footnotesize\ttfamily char Bit\+Board\+::get\+Tropism (\begin{DoxyParamCaption}\item[{char}]{x,  }\item[{char}]{y }\end{DoxyParamCaption})}
+
+Táto funkcia vypočíta vzdialenosť medzi požadovanou pozíciou na šachovnici a najbližším bitom 1 na bitboarde.
+
+
+\begin{DoxyParams}{Parametre}
+{\em x} & Koordinát X požadovanej pozície. \\
+\hline
+{\em y} & Koordinát y požadovanej pozície. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_bit_board_ade0270b8024ebbd6d299a7b0cd1a5395}\label{struct_bit_board_ade0270b8024ebbd6d299a7b0cd1a5395} 
+\index{BitBoard@{BitBoard}!getTropismPattern@{getTropismPattern}}
+\index{getTropismPattern@{getTropismPattern}!BitBoard@{BitBoard}}
+\doxysubsubsection{\texorpdfstring{getTropismPattern()}{getTropismPattern()}}
+{\footnotesize\ttfamily unsigned long long Bit\+Board\+::get\+Tropism\+Pattern (\begin{DoxyParamCaption}\item[{unsigned long long}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Táto funkcia vytvorí masku s paternou kráľa -\/ všetky bity 1 sú rozšírené o ich krížové okolie.
+
+
+\begin{DoxyParams}{Parametre}
+{\em value} & Hodnota bitboardu z ktorého generujeme paternu. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_bit_board_aca9f1bc6cdae319f7ba5549de49d877e}\label{struct_bit_board_aca9f1bc6cdae319f7ba5549de49d877e} 
+\index{BitBoard@{BitBoard}!printBits@{printBits}}
+\index{printBits@{printBits}!BitBoard@{BitBoard}}
+\doxysubsubsection{\texorpdfstring{printBits()}{printBits()}}
+{\footnotesize\ttfamily void Bit\+Board\+::print\+Bits (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Táto funkcia vypíše jednotlivé bity bitboardu.
+
+
+\begin{DoxyParams}{Parametre}
+{\em x} & Koordinát X požadovanej pozície. \\
+\hline
+{\em y} & Koordinát y požadovanej pozície. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{struct_bit_board_a8a3535649a3ac128917031c1758096af}\label{struct_bit_board_a8a3535649a3ac128917031c1758096af} 
+\index{BitBoard@{BitBoard}!setBit@{setBit}}
+\index{setBit@{setBit}!BitBoard@{BitBoard}}
+\doxysubsubsection{\texorpdfstring{setBit()}{setBit()}}
+{\footnotesize\ttfamily void Bit\+Board\+::set\+Bit (\begin{DoxyParamCaption}\item[{char}]{x,  }\item[{char}]{y }\end{DoxyParamCaption})}
+
+Pre požadovanú pozíciu na šachovnici táto funkcia nastaví jej bit na hodnotu 1.
+
+
+\begin{DoxyParams}{Parametre}
+{\em x} & Koordinát X požadovanej pozície. \\
+\hline
+{\em y} & Koordinát y požadovanej pozície. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Dokumentácia k dátovým členom}
+\Hypertarget{struct_bit_board_a767bb5d3915b9c5b3a617db322df970b}\label{struct_bit_board_a767bb5d3915b9c5b3a617db322df970b} 
+\index{BitBoard@{BitBoard}!value@{value}}
+\index{value@{value}!BitBoard@{BitBoard}}
+\doxysubsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily unsigned long long Bit\+Board\+::value = 0}
+
+64-\/bitové číslo reprezentujúce určitú vlastnosť na šachovnici. 
+
+Dokumentácia pre túto štruktúru (struct) bola generovaná z nasledujúcich súborov\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{bitboard_8h}{bitboard.\+h}}\item 
+bitboard.\+cpp\end{DoxyCompactItemize}

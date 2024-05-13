@@ -1,0 +1,52 @@
+\doxysection{Dokumentácia štruktúry Mobility\+Flags}
+\hypertarget{struct_mobility_flags}{}\label{struct_mobility_flags}\index{MobilityFlags@{MobilityFlags}}
+
+
+{\ttfamily \#include $<$mobility.\+h$>$}
+
+\doxysubsubsection*{Verejné atribúty}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{struct_mobility_flags_af742bd8e29915761e5a5c7dabd91c303}{initiative}} = false
+\item 
+bool \mbox{\hyperlink{struct_mobility_flags_a74c7fa0f1e410ae85946040d3068ce60}{hasty}} = false
+\item 
+bool \mbox{\hyperlink{struct_mobility_flags_a471ed0fc402ec450ab811d1ae39a9f30}{uninterruptible}} = false
+\item 
+bool \mbox{\hyperlink{struct_mobility_flags_ab4cc5021075419b5b57635a62e9c14cd}{vigilant}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailný popis}
+Štruktúra s mobilitnými flagmi. Sú potrebné na definíciu špeciálnych pohybov ako En Passant. 
+
+\doxysubsection{Dokumentácia k dátovým členom}
+\Hypertarget{struct_mobility_flags_a74c7fa0f1e410ae85946040d3068ce60}\label{struct_mobility_flags_a74c7fa0f1e410ae85946040d3068ce60} 
+\index{MobilityFlags@{MobilityFlags}!hasty@{hasty}}
+\index{hasty@{hasty}!MobilityFlags@{MobilityFlags}}
+\doxysubsubsection{\texorpdfstring{hasty}{hasty}}
+{\footnotesize\ttfamily bool Mobility\+Flags\+::hasty = false}
+
+Pohyb s týmto flagom po sebe na zanecháva figúrku o 1 pohyb pred cieľovým políčkom. Túto figúrku je možné napadnúť útokom s \textquotesingle{}vigilant\textquotesingle{} flagom. \Hypertarget{struct_mobility_flags_af742bd8e29915761e5a5c7dabd91c303}\label{struct_mobility_flags_af742bd8e29915761e5a5c7dabd91c303} 
+\index{MobilityFlags@{MobilityFlags}!initiative@{initiative}}
+\index{initiative@{initiative}!MobilityFlags@{MobilityFlags}}
+\doxysubsubsection{\texorpdfstring{initiative}{initiative}}
+{\footnotesize\ttfamily bool Mobility\+Flags\+::initiative = false}
+
+Pohyb s týmto flagom je možné vykonať len vtedy, keď figúrka sa ešte nepohla. \Hypertarget{struct_mobility_flags_a471ed0fc402ec450ab811d1ae39a9f30}\label{struct_mobility_flags_a471ed0fc402ec450ab811d1ae39a9f30} 
+\index{MobilityFlags@{MobilityFlags}!uninterruptible@{uninterruptible}}
+\index{uninterruptible@{uninterruptible}!MobilityFlags@{MobilityFlags}}
+\doxysubsubsection{\texorpdfstring{uninterruptible}{uninterruptible}}
+{\footnotesize\ttfamily bool Mobility\+Flags\+::uninterruptible = false}
+
+Tento pohyb je možné vykonať len na finálnom políčku pohybu. \Hypertarget{struct_mobility_flags_ab4cc5021075419b5b57635a62e9c14cd}\label{struct_mobility_flags_ab4cc5021075419b5b57635a62e9c14cd} 
+\index{MobilityFlags@{MobilityFlags}!vigilant@{vigilant}}
+\index{vigilant@{vigilant}!MobilityFlags@{MobilityFlags}}
+\doxysubsubsection{\texorpdfstring{vigilant}{vigilant}}
+{\footnotesize\ttfamily bool Mobility\+Flags\+::vigilant = false}
+
+Pohyb s týmto flagom môže napadnúť figúrku zanechanú pohybom s \textquotesingle{}hasty\textquotesingle{} flagom. 
+
+Dokumentácia pre túto štruktúru (struct) bola generovaná z nasledujúceho súboru\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{mobility_8h}{mobility.\+h}}\end{DoxyCompactItemize}
